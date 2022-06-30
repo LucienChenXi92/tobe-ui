@@ -1,50 +1,75 @@
 {
-    "sign-in": {
-        "title": "Sign In ",
-        "sign-in-btn": "Sign In",
-        "forget-pw-btn": "Forget password?",
-        "sign-up-btn": "Don't have an account? Sign Up",
-        "remember-me-btn": "Remember me",
-        "description": {
-            "email": "Email Address",
-            "password": "Password"
-        }
+  "sign-in": {
+    "title": "Sign In ",
+    "sign-in-btn": "Sign In",
+    "forget-pw-btn": "Forget password?",
+    "sign-up-btn": "Don't have an account? Sign Up",
+    "remember-me-btn": "Remember me",
+    "description": {
+      "email": "Email Address",
+      "password": "Password"
     },
-    "app-header": {
-        "sign-in-btn": "Sign In",
-        "pages": {
-            "news": "News",
-            "about": "About",
-            "blog": "Blog"
-        },
-        "settings": {
-            "btn-tooltip": "Open settings",
-            "profile": "Profile",
-            "dashboard": "Dashboard",
-            "sign-out": "Sign Out"
-        }
-    },
-    "app-footer": {
-        "language": {
-            "btn-label": "Language",
-            "btn-tooltip": "Switch language",
-            "options": {
-                "zh": "中文",
-                "en": "English"
-            }
-        },
-        "linked-in": "Linkedin",
-        "github": "Github",
-        "blog": "Blog"
-    },
-    "profile-setting": {
-        "form-title": "Profile",
-        "fields": {
-            "first-name": "First name",
-            "last-name": "Last name",
-            "phone-number": "Phone number",
-            "email": "Email",
-            "address": "Address"
-        }
+    "msg": {
+      "success": "Sign in successfully",
+      "error": "Please double check your password and username"
     }
+  },
+  "sign-up": {
+    "title": "Join TOBE",
+    "sign-up-btn": "Sign Up",
+    "sign-in-btn": "Already have an account? Sign in",
+    "fields": {
+      "first-name": "First name",
+      "last-name": "Last name",
+      "email": "Email Address",
+      "password": "Password"
+    },
+    "msg": {
+      "success": "Sign up successfully, let's sign in",
+      "error": "Sign up failed"
+    }
+  },
+  "app-header": {
+    "sign-in-btn": "Sign In",
+    "pages": {
+      "news": "News",
+      "about": "About",
+      "blog": "Blog"
+    },
+    "settings": {
+      "btn-tooltip": "Open settings",
+      "profile": "Profile",
+      "dashboard": "Dashboard",
+      "sign-out": "Sign Out"
+    }
+  },
+  "app-footer": {
+    "language": {
+      "btn-label": "Language",
+      "btn-tooltip": "Switch language",
+      "options": {
+        "zh": "中文",
+        "en": "English"
+      }
+    },
+    "linked-in": "Linkedin",
+    "github": "Github",
+    "blog": "Blog"
+  },
+  "profile-setting": {
+    "form-title": "Profile",
+    "fields": {
+      "first-name": "First name",
+      "last-name": "Last name",
+      "phone-number": "Phone number",
+      "email": "Email",
+      "address": "Address"
+    },
+    "back-btn": "Back",
+    "submit-btn": "Submit",
+    "msg": {
+      "success": "Updated",
+      "error": "Update failed"
+    }
+  }
 }

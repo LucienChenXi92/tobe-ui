@@ -51,7 +51,7 @@ server.interceptors.response.use(
     // should refresh token and retry for the requests besides fresh token and login
     if (
       error.response.status === 401 &&
-      error.config.url.indexOf("login") == -1
+      error.config.url.indexOf("login") === -1
     ) {
       try {
         // try to renewal access token with the refresh token

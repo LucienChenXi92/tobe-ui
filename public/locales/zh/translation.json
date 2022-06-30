@@ -1,50 +1,75 @@
 {
-    "sign-in": {
-        "title": "欢迎登陆 TO BE",
-        "sign-in-btn": "登录",
-        "forget-pw-btn": "忘记密码?",
-        "sign-up-btn": "注册账号",
-        "remember-me-btn": "记住登录",
-        "description": {
-            "email": "邮箱地址",
-            "password": "密码"
-        }
+  "sign-in": {
+    "title": "欢迎登陆 TO BE",
+    "sign-in-btn": "登录",
+    "forget-pw-btn": "忘记密码?",
+    "sign-up-btn": "注册账号",
+    "remember-me-btn": "记住登录",
+    "description": {
+      "email": "邮箱地址",
+      "password": "密码"
     },
-    "app-header": {
-        "sign-in-btn": "登录",
-        "pages": {
-            "news": "动态",
-            "about": "关于",
-            "blog": "博客"
-        },
-        "settings": {
-            "btn-tooltip": "打开设置",
-            "profile": "个人信息",
-            "dashboard": "看板中心",
-            "sign-out": "登出系统"
-        }
-    },
-    "app-footer": {
-        "language": {
-            "btn-label": "语言",
-            "btn-tooltip": "切换语言",
-            "options": {
-                "zh": "中文",
-                "en": "English"
-            }
-        },
-        "linked-in": "领英",
-        "github": "Github",
-        "blog": "博客"
-    },
-    "profile-setting": {
-        "form-title": "编辑您的档案",
-        "fields": {
-            "first-name": "名字",
-            "last-name": "姓氏",
-            "phone-number": "联系电话",
-            "email": "邮箱地址",
-            "address": "联系地址"
-        }
+    "msg": {
+      "success": "登录成功",
+      "error": "登录失败，请再次确认您的用户名密码"
     }
- }
+  },
+  "sign-up": {
+    "title": "欢迎加入 TOBE",
+    "sign-up-btn": "注册",
+    "sign-in-btn": "已有账号? 登录",
+    "fields": {
+      "first-name": "名字",
+      "last-name": "姓氏",
+      "email": "邮箱地址",
+      "password": "密码"
+    },
+    "msg": {
+      "success": "注册成功",
+      "error": "注册失败"
+    }
+  },
+  "app-header": {
+    "sign-in-btn": "登录",
+    "pages": {
+      "news": "动态",
+      "about": "关于",
+      "blog": "博客"
+    },
+    "settings": {
+      "btn-tooltip": "打开设置",
+      "profile": "个人信息",
+      "dashboard": "看板中心",
+      "sign-out": "登出系统"
+    }
+  },
+  "app-footer": {
+    "language": {
+      "btn-label": "语言",
+      "btn-tooltip": "切换语言",
+      "options": {
+        "zh": "中文",
+        "en": "English"
+      }
+    },
+    "linked-in": "领英",
+    "github": "Github",
+    "blog": "博客"
+  },
+  "profile-setting": {
+    "form-title": "编辑您的档案",
+    "fields": {
+      "first-name": "名字",
+      "last-name": "姓氏",
+      "phone-number": "联系电话",
+      "email": "邮箱地址",
+      "address": "联系地址"
+    },
+    "back-btn": "返回",
+    "submit-btn": "提交",
+    "msg": {
+      "success": "更新成功",
+      "error": "更新失败"
+    }
+  }
+}

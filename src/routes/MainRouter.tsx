@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "../containers/HomePage/HomePage";
 import SignInSide from "../containers/SignInPage/SignInPage";
 import SignUpPage from "../containers/SignUpPage/SignUpPage";
@@ -6,6 +6,7 @@ import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingP
 import ProtectedRoutes from "./ProtectedRoutes";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../consts";
+import { BasicLayout } from "../components";
 
 function MainRouter() {
   return (
@@ -26,9 +27,34 @@ function MainRouter() {
             }
           />
         </Route>
-        {/* <Route path={URL.PROFILE} element={<HomePage />} />
-                <Route path={URL.BLOG} element={<HomePage />} />
-                <Route path={URL.ABOUT} element={<HomePage />} /> */}
+        <Route>
+          <Route element={<NonProtectedBasicLayoutRoute />}>
+            <Route
+              path={URL.NEWS}
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>news page!</p>
+                </main>
+              }
+            />
+            <Route
+              path={URL.BLOG}
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>blog page!</p>
+                </main>
+              }
+            />
+            <Route
+              path={URL.ABOUT}
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>about page!</p>
+                </main>
+              }
+            />
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
@@ -39,6 +65,14 @@ function SignOutRoute() {
   localStorage.removeItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
   localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
   return <SignInSide />;
+}
+
+function NonProtectedBasicLayoutRoute() {
+  return (
+    <BasicLayout>
+      <Outlet />
+    </BasicLayout>
+  );
 }
 
 export default MainRouter;
