@@ -22,11 +22,17 @@
       "first-name": "名字",
       "last-name": "姓氏",
       "email": "邮箱地址",
-      "password": "密码"
+      "password": "密码",
+      "password-confirm": "再次确认密码"
     },
     "msg": {
       "success": "注册成功",
-      "error": "注册失败"
+      "error": "注册失败",
+      "warning": {
+        "invalid-email-format": "邮件格式异常",
+        "two-password-dismatch": "两次输入的密码不一致",
+        "invalid-password-length": "密码长度应为6至8位"
+      }
     }
   },
   "app-header": {

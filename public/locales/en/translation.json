@@ -22,11 +22,17 @@
       "first-name": "First name",
       "last-name": "Last name",
       "email": "Email Address",
-      "password": "Password"
+      "password": "Password",
+      "password-confirm": "Confirm Password"
     },
     "msg": {
       "success": "Sign up successfully, let's sign in",
-      "error": "Sign up failed"
+      "error": "Sign up failed",
+      "warning": {
+        "invalid-email-format": "Invalid email format",
+        "two-password-dismatch": "Two passwords are not same",
+        "invalid-password-length": "Password length should between 6-8 digits"
+      }
     }
   },
   "app-header": {

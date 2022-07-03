@@ -24,6 +24,11 @@ export default function SignUpPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+
+    if (!validateForm(data)) {
+      return;
+    }
+
     // start loading
     updateOpenLoading(true);
     createUser({
@@ -50,6 +55,37 @@ export default function SignUpPage() {
       });
   };
 
+  function validateForm(data: FormData): boolean {
+    // validate email template
+    const emailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    if (!emailReg.test(data.get("email")?.toString() || "")) {
+      warn("sign-up.msg.warning.invalid-email-format");
+      return false;
+    }
+    // validate the two password
+    if (
+      data.get("password")?.toString() !==
+      data.get("password-confirm")?.toString()
+    ) {
+      warn("sign-up.msg.warning.two-password-dismatch");
+      return false;
+    }
+    // validate password length
+    let passwordLength = data.get("password")?.toString().length || 0;
+    if (passwordLength < 6 || passwordLength > 64) {
+      warn("sign-up.msg.warning.invalid-password-length");
+      return false;
+    }
+    return true;
+  }
+
+  function warn(warningMsg: string): void {
+    enqueueSnackbar(t(warningMsg), {
+      variant: "warning",
+      anchorOrigin: { vertical: "bottom", horizontal: "right" },
+    });
+  }
+
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={openLoading} />
@@ -70,7 +106,6 @@ export default function SignUpPage() {
               <TextField
                 autoComplete="given-name"
                 name="firstName"
-                required
                 fullWidth
                 id="firstName"
                 label={t("sign-up.fields.first-name")}
@@ -79,7 +114,6 @@ export default function SignUpPage() {
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
                 fullWidth
                 id="lastName"
                 label={t("sign-up.fields.last-name")}
@@ -105,6 +139,17 @@ export default function SignUpPage() {
                 label={t("sign-up.fields.password")}
                 type="password"
                 id="password"
+                autoComplete="new-password"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                required
+                fullWidth
+                name="password-confirm"
+                label={t("sign-up.fields.password-confirm")}
+                type="password"
+                id="password-confirm"
                 autoComplete="new-password"
               />
             </Grid>
