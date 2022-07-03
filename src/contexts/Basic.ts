@@ -1,14 +1,10 @@
 export type Action = {
   type: string;
   payload?: any;
-  error?: any;
 };
 
 export type AuthState = {
   user: any;
-  token: string;
-  loading: boolean;
-  errorMessage: string | null;
 };
 
 export interface User {

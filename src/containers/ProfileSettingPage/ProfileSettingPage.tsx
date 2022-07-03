@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Container,
@@ -15,6 +15,7 @@ import { useSnackbar } from "notistack";
 
 export default function ProfileSettingPage() {
   const { t } = useTranslation();
+  const [openLoading, setOpenLoading] = useState(false);
   const authState = useAuthState();
   const authDispatch = useAuthDispatch();
   const { enqueueSnackbar } = useSnackbar();
@@ -23,6 +24,7 @@ export default function ProfileSettingPage() {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    setOpenLoading(true);
     updateProfile(authDispatch, {
       id: user.id,
       email: user.email,
@@ -33,23 +35,23 @@ export default function ProfileSettingPage() {
       address: data.get("address")?.toString(),
     })
       .then(() =>
-        enqueueSnackbar("Update success!", {
+        enqueueSnackbar(t("profile-setting.msg.success"), {
           variant: "success",
           anchorOrigin: { vertical: "bottom", horizontal: "right" },
         })
       )
-      .catch((error) => {
-        console.error(error);
-        enqueueSnackbar("Update failed!", {
+      .catch(() => {
+        enqueueSnackbar(t("profile-setting.msg.error"), {
           variant: "error",
           anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
-      });
+      })
+      .finally(() => setOpenLoading(false));
   };
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-      <Loading open={authState.loading} />
+      <Loading open={openLoading} />
       <Paper
         variant="outlined"
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
@@ -128,10 +130,10 @@ export default function ProfileSettingPage() {
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button onClick={() => window.history.back()} sx={{ mt: 3, ml: 1 }}>
-              Back
+              {t("profile-setting.back-btn")}
             </Button>
             <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
-              Submit
+              {t("profile-setting.submit-btn")}
             </Button>
           </Box>
         </Box>

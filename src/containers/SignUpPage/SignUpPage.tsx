@@ -1,31 +1,94 @@
-import React from "react";
+import React, { useState } from "react";
 import {
-  Avatar,
   Box,
   Container,
   Grid,
   Button,
   Typography,
-  Checkbox,
-  FormControlLabel,
   TextField,
   Link,
 } from "@mui/material";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { Copyright } from "../../components";
+import { Copyright, Loading } from "../../components";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
+import { URL } from "../../routes";
+import { createUser } from "../../contexts";
+import { useSnackbar } from "notistack";
 
 export default function SignUpPage() {
+  const navigate = useNavigate();
+  const [openLoading, updateOpenLoading] = useState(false);
+  const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
+
+    if (!validateForm(data)) {
+      return;
+    }
+
+    // start loading
+    updateOpenLoading(true);
+    createUser({
+      firstName: data.get("firstName"),
+      lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
-    });
+    })
+      .then(() => {
+        enqueueSnackbar(t("sign-up.msg.success"), {
+          variant: "success",
+          anchorOrigin: { vertical: "bottom", horizontal: "right" },
+        });
+        navigate(URL.SIGN_IN, { replace: true });
+      })
+      .catch(() => {
+        enqueueSnackbar(t("sign-up.msg.error"), {
+          variant: "error",
+          anchorOrigin: { vertical: "bottom", horizontal: "right" },
+        });
+      })
+      .finally(() => {
+        updateOpenLoading(false);
+      });
   };
+
+  function validateForm(data: FormData): boolean {
+    // validate email template
+    const emailReg = /^(\w-*\.*)+@(\w-?)+(\.\w{2,})+$/;
+    if (!emailReg.test(data.get("email")?.toString() || "")) {
+      warn("sign-up.msg.warning.invalid-email-format");
+      return false;
+    }
+    // validate the two password
+    if (
+      data.get("password")?.toString() !==
+      data.get("password-confirm")?.toString()
+    ) {
+      warn("sign-up.msg.warning.two-password-dismatch");
+      return false;
+    }
+    // validate password length
+    let passwordLength = data.get("password")?.toString().length || 0;
+    if (passwordLength < 6 || passwordLength > 64) {
+      warn("sign-up.msg.warning.invalid-password-length");
+      return false;
+    }
+    return true;
+  }
+
+  function warn(warningMsg: string): void {
+    enqueueSnackbar(t(warningMsg), {
+      variant: "warning",
+      anchorOrigin: { vertical: "bottom", horizontal: "right" },
+    });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
+      <Loading open={openLoading} />
       <Box
         sx={{
           marginTop: 8,
@@ -34,11 +97,8 @@ export default function SignUpPage() {
           alignItems: "center",
         }}
       >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          {t("sign-up.title")}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
           <Grid container spacing={2}>
@@ -46,19 +106,17 @@ export default function SignUpPage() {
               <TextField
                 autoComplete="given-name"
                 name="firstName"
-                required
                 fullWidth
                 id="firstName"
-                label="First Name"
+                label={t("sign-up.fields.first-name")}
                 autoFocus
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <TextField
-                required
                 fullWidth
                 id="lastName"
-                label="Last Name"
+                label={t("sign-up.fields.last-name")}
                 name="lastName"
                 autoComplete="family-name"
               />
@@ -68,7 +126,7 @@ export default function SignUpPage() {
                 required
                 fullWidth
                 id="email"
-                label="Email Address"
+                label={t("sign-up.fields.email")}
                 name="email"
                 autoComplete="email"
               />
@@ -78,16 +136,21 @@ export default function SignUpPage() {
                 required
                 fullWidth
                 name="password"
-                label="Password"
+                label={t("sign-up.fields.password")}
                 type="password"
                 id="password"
                 autoComplete="new-password"
               />
             </Grid>
             <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
-                label="I want to receive inspiration, marketing promotions and updates via email."
+              <TextField
+                required
+                fullWidth
+                name="password-confirm"
+                label={t("sign-up.fields.password-confirm")}
+                type="password"
+                id="password-confirm"
+                autoComplete="new-password"
               />
             </Grid>
           </Grid>
@@ -97,12 +160,12 @@ export default function SignUpPage() {
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
           >
-            Sign Up
+            {t("sign-up.sign-up-btn")}
           </Button>
           <Grid container justifyContent="flex-end">
             <Grid item>
-              <Link href="#" variant="body2">
-                Already have an account? Sign in
+              <Link href={URL.SIGN_IN} variant="body2">
+                {t("sign-up.sign-in-btn")}
               </Link>
             </Grid>
           </Grid>

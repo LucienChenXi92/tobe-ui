@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Box,
   Grid,
@@ -8,34 +8,49 @@ import {
   Button,
   Link,
 } from "@mui/material";
-import { loginUser, useAuthDispatch, useAuthState } from "../../contexts";
+import { loginUser, useAuthDispatch } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { URL } from "../../routes";
 import { Copyright, Loading } from "../../components";
+import { useSnackbar } from "notistack";
 
 export default function SignInPage() {
   const dispatch = useAuthDispatch();
-  const authState = useAuthState();
+  const [openLoading, updateOpenLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-
-    let result = await loginUser(dispatch, {
+    updateOpenLoading(true);
+    loginUser(dispatch, {
       username: data.get("email"),
       password: data.get("password"),
-    });
-    if (result) {
-      navigate("/", { replace: true });
-    }
+    })
+      .then(() => {
+        enqueueSnackbar(t("sign-in.msg.success"), {
+          variant: "success",
+          anchorOrigin: { vertical: "bottom", horizontal: "right" },
+        });
+        navigate(URL.HOME, { replace: true });
+      })
+      .catch(() => {
+        enqueueSnackbar(t("sign-in.msg.error"), {
+          variant: "error",
+          anchorOrigin: { vertical: "bottom", horizontal: "right" },
+        });
+      })
+      .finally(() => {
+        updateOpenLoading(false);
+      });
   };
 
   return (
     <Grid container component="main" sx={{ height: "100vh" }}>
-      <Loading open={authState.loading} />
+      <Loading open={openLoading} />
       <Grid
         item
         xs={false}

@@ -14,7 +14,6 @@ export async function loginUser(
   };
 
   try {
-    dispatch({ type: "REQUEST_SENDING" });
     let response = await server.post(
       `${ROOT_URL}${LOGIN_URI}`,
       signInPayload,
@@ -32,11 +31,8 @@ export async function loginUser(
       localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken);
       return data.userProfile;
     }
-
-    dispatch({ type: "REQUEST_ERROR", error: data.message });
     return;
   } catch (error) {
-    dispatch({ type: "REQUEST_ERROR", error: error });
     throw error;
   }
 }
@@ -52,7 +48,6 @@ export async function updateProfile(
   };
 
   try {
-    dispatch({ type: "REQUEST_SENDING" });
     let response = await server.put(
       `${ROOT_URL}/v1/users/${user.id}`,
       user,
@@ -69,10 +64,27 @@ export async function updateProfile(
       );
       return data;
     }
-    dispatch({ type: "REQUEST_ERROR", error: data.message });
     return;
   } catch (error) {
-    dispatch({ type: "REQUEST_ERROR", error: error });
+    throw error;
+  }
+}
+
+export async function createUser(user: any) {
+  const requestOptions = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  try {
+    let response = await server.post(
+      `${ROOT_URL}/v1/users`,
+      user,
+      requestOptions
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Failed to create user", error);
     throw error;
   }
 }
