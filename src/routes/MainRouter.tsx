@@ -4,9 +4,11 @@ import SignInSide from "../containers/SignInPage/SignInPage";
 import SignUpPage from "../containers/SignUpPage/SignUpPage";
 import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingPage";
 import ProtectedRoutes from "./ProtectedRoutes";
+import DashboardPage from "../containers/DashboardPage/DashboardPage";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../consts";
 import { BasicLayout } from "../components";
+import UsersPage from "../containers/DashboardPage/UsersPage";
 
 function MainRouter() {
   return (
@@ -18,14 +20,17 @@ function MainRouter() {
         <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
         <Route element={<ProtectedRoutes />}>
           <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-          <Route
-            path={URL.DASHBOARD}
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>dashboard page!</p>
-              </main>
-            }
-          />
+          <Route path={URL.DASHBOARD} element={<DashboardPage />}>
+            <Route path={URL.USERS} element={<UsersPage />} />
+            <Route
+              path={URL.PROJECTS}
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>projects page!</p>
+                </main>
+              }
+            />
+          </Route>
         </Route>
         <Route>
           <Route element={<NonProtectedBasicLayoutRoute />}>
@@ -62,6 +67,7 @@ function MainRouter() {
 
 function SignOutRoute() {
   localStorage.removeItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN);
+  localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTHORITIES);
   localStorage.removeItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
   localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
   return <SignInSide />;

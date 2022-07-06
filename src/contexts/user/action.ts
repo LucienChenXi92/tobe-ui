@@ -29,6 +29,10 @@ export async function loginUser(
       );
       localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, data.accessToken);
       localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken);
+      localStorage.setItem(
+        LOCAL_STORAGE_KEYS.AUTHORITIES,
+        JSON.stringify(data.authorities)
+      );
       return data.userProfile;
     }
     return;
@@ -57,7 +61,6 @@ export async function updateProfile(
 
     if (data) {
       dispatch({ type: "REQUEST_SUCCESS", payload: data });
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
       localStorage.setItem(
         LOCAL_STORAGE_KEYS.CURRENT_USER,
         JSON.stringify(data)

@@ -3,5 +3,6 @@ import AppFooter from "./AppFooter/AppFooter";
 import Copyright from "./CopyRight";
 import Loading from "./Loading";
 import BasicLayout from "./BasicLayout";
+import MyMenu from "./MyMenu";
 
-export { BasicLayout, AppHeader, AppFooter, Copyright, Loading };
+export { BasicLayout, AppHeader, AppFooter, Copyright, Loading, MyMenu };

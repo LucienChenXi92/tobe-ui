@@ -9,6 +9,8 @@ export const URL = {
 
   PROFILE: "/my/profile",
   DASHBOARD: "/my/dashboard",
+  USERS: "/my/dashboard/users",
+  PROJECTS: "/my/dashboard/projects",
 };
 
 export function validateUrl(target: string): boolean {
