@@ -1,11 +1,4 @@
-import { loginUser, updateProfile, createUser } from "./user/action";
+import { loginUser } from "./user/action";
 import { AuthProvider, useAuthDispatch, useAuthState } from "./user/context";
 
-export {
-  AuthProvider,
-  useAuthState,
-  useAuthDispatch,
-  loginUser,
-  updateProfile,
-  createUser,
-};
+export { AuthProvider, useAuthState, useAuthDispatch, loginUser };

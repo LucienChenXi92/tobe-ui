@@ -1,6 +1,6 @@
 import React, { useReducer } from "react";
 import { AuthReducer, initialState } from "./reducer";
-import { Action, AuthState } from "../Basic";
+import { Action, AuthState } from "../types";
 
 const AuthStateContext = React.createContext<AuthState | null>(null);
 const AuthDispatchContext = React.createContext<React.Dispatch<Action> | null>(

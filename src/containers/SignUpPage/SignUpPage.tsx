@@ -9,18 +9,17 @@ import {
   TextField,
   Link,
 } from "@mui/material";
-import { Loading } from "../../components";
-import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { enqueueSnackbar } from "notistack";
+import { Loading } from "../../components";
 import { URL } from "../../routes";
-import { createUser } from "../../contexts";
-import { useSnackbar } from "notistack";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
   const [openLoading, updateOpenLoading] = useState(false);
   const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -29,32 +28,41 @@ export default function SignUpPage() {
     if (!validateForm(data)) {
       return;
     }
+    createUser(data);
+  };
 
-    // start loading
+  function createUser(data: FormData): void {
     updateOpenLoading(true);
-    createUser({
-      firstName: data.get("firstName"),
-      lastName: data.get("lastName"),
-      email: data.get("email"),
-      password: data.get("password"),
-    })
+    server
+      .post(
+        `${ROOT_URL}${SERVER_URI.CREATE_USER}`,
+        {
+          firstName: data.get("firstName"),
+          lastName: data.get("lastName"),
+          email: data.get("email"),
+          password: data.get("password"),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then(() => {
         enqueueSnackbar(t("sign-up.msg.success"), {
           variant: "success",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
         navigate(URL.SIGN_IN, { replace: true });
       })
       .catch(() => {
         enqueueSnackbar(t("sign-up.msg.error"), {
           variant: "error",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
       })
       .finally(() => {
         updateOpenLoading(false);
       });
-  };
+  }
 
   function validateForm(data: FormData): boolean {
     // validate email template
@@ -83,12 +91,11 @@ export default function SignUpPage() {
   function warn(warningMsg: string): void {
     enqueueSnackbar(t(warningMsg), {
       variant: "warning",
-      anchorOrigin: { vertical: "bottom", horizontal: "right" },
     });
   }
 
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
       <Loading open={openLoading} />
       <Paper
         variant="outlined"
@@ -113,6 +120,7 @@ export default function SignUpPage() {
                 id="firstName"
                 label={t("sign-up.fields.first-name")}
                 autoFocus
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -122,6 +130,7 @@ export default function SignUpPage() {
                 label={t("sign-up.fields.last-name")}
                 name="lastName"
                 autoComplete="family-name"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12}>
@@ -132,6 +141,7 @@ export default function SignUpPage() {
                 label={t("sign-up.fields.email")}
                 name="email"
                 autoComplete="email"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12}>
@@ -143,6 +153,7 @@ export default function SignUpPage() {
                 type="password"
                 id="password"
                 autoComplete="new-password"
+                variant="standard"
               />
             </Grid>
             <Grid item xs={12}>
@@ -154,6 +165,7 @@ export default function SignUpPage() {
                 type="password"
                 id="password-confirm"
                 autoComplete="new-password"
+                variant="standard"
               />
             </Grid>
           </Grid>

@@ -1,4 +1,4 @@
-import { Action, AuthState } from "../Basic";
+import { Action, AuthState } from "../types";
 import { LOCAL_STORAGE_KEYS } from "../../consts";
 
 let user: any = localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER)

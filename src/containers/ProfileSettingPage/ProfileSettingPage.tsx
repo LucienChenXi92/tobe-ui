@@ -8,46 +8,65 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-import { Loading } from "../../components";
 import { useTranslation } from "react-i18next";
-import { useAuthState, useAuthDispatch, updateProfile } from "../../contexts";
 import { useSnackbar } from "notistack";
+
+import { Loading } from "../../components";
+import { useAuthState, useAuthDispatch } from "../../contexts";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { LOCAL_STORAGE_KEYS } from "../../consts";
 
 export default function ProfileSettingPage() {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState(false);
   const authState = useAuthState();
-  const authDispatch = useAuthDispatch();
+  const dispatch = useAuthDispatch();
   const { enqueueSnackbar } = useSnackbar();
   const { user } = authState;
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    updateUser(data);
+  };
+
+  function updateUser(data: FormData): void {
     setOpenLoading(true);
-    updateProfile(authDispatch, {
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      firstName: data.get("firstName")?.toString(),
-      lastName: data.get("lastName")?.toString(),
-      phoneNum: data.get("phoneNum")?.toString(),
-      address: data.get("address")?.toString(),
-    })
-      .then(() =>
+    server
+      .put(
+        `${ROOT_URL}${SERVER_URI.UPDATE_USER}/${user.id}`,
+        {
+          id: user.id,
+          email: user.email,
+          username: user.username,
+          firstName: data.get("firstName")?.toString(),
+          lastName: data.get("lastName")?.toString(),
+          phoneNum: data.get("phoneNum")?.toString(),
+          address: data.get("address")?.toString(),
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        dispatch({ type: "REQUEST_SUCCESS", payload: response.data });
+        localStorage.setItem(
+          LOCAL_STORAGE_KEYS.CURRENT_USER,
+          JSON.stringify(response.data)
+        );
         enqueueSnackbar(t("profile-setting.msg.success"), {
           variant: "success",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
-        })
-      )
+        });
+      })
       .catch(() => {
         enqueueSnackbar(t("profile-setting.msg.error"), {
           variant: "error",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
       })
       .finally(() => setOpenLoading(false));
-  };
+  }
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>

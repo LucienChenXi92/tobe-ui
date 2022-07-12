@@ -8,19 +8,18 @@ import {
   Button,
   Link,
 } from "@mui/material";
-import { loginUser, useAuthDispatch } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { enqueueSnackbar } from "notistack";
+import { loginUser, useAuthDispatch } from "../../contexts";
 import { URL } from "../../routes";
 import { Loading } from "../../components";
-import { useSnackbar } from "notistack";
 
 export default function SignInPage() {
   const dispatch = useAuthDispatch();
   const [openLoading, updateOpenLoading] = useState(false);
   const navigate = useNavigate();
   const { t } = useTranslation();
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -33,14 +32,12 @@ export default function SignInPage() {
       .then(() => {
         enqueueSnackbar(t("sign-in.msg.success"), {
           variant: "success",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
         navigate(URL.HOME, { replace: true });
       })
       .catch(() => {
         enqueueSnackbar(t("sign-in.msg.error"), {
           variant: "error",
-          anchorOrigin: { vertical: "bottom", horizontal: "right" },
         });
       })
       .finally(() => {
