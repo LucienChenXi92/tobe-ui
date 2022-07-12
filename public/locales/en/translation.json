@@ -77,5 +77,17 @@
       "success": "Updated",
       "error": "Update failed"
     }
+  },
+  "user-table": {
+    "label": {
+      "id": "ID",
+      "email": "Email",
+      "username": "User Name",
+      "first-name": "First Name",
+      "last-name": "Last Name",
+      "phone-number": "Phone Number",
+      "operation": "Operation"
+    },
+    "delete-btn": "Delete"
   }
 }

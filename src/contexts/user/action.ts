@@ -1,7 +1,7 @@
 import React from "react";
-import server from "../../servers/server";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Action, User } from "../Basic";
-import { ROOT_URL, LOCAL_STORAGE_KEYS, LOGIN_URI } from "../../consts";
+import { LOCAL_STORAGE_KEYS } from "../../consts";
 
 export async function loginUser(
   dispatch: React.Dispatch<Action>,
@@ -15,7 +15,7 @@ export async function loginUser(
 
   try {
     let response = await server.post(
-      `${ROOT_URL}${LOGIN_URI}`,
+      `${ROOT_URL}${SERVER_URI.LOGIN}`,
       signInPayload,
       requestOptions
     );
@@ -53,7 +53,7 @@ export async function updateProfile(
 
   try {
     let response = await server.put(
-      `${ROOT_URL}/v1/users/${user.id}`,
+      `${ROOT_URL}${SERVER_URI.UPDATE_USER}/${user.id}`,
       user,
       requestOptions
     );
@@ -81,7 +81,7 @@ export async function createUser(user: any) {
   };
   try {
     let response = await server.post(
-      `${ROOT_URL}/v1/users`,
+      `${ROOT_URL}${SERVER_URI.CREATE_USER}`,
       user,
       requestOptions
     );

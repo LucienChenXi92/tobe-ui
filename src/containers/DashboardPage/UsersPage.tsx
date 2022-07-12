@@ -1,179 +1,111 @@
-import * as React from "react";
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TablePagination,
-  TableRow,
-} from "@mui/material";
-
-interface Column {
-  id:
-    | "id"
-    | "email"
-    | "username"
-    | "firstName"
-    | "lastName"
-    | "phoneNum"
-    | "status";
-  label: string;
-  minWidth?: number;
-  align?: "left" | "right" | "center";
-  format?: (value: number) => string;
-}
-
-const columns: readonly Column[] = [
-  { id: "id", label: "Id" },
-  { id: "email", label: "Email", align: "left" },
-  {
-    id: "username",
-    label: "Username",
-    align: "left",
-  },
-  {
-    id: "firstName",
-    label: "First Name",
-  },
-  {
-    id: "lastName",
-    label: "Last Name",
-  },
-  {
-    id: "phoneNum",
-    label: "Phone Number",
-  },
-  {
-    id: "status",
-    label: "Status",
-  },
-];
-
-interface Data {
-  id: number;
-  email: string;
-  username: string;
-  firstName: string;
-  lastName: string;
-  phoneNum: string;
-  status: boolean;
-}
-
-function createData(
-  id: number,
-  email: string,
-  username: string,
-  firstName: string,
-  lastName: string,
-  phoneNum: string,
-  status: boolean
-): Data {
-  return { id, email, username, firstName, lastName, phoneNum, status };
-}
-
-const rows = [
-  createData(
-    1,
-    "lucien.chen@163.com",
-    "lucien.chen",
-    "lucien",
-    "Chen",
-    "13145822026",
-    true
-  ),
-  createData(
-    2,
-    "fish.liu@163.com",
-    "fish.liu",
-    "fish",
-    "Liu",
-    "18682317925",
-    false
-  ),
-  createData(
-    2,
-    "yongyi.chen@163.com",
-    "yongyi.chen",
-    "yongyi",
-    "chen",
-    "123",
-    false
-  ),
-  createData(2, "likun.yan@163.com", "likun.yan", "likun", "yan", "321", false),
-];
+import React, { useState, useEffect } from "react";
+import { PagedTable } from "../../components";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { Column, UserData, Operation } from "../../global/types";
+import { useTranslation } from "react-i18next";
 
 export default function UsersPage() {
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [current, setCurrent] = useState<number>(0);
+  const [size, setSize] = useState<number>(10);
+  const [rows, setRows] = useState<UserData[]>([]);
+  const [openLoading, setOpenLoading] = useState(false);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const { t } = useTranslation();
 
-  const handleChangePage = (event: unknown, newPage: number) => {
-    setPage(newPage);
+  useEffect(() => loadUserData(), [current, size]);
+
+  const columns: readonly Column[] = [
+    { id: "id", label: t("user-table.label.id"), align: "center" },
+    { id: "email", label: t("user-table.label.email") },
+    {
+      id: "username",
+      label: t("user-table.label.username"),
+    },
+    {
+      id: "firstName",
+      label: t("user-table.label.first-name"),
+    },
+    {
+      id: "lastName",
+      label: t("user-table.label.last-name"),
+    },
+    {
+      id: "phoneNum",
+      label: t("user-table.label.phone-number"),
+    },
+    {
+      id: "operation",
+      label: t("user-table.label.operation"),
+      align: "center",
+    },
+  ];
+
+  function loadUserData() {
+    setOpenLoading(true);
+    server
+      .get(
+        `${ROOT_URL}${SERVER_URI.GET_USERS}?size=${size}&current=${current + 1}`
+      )
+      .then((response) => {
+        setRows(response.data.records || []);
+        setTotalCount(response.data.total);
+        setOpenLoading(true);
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setOpenLoading(false);
+      });
+  }
+
+  function deleteUserDate(id: number) {
+    setOpenLoading(true);
+    server
+      .delete(`${ROOT_URL}${SERVER_URI.DELETE_USER}/${id}`)
+      .then((response) => {
+        setOpenLoading(true);
+        loadUserData();
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setOpenLoading(false);
+      });
+  }
+
+  const handleChangeCurrent = (event: unknown, newPage: number): void => {
+    setCurrent(newPage);
   };
 
-  const handleChangeRowsPerPage = (
+  const handleChangeSize = (
     event: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
+  ): void => {
+    setSize(+event.target.value);
+    setCurrent(0);
   };
+
+  const handleDelete = (id: number): void => {
+    deleteUserDate(id);
+  };
+
+  const operations: Operation[] = [
+    {
+      name: "delete",
+      label: t("user-table.delete-btn"),
+      onClick: (id: number) => handleDelete(id),
+      color: "error",
+    },
+  ];
 
   return (
-    <Paper
-      sx={{
-        width: "100%",
-        overflowX: "auto",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <TableContainer sx={{ height: 440 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "number"
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+    <PagedTable
+      openLoading={openLoading}
+      columns={columns}
+      rows={rows}
+      totalCount={totalCount}
+      size={size}
+      current={current}
+      operations={operations}
+      handleChangeCurrent={handleChangeCurrent}
+      handleChangeSize={handleChangeSize}
+    />
   );
 }
