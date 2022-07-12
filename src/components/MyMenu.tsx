@@ -5,25 +5,10 @@ import ShareIcon from "@mui/icons-material/Share";
 import { AUTHORITY, LOCAL_STORAGE_KEYS } from "../consts";
 import { URL } from "../routes";
 import { useNavigate } from "react-router-dom";
-
-const actions = [
-  {
-    icon: <Groups />,
-    name: "Users",
-    requiredRole: [AUTHORITY.ROLE_ADMIN],
-    url: URL.USERS,
-  },
-  {
-    icon: <PostAdd />,
-    name: "Projects",
-    requiredRole: [AUTHORITY.ROLE_ADMIN, AUTHORITY.ROLE_BASIC],
-    url: URL.PROJECTS,
-  },
-  { icon: <ShareIcon />, name: "Share", url: "/" },
-];
+import { useTranslation } from "react-i18next";
 
 function authed(requiredRole?: string[]): boolean {
-  let userAuthorities = JSON.parse(
+  const userAuthorities = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_KEYS.AUTHORITIES) || ""
   );
   // if no role required, then return true directly
@@ -42,7 +27,23 @@ function authed(requiredRole?: string[]): boolean {
 }
 
 export default function MyMenu() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const actions = [
+    {
+      icon: <Groups />,
+      name: t("my-menu.actions.users"),
+      requiredRole: [AUTHORITY.ROLE_ADMIN],
+      url: URL.USERS,
+    },
+    {
+      icon: <PostAdd />,
+      name: t("my-menu.actions.projects"),
+      requiredRole: [AUTHORITY.ROLE_ADMIN, AUTHORITY.ROLE_BASIC],
+      url: URL.PROJECTS,
+    },
+    { icon: <ShareIcon />, name: t("my-menu.actions.share"), url: "/" },
+  ];
   return (
     <Box
       sx={{

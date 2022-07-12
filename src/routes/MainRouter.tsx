@@ -15,9 +15,6 @@ function MainRouter() {
     <BrowserRouter>
       <Routes>
         <Route path={URL.HOME} element={<HomePage />} />
-        <Route path={URL.SIGN_IN} element={<SignInSide />} />
-        <Route path={URL.SIGN_UP} element={<SignUpPage />} />
-        <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
         <Route element={<ProtectedRoutes />}>
           <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
           <Route path={URL.DASHBOARD} element={<DashboardPage />}>
@@ -32,33 +29,35 @@ function MainRouter() {
             />
           </Route>
         </Route>
-        <Route>
-          <Route element={<NonProtectedBasicLayoutRoute />}>
-            <Route
-              path={URL.NEWS}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>news page!</p>
-                </main>
-              }
-            />
-            <Route
-              path={URL.BLOG}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>blog page!</p>
-                </main>
-              }
-            />
-            <Route
-              path={URL.ABOUT}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>about page!</p>
-                </main>
-              }
-            />
-          </Route>
+
+        <Route element={<NonProtectedBasicLayoutRoute />}>
+          <Route path={URL.SIGN_IN} element={<SignInSide />} />
+          <Route path={URL.SIGN_UP} element={<SignUpPage />} />
+          <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
+          <Route
+            path={URL.NEWS}
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>news page!</p>
+              </main>
+            }
+          />
+          <Route
+            path={URL.BLOG}
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>blog page!</p>
+              </main>
+            }
+          />
+          <Route
+            path={URL.ABOUT}
+            element={
+              <main style={{ padding: "1rem" }}>
+                <p>about page!</p>
+              </main>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

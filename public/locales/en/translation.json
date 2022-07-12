@@ -1,6 +1,6 @@
 {
   "sign-in": {
-    "title": "Sign In ",
+    "title": "Sign In TOBE",
     "sign-in-btn": "Sign In",
     "forget-pw-btn": "Forget password?",
     "sign-up-btn": "Don't have an account? Sign Up",
@@ -76,6 +76,13 @@
     "msg": {
       "success": "Updated",
       "error": "Update failed"
+    }
+  },
+  "my-menu": {
+    "actions": {
+      "users": "Users",
+      "projects": "Projects",
+      "share": "Share"
     }
   },
   "user-table": {

@@ -2,13 +2,14 @@ import React, { useState } from "react";
 import {
   Box,
   Container,
+  Paper,
   Grid,
   Button,
   Typography,
   TextField,
   Link,
 } from "@mui/material";
-import { Copyright, Loading } from "../../components";
+import { Loading } from "../../components";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../routes";
@@ -89,15 +90,17 @@ export default function SignUpPage() {
   return (
     <Container component="main" maxWidth="xs">
       <Loading open={openLoading} />
-      <Box
+      <Paper
+        variant="outlined"
         sx={{
-          marginTop: 8,
+          my: { xs: 3, md: 6 },
+          p: { xs: 2, md: 3 },
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography component="h1" variant="h4">
           {t("sign-up.title")}
         </Typography>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
@@ -170,8 +173,7 @@ export default function SignUpPage() {
             </Grid>
           </Grid>
         </Box>
-      </Box>
-      <Copyright sx={{ mt: 5 }} />
+      </Paper>
     </Container>
   );
 }

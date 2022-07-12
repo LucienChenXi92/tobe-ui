@@ -12,7 +12,7 @@ import { loginUser, useAuthDispatch } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { URL } from "../../routes";
-import { Copyright, Loading } from "../../components";
+import { Loading } from "../../components";
 import { useSnackbar } from "notistack";
 
 export default function SignInPage() {
@@ -49,7 +49,14 @@ export default function SignInPage() {
   };
 
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
+    <Grid
+      container
+      component="main"
+      sx={{
+        height: "95vh",
+        marginTop: "5vh",
+      }}
+    >
       <Loading open={openLoading} />
       <Grid
         item
@@ -59,10 +66,6 @@ export default function SignInPage() {
         sx={{
           backgroundImage: "url(/images/login_bg.jpeg)",
           backgroundRepeat: "no-repeat",
-          backgroundColor: (t) =>
-            t.palette.mode === "light"
-              ? t.palette.grey[50]
-              : t.palette.grey[900],
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
@@ -70,8 +73,8 @@ export default function SignInPage() {
       <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
         <Box
           sx={{
-            my: 8,
-            mx: 4,
+            my: 16,
+            mx: 5,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -126,7 +129,6 @@ export default function SignInPage() {
                 </Link>
               </Grid>
             </Grid>
-            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
       </Grid>

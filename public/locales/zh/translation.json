@@ -78,6 +78,13 @@
       "error": "更新失败"
     }
   },
+  "my-menu": {
+    "actions": {
+      "users": "用户管理",
+      "projects": "项目管理",
+      "share": "分享"
+    }
+  },
   "user-table": {
     "label": {
       "id": "ID",
