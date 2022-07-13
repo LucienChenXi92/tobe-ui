@@ -61,11 +61,11 @@ export default function UsersPage() {
     setOpenLoading(true);
     server
       .delete(`${ROOT_URL}${SERVER_URI.DELETE_USER}/${id}`)
-      .then((response) => {
+      .then(() => {
         setOpenLoading(true);
         loadUserData();
       })
-      .catch((error) => {})
+      .catch((error) => console.error(error))
       .finally(() => {
         setOpenLoading(false);
       });

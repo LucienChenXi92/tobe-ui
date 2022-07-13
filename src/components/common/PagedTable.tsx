@@ -11,9 +11,8 @@ import {
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { tableCellClasses } from "@mui/material/TableCell";
-import { useTranslation } from "react-i18next";
 import Loading from "./Loading";
-import { Column, Operation } from "../global/types";
+import { Column, Operation } from "../../global/types";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -54,7 +53,6 @@ interface PagedTableProps {
 }
 
 export default function PagedTable(props: PagedTableProps) {
-  const { t } = useTranslation();
   return (
     <Paper
       sx={{

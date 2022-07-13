@@ -119,7 +119,6 @@ export default function SignUpPage() {
                 fullWidth
                 id="firstName"
                 label={t("sign-up.fields.first-name")}
-                autoFocus
                 variant="standard"
               />
             </Grid>

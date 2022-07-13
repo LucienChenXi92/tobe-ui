@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
-import project from "../../package.json";
+import project from "../../../package.json";
 
 /**
  * Copyright component

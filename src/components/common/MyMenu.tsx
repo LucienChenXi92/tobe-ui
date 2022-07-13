@@ -2,8 +2,8 @@ import { Box, SpeedDial, SpeedDialIcon, SpeedDialAction } from "@mui/material";
 import Groups from "@mui/icons-material/Groups";
 import PostAdd from "@mui/icons-material/PostAdd";
 import ShareIcon from "@mui/icons-material/Share";
-import { AUTHORITY, LOCAL_STORAGE_KEYS } from "../consts";
-import { URL } from "../routes";
+import { AUTHORITY, LOCAL_STORAGE_KEYS } from "../../consts";
+import { URL } from "../../routes";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 

@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-
 import { Loading } from "../../components";
 import { useAuthState, useAuthDispatch } from "../../contexts";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
@@ -20,9 +19,9 @@ export default function ProfileSettingPage() {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState(false);
   const authState = useAuthState();
+  const { user } = authState;
   const dispatch = useAuthDispatch();
   const { enqueueSnackbar } = useSnackbar();
-  const { user } = authState;
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
