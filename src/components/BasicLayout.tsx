@@ -1,5 +1,5 @@
 import { Box, Stack } from "@mui/material";
-import AppHeader from "./AppHeader/AppHeader";
+import GlobalHeader from "./Header/GlobalHeader";
 import AppFooter from "./AppFooter/AppFooter";
 
 /**
@@ -16,7 +16,7 @@ export default function BasicLayout({ children }: { children: any }) {
         minHeight: "100vh",
       }}
     >
-      <AppHeader />
+      <GlobalHeader />
       <Box>
         <Stack
           justifyContent="center"

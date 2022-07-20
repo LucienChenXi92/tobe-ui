@@ -15,7 +15,7 @@ export async function loginUser(
 
   try {
     let response = await server.post(
-      `${ROOT_URL}${SERVER_URI.LOGIN}`,
+      `${ROOT_URL}/${SERVER_URI.LOGIN}`,
       signInPayload,
       requestOptions
     );

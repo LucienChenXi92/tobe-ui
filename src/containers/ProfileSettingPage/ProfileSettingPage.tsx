@@ -33,7 +33,7 @@ export default function ProfileSettingPage() {
     setOpenLoading(true);
     server
       .put(
-        `${ROOT_URL}${SERVER_URI.UPDATE_USER}/${user.id}`,
+        `${ROOT_URL}/${SERVER_URI.UPDATE_USER}/${user.id}`,
         {
           id: user.id,
           email: user.email,

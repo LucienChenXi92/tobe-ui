@@ -35,7 +35,7 @@ export default function SignUpPage() {
     updateOpenLoading(true);
     server
       .post(
-        `${ROOT_URL}${SERVER_URI.CREATE_USER}`,
+        `${ROOT_URL}/${SERVER_URI.CREATE_USER}`,
         {
           firstName: data.get("firstName"),
           lastName: data.get("lastName"),

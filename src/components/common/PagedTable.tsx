@@ -92,24 +92,25 @@ export default function PagedTable(props: PagedTableProps) {
                       const value = row[column.id];
                       return (
                         <StyledTableCell key={column.id} align={column.align}>
-                          {column.format && typeof value === "boolean"
-                            ? column.format(value)
-                            : value}
+                          {column.format ? column.format(value) : value}
                         </StyledTableCell>
                       );
                     } else {
                       return (
                         <StyledTableCell key={column.id} align={column.align}>
-                          {props.operations?.map((operation) => (
-                            <Button
-                              key={operation.name}
-                              onClick={() => operation.onClick(row.id)}
-                              variant={operation.variant}
-                              color={operation.color}
-                            >
-                              {operation.label}
-                            </Button>
-                          ))}
+                          {props.operations?.map(
+                            (operation) =>
+                              !operation?.hide?.call(null, row) && (
+                                <Button
+                                  key={operation.name}
+                                  onClick={() => operation.onClick(row.id)}
+                                  variant={operation.variant}
+                                  color={operation.color}
+                                >
+                                  {operation.label}
+                                </Button>
+                              )
+                          )}
                         </StyledTableCell>
                       );
                     }

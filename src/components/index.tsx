@@ -1,4 +1,4 @@
-import AppHeader from "./AppHeader/AppHeader";
+import GlobalHeader from "./Header/GlobalHeader";
 import AppFooter from "./AppFooter/AppFooter";
 import BasicLayout from "./BasicLayout";
 import Copyright from "./common/CopyRight";
@@ -8,7 +8,7 @@ import PagedTable from "./common/PagedTable";
 
 export {
   BasicLayout,
-  AppHeader,
+  GlobalHeader,
   AppFooter,
   Copyright,
   Loading,

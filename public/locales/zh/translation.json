@@ -86,6 +86,7 @@
     }
   },
   "user-table": {
+    "title": "用户管理",
     "label": {
       "id": "ID",
       "email": "邮箱",
@@ -95,6 +96,23 @@
       "phone-number": "联系电话",
       "operation": "操作"
     },
+    "delete-btn": "删除"
+  },
+  "project-table": {
+    "title": "项目管理",
+    "label": {
+      "id": "ID",
+      "name": "名称",
+      "description": "描述",
+      "active": "已开启",
+      "public-to-all": "公开",
+      "target-start-date": "计划开始日期",
+      "target-end-date": "计划结束日期",
+      "operation": "操作"
+    },
+    "active-btn": "开启",
+    "close-btn": "结束",
+    "release-btn": "公开",
     "delete-btn": "删除"
   }
 }

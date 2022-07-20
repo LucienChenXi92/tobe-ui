@@ -9,6 +9,7 @@ import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../consts";
 import { BasicLayout } from "../components";
 import UsersPage from "../containers/DashboardPage/UsersPage";
+import ProjectsPage from "../containers/DashboardPage/ProjectsPage";
 
 function MainRouter() {
   return (
@@ -19,14 +20,7 @@ function MainRouter() {
           <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
           <Route path={URL.DASHBOARD} element={<DashboardPage />}>
             <Route path={URL.USERS} element={<UsersPage />} />
-            <Route
-              path={URL.PROJECTS}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>projects page!</p>
-                </main>
-              }
-            />
+            <Route path={URL.PROJECTS} element={<ProjectsPage />} />
           </Route>
         </Route>
 

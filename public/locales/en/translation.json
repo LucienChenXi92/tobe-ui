@@ -63,7 +63,7 @@
     "blog": "Blog"
   },
   "profile-setting": {
-    "form-title": "Profile",
+    "form-title": "Your Profile",
     "fields": {
       "first-name": "First name",
       "last-name": "Last name",
@@ -86,6 +86,7 @@
     }
   },
   "user-table": {
+    "title": "User Management",
     "label": {
       "id": "ID",
       "email": "Email",
@@ -95,6 +96,23 @@
       "phone-number": "Phone Number",
       "operation": "Operation"
     },
+    "delete-btn": "Delete"
+  },
+  "project-table": {
+    "title": "Project Management",
+    "label": {
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "active": "Active",
+      "public-to-all": "Public",
+      "target-start-date": "Target start date",
+      "target-end-date": "Target end date",
+      "operation": "Operation"
+    },
+    "active-btn": "Active",
+    "close-btn": "Close",
+    "release-btn": "Release",
     "delete-btn": "Delete"
   }
 }

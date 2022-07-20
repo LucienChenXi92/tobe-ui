@@ -32,7 +32,7 @@ const settings: Array<{ label: string; url: string }> = [
   { label: "app-header.settings.sign-out", url: URL.SIGN_OUT },
 ];
 
-const AppHeader = () => {
+const GlobalHeader = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -216,4 +216,4 @@ const AppHeader = () => {
   );
 };
 
-export default AppHeader;
+export default GlobalHeader;

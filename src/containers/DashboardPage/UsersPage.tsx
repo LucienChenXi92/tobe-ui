@@ -3,6 +3,7 @@ import { PagedTable } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, UserData, Operation } from "../../global/types";
 import { useTranslation } from "react-i18next";
+import { Typography } from "@mui/material";
 
 export default function UsersPage() {
   const [current, setCurrent] = useState<number>(0);
@@ -44,7 +45,9 @@ export default function UsersPage() {
     setOpenLoading(true);
     server
       .get(
-        `${ROOT_URL}${SERVER_URI.GET_USERS}?size=${size}&current=${current + 1}`
+        `${ROOT_URL}/${SERVER_URI.GET_USERS}?size=${size}&current=${
+          current + 1
+        }`
       )
       .then((response) => {
         setRows(response.data.records || []);
@@ -60,7 +63,7 @@ export default function UsersPage() {
   function deleteUserDate(id: number) {
     setOpenLoading(true);
     server
-      .delete(`${ROOT_URL}${SERVER_URI.DELETE_USER}/${id}`)
+      .delete(`${ROOT_URL}/${SERVER_URI.DELETE_USER}/${id}`)
       .then(() => {
         setOpenLoading(true);
         loadUserData();
@@ -96,16 +99,21 @@ export default function UsersPage() {
   ];
 
   return (
-    <PagedTable
-      openLoading={openLoading}
-      columns={columns}
-      rows={rows}
-      totalCount={totalCount}
-      size={size}
-      current={current}
-      operations={operations}
-      handleChangeCurrent={handleChangeCurrent}
-      handleChangeSize={handleChangeSize}
-    />
+    <React.Fragment>
+      <Typography variant="h4" color="primary" sx={{ mb: 1 }}>
+        {t("user-table.title")}
+      </Typography>
+      <PagedTable
+        openLoading={openLoading}
+        columns={columns}
+        rows={rows}
+        totalCount={totalCount}
+        size={size}
+        current={current}
+        operations={operations}
+        handleChangeCurrent={handleChangeCurrent}
+        handleChangeSize={handleChangeSize}
+      />
+    </React.Fragment>
   );
 }
