@@ -2,7 +2,7 @@ import React from "react";
 import { useAuthState } from "../contexts";
 import { Outlet, Navigate, useLocation } from "react-router-dom";
 import { URL } from "../routes";
-import { BasicLayout } from "../components";
+import { DashboardLayout } from "../components";
 
 const useAuth = (): boolean => {
   const context = useAuthState();
@@ -15,9 +15,9 @@ const useAuth = (): boolean => {
 export default function ProtectedRoutes(): React.ReactElement | null {
   const location = useLocation();
   return useAuth() ? (
-    <BasicLayout>
+    <DashboardLayout>
       <Outlet />
-    </BasicLayout>
+    </DashboardLayout>
   ) : (
     <Navigate replace={true} to={URL.SIGN_IN} state={{ from: location }} />
   );

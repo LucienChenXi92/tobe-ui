@@ -44,8 +44,8 @@
     },
     "settings": {
       "btn-tooltip": "Open settings",
-      "profile": "Profile",
-      "dashboard": "Dashboard",
+      "profile": "User Profile",
+      "my-zone": "User Central",
       "sign-out": "Sign Out"
     }
   },
@@ -80,8 +80,6 @@
   },
   "my-menu": {
     "actions": {
-      "users": "Users",
-      "projects": "Projects",
       "share": "Share"
     }
   },
@@ -101,13 +99,11 @@
   "project-table": {
     "title": "Project Management",
     "label": {
-      "id": "ID",
       "name": "Name",
-      "description": "Description",
-      "active": "Active",
-      "public-to-all": "Public",
       "target-start-date": "Target start date",
       "target-end-date": "Target end date",
+      "actual-start-date": "Actual start date",
+      "actual-end-date": "Actual end date",
       "operation": "Operation"
     },
     "active-btn": "Active",

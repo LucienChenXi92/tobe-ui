@@ -18,33 +18,27 @@ export default function ProjectsPage() {
   const columns: readonly Column[] = [
     { id: "name", label: t("project-table.label.name"), align: "center" },
     {
-      id: "description",
-      label: t("project-table.label.description"),
-      align: "center",
-      minWidth: 200,
-    },
-    {
-      id: "active",
-      label: t("project-table.label.active"),
-      format: (value) => (value ? "Yes" : "No"),
-      align: "center",
-    },
-    {
-      id: "publicToAll",
-      label: t("project-table.label.public-to-all"),
-      format: (value) => (value ? "Yes" : "No"),
-      align: "center",
-    },
-    {
       id: "targetStartTime",
       label: t("project-table.label.target-end-date"),
-      format: (value) => new Date(value).toLocaleDateString(),
+      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
       align: "center",
     },
     {
       id: "targetEndTime",
       label: t("project-table.label.target-end-date"),
-      format: (value) => new Date(value).toLocaleDateString(),
+      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
+      align: "center",
+    },
+    {
+      id: "actualStartTime",
+      label: t("project-table.label.actual-start-date"),
+      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
+      align: "center",
+    },
+    {
+      id: "actualEndTime",
+      label: t("project-table.label.actual-end-date"),
+      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
       align: "center",
     },
     {
@@ -154,20 +148,21 @@ export default function ProjectsPage() {
       label: t("project-table.active-btn"),
       onClick: (id: number) => handleActiveProject(id),
       color: "success",
-      hide: (data: any) => data.active,
+      hide: (data: any) => data.active || data.actualEndTime,
     },
     {
       name: "close-project",
       label: t("project-table.close-btn"),
       onClick: (id: number) => handleCloseProject(id),
       color: "warning",
-      hide: (data: any) => !data.active,
+      hide: (data: any) => !data.active || data.actualEndTime,
     },
     {
       name: "release",
       label: t("project-table.release-btn"),
       onClick: (id: number) => handleReleaseProjct(id),
       color: "warning",
+      hide: (data: any) => data.publicToAll,
     },
     {
       name: "delete",
@@ -179,7 +174,7 @@ export default function ProjectsPage() {
 
   return (
     <React.Fragment>
-      <Typography variant="h4" color="primary" sx={{ mb: 1 }}>
+      <Typography variant="h5" sx={{ mb: 1 }}>
         {t("project-table.title")}
       </Typography>
       <PagedTable

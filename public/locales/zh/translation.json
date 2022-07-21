@@ -44,8 +44,8 @@
     },
     "settings": {
       "btn-tooltip": "打开设置",
-      "profile": "个人信息",
-      "dashboard": "看板中心",
+      "profile": "用户信息",
+      "my-zone": "用户中心",
       "sign-out": "登出系统"
     }
   },
@@ -80,8 +80,6 @@
   },
   "my-menu": {
     "actions": {
-      "users": "用户管理",
-      "projects": "项目管理",
       "share": "分享"
     }
   },
@@ -101,13 +99,11 @@
   "project-table": {
     "title": "项目管理",
     "label": {
-      "id": "ID",
       "name": "名称",
-      "description": "描述",
-      "active": "已开启",
-      "public-to-all": "公开",
       "target-start-date": "计划开始日期",
       "target-end-date": "计划结束日期",
+      "actual-start-date": "实际开始日期",
+      "actual-end-date": "实际结束日期",
       "operation": "操作"
     },
     "active-btn": "开启",

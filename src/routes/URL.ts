@@ -7,10 +7,11 @@ export const URL = {
   ABOUT: "/about",
   NEWS: "/news",
 
-  PROFILE: "/my/profile",
+  MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",
-  USERS: "/my/dashboard/users",
-  PROJECTS: "/my/dashboard/projects",
+  PROFILE: "/my/profile",
+  USERS: "/my/users",
+  PROJECTS: "/my/projects",
 };
 
 export function validateUrl(target: string): boolean {

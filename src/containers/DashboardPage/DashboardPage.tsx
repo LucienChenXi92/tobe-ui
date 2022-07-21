@@ -1,5 +1,3 @@
-import { MyMenu } from "../../components";
-import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 export default function DashboardPage() {
   return (
@@ -10,8 +8,7 @@ export default function DashboardPage() {
         width: { xs: "90%", md: "60%" },
       }}
     >
-      <Outlet />
-      <MyMenu />
+      Dashboard page
     </Box>
   );
 }

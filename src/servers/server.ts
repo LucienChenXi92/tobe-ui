@@ -1,5 +1,5 @@
 import axios from "axios";
-import { LOCAL_STORAGE_KEYS } from "../consts";
+import { LOCAL_STORAGE_KEYS } from "../commons";
 import { ROOT_URL, SERVER_URI } from "./SERVER_URI";
 import { URL } from "../routes";
 

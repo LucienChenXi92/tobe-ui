@@ -13,7 +13,7 @@ import { useSnackbar } from "notistack";
 import { Loading } from "../../components";
 import { useAuthState, useAuthDispatch } from "../../contexts";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { LOCAL_STORAGE_KEYS } from "../../consts";
+import { LOCAL_STORAGE_KEYS } from "../../commons";
 
 export default function ProfileSettingPage() {
   const { t } = useTranslation();

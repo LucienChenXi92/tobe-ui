@@ -1,7 +1,7 @@
 import React from "react";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Action } from "../types";
-import { LOCAL_STORAGE_KEYS } from "../../consts";
+import { LOCAL_STORAGE_KEYS } from "../../commons";
 
 export async function loginUser(
   dispatch: React.Dispatch<Action>,

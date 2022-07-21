@@ -1,5 +1,5 @@
 import { Action, AuthState } from "../types";
-import { LOCAL_STORAGE_KEYS } from "../../consts";
+import { LOCAL_STORAGE_KEYS } from "../../commons";
 
 let user: any = localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER) || "")

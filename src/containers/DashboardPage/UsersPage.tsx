@@ -100,7 +100,7 @@ export default function UsersPage() {
 
   return (
     <React.Fragment>
-      <Typography variant="h4" color="primary" sx={{ mb: 1 }}>
+      <Typography variant="h5" sx={{ mb: 1 }}>
         {t("user-table.title")}
       </Typography>
       <PagedTable

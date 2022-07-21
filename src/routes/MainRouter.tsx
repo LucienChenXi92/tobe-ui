@@ -6,7 +6,7 @@ import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingP
 import ProtectedRoutes from "./ProtectedRoutes";
 import DashboardPage from "../containers/DashboardPage/DashboardPage";
 import { URL } from "./URL";
-import { LOCAL_STORAGE_KEYS } from "../consts";
+import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout } from "../components";
 import UsersPage from "../containers/DashboardPage/UsersPage";
 import ProjectsPage from "../containers/DashboardPage/ProjectsPage";
@@ -18,10 +18,9 @@ function MainRouter() {
         <Route path={URL.HOME} element={<HomePage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-          <Route path={URL.DASHBOARD} element={<DashboardPage />}>
-            <Route path={URL.USERS} element={<UsersPage />} />
-            <Route path={URL.PROJECTS} element={<ProjectsPage />} />
-          </Route>
+          <Route path={URL.DASHBOARD} element={<DashboardPage />}></Route>
+          <Route path={URL.USERS} element={<UsersPage />} />
+          <Route path={URL.PROJECTS} element={<ProjectsPage />} />
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>
