@@ -68,7 +68,7 @@ export default function ProfileSettingPage() {
   }
 
   return (
-    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4, p: 0 }}>
       <Loading open={openLoading} />
       <Paper
         variant="outlined"

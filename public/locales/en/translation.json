@@ -110,5 +110,12 @@
     "close-btn": "Close",
     "release-btn": "Release",
     "delete-btn": "Delete"
+  },
+  "dashboard-nav": {
+    "pages": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "projects": "Projects"
+    }
   }
 }

@@ -1,5 +1,6 @@
 import {
   Drawer,
+  Typography,
   IconButton,
   List,
   ListItem,
@@ -8,13 +9,18 @@ import {
   ListItemIcon,
   Divider,
 } from "@mui/material";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import Groups from "@mui/icons-material/Groups";
 import PostAdd from "@mui/icons-material/PostAdd";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { URL } from "../routes";
+import { authed, AUTHORITY } from "../commons";
+import { useTranslation } from "react-i18next";
+import theme from "../theme";
+import { PageItem } from "../global/types";
+import project from "../../package.json";
 
 interface DashboardNavProps {
   handleChangeNavMenu: () => void;
@@ -28,26 +34,66 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "flex-end",
+  justifyContent: "space-between",
 }));
 
-const pageItems = [
+const basicPageItems: PageItem[] = [
   {
-    label: "Dashboard",
+    label: "dashboard-nav.pages.dashboard",
     icon: <DashboardIcon />,
     url: URL.DASHBOARD,
+    requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
-    label: "Users",
-    icon: <Groups />,
-    url: URL.USERS,
-  },
-  {
-    label: "Projects",
+    label: "dashboard-nav.pages.projects",
     icon: <PostAdd />,
     url: URL.PROJECTS,
+    requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
 ];
+
+const adminPageItems: PageItem[] = [
+  {
+    label: "dashboard-nav.pages.users",
+    icon: <Groups />,
+    url: URL.USERS,
+    requiredRoles: [AUTHORITY.ROLE_ADMIN],
+  },
+];
+
+const NavItem = styled(ListItem)(({ theme }) => ({
+  "& .MuiListItemButton-root.Mui-selected": {
+    borderRight: "5px solid",
+    borderColor: theme.palette.primary.main,
+  },
+}));
+
+const NavItems = (props: { pageItems: PageItem[] }) => {
+  let location = useLocation();
+  const navigate = useNavigate();
+  const { t } = useTranslation();
+  const authedPages = props.pageItems.filter((pageItem) =>
+    authed(pageItem.requiredRoles)
+  );
+  return (
+    <>
+      <List>
+        {authedPages.map((pageItem) => (
+          <NavItem key={pageItem.label} disablePadding>
+            <ListItemButton
+              onClick={() => navigate(pageItem.url, { replace: true })}
+              selected={pageItem.url == location.pathname}
+            >
+              <ListItemIcon>{pageItem.icon}</ListItemIcon>
+              <ListItemText primary={t(pageItem.label)} />
+            </ListItemButton>
+          </NavItem>
+        ))}
+      </List>
+      {authedPages.length > 0 && <Divider />}
+    </>
+  );
+};
 
 export default function DashboardNav(props: DashboardNavProps) {
   const navigate = useNavigate();
@@ -65,25 +111,40 @@ export default function DashboardNav(props: DashboardNavProps) {
       anchor="left"
       open={props.openDrawer}
     >
-      <DrawerHeader>
+      <DrawerHeader sx={{ backgroundColor: theme.palette.primary.main }}>
+        <Typography
+          variant="h6"
+          noWrap
+          component="a"
+          onClick={() => navigate("/", { replace: true })}
+          sx={{
+            ml: 1,
+            display: { xs: "flex" },
+            fontWeight: 700,
+            letterSpacing: ".3rem",
+            color: "white",
+            textDecoration: "none",
+          }}
+        >
+          {project.name}
+        </Typography>
         <IconButton onClick={props.handleChangeNavMenu}>
-          <ChevronLeftIcon />
+          <MenuOpenIcon
+            sx={{
+              color: "#fff",
+              border: "1.5px solid #fff",
+              borderRadius: 2,
+              fontSize: "1.75rem",
+              p: "3px",
+              "&:hover": {
+                background: "grey",
+              },
+            }}
+          />
         </IconButton>
       </DrawerHeader>
-      <Divider />
-      <List>
-        {pageItems.map((pageItem, index) => (
-          <ListItem key={pageItem.label} disablePadding>
-            <ListItemButton
-              onClick={() => navigate(pageItem.url, { replace: true })}
-            >
-              <ListItemIcon>{pageItem.icon}</ListItemIcon>
-              <ListItemText primary={pageItem.label} />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
+      <NavItems pageItems={basicPageItems} />
+      <NavItems pageItems={adminPageItems} />
     </Drawer>
   );
 }

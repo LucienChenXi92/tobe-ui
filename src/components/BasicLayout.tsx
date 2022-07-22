@@ -28,6 +28,7 @@ export default function BasicLayout({ children }: { children: any }) {
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: { md: "flex" },
+            p: 0,
           }}
         >
           {children}

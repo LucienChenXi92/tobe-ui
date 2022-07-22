@@ -12,6 +12,7 @@ export const URL = {
   PROFILE: "/my/profile",
   USERS: "/my/users",
   PROJECTS: "/my/projects",
+  CREATE_PROJECT: "/my/projects/create-project",
 };
 
 export function validateUrl(target: string): boolean {

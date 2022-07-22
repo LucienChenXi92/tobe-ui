@@ -36,3 +36,10 @@ export interface ProjectInfo {
   actualEndTime: string;
   targetEndTime: string;
 }
+
+export interface PageItem {
+  label: string;
+  icon: JSX.Element;
+  url: string;
+  requiredRoles: string[];
+}

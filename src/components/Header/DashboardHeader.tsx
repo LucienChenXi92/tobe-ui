@@ -1,24 +1,20 @@
 import React from "react";
-import { Toolbar, Box, Container, IconButton, Typography } from "@mui/material";
+import { Toolbar, Box, Container, IconButton } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
-import { useNavigate } from "react-router-dom";
-import Apps from "@mui/icons-material/Apps";
-import project from "../../../package.json";
+import MenuIcon from "@mui/icons-material/Menu";
 import HeaderUserMenu from "./HeaderUserMenu";
-
+import theme from "../../theme";
 interface DashboardHeaderProps {
   handleChangeNavMenu: () => void;
   openDrawer: boolean;
   drawerWidth: number;
 }
-
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
 const DashboardHeader = (props: DashboardHeaderProps) => {
-  const navigate = useNavigate();
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void =>
     props.handleChangeNavMenu();
 
@@ -27,7 +23,7 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
   })<AppBarProps>(({ theme, open }) => ({
     transition: theme.transitions.create(["margin", "width"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
+      duration: theme.transitions.duration.enteringScreen,
     }),
     ...(open && {
       width: `calc(100% - ${props.drawerWidth}px)`,
@@ -40,7 +36,7 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
   }));
 
   return (
-    <AppBar position="fixed" open={props.openDrawer}>
+    <AppBar position="fixed" open={props.openDrawer} sx={{ boxShadow: "none" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <IconButton
@@ -53,26 +49,19 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
             edge="start"
             sx={{ mr: 2, ...(props.openDrawer && { display: "none" }) }}
           >
-            <Apps />
+            <MenuIcon
+              sx={{
+                color: "#fff",
+                border: "1.5px solid #fff",
+                borderRadius: 2,
+                fontSize: "1.75rem",
+                p: "3px",
+                "&:hover": {
+                  background: theme.palette.primary.light,
+                },
+              }}
+            />
           </IconButton>
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            onClick={() => navigate("/", { replace: true })}
-            sx={{
-              mr: 2,
-              display: { xs: "flex" },
-              flexGrow: 1,
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            {project.name}
-          </Typography>
-
           <Box sx={{ flexGrow: 1 }} />
           <Box sx={{ flexGrow: 0 }}>
             <HeaderUserMenu />

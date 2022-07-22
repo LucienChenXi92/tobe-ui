@@ -18,15 +18,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
     height: 60,
     fontWeight: 600,
-    paddingLeft: 16,
-    paddingRight: 16,
+    pl: 16,
+    pr: 16,
   },
   [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    paddingTop: 4,
-    paddingBottom: 4,
-    paddingLeft: 16,
-    paddingRight: 16,
+    pt: 4,
+    pb: 4,
+    pl: 16,
+    pr: 16,
   },
 }));
 

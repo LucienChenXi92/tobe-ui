@@ -110,5 +110,12 @@
     "close-btn": "结束",
     "release-btn": "公开",
     "delete-btn": "删除"
+  },
+  "dashboard-nav": {
+    "pages": {
+      "dashboard": "看板中心",
+      "users": "用户管理",
+      "projects": "项目管理"
+    }
   }
 }
