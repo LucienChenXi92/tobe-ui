@@ -1,16 +1,8 @@
 import React, { useState } from "react";
-import {
-  Box,
-  Container,
-  Grid,
-  Paper,
-  TextField,
-  Button,
-  Typography,
-} from "@mui/material";
+import { Box, Grid, Paper, TextField, Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Loading } from "../../components";
+import { Page } from "../../components";
 import { useAuthState, useAuthDispatch } from "../../contexts";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { LOCAL_STORAGE_KEYS } from "../../commons";
@@ -68,16 +60,9 @@ export default function ProfileSettingPage() {
   }
 
   return (
-    <Container component="main" maxWidth="sm" sx={{ mb: 4, p: 0 }}>
-      <Loading open={openLoading} />
-      <Paper
-        variant="outlined"
-        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-      >
-        <Typography component="h1" variant="h4" align="center">
-          {t("profile-setting.form-title")}
-        </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+    <Page openLoading={openLoading} pageTitle={t("profile-setting.form-title")}>
+      <Paper sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+        <Box component="form" noValidate onSubmit={handleSubmit}>
           {
             <React.Fragment>
               <Grid container spacing={3}>
@@ -105,7 +90,7 @@ export default function ProfileSettingPage() {
                     defaultValue={user.lastName || ""}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     disabled
                     InputLabelProps={{ shrink: true }}
@@ -119,7 +104,7 @@ export default function ProfileSettingPage() {
                     defaultValue={user.email || ""}
                   />
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                   <TextField
                     id="phoneNum"
                     name="phoneNum"
@@ -156,6 +141,6 @@ export default function ProfileSettingPage() {
           </Box>
         </Box>
       </Paper>
-    </Container>
+    </Page>
   );
 }

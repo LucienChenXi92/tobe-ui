@@ -4,12 +4,13 @@ import SignInSide from "../containers/SignInPage/SignInPage";
 import SignUpPage from "../containers/SignUpPage/SignUpPage";
 import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingPage";
 import ProtectedRoutes from "./ProtectedRoutes";
-import DashboardPage from "../containers/DashboardPage/DashboardPage";
+import DashboardPage from "../containers/MyZone/DashboardPage";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout } from "../components";
-import UsersPage from "../containers/DashboardPage/UsersPage";
-import ProjectsPage from "../containers/DashboardPage/ProjectsPage";
+import UsersPage from "../containers/MyZone/UsersPage";
+import ProjectsPage from "../containers/MyZone/ProjectsPage";
+import ProjectCreationPage from "../containers/MyZone/ProjectCreationPage";
 
 function MainRouter() {
   return (
@@ -18,9 +19,10 @@ function MainRouter() {
         <Route path={URL.HOME} element={<HomePage />} />
         <Route element={<ProtectedRoutes />}>
           <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-          <Route path={URL.DASHBOARD} element={<DashboardPage />}></Route>
+          <Route path={URL.DASHBOARD} element={<DashboardPage />} />
           <Route path={URL.USERS} element={<UsersPage />} />
           <Route path={URL.PROJECTS} element={<ProjectsPage />} />
+          <Route path={URL.CREATE_PROJECT} element={<ProjectCreationPage />} />
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>

@@ -111,6 +111,21 @@
     "release-btn": "公开",
     "delete-btn": "删除"
   },
+  "project-creation-page": {
+    "form-title": "创建新的项目",
+    "fields": {
+      "name": "项目名称",
+      "description": "描述",
+      "target-start-time": "计划开始时间",
+      "target-end-time": "计划结束时间"
+    },
+    "back-btn": "返回",
+    "submit-btn": "提交",
+    "msg": {
+      "success": "创建成功",
+      "error": "创建失败"
+    }
+  },
   "dashboard-nav": {
     "pages": {
       "dashboard": "看板中心",

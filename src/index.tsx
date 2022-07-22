@@ -6,6 +6,8 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { ThemeProvider } from "@mui/material/styles";
 import { AuthProvider } from "./contexts";
 import { MainRouter } from "./routes";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 import theme from "./theme";
 import "./i18n";
@@ -19,17 +21,19 @@ root.render(
     <ThemeProvider theme={theme}>
       {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
       <CssBaseline />
-      <SnackbarProvider
-        maxSnack={3}
-        anchorOrigin={{
-          vertical: "bottom",
-          horizontal: "right",
-        }}
-      >
-        <AuthProvider>
-          <MainRouter />
-        </AuthProvider>
-      </SnackbarProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <SnackbarProvider
+          maxSnack={3}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "right",
+          }}
+        >
+          <AuthProvider>
+            <MainRouter />
+          </AuthProvider>
+        </SnackbarProvider>
+      </LocalizationProvider>
     </ThemeProvider>
   </React.StrictMode>
 );

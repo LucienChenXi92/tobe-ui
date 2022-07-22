@@ -111,6 +111,21 @@
     "release-btn": "Release",
     "delete-btn": "Delete"
   },
+  "project-creation-page": {
+    "form-title": "Create a new project",
+    "fields": {
+      "name": "Project Name",
+      "description": "Description",
+      "target-start-time": "Target start time",
+      "target-end-time": "Target end time"
+    },
+    "back-btn": "Back",
+    "submit-btn": "Submit",
+    "msg": {
+      "success": "Created",
+      "error": "Creation failed"
+    }
+  },
   "dashboard-nav": {
     "pages": {
       "dashboard": "Dashboard",

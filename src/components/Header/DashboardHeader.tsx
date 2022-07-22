@@ -26,7 +26,6 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
       duration: theme.transitions.duration.enteringScreen,
     }),
     ...(open && {
-      width: `calc(100% - ${props.drawerWidth}px)`,
       marginLeft: `${props.drawerWidth}px`,
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.easeOut,
@@ -54,7 +53,7 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
                 color: "#fff",
                 border: "1.5px solid #fff",
                 borderRadius: 2,
-                fontSize: "1.75rem",
+                fontSize: "2rem",
                 p: "3px",
                 "&:hover": {
                   background: theme.palette.primary.light,

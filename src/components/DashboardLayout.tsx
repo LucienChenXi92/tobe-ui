@@ -14,12 +14,15 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
+
   ...(open && {
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
-    marginLeft: `${drawerWidth}px`,
+    [theme.breakpoints.up("md")]: {
+      marginLeft: `${drawerWidth}px`,
+    },
   }),
 }));
 
@@ -31,7 +34,7 @@ const drawerWidth = 240;
  * 看板布局， 一个带有网站页头和页脚的流式布局容器
  */
 export default function DashboardLayout({ children }: { children: any }) {
-  const [openDrawer, setOpenDrawer] = useState(true);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const handleChangeNavMenu = () => setOpenDrawer(!openDrawer);
 
   return (
@@ -66,8 +69,6 @@ export default function DashboardLayout({ children }: { children: any }) {
             sx={{
               display: "flex",
               flexDirection: "column",
-              width: { xs: "90%", md: "68%" },
-              p: 0,
             }}
           >
             {children}

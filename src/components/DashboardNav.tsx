@@ -34,7 +34,7 @@ const DrawerHeader = styled("div")(({ theme }) => ({
   padding: theme.spacing(0, 1),
   // necessary for content to be below app bar
   ...theme.mixins.toolbar,
-  justifyContent: "space-between",
+  justifyContent: "flex-start",
 }));
 
 const basicPageItems: PageItem[] = [
@@ -112,13 +112,27 @@ export default function DashboardNav(props: DashboardNavProps) {
       open={props.openDrawer}
     >
       <DrawerHeader sx={{ backgroundColor: theme.palette.primary.main }}>
+        <IconButton onClick={props.handleChangeNavMenu}>
+          <MenuOpenIcon
+            sx={{
+              color: "#fff",
+              border: "1.5px solid #fff",
+              borderRadius: 2,
+              fontSize: "2rem",
+              p: "3px",
+              "&:hover": {
+                background: "grey",
+              },
+            }}
+          />
+        </IconButton>
         <Typography
           variant="h6"
           noWrap
           component="a"
           onClick={() => navigate("/", { replace: true })}
           sx={{
-            ml: 1,
+            ml: 2,
             display: { xs: "flex" },
             fontWeight: 700,
             letterSpacing: ".3rem",
@@ -128,20 +142,6 @@ export default function DashboardNav(props: DashboardNavProps) {
         >
           {project.name}
         </Typography>
-        <IconButton onClick={props.handleChangeNavMenu}>
-          <MenuOpenIcon
-            sx={{
-              color: "#fff",
-              border: "1.5px solid #fff",
-              borderRadius: 2,
-              fontSize: "1.75rem",
-              p: "3px",
-              "&:hover": {
-                background: "grey",
-              },
-            }}
-          />
-        </IconButton>
       </DrawerHeader>
       <NavItems pageItems={basicPageItems} />
       <NavItems pageItems={adminPageItems} />
