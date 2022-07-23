@@ -9,7 +9,7 @@ interface PageProps {
 
 export default function page(props: PageProps) {
   return (
-    <Container sx={{ minHeight: "95vh", pt: "10vh", maxWidth: "100%" }}>
+    <Container sx={{ minHeight: "95vh", pt: "10vh" }}>
       <Loading open={props.openLoading} />
       {props.pageTitle && (
         <>

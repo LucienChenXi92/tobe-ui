@@ -56,13 +56,8 @@ export default function DashboardLayout({ children }: { children: any }) {
       />
       <Main open={openDrawer}>
         <Stack
-          justifyContent="center"
-          alignItems="center"
-          direction="column"
           sx={{
             minHeight: "100vh",
-            display: "flex",
-            p: 0,
           }}
         >
           <Box
