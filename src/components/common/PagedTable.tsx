@@ -10,37 +10,11 @@ import {
   TableRow,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { tableCellClasses } from "@mui/material/TableCell";
 import Loading from "./Loading";
 import { Column, Operation } from "../../global/types";
 
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    height: 60,
-    fontWeight: 600,
-    pl: 16,
-    pr: 16,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    pt: 4,
-    pb: 4,
-    pl: 16,
-    pr: 16,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  "&:nth-of-type(odd)": {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  "&:last-child td, &:last-child th": {
-    border: 0,
-  },
-}));
-
 interface PagedTableProps {
-  openLoading: boolean;
+  openLoading?: boolean;
   columns: readonly Column[];
   rows: any[] | [];
   totalCount: number | 0;
@@ -59,44 +33,41 @@ export default function PagedTable(props: PagedTableProps) {
         overflowX: "auto",
         justifyContent: "center",
         alignItems: "center",
+        my: { xs: 3, md: 6 },
+        p: { xs: 2, md: 3 },
       }}
     >
       <Loading open={props.openLoading} />
-      <TableContainer sx={{ height: 520 }}>
-        <Table stickyHeader>
+      <TableContainer>
+        <Table stickyHeader size="small">
           <TableHead>
-            <StyledTableRow>
+            <TableRow>
               {props.columns.map((column) => (
-                <StyledTableCell
+                <TableCell
                   key={column.id}
                   align={column.align}
                   style={{ minWidth: column.minWidth }}
                 >
                   {column.label}
-                </StyledTableCell>
+                </TableCell>
               ))}
-            </StyledTableRow>
+            </TableRow>
           </TableHead>
           <TableBody>
             {props.rows.map((row) => {
               return (
-                <StyledTableRow
-                  hover
-                  role="checkbox"
-                  tabIndex={-1}
-                  key={row.id}
-                >
+                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
                   {props.columns.map((column) => {
                     if (column.id !== "operation") {
                       const value = row[column.id];
                       return (
-                        <StyledTableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align={column.align}>
                           {column.format ? column.format(value) : value}
-                        </StyledTableCell>
+                        </TableCell>
                       );
                     } else {
                       return (
-                        <StyledTableCell key={column.id} align={column.align}>
+                        <TableCell key={column.id} align={column.align}>
                           {props.operations?.map(
                             (operation) =>
                               !operation?.hide?.call(null, row) && (
@@ -110,11 +81,11 @@ export default function PagedTable(props: PagedTableProps) {
                                 </Button>
                               )
                           )}
-                        </StyledTableCell>
+                        </TableCell>
                       );
                     }
                   })}
-                </StyledTableRow>
+                </TableRow>
               );
             })}
           </TableBody>

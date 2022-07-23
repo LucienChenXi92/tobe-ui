@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PagedTable } from "../../components";
+import { Page, PagedTable } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, UserData, Operation } from "../../global/types";
 import { useTranslation } from "react-i18next";
@@ -173,12 +173,8 @@ export default function ProjectsPage() {
   ];
 
   return (
-    <React.Fragment>
-      <Typography variant="h5" sx={{ mb: 1 }}>
-        {t("project-table.title")}
-      </Typography>
+    <Page pageTitle={t("project-table.title")} openLoading={openLoading}>
       <PagedTable
-        openLoading={openLoading}
         columns={columns}
         rows={rows}
         totalCount={totalCount}
@@ -188,6 +184,6 @@ export default function ProjectsPage() {
         handleChangeCurrent={handleChangeCurrent}
         handleChangeSize={handleChangeSize}
       />
-    </React.Fragment>
+    </Page>
   );
 }
