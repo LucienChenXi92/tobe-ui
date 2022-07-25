@@ -1,0 +1,7 @@
+export enum PROJECT_STATUS {
+  READY = 10,
+  IN_PROCESS = 20,
+  ON_HOLD = 30,
+  FINISHED = 40,
+  CANCELED = 50,
+}

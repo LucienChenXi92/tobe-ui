@@ -15,6 +15,7 @@ import TimelapseIcon from "@mui/icons-material/Timelapse";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { formatDate } from "../../commons";
 import { useTranslation } from "react-i18next";
+import { PROJECT_STATUS } from "./consts";
 
 export default function ProjectCard(props: ProjectCardProps) {
   const { t } = useTranslation();
@@ -27,12 +28,12 @@ export default function ProjectCard(props: ProjectCardProps) {
           </Typography>
           <Divider />
           <Box sx={{ my: 1 }}>
-            {!props.data.active && props.data.actualEndTime && (
+            {props.data.statusValue === PROJECT_STATUS.FINISHED && (
               <Tooltip title={t("project-table.card.tooltip.closed")}>
                 <CheckCircleOutlineIcon color="disabled" />
               </Tooltip>
             )}
-            {props.data.active && (
+            {props.data.statusValue === PROJECT_STATUS.IN_PROCESS && (
               <Tooltip title={t("project-table.card.tooltip.in-process")}>
                 <TimelapseIcon color="warning" />
               </Tooltip>

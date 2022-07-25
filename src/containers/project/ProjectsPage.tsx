@@ -13,6 +13,7 @@ import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, Operation, ProjectInfo } from "../../global/types";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../routes";
+import { PROJECT_STATUS } from "./consts";
 
 export default function ProjectsPage() {
   const [current, setCurrent] = useState<number>(0);
@@ -169,14 +170,18 @@ export default function ProjectsPage() {
       label: t("project-table.active-btn"),
       onClick: (id: number) => handleActiveProject(id),
       color: "success",
-      hide: (data: any) => data.active || data.actualEndTime,
+      hide: (data: any) =>
+        ![PROJECT_STATUS.READY, PROJECT_STATUS.ON_HOLD].includes(
+          data.statusValue
+        ),
     },
     {
       name: "close-project",
       label: t("project-table.close-btn"),
       onClick: (id: number) => handleCloseProject(id),
       color: "warning",
-      hide: (data: any) => !data.active || data.actualEndTime,
+      hide: (data: any) =>
+        ![PROJECT_STATUS.IN_PROCESS].includes(data.statusValue),
     },
     {
       name: "release",
