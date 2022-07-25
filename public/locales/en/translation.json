@@ -80,7 +80,8 @@
   },
   "my-menu": {
     "actions": {
-      "share": "Share"
+      "share": "Share",
+      "create-project": "Create a project"
     }
   },
   "user-table": {
@@ -109,7 +110,16 @@
     "active-btn": "Active",
     "close-btn": "Close",
     "release-btn": "Release",
-    "delete-btn": "Delete"
+    "delete-btn": "Delete",
+    "create-btn": "Create",
+    "card-view-btn": "Card view",
+    "card": {
+      "tooltip": {
+        "public-to-all": "Visiable to everyone",
+        "in-process": "In process",
+        "closed": "Closed"
+      }
+    }
   },
   "project-creation-page": {
     "form-title": "Create a new project",
@@ -123,7 +133,13 @@
     "submit-btn": "Submit",
     "msg": {
       "success": "Created",
-      "error": "Creation failed"
+      "error": "Creation failed",
+      "warning": {
+        "name-empty": "Project name cannot be empty",
+        "target-start-time-empty": "Target start time cannot be empty",
+        "target-end-time-empty": "Target end time cannot be empty",
+        "target-invalid-start-end-time": "Target start time cannot behind end time"
+      }
     }
   },
   "dashboard-nav": {

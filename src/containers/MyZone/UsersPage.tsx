@@ -3,7 +3,6 @@ import { Page, PagedTable } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, UserData, Operation } from "../../global/types";
 import { useTranslation } from "react-i18next";
-import { Typography } from "@mui/material";
 
 export default function UsersPage() {
   const [current, setCurrent] = useState<number>(0);
@@ -109,6 +108,7 @@ export default function UsersPage() {
         operations={operations}
         handleChangeCurrent={handleChangeCurrent}
         handleChangeSize={handleChangeSize}
+        sx={{ my: 2 }}
       />
     </Page>
   );

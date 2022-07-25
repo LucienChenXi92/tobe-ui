@@ -5,11 +5,17 @@ interface PageProps {
   openLoading?: boolean;
   pageTitle?: string;
   children: any;
+  sx?: any;
 }
 
 export default function page(props: PageProps) {
   return (
-    <Container sx={{ minHeight: "95vh", pt: "10vh" }}>
+    <Container
+      sx={{
+        ...{ minHeight: "95vh", pt: "10vh" },
+        ...props.sx,
+      }}
+    >
       <Loading open={props.openLoading} />
       {props.pageTitle && (
         <>

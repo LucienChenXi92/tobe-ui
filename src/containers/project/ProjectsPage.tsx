@@ -1,25 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { Page, PagedTable } from "../../components";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { Column, UserData, Operation } from "../../global/types";
 import { useTranslation } from "react-i18next";
 import {
   Button,
-  Typography,
-  Card,
-  CardContent,
-  CardActions,
+  Grid,
+  FormGroup,
+  FormControlLabel,
+  Switch,
 } from "@mui/material";
+import { Page, PagedTable } from "../../components";
+import ProjectCard from "./ProjectCard";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { Column, Operation, ProjectInfo } from "../../global/types";
+import { useNavigate } from "react-router-dom";
+import { URL } from "../../routes";
 
 export default function ProjectsPage() {
   const [current, setCurrent] = useState<number>(0);
   const [size, setSize] = useState<number>(10);
-  const [rows, setRows] = useState<UserData[]>([]);
+  const [rows, setRows] = useState<ProjectInfo[]>([]);
   const [openLoading, setOpenLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [cardView, setCardView] = useState<boolean>(true);
   const { t } = useTranslation();
+  const navigate = useNavigate();
 
-  useEffect(() => loadProjectData(), [current, size]);
+  useEffect(() => loadProjectData(), [current, size, cardView]);
 
   const columns: readonly Column[] = [
     { id: "name", label: t("project-table.label.name"), align: "center" },
@@ -140,6 +145,16 @@ export default function ProjectsPage() {
     setCurrent(0);
   };
 
+  const handleViewChange = (cardView: boolean): void => {
+    if (cardView) {
+      setSize(1000);
+    } else {
+      setSize(10);
+    }
+    setCurrent(0);
+    setCardView(cardView);
+  };
+
   const handleDeleteProject = (id: number): void => deleteProjectById(id);
 
   const handleActiveProject = (id: number): void => activeProjectById(id);
@@ -180,36 +195,55 @@ export default function ProjectsPage() {
 
   return (
     <Page pageTitle={t("project-table.title")} openLoading={openLoading}>
-      <PagedTable
-        columns={columns}
-        rows={rows}
-        totalCount={totalCount}
-        size={size}
-        current={current}
-        operations={operations}
-        handleChangeCurrent={handleChangeCurrent}
-        handleChangeSize={handleChangeSize}
-      />
+      <Grid
+        container
+        sx={{ py: 1 }}
+        justifyContent="space-between"
+        alignItems="center"
+      >
+        <Grid item>
+          <Button
+            color="primary"
+            variant="contained"
+            size="small"
+            onClick={() => navigate(URL.CREATE_PROJECT, { replace: true })}
+          >
+            {t("project-table.create-btn")}
+          </Button>
+        </Grid>
+        <Grid item>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={cardView}
+                  onClick={() => handleViewChange(!cardView)}
+                  color="secondary"
+                />
+              }
+              label={t("project-table.card-view-btn")}
+            />
+          </FormGroup>
+        </Grid>
+      </Grid>
+      {cardView ? (
+        <Grid container spacing={2} sx={{ py: 1 }}>
+          {rows.map((item: any) => (
+            <ProjectCard operations={operations} data={item} key={item.id} />
+          ))}
+        </Grid>
+      ) : (
+        <PagedTable
+          columns={columns}
+          rows={rows}
+          totalCount={totalCount}
+          size={size}
+          current={current}
+          operations={operations}
+          handleChangeCurrent={handleChangeCurrent}
+          handleChangeSize={handleChangeSize}
+        />
+      )}
     </Page>
-  );
-}
-
-function ProjectCard() {
-  return (
-    <Card>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Lizard
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
   );
 }

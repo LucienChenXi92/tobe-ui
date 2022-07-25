@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "../containers/HomePage/HomePage";
-import SignInSide from "../containers/SignInPage/SignInPage";
-import SignUpPage from "../containers/SignUpPage/SignUpPage";
+import SignInSide from "../containers/signIn/SignInPage";
+import SignUpPage from "../containers/signUp/SignUpPage";
 import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import DashboardPage from "../containers/MyZone/DashboardPage";
@@ -9,8 +9,8 @@ import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout } from "../components";
 import UsersPage from "../containers/MyZone/UsersPage";
-import ProjectsPage from "../containers/MyZone/ProjectsPage";
-import ProjectCreationPage from "../containers/MyZone/ProjectCreationPage";
+import ProjectsPage from "../containers/project/ProjectsPage";
+import ProjectCreationPage from "../containers/project/ProjectCreationPage";
 
 function MainRouter() {
   return (

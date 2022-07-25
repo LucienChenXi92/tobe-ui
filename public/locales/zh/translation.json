@@ -80,7 +80,8 @@
   },
   "my-menu": {
     "actions": {
-      "share": "分享"
+      "share": "分享",
+      "create-project": "创建项目"
     }
   },
   "user-table": {
@@ -109,7 +110,16 @@
     "active-btn": "开启",
     "close-btn": "结束",
     "release-btn": "公开",
-    "delete-btn": "删除"
+    "delete-btn": "删除",
+    "create-btn": "新建",
+    "card-view-btn": "卡片视图",
+    "card": {
+      "tooltip": {
+        "public-to-all": "对所有人可见",
+        "in-process": "进行中",
+        "closed": "已结束"
+      }
+    }
   },
   "project-creation-page": {
     "form-title": "创建新的项目",
@@ -123,7 +133,13 @@
     "submit-btn": "提交",
     "msg": {
       "success": "创建成功",
-      "error": "创建失败"
+      "error": "创建失败",
+      "warning": {
+        "name-empty": "项目名称不能为空",
+        "target-start-time-empty": "计划开始时间不可以为空",
+        "target-end-time-empty": "计划结束时间不可以为空",
+        "target-invalid-start-end-time": "计划开始时间不可以晚于结束时间"
+      }
     }
   },
   "dashboard-nav": {

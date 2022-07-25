@@ -18,7 +18,7 @@ import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 export default function SignUpPage() {
   const navigate = useNavigate();
-  const [openLoading, updateOpenLoading] = useState(false);
+  const [openLoading, setOpenLoading] = useState(false);
   const { t } = useTranslation();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -32,7 +32,7 @@ export default function SignUpPage() {
   };
 
   function createUser(data: FormData): void {
-    updateOpenLoading(true);
+    setOpenLoading(true);
     server
       .post(
         `${ROOT_URL}/${SERVER_URI.CREATE_USER}`,
@@ -60,7 +60,7 @@ export default function SignUpPage() {
         });
       })
       .finally(() => {
-        updateOpenLoading(false);
+        setOpenLoading(false);
       });
   }
 

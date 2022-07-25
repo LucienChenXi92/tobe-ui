@@ -22,18 +22,21 @@ interface PagedTableProps {
   operations?: Operation[];
   handleChangeCurrent: (event: unknown, newPage: number) => void;
   handleChangeSize: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  sx?: any;
 }
 
 export default function PagedTable(props: PagedTableProps) {
   return (
     <Paper
       sx={{
-        width: "100%",
-        overflowX: "auto",
-        justifyContent: "center",
-        alignItems: "center",
-        my: { xs: 3, md: 6 },
-        p: { xs: 2, md: 3 },
+        ...{
+          width: "100%",
+          overflowX: "auto",
+          justifyContent: "center",
+          alignItems: "center",
+          p: { xs: 2, md: 3 },
+        },
+        ...props.sx,
       }}
     >
       <Loading open={props.openLoading} />

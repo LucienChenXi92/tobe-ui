@@ -43,3 +43,8 @@ export interface PageItem {
   url: string;
   requiredRoles: string[];
 }
+
+export interface ProjectCardProps {
+  operations: Operation[];
+  data: ProjectInfo;
+}

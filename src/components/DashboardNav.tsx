@@ -82,7 +82,7 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
           <NavItem key={pageItem.label} disablePadding>
             <ListItemButton
               onClick={() => navigate(pageItem.url, { replace: true })}
-              selected={pageItem.url == location.pathname}
+              selected={pageItem.url === location.pathname}
             >
               <ListItemIcon>{pageItem.icon}</ListItemIcon>
               <ListItemText primary={t(pageItem.label)} />

@@ -29,3 +29,7 @@ export function authed(requiredRole?: string[]): boolean {
   }
   return true;
 }
+
+export function formatDate(time: string) {
+  return time.substring(0, time.indexOf("T"));
+}
