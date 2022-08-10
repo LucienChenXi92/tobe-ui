@@ -22,6 +22,16 @@ const theme = createTheme({
       main: red.A400,
     },
   },
+  components: {
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "1.1rem",
+          color: "rgba(0, 0, 0, 0.6) !important",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

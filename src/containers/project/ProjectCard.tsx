@@ -1,68 +1,46 @@
 import { ProjectCardProps } from "../../global/types";
 import {
   Grid,
-  Box,
   Button,
   Typography,
-  Tooltip,
   Card,
   CardContent,
   CardActions,
   Divider,
 } from "@mui/material";
-import VerifiedIcon from "@mui/icons-material/Verified";
-import TimelapseIcon from "@mui/icons-material/Timelapse";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { formatDate } from "../../commons";
-import { useTranslation } from "react-i18next";
-import { PROJECT_STATUS } from "./consts";
+import ProjectStatusToolbar from "./ProjectStatusToolbar";
 
 export default function ProjectCard(props: ProjectCardProps) {
-  const { t } = useTranslation();
   return (
-    <Grid item xs={12} sm={6} xl={3} key={props.data.id}>
+    <Grid item xs={12} sm={6} xl={3} key={props.project.id}>
       <Card>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">
-            {props.data.name}
+            {props.project.name}
           </Typography>
           <Divider />
-          <Box sx={{ my: 1 }}>
-            {props.data.statusValue === PROJECT_STATUS.FINISHED && (
-              <Tooltip title={t("project-table.card.tooltip.closed")}>
-                <CheckCircleOutlineIcon color="disabled" />
-              </Tooltip>
-            )}
-            {props.data.statusValue === PROJECT_STATUS.IN_PROCESS && (
-              <Tooltip title={t("project-table.card.tooltip.in-process")}>
-                <TimelapseIcon color="warning" />
-              </Tooltip>
-            )}
-            {props.data.publicToAll && (
-              <Tooltip title={t("project-table.card.tooltip.public-to-all")}>
-                <VerifiedIcon color="info" />
-              </Tooltip>
-            )}
-          </Box>
+          <ProjectStatusToolbar project={props.project} />
           <Typography variant="body2" color="text.secondary">
-            {props.data.description}
+            {props.project.description}
           </Typography>
           <br />
           <Typography variant="body2" color="text.secondary">
-            Planed: {formatDate(props.data.targetStartTime)}
-            {" ~ "} {formatDate(props.data.targetEndTime)}
+            Planed: {formatDate(props.project.targetStartTime)}
+            {" ~ "} {formatDate(props.project.targetEndTime)}
           </Typography>
         </CardContent>
         <Divider />
-        <CardActions>
+        <CardActions sx={{ px: 0 }}>
           {props.operations.map(
             (operation) =>
-              !operation?.hide?.call(null, props.data) && (
+              !operation?.hide?.call(null, props.project) && (
                 <Button
                   key={operation.name}
-                  onClick={() => operation.onClick(props.data.id)}
+                  onClick={() => operation.onClick(props.project.id)}
                   variant={operation.variant}
                   color={operation.color}
+                  size="small"
                 >
                   {operation.label}
                 </Button>

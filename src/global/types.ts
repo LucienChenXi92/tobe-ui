@@ -8,7 +8,7 @@ export interface Column {
 
 export interface Operation {
   name: string;
-  onClick: (id: number) => void;
+  onClick: (id: number | string) => void;
   label: string;
   variant?: "text" | "contained" | "outlined";
   color?: "success" | "error" | "info" | "warning" | "primary" | "secondary";
@@ -25,7 +25,7 @@ export interface UserData {
 }
 
 export interface ProjectInfo {
-  id: number;
+  id: string;
   name: string;
   description: string;
   statusValue: number;
@@ -46,5 +46,5 @@ export interface PageItem {
 
 export interface ProjectCardProps {
   operations: Operation[];
-  data: ProjectInfo;
+  project: ProjectInfo;
 }

@@ -12,6 +12,7 @@ export const URL = {
   PROFILE: "/my/profile",
   USERS: "/my/users",
   PROJECTS: "/my/projects",
+  PROJECT_DETAIL: "/my/projects/:projectId",
   CREATE_PROJECT: "/my/projects/create-project",
 };
 

@@ -17,7 +17,7 @@ import { PROJECT_STATUS } from "./consts";
 
 export default function ProjectsPage() {
   const [current, setCurrent] = useState<number>(0);
-  const [size, setSize] = useState<number>(10);
+  const [size, setSize] = useState<number>(1000);
   const [rows, setRows] = useState<ProjectInfo[]>([]);
   const [openLoading, setOpenLoading] = useState(false);
   const [totalCount, setTotalCount] = useState<number>(0);
@@ -79,7 +79,7 @@ export default function ProjectsPage() {
       });
   }
 
-  function deleteProjectById(id: number) {
+  function deleteProjectById(id: number | string) {
     setOpenLoading(true);
     server
       .delete(`${ROOT_URL}/${SERVER_URI.DELETE_PROJECT}/${id}`)
@@ -93,7 +93,7 @@ export default function ProjectsPage() {
       });
   }
 
-  function activeProjectById(id: number) {
+  function activeProjectById(id: number | string) {
     setOpenLoading(true);
     server
       .put(`${ROOT_URL}/${SERVER_URI.ACTIVE_PROJECT}/${id}`)
@@ -107,7 +107,7 @@ export default function ProjectsPage() {
       });
   }
 
-  function releaseProjectById(id: number) {
+  function releaseProjectById(id: number | string) {
     setOpenLoading(true);
     server
       .put(`${ROOT_URL}/${SERVER_URI.RELEASE_PROJECT}/${id}`)
@@ -121,7 +121,7 @@ export default function ProjectsPage() {
       });
   }
 
-  function closeProjectById(id: number) {
+  function closeProjectById(id: number | string) {
     setOpenLoading(true);
     server
       .put(`${ROOT_URL}/${SERVER_URI.CLOSE_PROJECT}/${id}`)
@@ -156,19 +156,30 @@ export default function ProjectsPage() {
     setCardView(cardView);
   };
 
-  const handleDeleteProject = (id: number): void => deleteProjectById(id);
+  const handleDeleteProject = (id: number | string): void =>
+    deleteProjectById(id);
 
-  const handleActiveProject = (id: number): void => activeProjectById(id);
+  const handleActiveProject = (id: number | string): void =>
+    activeProjectById(id);
 
-  const handleCloseProject = (id: number): void => closeProjectById(id);
+  const handleCloseProject = (id: number | string): void =>
+    closeProjectById(id);
 
-  const handleReleaseProjct = (id: number): void => releaseProjectById(id);
+  const handleReleaseProjct = (id: number | string): void =>
+    releaseProjectById(id);
 
   const operations: Operation[] = [
     {
+      name: "view-project",
+      label: t("project-table.view-detail-btn"),
+      onClick: (id: number | string) =>
+        navigate(URL.PROJECT_DETAIL.replace(":projectId", id.toString())),
+      color: "info",
+    },
+    {
       name: "active-project",
       label: t("project-table.active-btn"),
-      onClick: (id: number) => handleActiveProject(id),
+      onClick: (id: number | string) => handleActiveProject(id),
       color: "success",
       hide: (data: any) =>
         ![PROJECT_STATUS.READY, PROJECT_STATUS.ON_HOLD].includes(
@@ -178,7 +189,7 @@ export default function ProjectsPage() {
     {
       name: "close-project",
       label: t("project-table.close-btn"),
-      onClick: (id: number) => handleCloseProject(id),
+      onClick: (id: number | string) => handleCloseProject(id),
       color: "warning",
       hide: (data: any) =>
         ![PROJECT_STATUS.IN_PROCESS].includes(data.statusValue),
@@ -186,14 +197,14 @@ export default function ProjectsPage() {
     {
       name: "release",
       label: t("project-table.release-btn"),
-      onClick: (id: number) => handleReleaseProjct(id),
+      onClick: (id: number | string) => handleReleaseProjct(id),
       color: "warning",
       hide: (data: any) => data.publicToAll,
     },
     {
       name: "delete",
       label: t("project-table.delete-btn"),
-      onClick: (id: number) => handleDeleteProject(id),
+      onClick: (id: number | string) => handleDeleteProject(id),
       color: "error",
     },
   ];
@@ -232,9 +243,9 @@ export default function ProjectsPage() {
         </Grid>
       </Grid>
       {cardView ? (
-        <Grid container spacing={2} sx={{ py: 1 }}>
+        <Grid container spacing={1} sx={{ py: 1 }}>
           {rows.map((item: any) => (
-            <ProjectCard operations={operations} data={item} key={item.id} />
+            <ProjectCard operations={operations} project={item} key={item.id} />
           ))}
         </Grid>
       ) : (

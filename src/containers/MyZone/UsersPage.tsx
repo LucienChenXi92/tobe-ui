@@ -59,7 +59,7 @@ export default function UsersPage() {
       });
   }
 
-  function deleteUserDate(id: number) {
+  function deleteUserDate(id: number | string) {
     setOpenLoading(true);
     server
       .delete(`${ROOT_URL}/${SERVER_URI.DELETE_USER}/${id}`)
@@ -84,7 +84,7 @@ export default function UsersPage() {
     setCurrent(0);
   };
 
-  const handleDelete = (id: number): void => {
+  const handleDelete = (id: number | string): void => {
     deleteUserDate(id);
   };
 
@@ -92,7 +92,7 @@ export default function UsersPage() {
     {
       name: "delete",
       label: t("user-table.delete-btn"),
-      onClick: (id: number) => handleDelete(id),
+      onClick: (id: number | string) => handleDelete(id),
       color: "error",
     },
   ];

@@ -107,12 +107,13 @@
       "actual-end-date": "Actual end date",
       "operation": "Operation"
     },
+    "view-detail-btn": "Detail",
     "active-btn": "Active",
     "close-btn": "Close",
     "release-btn": "Release",
     "delete-btn": "Delete",
     "create-btn": "Create",
-    "card-view-btn": "Card view",
+    "card-view-btn": "Simple View",
     "card": {
       "tooltip": {
         "public-to-all": "Visiable to everyone",
@@ -140,6 +141,22 @@
         "target-end-time-empty": "Target end time cannot be empty",
         "target-invalid-start-end-time": "Target start time cannot behind end time"
       }
+    }
+  },
+  "project-detail-page": {
+    "fields": {
+      "name": "Project Name",
+      "description": "Description",
+      "target-start-time": "Target start time",
+      "target-end-time": "Target end time",
+      "actual-start-time": "Actual start time",
+      "actual-end-time": "Actual end time"
+    },
+    "edit-btn": "Edit",
+    "save-btn": "Save",
+    "msg": {
+      "error": "Operation failed",
+      "success": "Operation success"
     }
   },
   "dashboard-nav": {

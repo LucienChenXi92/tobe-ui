@@ -11,6 +11,7 @@ import { BasicLayout } from "../components";
 import UsersPage from "../containers/MyZone/UsersPage";
 import ProjectsPage from "../containers/project/ProjectsPage";
 import ProjectCreationPage from "../containers/project/ProjectCreationPage";
+import ProjectDetailPage from "../containers/project/ProjectDetailPage";
 
 function MainRouter() {
   return (
@@ -23,6 +24,7 @@ function MainRouter() {
           <Route path={URL.USERS} element={<UsersPage />} />
           <Route path={URL.PROJECTS} element={<ProjectsPage />} />
           <Route path={URL.CREATE_PROJECT} element={<ProjectCreationPage />} />
+          <Route path={URL.PROJECT_DETAIL} element={<ProjectDetailPage />} />
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>
