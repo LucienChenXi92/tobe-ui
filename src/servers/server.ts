@@ -1,5 +1,6 @@
 import axios from "axios";
-import { ROOT_URL, REFRESH_TOKEN_URI, LOCAL_STORAGE_KEYS } from "../consts";
+import { LOCAL_STORAGE_KEYS } from "../consts";
+import { ROOT_URL, SERVER_URI } from "./SERVER_URI";
 import { URL } from "../routes";
 
 const server = axios.create({
@@ -56,7 +57,7 @@ server.interceptors.response.use(
       try {
         // try to renewal access token with the refresh token
         let res = await server({
-          url: `${REFRESH_TOKEN_URI}`,
+          url: `${SERVER_URI.REFRESH_TOKEN}`,
           method: "GET",
           headers: {
             "Refresh-Token": getRefreshToken() || "",

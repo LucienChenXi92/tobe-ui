@@ -1,7 +1,7 @@
 import React from "react";
-import server from "../../servers/server";
+import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Action, User } from "../Basic";
-import { ROOT_URL, LOCAL_STORAGE_KEYS, LOGIN_URI } from "../../consts";
+import { LOCAL_STORAGE_KEYS } from "../../consts";
 
 export async function loginUser(
   dispatch: React.Dispatch<Action>,
@@ -15,7 +15,7 @@ export async function loginUser(
 
   try {
     let response = await server.post(
-      `${ROOT_URL}${LOGIN_URI}`,
+      `${ROOT_URL}${SERVER_URI.LOGIN}`,
       signInPayload,
       requestOptions
     );
@@ -29,6 +29,10 @@ export async function loginUser(
       );
       localStorage.setItem(LOCAL_STORAGE_KEYS.ACCESS_TOKEN, data.accessToken);
       localStorage.setItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN, data.refreshToken);
+      localStorage.setItem(
+        LOCAL_STORAGE_KEYS.AUTHORITIES,
+        JSON.stringify(data.authorities)
+      );
       return data.userProfile;
     }
     return;
@@ -49,7 +53,7 @@ export async function updateProfile(
 
   try {
     let response = await server.put(
-      `${ROOT_URL}/v1/users/${user.id}`,
+      `${ROOT_URL}${SERVER_URI.UPDATE_USER}/${user.id}`,
       user,
       requestOptions
     );
@@ -57,7 +61,6 @@ export async function updateProfile(
 
     if (data) {
       dispatch({ type: "REQUEST_SUCCESS", payload: data });
-      localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
       localStorage.setItem(
         LOCAL_STORAGE_KEYS.CURRENT_USER,
         JSON.stringify(data)
@@ -78,7 +81,7 @@ export async function createUser(user: any) {
   };
   try {
     let response = await server.post(
-      `${ROOT_URL}/v1/users`,
+      `${ROOT_URL}${SERVER_URI.CREATE_USER}`,
       user,
       requestOptions
     );
