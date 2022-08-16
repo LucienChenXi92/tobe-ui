@@ -1,9 +1,9 @@
 import { Box, Tooltip } from "@mui/material";
-import { ProjectInfo } from "../../global/types";
+import { ProjectInfo } from "../../../global/types";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { PROJECT_STATUS } from "./consts";
+import { PROJECT_STATUS } from "../consts";
 import { useTranslation } from "react-i18next";
 
 interface ProjectStatusToolbarProps {

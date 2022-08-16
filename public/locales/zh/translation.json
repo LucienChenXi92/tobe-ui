@@ -159,6 +159,11 @@
       "success": "操作成功"
     }
   },
+  "project-progress": {
+    "title": "项目进展",
+    "add-new-tip": "有任何进展可以分享么？",
+    "send-btn": "发布"
+  },
   "dashboard-nav": {
     "pages": {
       "dashboard": "看板中心",

@@ -1,4 +1,4 @@
-import { ProjectCardProps } from "../../global/types";
+import { ProjectCardProps } from "../../../global/types";
 import {
   Grid,
   Button,
@@ -8,7 +8,7 @@ import {
   CardActions,
   Divider,
 } from "@mui/material";
-import { formatDate } from "../../commons";
+import { formatDate } from "../../../commons";
 import ProjectStatusToolbar from "./ProjectStatusToolbar";
 
 export default function ProjectCard(props: ProjectCardProps) {

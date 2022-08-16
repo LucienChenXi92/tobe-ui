@@ -9,14 +9,15 @@ import {
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import { useParams } from "react-router-dom";
+import SaveIcon from "@mui/icons-material/Save";
+import EditIcon from "@mui/icons-material/Edit";
 import { Page } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { useParams } from "react-router-dom";
 import { ProjectInfo } from "../../global/types";
-import ProjectStatusToolbar from "./ProjectStatusToolbar";
-import SaveIcon from "@mui/icons-material/Save";
-import EditIcon from "@mui/icons-material/Edit";
+import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
+import ProjectProgressModal from "./component/ProjectProgressModal";
 
 interface UpdatedProject {
   id: string;
@@ -209,6 +210,7 @@ export default function ProjectDetailPage() {
           )}
         </Box>
       </Paper>
+      {projectId && <ProjectProgressModal projectId={projectId} />}
     </Page>
   );
 }

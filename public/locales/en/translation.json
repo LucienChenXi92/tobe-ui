@@ -152,12 +152,17 @@
       "actual-start-time": "Actual start time",
       "actual-end-time": "Actual end time"
     },
-    "edit-btn": "Edit",
-    "save-btn": "Save",
+    "edit-btn-tooltip": "Edit",
+    "save-btn-tooltip": "Save",
     "msg": {
       "error": "Operation failed",
       "success": "Operation success"
     }
+  },
+  "project-progress": {
+    "title": "Progresses",
+    "add-new-tip": "Any fresh news to share?",
+    "send-btn": "Send"
   },
   "dashboard-nav": {
     "pages": {

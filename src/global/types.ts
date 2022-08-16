@@ -48,3 +48,9 @@ export interface ProjectCardProps {
   operations: Operation[];
   project: ProjectInfo;
 }
+
+export interface ProjectProgress {
+  description: string;
+  updaterName: string;
+  updateTime: string;
+}

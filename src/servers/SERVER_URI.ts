@@ -10,6 +10,8 @@ export const SERVER_URI = {
   CREATE_PROJECT: "v1/project-infos",
   UPDATE_PROJECT: "v1/project-infos",
   DELETE_PROJECT: "v1/project-infos",
+  GET_PROJECT_PROGRESSES: "v1/project-infos/:projectId/progresses",
+  CREATE_PROJECT_PROGRESS: "v1/project-progresses",
   ACTIVE_PROJECT: "v1/project-infos/active",
   CLOSE_PROJECT: "v1/project-infos/close",
   RELEASE_PROJECT: "v1/project-infos/release",

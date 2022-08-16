@@ -8,7 +8,7 @@ import {
   Switch,
 } from "@mui/material";
 import { Page, PagedTable } from "../../components";
-import ProjectCard from "./ProjectCard";
+import ProjectCard from "./component/ProjectCard";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, Operation, ProjectInfo } from "../../global/types";
 import { useNavigate } from "react-router-dom";
