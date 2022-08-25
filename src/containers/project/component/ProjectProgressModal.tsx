@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
+import { useAuthState } from "../../../contexts";
 
 interface ProjectProgressModalProps {
   projectId: string;
@@ -19,6 +20,7 @@ interface ProjectProgressModalProps {
 
 export default function ProjectProgressModal(props: ProjectProgressModalProps) {
   const { t } = useTranslation();
+  const context = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
@@ -49,12 +51,16 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
       .finally(() => setOpenLoading(false));
   }
 
-  function createProgresss(projectId: string): void {
+  function createProgresss(): void {
     setOpenLoading(true);
     server
-      .get(
-        `${ROOT_URL}/` +
-          SERVER_URI.GET_PROJECT_PROGRESSES.replace(":projectId", projectId),
+      .post(
+        `${ROOT_URL}/${SERVER_URI.CREATE_PROJECT_PROGRESS}`,
+        {
+          projectId: props.projectId,
+          updaterId: context.user.id,
+          description: newProgress,
+        },
         {
           headers: {
             "Content-Type": "application/json",
@@ -62,7 +68,8 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
         }
       )
       .then((response) => {
-        setProgresses(response.data.records);
+        setNewProgress("");
+        loadProgressses(props.projectId);
       })
       .catch(() => {
         enqueueSnackbar(t("project-detail-page.msg.error"), {
@@ -84,7 +91,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
             </Typography>
           </Divider>
           {progresses.map((progress: ProjectProgress) => (
-            <ProgressItem progress={progress} />
+            <ProgressItem progress={progress} key={progress.id} />
           ))}
 
           <Paper sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}>
@@ -118,7 +125,11 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
                 justifyContent="flex-end"
                 sx={{ mt: 1 }}
               >
-                <Button variant="contained" size="small">
+                <Button
+                  variant="contained"
+                  size="small"
+                  onClick={createProgresss}
+                >
                   {t("project-progress.send-btn")}
                 </Button>
               </Grid>
@@ -138,7 +149,7 @@ const ProgressItem = (props: ProgressItemProps) => {
   return (
     <Paper sx={{ my: 2, p: { xs: 2, md: 3 } }}>
       <Grid container item xs={12}>
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <TextField
             fullWidth
             variant="standard"
@@ -149,7 +160,7 @@ const ProgressItem = (props: ProgressItemProps) => {
             value={props.progress.description}
           />
         </Grid>
-        <Grid xs={12}>
+        <Grid item xs={12}>
           <Typography variant="body2" color={"gray"}>
             {props.progress.updaterName}
             {" | "}

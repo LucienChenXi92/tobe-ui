@@ -166,9 +166,17 @@
   },
   "dashboard-nav": {
     "pages": {
-      "dashboard": "看板中心",
+      "dashboard": "用户中心",
       "users": "用户管理",
       "projects": "项目管理"
+    }
+  },
+  "dashboard-page": {
+    "page-main-title": "用户中心",
+    "project": {
+      "ongoing": "进行中项目",
+      "public": "公开的项目",
+      "all": "所有的项目"
     }
   }
 }

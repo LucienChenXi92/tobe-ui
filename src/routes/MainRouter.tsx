@@ -1,14 +1,14 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import HomePage from "../containers/HomePage/HomePage";
+import HomePage from "../containers/homePage/HomePage";
 import SignInSide from "../containers/signIn/SignInPage";
 import SignUpPage from "../containers/signUp/SignUpPage";
 import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingPage";
 import ProtectedRoutes from "./ProtectedRoutes";
-import DashboardPage from "../containers/MyZone/DashboardPage";
+import DashboardPage from "../containers/myZone/DashboardPage";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout } from "../components";
-import UsersPage from "../containers/MyZone/UsersPage";
+import UsersPage from "../containers/myZone/UsersPage";
 import ProjectsPage from "../containers/project/ProjectsPage";
 import ProjectCreationPage from "../containers/project/ProjectCreationPage";
 import ProjectDetailPage from "../containers/project/ProjectDetailPage";

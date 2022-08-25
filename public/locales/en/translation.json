@@ -170,5 +170,13 @@
       "users": "Users",
       "projects": "Projects"
     }
+  },
+  "dashboard-page": {
+    "page-main-title": "Overview",
+    "project": {
+      "ongoing": "Ongoing project",
+      "public": "Public project",
+      "all": "All project"
+    }
   }
 }

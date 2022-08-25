@@ -50,6 +50,7 @@ export interface ProjectCardProps {
 }
 
 export interface ProjectProgress {
+  id: string | undefined;
   description: string;
   updaterName: string;
   updateTime: string;
