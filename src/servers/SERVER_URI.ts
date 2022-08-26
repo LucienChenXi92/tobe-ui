@@ -7,6 +7,7 @@ export const SERVER_URI = {
   DELETE_USER: "v1/users",
 
   GET_PROJECTS: "v1/project-infos",
+  GET_PROJECT_OVERVIEW: "v1/project-infos/overview",
   CREATE_PROJECT: "v1/project-infos",
   UPDATE_PROJECT: "v1/project-infos",
   DELETE_PROJECT: "v1/project-infos",
@@ -15,5 +16,6 @@ export const SERVER_URI = {
   ACTIVE_PROJECT: "v1/project-infos/active",
   CLOSE_PROJECT: "v1/project-infos/close",
   RELEASE_PROJECT: "v1/project-infos/release",
+  GET_NEWS: "v1/news",
 };
 export const ROOT_URL = "http://localhost:8080";

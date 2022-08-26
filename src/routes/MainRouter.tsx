@@ -12,6 +12,7 @@ import UsersPage from "../containers/myZone/UsersPage";
 import ProjectsPage from "../containers/project/ProjectsPage";
 import ProjectCreationPage from "../containers/project/ProjectCreationPage";
 import ProjectDetailPage from "../containers/project/ProjectDetailPage";
+import NewsPage from "../containers/news/NewsPage";
 
 function MainRouter() {
   return (
@@ -24,26 +25,26 @@ function MainRouter() {
           <Route path={URL.USERS} element={<UsersPage />} />
           <Route path={URL.PROJECTS} element={<ProjectsPage />} />
           <Route path={URL.CREATE_PROJECT} element={<ProjectCreationPage />} />
-          <Route path={URL.PROJECT_DETAIL} element={<ProjectDetailPage />} />
+          <Route
+            path={URL.PROJECT_DETAIL}
+            element={<ProjectDetailPage viewOnly={false} />}
+          />
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>
           <Route path={URL.SIGN_IN} element={<SignInSide />} />
           <Route path={URL.SIGN_UP} element={<SignUpPage />} />
           <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
+          <Route path={URL.NEWS} element={<NewsPage />} />
           <Route
-            path={URL.NEWS}
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>news page!</p>
-              </main>
-            }
+            path={URL.NEWS_DETAIL}
+            element={<ProjectDetailPage viewOnly={true} />}
           />
           <Route
             path={URL.BLOG}
             element={
               <main style={{ padding: "1rem" }}>
-                <p>blog page!</p>
+                <p>Coming soon!</p>
               </main>
             }
           />
@@ -51,7 +52,7 @@ function MainRouter() {
             path={URL.ABOUT}
             element={
               <main style={{ padding: "1rem" }}>
-                <p>about page!</p>
+                <p>Coming soon!</p>
               </main>
             }
           />

@@ -16,6 +16,7 @@ import { useAuthState } from "../../../contexts";
 
 interface ProjectProgressModalProps {
   projectId: string;
+  viewOnly: boolean;
 }
 
 export default function ProjectProgressModal(props: ProjectProgressModalProps) {
@@ -94,47 +95,49 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
             <ProgressItem progress={progress} key={progress.id} />
           ))}
 
-          <Paper sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}>
-            <Grid container xs={12}>
-              <Grid item xs={12}>
-                <TextField
-                  id="add-progress-desc"
-                  label={t("project-progress.add-new-tip")}
-                  fullWidth
-                  variant="outlined"
-                  multiline
-                  minRows={3}
-                  maxRows={20}
-                  value={newProgress}
-                  onChange={(event) => {
-                    if (event.target.value.length <= 1000) {
-                      setNewProgress(event.target.value);
-                    }
-                  }}
-                />
-              </Grid>
-              <Grid item container xs={12} justifyContent="flex-end">
-                <Typography variant="body2" color="gray">
-                  {Number(newProgress?.length)}/1000
-                </Typography>
-              </Grid>
-              <Grid
-                item
-                container
-                xs={12}
-                justifyContent="flex-end"
-                sx={{ mt: 1 }}
-              >
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={createProgresss}
+          {!props.viewOnly && (
+            <Paper sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}>
+              <Grid container xs={12}>
+                <Grid item xs={12}>
+                  <TextField
+                    id="add-progress-desc"
+                    label={t("project-progress.add-new-tip")}
+                    fullWidth
+                    variant="outlined"
+                    multiline
+                    minRows={3}
+                    maxRows={20}
+                    value={newProgress}
+                    onChange={(event) => {
+                      if (event.target.value.length <= 1000) {
+                        setNewProgress(event.target.value);
+                      }
+                    }}
+                  />
+                </Grid>
+                <Grid item container xs={12} justifyContent="flex-end">
+                  <Typography variant="body2" color="gray">
+                    {Number(newProgress?.length)}/1000
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  justifyContent="flex-end"
+                  sx={{ mt: 1 }}
                 >
-                  {t("project-progress.send-btn")}
-                </Button>
+                  <Button
+                    variant="contained"
+                    size="small"
+                    onClick={createProgresss}
+                  >
+                    {t("project-progress.send-btn")}
+                  </Button>
+                </Grid>
               </Grid>
-            </Grid>
-          </Paper>
+            </Paper>
+          )}
         </>
       )}
     </React.Fragment>

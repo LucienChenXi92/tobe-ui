@@ -23,7 +23,11 @@ const Title = (props: any) => {
         align="right"
         sx={{
           fontWeight: 600,
-          fontSize: "12rem",
+          fontSize: {
+            xs: "8rem",
+            md: "10rem",
+            lg: "12rem",
+          },
         }}
       >
         Tobe
@@ -43,7 +47,6 @@ function GreatingSection() {
     const { offsetX, offsetY } = event.nativeEvent;
     setX((offsetX / clientWidth) * 100);
     setY((offsetY / clientHeight) * 100);
-    console.log(x, y);
   };
 
   const _onMouseOut = (event: any) => {

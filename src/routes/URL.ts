@@ -6,6 +6,7 @@ export const URL = {
   BLOG: "/blog",
   ABOUT: "/about",
   NEWS: "/news",
+  NEWS_DETAIL: "/news/:projectId",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",

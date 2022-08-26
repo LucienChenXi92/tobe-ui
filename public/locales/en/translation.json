@@ -175,8 +175,15 @@
     "page-main-title": "Overview",
     "project": {
       "ongoing": "Ongoing project",
+      "finished": "Finished project",
       "public": "Public project",
       "all": "All project"
+    },
+    "msg": {
+      "error": "Failed to fetch data"
     }
+  },
+  "news-page": {
+    "page-main-title": "Fresh News"
   }
 }

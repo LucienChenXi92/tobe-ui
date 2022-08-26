@@ -27,7 +27,11 @@ interface UpdatedProject {
   targetEndTime: Date | null;
 }
 
-export default function ProjectDetailPage() {
+interface ProjectDetailPageProp {
+  viewOnly: boolean;
+}
+
+export default function ProjectDetailPage(props: ProjectDetailPageProp) {
   const { t } = useTranslation();
   const { projectId } = useParams();
   const [openLoading, setOpenLoading] = useState(false);
@@ -37,6 +41,7 @@ export default function ProjectDetailPage() {
   const [fromTime, setFromTime] = useState<Date | null>(null);
   const [toTime, setToTime] = useState<Date | null>(null);
   const [description, setDescription] = useState<string | null>(null);
+  const { viewOnly } = props;
 
   useEffect(() => loadProject(projectId || ""), []);
 
@@ -114,19 +119,21 @@ export default function ProjectDetailPage() {
           <Grid item flexGrow={1}>
             <ProjectStatusToolbar project={project} />
           </Grid>
-          <Grid item flexGrow={0}>
-            <Tooltip
-              title={
-                editable
-                  ? t("project-detail-page.save-btn-tooltip")
-                  : t("project-detail-page.edit-btn-tooltip")
-              }
-            >
-              <IconButton onClick={handleEditableChange}>
-                {editable ? <SaveIcon /> : <EditIcon />}
-              </IconButton>
-            </Tooltip>
-          </Grid>
+          {!viewOnly && (
+            <Grid item flexGrow={0}>
+              <Tooltip
+                title={
+                  editable
+                    ? t("project-detail-page.save-btn-tooltip")
+                    : t("project-detail-page.edit-btn-tooltip")
+                }
+              >
+                <IconButton onClick={handleEditableChange}>
+                  {editable ? <SaveIcon /> : <EditIcon />}
+                </IconButton>
+              </Tooltip>
+            </Grid>
+          )}
         </Grid>
       )}
       <Paper sx={{ my: 0, p: { xs: 2, md: 3 } }}>
@@ -210,7 +217,9 @@ export default function ProjectDetailPage() {
           )}
         </Box>
       </Paper>
-      {projectId && <ProjectProgressModal projectId={projectId} />}
+      {projectId && (
+        <ProjectProgressModal projectId={projectId} viewOnly={viewOnly} />
+      )}
     </Page>
   );
 }

@@ -169,14 +169,21 @@
       "dashboard": "用户中心",
       "users": "用户管理",
       "projects": "项目管理"
+    },
+    "msg": {
+      "error": "获取数据失败"
     }
   },
   "dashboard-page": {
     "page-main-title": "用户中心",
     "project": {
       "ongoing": "进行中项目",
+      "finished": "完结的项目",
       "public": "公开的项目",
       "all": "所有的项目"
     }
+  },
+  "news-page": {
+    "page-main-title": "近期动态"
   }
 }
