@@ -14,12 +14,12 @@ export const AuthReducer = (
   action: Action
 ): AuthState => {
   switch (action.type) {
-    case "REQUEST_SUCCESS":
+    case "LOGIN_SUCCESS":
       return {
         ...initialState,
         user: action.payload,
       };
-    case "REQUEST_CLEAN":
+    case "LOGOUT":
       return {
         ...initialState,
         user: null,

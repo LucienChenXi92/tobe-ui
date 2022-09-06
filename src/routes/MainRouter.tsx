@@ -13,6 +13,7 @@ import ProjectsPage from "../containers/project/ProjectsPage";
 import ProjectCreationPage from "../containers/project/ProjectCreationPage";
 import ProjectDetailPage from "../containers/project/ProjectDetailPage";
 import NewsPage from "../containers/news/NewsPage";
+import { useAuthDispatch } from "../contexts";
 
 function MainRouter() {
   return (
@@ -67,6 +68,9 @@ function SignOutRoute() {
   localStorage.removeItem(LOCAL_STORAGE_KEYS.AUTHORITIES);
   localStorage.removeItem(LOCAL_STORAGE_KEYS.REFRESH_TOKEN);
   localStorage.removeItem(LOCAL_STORAGE_KEYS.CURRENT_USER);
+
+  const dispatch = useAuthDispatch();
+  dispatch({ type: "LOGOUT", payload: null });
   return <SignInSide />;
 }
 

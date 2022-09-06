@@ -42,7 +42,7 @@ export default function ProfileSettingPage() {
         }
       )
       .then((response) => {
-        dispatch({ type: "REQUEST_SUCCESS", payload: response.data });
+        dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
         localStorage.setItem(
           LOCAL_STORAGE_KEYS.CURRENT_USER,
           JSON.stringify(response.data)

@@ -22,7 +22,7 @@ export async function loginUser(
     let data = response.data;
 
     if (data.userProfile) {
-      dispatch({ type: "REQUEST_SUCCESS", payload: data.userProfile });
+      dispatch({ type: "LOGIN_SUCCESS", payload: data.userProfile });
       localStorage.setItem(
         LOCAL_STORAGE_KEYS.CURRENT_USER,
         JSON.stringify(data.userProfile)
