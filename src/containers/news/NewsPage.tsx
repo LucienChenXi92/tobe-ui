@@ -82,7 +82,7 @@ const StandardNewsCard = (props: StandardNewsCardProps) => {
     <Grid item xs={6} sm={3}>
       <Card>
         <CardHeader
-          avatar={<Avatar alt={"Lucien"} src="/static/images/avatar/2.jpg" />}
+          avatar={<Avatar alt={props.data.creater} src="/static/images/avatar.jpg" />}
           title={props.data.creater}
           subheader={props.data.createTime.toDateString()}
         />
