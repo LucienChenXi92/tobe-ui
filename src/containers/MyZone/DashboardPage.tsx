@@ -28,7 +28,7 @@ export default function DashboardPage() {
     ongoingProjectNum: 0,
     finishedProjectNum: 0,
   });
-  useEffect(() => loadProjects, []);
+  useEffect(() => loadProjects(), []);
 
   function loadProjects(): void {
     setOpenLoading(true);
@@ -94,7 +94,7 @@ interface WidgetProps {
 const StandardSmallWidget = (props: WidgetProps) => {
   const navigate = useNavigate();
   return (
-    <Grid item xs={6} sm={3}>
+    <Grid item xs={12} sm={3}>
       <Paper
         onClick={() => navigate(props.link)}
         sx={{ p: 2, cursor: "pointer" }}

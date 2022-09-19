@@ -12,7 +12,10 @@ export default function page(props: PageProps) {
   return (
     <Container
       sx={{
-        ...{ minHeight: "95vh", pt: "10vh" },
+        ...{ 
+            minHeight: "95vh", 
+            pt: {xs: "15vh", sm: "10vh"}
+          },
         ...props.sx,
       }}
     >

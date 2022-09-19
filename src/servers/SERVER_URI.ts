@@ -18,4 +18,5 @@ export const SERVER_URI = {
   RELEASE_PROJECT: "v1/project-infos/release",
   GET_NEWS: "v1/news",
 };
-export const ROOT_URL = "http://localhost:8080";
+ // export const ROOT_URL = "http://lucienchen.xyz:8080/tobe";
+ export const ROOT_URL = "http://localhost:8080";

@@ -27,7 +27,7 @@ export default function NewsPage() {
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
 
-  useEffect(() => loadNews, []);
+  useEffect(() => loadNews(), []);
 
   function loadNews(): void {
     setOpenLoading(true);
@@ -79,7 +79,7 @@ interface News {
 const StandardNewsCard = (props: StandardNewsCardProps) => {
   const navigate = useNavigate();
   return (
-    <Grid item xs={6} sm={3}>
+    <Grid item xs={12} sm={3}>
       <Card>
         <CardHeader
           avatar={<Avatar alt={props.data.creater} src="/static/images/avatar.jpg" />}
