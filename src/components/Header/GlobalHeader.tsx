@@ -57,6 +57,7 @@ const GlobalHeader = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer"
             }}
           >
             {project.name}
@@ -117,6 +118,7 @@ const GlobalHeader = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
+              cursor: "pointer"
             }}
           >
             {project.name}

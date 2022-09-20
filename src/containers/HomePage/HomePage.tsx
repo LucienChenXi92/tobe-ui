@@ -24,7 +24,7 @@ const Title = (props: any) => {
         sx={{
           fontWeight: 600,
           fontSize: {
-            xs: "8rem",
+            xs: "7rem",
             md: "10rem",
             lg: "12rem",
           },
@@ -32,7 +32,18 @@ const Title = (props: any) => {
       >
         Tobe
       </Typography>
-      <Typography variant="h3" align="right" sx={{ fontWeight: 600 }}>
+      <Typography
+        variant="h3"
+        align="right"
+        sx={{
+          fontWeight: 600,
+          fontSize: {
+            xs: "1rem",
+            md: "2rem",
+            lg: "3rem",
+          },
+        }}
+      >
         more than you can dream!
       </Typography>
     </Box>

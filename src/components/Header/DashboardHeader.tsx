@@ -5,11 +5,13 @@ import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import HeaderUserMenu from "./HeaderUserMenu";
 import theme from "../../theme";
+
 interface DashboardHeaderProps {
   handleChangeNavMenu: () => void;
   openDrawer: boolean;
   drawerWidth: number;
 }
+
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
