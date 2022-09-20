@@ -1,23 +1,15 @@
 import { useState, useEffect } from "react";
-import {
-  Box,
-  Grid,
-  Paper,
-  TextField,
-  IconButton,
-  Tooltip,
-} from "@mui/material";
+import { Box, Grid, Paper, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import SaveIcon from "@mui/icons-material/Save";
-import EditIcon from "@mui/icons-material/Edit";
 import { Page } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
 import ProjectProgressModal from "./component/ProjectProgressModal";
+import EditIconButton from "./component/EditIconButton";
 
 interface UpdatedProject {
   id: string;
@@ -121,17 +113,10 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
           </Grid>
           {!viewOnly && (
             <Grid item flexGrow={0}>
-              <Tooltip
-                title={
-                  editable
-                    ? t("project-detail-page.save-btn-tooltip")
-                    : t("project-detail-page.edit-btn-tooltip")
-                }
-              >
-                <IconButton onClick={handleEditableChange}>
-                  {editable ? <SaveIcon /> : <EditIcon />}
-                </IconButton>
-              </Tooltip>
+              <EditIconButton
+                editable={editable}
+                handleEditableChange={handleEditableChange}
+              />
             </Grid>
           )}
         </Grid>

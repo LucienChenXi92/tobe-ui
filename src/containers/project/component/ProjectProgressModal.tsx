@@ -13,6 +13,7 @@ import {
 import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";
+import ProjectProgressItem from "./ProjectProgressItem";
 
 interface ProjectProgressModalProps {
   projectId: string;
@@ -91,13 +92,10 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
               {t("project-progress.title")}
             </Typography>
           </Divider>
-          {progresses.map((progress: ProjectProgress) => (
-            <ProgressItem progress={progress} key={progress.id} />
-          ))}
 
           {!props.viewOnly && (
             <Paper sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}>
-              <Grid container xs={12}>
+              <Grid container item xs={12}>
                 <Grid item xs={12}>
                   <TextField
                     id="add-progress-desc"
@@ -117,7 +115,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
                 </Grid>
                 <Grid item container xs={12} justifyContent="flex-end">
                   <Typography variant="body2" color="gray">
-                    {Number(newProgress?.length)}/1000
+                    {Number(newProgress?.length)} / 1000
                   </Typography>
                 </Grid>
                 <Grid
@@ -138,41 +136,15 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
               </Grid>
             </Paper>
           )}
+          {progresses.map((progress: ProjectProgress) => (
+            <ProjectProgressItem
+              progress={progress}
+              viewOnly={props.viewOnly}
+              key={progress.id}
+            />
+          ))}
         </>
       )}
     </React.Fragment>
   );
 }
-
-interface ProgressItemProps {
-  progress: ProjectProgress;
-}
-
-const ProgressItem = (props: ProgressItemProps) => {
-  return (
-    <Paper sx={{ my: 2, p: { xs: 2, md: 3 } }}>
-      <Grid container item xs={12}>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            variant="standard"
-            multiline
-            minRows={2}
-            maxRows={20}
-            disabled={true}
-            value={props.progress.description}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body2" color={"gray"}>
-            {props.progress.updaterName}
-            {" | "}
-            {new Date(props.progress.updateTime).toLocaleDateString()}
-            {" - "}
-            {new Date(props.progress.updateTime).toLocaleTimeString()}
-          </Typography>
-        </Grid>
-      </Grid>
-    </Paper>
-  );
-};

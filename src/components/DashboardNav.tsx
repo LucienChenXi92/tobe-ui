@@ -138,6 +138,7 @@ export default function DashboardNav(props: DashboardNavProps) {
             letterSpacing: ".3rem",
             color: "white",
             textDecoration: "none",
+            cursor: "pointer",
           }}
         >
           {project.name}

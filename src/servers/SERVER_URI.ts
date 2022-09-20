@@ -13,10 +13,11 @@ export const SERVER_URI = {
   DELETE_PROJECT: "v1/project-infos",
   GET_PROJECT_PROGRESSES: "v1/project-infos/:projectId/progresses",
   CREATE_PROJECT_PROGRESS: "v1/project-progresses",
+  UPDATE_PROJECT_PROGRESS: "v1/project-progresses",
   ACTIVE_PROJECT: "v1/project-infos/active",
   CLOSE_PROJECT: "v1/project-infos/close",
   RELEASE_PROJECT: "v1/project-infos/release",
   GET_NEWS: "v1/news",
 };
- // export const ROOT_URL = "http://lucienchen.xyz:8080/tobe";
- export const ROOT_URL = "http://localhost:8080";
+//export const ROOT_URL = "http://lucienchen.xyz:8080/tobe";
+export const ROOT_URL = "http://localhost:8080";

@@ -51,6 +51,7 @@ export interface ProjectCardProps {
 
 export interface ProjectProgress {
   id: string | undefined;
+  projectId: string;
   description: string;
   updaterName: string;
   updateTime: string;
