@@ -1,4 +1,10 @@
 {
+  "components": {
+    "edit-icon-button": {
+      "save": "Save",
+      "edit": "Edit"
+    }
+  },
   "sign-in": {
     "title": "Sign In TOBE",
     "sign-in-btn": "Sign In",
@@ -152,8 +158,6 @@
       "actual-start-time": "Actual start time",
       "actual-end-time": "Actual end time"
     },
-    "edit-btn-tooltip": "Edit",
-    "save-btn-tooltip": "Save",
     "msg": {
       "error": "Operation failed",
       "success": "Operation success"

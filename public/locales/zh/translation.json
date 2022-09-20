@@ -1,4 +1,10 @@
 {
+  "components": {
+    "edit-icon-button": {
+      "save": "保存",
+      "edit": "修改"
+    }
+  },
   "sign-in": {
     "title": "欢迎登陆 TOBE",
     "sign-in-btn": "登录",
@@ -152,8 +158,6 @@
       "actual-start-time": "实际开始时间",
       "actual-end-time": "实际结束时间"
     },
-    "edit-btn-tooltip": "编辑",
-    "save-btn-tooltip": "保存",
     "msg": {
       "error": "操作失败",
       "success": "操作成功"
