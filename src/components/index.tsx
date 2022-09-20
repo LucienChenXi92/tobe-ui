@@ -6,6 +6,7 @@ import Copyright from "./common/CopyRight";
 import Loading from "./common/Loading";
 import MyMenu from "./common/MyMenu";
 import PagedTable from "./common/PagedTable";
+import EditIconButton from "./common/EditIconButton";
 import Page from "./Page";
 
 export {
@@ -18,4 +19,5 @@ export {
   MyMenu,
   Page,
   PagedTable,
+  EditIconButton,
 };

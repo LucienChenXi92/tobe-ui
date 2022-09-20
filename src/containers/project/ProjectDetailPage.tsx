@@ -9,7 +9,7 @@ import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
 import ProjectProgressModal from "./component/ProjectProgressModal";
-import EditIconButton from "./component/EditIconButton";
+import { EditIconButton } from "../../components";
 
 interface UpdatedProject {
   id: string;

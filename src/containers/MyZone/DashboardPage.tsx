@@ -94,21 +94,23 @@ interface WidgetProps {
 const StandardSmallWidget = (props: WidgetProps) => {
   const navigate = useNavigate();
   return (
-    <Grid item xs={12} sm={3}>
+    <Grid item xs={6} sm={3}>
       <Paper
         onClick={() => navigate(props.link)}
         sx={{ p: 2, cursor: "pointer" }}
       >
         <Grid container>
-          <Grid item flexGrow={1}>
+          <Grid item xs={12}>
             <Typography variant="subtitle2" flexGrow={1} color="text.secondary">
               {props.label}
             </Typography>
+          </Grid>
+          <Divider></Divider>
+          <Grid item flexGrow={1}>
             <Typography variant="h3" color="text.secondary">
               {props.value}
             </Typography>
           </Grid>
-          <Divider></Divider>
           <Grid item flexGrow={0} alignSelf="center">
             {props.icon}
           </Grid>

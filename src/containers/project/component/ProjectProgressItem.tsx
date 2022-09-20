@@ -5,7 +5,7 @@ import { Paper, Grid, TextField, Typography } from "@mui/material";
 import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";
-import EditIconButton from "./EditIconButton";
+import { EditIconButton } from "../../../components";
 
 interface ProjectProgressItemProps {
   progress: ProjectProgress;

@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import HomePage from "../containers/homePage/HomePage";
-import SignInSide from "../containers/signIn/SignInPage";
+import SignInPage from "../containers/signIn/SignInPage";
 import SignUpPage from "../containers/signUp/SignUpPage";
-import ProfileSettingPage from "../containers/ProfileSettingPage/ProfileSettingPage";
+import ProfileSettingPage from "../containers/profileSettingPage/ProfileSettingPage";
 import ProtectedRoutes from "./ProtectedRoutes";
 import DashboardPage from "../containers/myZone/DashboardPage";
 import { URL } from "./URL";
@@ -33,7 +33,7 @@ function MainRouter() {
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>
-          <Route path={URL.SIGN_IN} element={<SignInSide />} />
+          <Route path={URL.SIGN_IN} element={<SignInPage />} />
           <Route path={URL.SIGN_UP} element={<SignUpPage />} />
           <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
           <Route path={URL.NEWS} element={<NewsPage />} />
@@ -71,7 +71,7 @@ function SignOutRoute() {
 
   const dispatch = useAuthDispatch();
   dispatch({ type: "LOGOUT", payload: null });
-  return <SignInSide />;
+  return <SignInPage />;
 }
 
 function NonProtectedBasicLayoutRoute() {
