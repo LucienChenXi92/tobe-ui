@@ -8,7 +8,7 @@ import {
   Avatar,
   ClickAwayListener,
 } from "@mui/material";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
+import PersonIcon from "@mui/icons-material/Person";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Page } from "../../components";
@@ -119,8 +119,8 @@ export default function ProfileSettingPage() {
                         onClick={handleShowAvatarsChange}
                       ></img>
                     ) : (
-                      <AccountBoxIcon
-                        sx={{ width: "100%" }}
+                      <PersonIcon
+                        sx={{ width: "100%", height: "100%" }}
                         onClick={handleShowAvatarsChange}
                       />
                     )}
