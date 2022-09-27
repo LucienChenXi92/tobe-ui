@@ -18,6 +18,7 @@ interface NewsDTO {
   name: string;
   description: string;
   ownerName: string;
+  avatarUrl: string;
   statusValue: number;
   targetStartTime: string;
 }
@@ -53,6 +54,7 @@ export default function NewsPage() {
               name: n.name,
               description: n.description,
               creater: n.ownerName,
+              avatarUrl: n.avatarUrl,
               createTime: new Date(n.targetStartTime),
               detailsUrl: "/news/" + n.id,
             }}
@@ -72,6 +74,7 @@ interface News {
   name: string;
   description: string;
   creater: string;
+  avatarUrl: string;
   createTime: Date;
   detailsUrl: string;
 }
@@ -82,7 +85,9 @@ const StandardNewsCard = (props: StandardNewsCardProps) => {
     <Grid item xs={12} sm={3}>
       <Card>
         <CardHeader
-          avatar={<Avatar alt={props.data.creater} src="/static/images/avatar.jpg" />}
+          avatar={
+            <Avatar alt={props.data.creater} src={props.data.avatarUrl} />
+          }
           title={props.data.creater}
           subheader={props.data.createTime.toDateString()}
         />

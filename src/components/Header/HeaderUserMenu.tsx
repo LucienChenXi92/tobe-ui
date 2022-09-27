@@ -44,7 +44,7 @@ export default function HeaderUserMenu() {
           <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
             <Avatar
               alt={authContext.user.firstName}
-              src="/static/images/avatar/2.jpg"
+              src={authContext.user.avatarUrl}
             />
           </IconButton>
         </Tooltip>

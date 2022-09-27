@@ -1,5 +1,14 @@
 import React, { useState } from "react";
-import { Box, Grid, Paper, TextField, Button } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Paper,
+  TextField,
+  Button,
+  Avatar,
+  ClickAwayListener,
+} from "@mui/material";
+import AccountBoxIcon from "@mui/icons-material/AccountBox";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Page } from "../../components";
@@ -14,6 +23,8 @@ export default function ProfileSettingPage() {
   const { user } = authState;
   const dispatch = useAuthDispatch();
   const { enqueueSnackbar } = useSnackbar();
+  const [showAvatars, setShowAvatars] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -34,6 +45,7 @@ export default function ProfileSettingPage() {
           lastName: data.get("lastName")?.toString(),
           phoneNum: data.get("phoneNum")?.toString(),
           address: data.get("address")?.toString(),
+          avatarUrl: avatarUrl,
         },
         {
           headers: {
@@ -59,14 +71,98 @@ export default function ProfileSettingPage() {
       .finally(() => setOpenLoading(false));
   }
 
+  const avatars = [
+    { alt: "1", src: "/images/avatars/avatar1.png" },
+    { alt: "2", src: "/images/avatars/avatar2.png" },
+    { alt: "3", src: "/images/avatars/avatar3.png" },
+    { alt: "4", src: "/images/avatars/avatar4.png" },
+    { alt: "5", src: "/images/avatars/avatar5.png" },
+    { alt: "6", src: "/images/avatars/avatar6.png" },
+    { alt: "7", src: "/images/avatars/avatar7.png" },
+    { alt: "8", src: "/images/avatars/avatar8.png" },
+    { alt: "9", src: "/images/avatars/avatar9.png" },
+    { alt: "10", src: "/images/avatars/avatar10.png" },
+  ];
+
+  function handleShowAvatarsChange() {
+    setShowAvatars(!showAvatars);
+  }
+
+  function handleAvatarChange(newAvatarUrl: string) {
+    setAvatarUrl(newAvatarUrl);
+    setShowAvatars(false);
+  }
+
   return (
     <Page openLoading={openLoading} pageTitle={t("profile-setting.form-title")}>
-      <Paper sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+      <Paper sx={{ my: { xs: 8 }, p: { xs: 2, md: 3 } }}>
         <Box component="form" noValidate onSubmit={handleSubmit}>
           {
             <React.Fragment>
               <Grid container spacing={3}>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={12} sx={{ mt: -7 }}>
+                  <Box
+                    sx={{
+                      p: 0,
+                      border: "1px solid gray",
+                      borderRadius: 4,
+                      width: "100px",
+                      height: "107px",
+                      background: "#fff",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {avatarUrl ? (
+                      <img
+                        src={avatarUrl}
+                        width="100%"
+                        onClick={handleShowAvatarsChange}
+                      ></img>
+                    ) : (
+                      <AccountBoxIcon
+                        sx={{ width: "100%" }}
+                        onClick={handleShowAvatarsChange}
+                      />
+                    )}
+
+                    {showAvatars && (
+                      <ClickAwayListener onClickAway={handleShowAvatarsChange}>
+                        <Paper
+                          sx={{
+                            position: "absolute",
+                            display: "inline-block",
+                            ml: 1,
+                            py: 2,
+                          }}
+                        >
+                          <Grid container spacing={0.5}>
+                            {avatars.slice(0, 5).map((i) => (
+                              <Grid item key={"avatars-r1-" + i.alt}>
+                                <Avatar
+                                  alt={i.alt}
+                                  src={i.src}
+                                  onClick={() => handleAvatarChange(i.src)}
+                                />
+                              </Grid>
+                            ))}
+                          </Grid>
+                          <Grid container spacing={0.5}>
+                            {avatars.slice(5, 10).map((i) => (
+                              <Grid item key={"avatars-r2-" + i.alt}>
+                                <Avatar
+                                  alt={i.alt}
+                                  src={i.src}
+                                  onClick={() => handleAvatarChange(i.src)}
+                                />
+                              </Grid>
+                            ))}
+                          </Grid>
+                        </Paper>
+                      </ClickAwayListener>
+                    )}
+                  </Box>
+                </Grid>
+                <Grid item xs={6}>
                   <TextField
                     required
                     id="firstName"
@@ -78,7 +174,7 @@ export default function ProfileSettingPage() {
                     defaultValue={user.firstName || ""}
                   />
                 </Grid>
-                <Grid item xs={12} sm={6}>
+                <Grid item xs={6}>
                   <TextField
                     required
                     id="lastName"
@@ -90,6 +186,7 @@ export default function ProfileSettingPage() {
                     defaultValue={user.lastName || ""}
                   />
                 </Grid>
+
                 <Grid item xs={12} sm={6}>
                   <TextField
                     disabled

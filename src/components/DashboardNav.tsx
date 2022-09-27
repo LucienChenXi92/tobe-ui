@@ -64,7 +64,11 @@ const adminPageItems: PageItem[] = [
 const NavItem = styled(ListItem)(({ theme }) => ({
   "& .MuiListItemButton-root.Mui-selected": {
     borderRight: "5px solid",
-    borderColor: theme.palette.primary.main,
+    borderColor: theme.palette.secondary.main,
+    color: theme.palette.secondary.main + " !important",
+    "& .MuiListItemIcon-root": {
+      color: theme.palette.secondary.main + " !important",
+    },
   },
 }));
 
