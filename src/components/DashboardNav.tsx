@@ -118,6 +118,7 @@ export default function DashboardNav(props: DashboardNavProps) {
       variant={underSmScreen ? "temporary" : "persistent"}
       anchor="left"
       open={props.openDrawer}
+      onClose={() => props.setOpenDrawer(false)}
     >
       <DrawerHeader sx={{ backgroundColor: theme.palette.primary.main }}>
         <IconButton onClick={() => props.setOpenDrawer(!props.openDrawer)}>
