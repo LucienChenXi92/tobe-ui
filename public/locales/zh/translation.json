@@ -46,7 +46,7 @@
     "pages": {
       "news": "动态",
       "about": "关于",
-      "blog": "博客"
+      "article": "文章"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -166,7 +166,12 @@
   "project-progress": {
     "title": "项目进展",
     "add-new-tip": "有任何进展可以分享么？",
-    "send-btn": "发布"
+    "send-btn": "发布",
+    "msg": {
+      "error": "操作失败",
+      "warning": "请输入有效内容",
+      "success": "操作成功"
+    }
   },
   "dashboard-nav": {
     "pages": {
@@ -189,5 +194,8 @@
   },
   "news-page": {
     "page-main-title": "近期动态"
+  },
+  "about-page": {
+    "page-main-title": "关于我们"
   }
 }

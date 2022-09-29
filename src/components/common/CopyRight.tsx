@@ -17,7 +17,7 @@ function Copyright(props: any) {
     >
       {"Copyright © "}
       <Link color="inherit" href="/">
-        <strong>{project.name}</strong>
+        <strong>{project.name.toUpperCase()}</strong>
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}

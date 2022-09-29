@@ -13,7 +13,7 @@ import ProjectStatusToolbar from "./ProjectStatusToolbar";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (
-    <Grid item xs={12} sm={6} xl={3} key={props.project.id}>
+    <Grid item xs={12} sm={6} md={3} key={props.project.id}>
       <Card>
         <CardContent>
           <Typography gutterBottom variant="h6" component="div">

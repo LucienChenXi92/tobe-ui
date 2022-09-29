@@ -57,10 +57,10 @@ const GlobalHeader = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
-            {project.name}
+            {project.name.toUpperCase()}
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -118,10 +118,10 @@ const GlobalHeader = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-              cursor: "pointer"
+              cursor: "pointer",
             }}
           >
-            {project.name}
+            {project.name.toUpperCase()}
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (

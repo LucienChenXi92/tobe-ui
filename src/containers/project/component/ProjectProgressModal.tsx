@@ -46,7 +46,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
         setProgresses(response.data.records);
       })
       .catch(() => {
-        enqueueSnackbar(t("project-detail-page.msg.error"), {
+        enqueueSnackbar(t("project-progress.msg.error"), {
           variant: "error",
         });
       })
@@ -54,6 +54,13 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
   }
 
   function createProgresss(): void {
+    if (!newProgress.trim()) {
+      enqueueSnackbar(t("project-progress.msg.warning"), {
+        variant: "warning",
+      });
+      return;
+    }
+
     setOpenLoading(true);
     server
       .post(
@@ -71,10 +78,13 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
       )
       .then((response) => {
         setNewProgress("");
+        enqueueSnackbar(t("project-progress.msg.success"), {
+          variant: "success",
+        });
         loadProgressses(props.projectId);
       })
       .catch(() => {
-        enqueueSnackbar(t("project-detail-page.msg.error"), {
+        enqueueSnackbar(t("project-progress.msg.error"), {
           variant: "error",
         });
       })

@@ -7,7 +7,7 @@ import HeaderUserMenu from "./HeaderUserMenu";
 import theme from "../../theme";
 
 interface DashboardHeaderProps {
-  handleChangeNavMenu: () => void;
+  setOpenDrawer: (newValue: boolean) => void;
   openDrawer: boolean;
   drawerWidth: number;
 }
@@ -17,9 +17,6 @@ interface AppBarProps extends MuiAppBarProps {
 }
 
 const DashboardHeader = (props: DashboardHeaderProps) => {
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>): void =>
-    props.handleChangeNavMenu();
-
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
   })<AppBarProps>(({ theme, open }) => ({
@@ -45,7 +42,7 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
             aria-label="open dashboard side navigator"
             aria-controls="menu-appbar"
             aria-haspopup="true"
-            onClick={handleOpenNavMenu}
+            onClick={() => props.setOpenDrawer(!props.openDrawer)}
             color="inherit"
             edge="start"
             sx={{ mr: 2, ...(props.openDrawer && { display: "none" }) }}

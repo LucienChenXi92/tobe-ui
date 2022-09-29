@@ -35,7 +35,6 @@ const drawerWidth = 240;
  */
 export default function DashboardLayout({ children }: { children: any }) {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const handleChangeNavMenu = () => setOpenDrawer(!openDrawer);
 
   return (
     <Box
@@ -50,8 +49,8 @@ export default function DashboardLayout({ children }: { children: any }) {
       }}
     >
       <DashboardHeader
-        handleChangeNavMenu={handleChangeNavMenu}
         openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
         drawerWidth={drawerWidth}
       />
       <Main open={openDrawer}>
@@ -72,11 +71,11 @@ export default function DashboardLayout({ children }: { children: any }) {
         <AppFooter />
       </Main>
       <DashboardNav
-        handleChangeNavMenu={handleChangeNavMenu}
         openDrawer={openDrawer}
+        setOpenDrawer={setOpenDrawer}
         drawerWidth={drawerWidth}
       />
-      <MyMenu />
+      {/* <MyMenu /> */}
     </Box>
   );
 }

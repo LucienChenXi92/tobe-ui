@@ -46,7 +46,7 @@
     "pages": {
       "news": "News",
       "about": "About",
-      "blog": "Blog"
+      "article": "Article"
     },
     "settings": {
       "btn-tooltip": "Open settings",
@@ -166,7 +166,12 @@
   "project-progress": {
     "title": "Progresses",
     "add-new-tip": "Any fresh news to share?",
-    "send-btn": "Send"
+    "send-btn": "Send",
+    "msg": {
+      "error": "Operation failed",
+      "warning": "Please type in valid context",
+      "success": "Operation success"
+    }
   },
   "dashboard-nav": {
     "pages": {
@@ -189,5 +194,8 @@
   },
   "news-page": {
     "page-main-title": "Fresh News"
+  },
+  "about-page": {
+    "page-main-title": "About Us"
   }
 }

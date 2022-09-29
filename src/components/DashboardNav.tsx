@@ -8,6 +8,8 @@ import {
   ListItemText,
   ListItemIcon,
   Divider,
+  ClickAwayListener,
+  useMediaQuery,
 } from "@mui/material";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
@@ -23,7 +25,7 @@ import { PageItem } from "../global/types";
 import project from "../../package.json";
 
 interface DashboardNavProps {
-  handleChangeNavMenu: () => void;
+  setOpenDrawer: (newValue: boolean) => void;
   openDrawer: boolean;
   drawerWidth: number;
 }
@@ -101,6 +103,8 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
 
 export default function DashboardNav(props: DashboardNavProps) {
   const navigate = useNavigate();
+  const underSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Drawer
       sx={{
@@ -111,12 +115,12 @@ export default function DashboardNav(props: DashboardNavProps) {
           boxSizing: "border-box",
         },
       }}
-      variant="persistent"
+      variant={underSmScreen ? "temporary" : "persistent"}
       anchor="left"
       open={props.openDrawer}
     >
       <DrawerHeader sx={{ backgroundColor: theme.palette.primary.main }}>
-        <IconButton onClick={props.handleChangeNavMenu}>
+        <IconButton onClick={() => props.setOpenDrawer(!props.openDrawer)}>
           <MenuOpenIcon
             sx={{
               color: "#fff",
@@ -145,7 +149,7 @@ export default function DashboardNav(props: DashboardNavProps) {
             cursor: "pointer",
           }}
         >
-          {project.name}
+          {project.name.toUpperCase()}
         </Typography>
       </DrawerHeader>
       <NavItems pageItems={basicPageItems} />

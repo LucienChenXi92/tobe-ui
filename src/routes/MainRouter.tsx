@@ -13,6 +13,7 @@ import ProjectsPage from "../containers/project/ProjectsPage";
 import ProjectCreationPage from "../containers/project/ProjectCreationPage";
 import ProjectDetailPage from "../containers/project/ProjectDetailPage";
 import NewsPage from "../containers/news/NewsPage";
+import AboutPage from "../containers/aboutPage/AboutPage";
 import { useAuthDispatch } from "../contexts";
 
 function MainRouter() {
@@ -42,21 +43,14 @@ function MainRouter() {
             element={<ProjectDetailPage viewOnly={true} />}
           />
           <Route
-            path={URL.BLOG}
+            path={URL.ARTICLE}
             element={
               <main style={{ padding: "1rem" }}>
                 <p>Coming soon!</p>
               </main>
             }
           />
-          <Route
-            path={URL.ABOUT}
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Coming soon!</p>
-              </main>
-            }
-          />
+          <Route path={URL.ABOUT} element={<AboutPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

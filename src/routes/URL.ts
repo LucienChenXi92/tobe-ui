@@ -3,7 +3,7 @@ export const URL = {
   SIGN_IN: "/sign-in",
   SIGN_OUT: "/sign-out",
   SIGN_UP: "/sign-up",
-  BLOG: "/blog",
+  ARTICLE: "/article",
   ABOUT: "/about",
   NEWS: "/news",
   NEWS_DETAIL: "/news/:projectId",
