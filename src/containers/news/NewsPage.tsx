@@ -8,6 +8,7 @@ import {
   Typography,
   CardHeader,
   Avatar,
+  Divider,
 } from "@mui/material";
 import { Page } from "../../components";
 import { useNavigate } from "react-router-dom";
@@ -93,7 +94,7 @@ const StandardNewsCard = (props: StandardNewsCardProps) => {
         />
         <CardActionArea onClick={() => navigate(props.data.detailsUrl)}>
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h6" component="div">
               {props.data.name}
             </Typography>
             <Typography variant="body2" color="text.secondary">

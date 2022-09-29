@@ -25,12 +25,44 @@ export default function ProfileSettingPage() {
   const { enqueueSnackbar } = useSnackbar();
   const [showAvatars, setShowAvatars] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState(user.avatarUrl);
+  const avatars: { alt: string; src: string }[] = initAvatars();
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
     updateUser(data);
   };
+
+  function initAvatars() {
+    const result = [];
+    for (let i = 1; i <= 20; i++) {
+      result.push({
+        alt: i.toString(),
+        src: `/images/avatars/avatar${i}.png`,
+      });
+    }
+    return result;
+  }
+
+  function renderAvatarOptions(avatars: any[]) {
+    const rows = [];
+    let fast = 0;
+    let slow = 0;
+    for (let i = 1; i <= avatars.length; i++) {
+      fast = i;
+      if (fast % 5 === 0 || fast === avatars.length) {
+        rows.push(
+          <AvatarOptionRow
+            avatars={avatars.slice(slow, fast)}
+            handleAvatarChange={handleAvatarChange}
+            key={Math.floor(fast / 5)}
+          />
+        );
+        slow = i;
+      }
+    }
+    return rows;
+  }
 
   function updateUser(data: FormData): void {
     setOpenLoading(true);
@@ -70,19 +102,6 @@ export default function ProfileSettingPage() {
       })
       .finally(() => setOpenLoading(false));
   }
-
-  const avatars = [
-    { alt: "1", src: "/images/avatars/avatar1.png" },
-    { alt: "2", src: "/images/avatars/avatar2.png" },
-    { alt: "3", src: "/images/avatars/avatar3.png" },
-    { alt: "4", src: "/images/avatars/avatar4.png" },
-    { alt: "5", src: "/images/avatars/avatar5.png" },
-    { alt: "6", src: "/images/avatars/avatar6.png" },
-    { alt: "7", src: "/images/avatars/avatar7.png" },
-    { alt: "8", src: "/images/avatars/avatar8.png" },
-    { alt: "9", src: "/images/avatars/avatar9.png" },
-    { alt: "10", src: "/images/avatars/avatar10.png" },
-  ];
 
   function handleShowAvatarsChange() {
     setShowAvatars(!showAvatars);
@@ -133,30 +152,11 @@ export default function ProfileSettingPage() {
                             display: "inline-block",
                             ml: 1,
                             py: 2,
+                            maxHeight: "107px",
+                            overflow: "scroll",
                           }}
                         >
-                          <Grid container spacing={0.5}>
-                            {avatars.slice(0, 5).map((i) => (
-                              <Grid item key={"avatars-r1-" + i.alt}>
-                                <Avatar
-                                  alt={i.alt}
-                                  src={i.src}
-                                  onClick={() => handleAvatarChange(i.src)}
-                                />
-                              </Grid>
-                            ))}
-                          </Grid>
-                          <Grid container spacing={0.5}>
-                            {avatars.slice(5, 10).map((i) => (
-                              <Grid item key={"avatars-r2-" + i.alt}>
-                                <Avatar
-                                  alt={i.alt}
-                                  src={i.src}
-                                  onClick={() => handleAvatarChange(i.src)}
-                                />
-                              </Grid>
-                            ))}
-                          </Grid>
+                          {renderAvatarOptions(avatars)}
                         </Paper>
                       </ClickAwayListener>
                     )}
@@ -241,3 +241,22 @@ export default function ProfileSettingPage() {
     </Page>
   );
 }
+
+const AvatarOptionRow = (props: {
+  avatars: { alt: string; src: string }[];
+  handleAvatarChange: Function;
+}) => {
+  return (
+    <Grid container spacing={0.5}>
+      {props.avatars.map((i) => (
+        <Grid item key={i.alt}>
+          <Avatar
+            alt={i.alt}
+            src={i.src}
+            onClick={() => props.handleAvatarChange(i.src)}
+          />
+        </Grid>
+      ))}
+    </Grid>
+  );
+};
