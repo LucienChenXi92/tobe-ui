@@ -186,6 +186,7 @@
   "dashboard-page": {
     "page-main-title": "用户中心",
     "project": {
+      "title": "项目统计",
       "ongoing": "进行中项目",
       "finished": "完结的项目",
       "public": "公开的项目",

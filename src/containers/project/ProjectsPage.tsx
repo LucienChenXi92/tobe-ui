@@ -96,7 +96,10 @@ export default function ProjectsPage() {
   function activeProjectById(id: number | string) {
     setOpenLoading(true);
     server
-      .put(`${ROOT_URL}/${SERVER_URI.ACTIVE_PROJECT}/${id}`)
+      .put(
+        `${ROOT_URL}/` +
+          SERVER_URI.ACTIVE_PROJECT.replace(":projectId", id.toString())
+      )
       .then(() => {
         setOpenLoading(true);
         loadProjectData();
@@ -110,7 +113,10 @@ export default function ProjectsPage() {
   function releaseProjectById(id: number | string) {
     setOpenLoading(true);
     server
-      .put(`${ROOT_URL}/${SERVER_URI.RELEASE_PROJECT}/${id}`)
+      .put(
+        `${ROOT_URL}/` +
+          SERVER_URI.RELEASE_PROJECT.replace(":projectId", id.toString())
+      )
       .then(() => {
         setOpenLoading(true);
         loadProjectData();
@@ -124,7 +130,10 @@ export default function ProjectsPage() {
   function closeProjectById(id: number | string) {
     setOpenLoading(true);
     server
-      .put(`${ROOT_URL}/${SERVER_URI.CLOSE_PROJECT}/${id}`)
+      .put(
+        `${ROOT_URL}/` +
+          SERVER_URI.CLOSE_PROJECT.replace(":projectId", id.toString())
+      )
       .then(() => {
         setOpenLoading(true);
         loadProjectData();

@@ -54,6 +54,7 @@ export default function DashboardPage() {
       openLoading={openLoading}
       pageTitle={t("dashboard-page.page-main-title")}
     >
+      <SectionTitle value={t("dashboard-page.project.title")} />
       <Grid container spacing={2} sx={{ py: 2 }}>
         <StandardSmallWidget
           value={projectData.ongoingProjectNum}
@@ -90,6 +91,14 @@ interface WidgetProps {
   link: string;
   icon: any;
 }
+
+const SectionTitle = (props: { value: string }) => {
+  return (
+    <Typography variant="h6" sx={{ mt: 3, mb: 0 }}>
+      {props.value}
+    </Typography>
+  );
+};
 
 const StandardSmallWidget = (props: WidgetProps) => {
   const navigate = useNavigate();

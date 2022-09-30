@@ -183,6 +183,7 @@
   "dashboard-page": {
     "page-main-title": "Overview",
     "project": {
+      "title": "Project Data",
       "ongoing": "Ongoing project",
       "finished": "Finished project",
       "public": "Public project",

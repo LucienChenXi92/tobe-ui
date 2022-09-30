@@ -14,9 +14,9 @@ export const SERVER_URI = {
   GET_PROJECT_PROGRESSES: "v1/project-infos/:projectId/progresses",
   CREATE_PROJECT_PROGRESS: "v1/project-progresses",
   UPDATE_PROJECT_PROGRESS: "v1/project-progresses",
-  ACTIVE_PROJECT: "v1/project-infos/active",
-  CLOSE_PROJECT: "v1/project-infos/close",
-  RELEASE_PROJECT: "v1/project-infos/release",
+  ACTIVE_PROJECT: "v1/project-infos/:projectId/active",
+  CLOSE_PROJECT: "v1/project-infos/:projectId/close",
+  RELEASE_PROJECT: "v1/project-infos/:projectId/release",
   GET_NEWS: "v1/news",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;
