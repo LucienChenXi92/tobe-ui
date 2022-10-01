@@ -123,7 +123,7 @@ export default function ProfileSettingPage() {
                   <Box
                     sx={{
                       p: 0,
-                      border: "1px solid gray",
+                      border: "1px solid rgba(0,0,0,0.12)",
                       borderRadius: 4,
                       width: "100px",
                       height: "107px",

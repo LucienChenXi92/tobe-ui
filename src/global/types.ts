@@ -7,11 +7,8 @@ export interface Column {
 }
 
 export interface Operation {
-  name: string;
+  name: "detail" | "delete" | "active" | "release" | "close";
   onClick: (id: number | string) => void;
-  label: string;
-  variant?: "text" | "contained" | "outlined";
-  color?: "success" | "error" | "info" | "warning" | "primary" | "secondary";
   hide?: (data: any) => boolean;
 }
 

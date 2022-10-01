@@ -3,6 +3,14 @@
     "edit-icon-button": {
       "save": "保存",
       "edit": "修改"
+    },
+    "standard-button": {
+      "detail": "详情",
+      "active": "开启",
+      "close": "结束",
+      "delete": "删除",
+      "create": "新增",
+      "release": "公开"
     }
   },
   "sign-in": {
@@ -91,7 +99,7 @@
     }
   },
   "user-table": {
-    "title": "用户管理",
+    "title": "用户",
     "label": {
       "id": "ID",
       "email": "邮箱",
@@ -100,11 +108,10 @@
       "last-name": "姓氏",
       "phone-number": "联系电话",
       "operation": "操作"
-    },
-    "delete-btn": "删除"
+    }
   },
   "project-table": {
-    "title": "项目管理",
+    "title": "计划",
     "label": {
       "name": "名称",
       "target-start-date": "计划开始日期",
@@ -113,12 +120,6 @@
       "actual-end-date": "实际结束日期",
       "operation": "操作"
     },
-    "view-detail-btn": "详情",
-    "active-btn": "开启",
-    "close-btn": "结束",
-    "release-btn": "公开",
-    "delete-btn": "删除",
-    "create-btn": "新建",
     "card-view-btn": "精简模式",
     "card": {
       "tooltip": {
@@ -175,16 +176,17 @@
   },
   "dashboard-nav": {
     "pages": {
-      "dashboard": "用户中心",
-      "users": "用户管理",
-      "projects": "项目管理"
+      "dashboard": "汇总",
+      "users": "用户",
+      "projects": "计划",
+      "articles": "笔记"
     },
     "msg": {
       "error": "获取数据失败"
     }
   },
   "dashboard-page": {
-    "page-main-title": "用户中心",
+    "page-main-title": "汇总",
     "project": {
       "title": "项目统计",
       "ongoing": "进行中项目",
@@ -198,5 +200,18 @@
   },
   "about-page": {
     "page-main-title": "关于我们"
+  },
+  "articles-page": {
+    "page-main-title": "笔记",
+    "article-table": {
+      "label": {
+        "title": "标题",
+        "subTitle": "副标题",
+        "description": "简述",
+        "createTime": "创建时间",
+        "updateTime": "更新时间",
+        "operation": "操作"
+      }
+    }
   }
 }

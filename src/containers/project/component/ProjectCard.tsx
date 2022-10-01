@@ -1,25 +1,27 @@
 import { ProjectCardProps } from "../../../global/types";
 import {
   Grid,
-  Button,
   Typography,
   Card,
+  CardHeader,
   CardContent,
   CardActions,
   Divider,
 } from "@mui/material";
 import { formatDate } from "../../../commons";
 import ProjectStatusToolbar from "./ProjectStatusToolbar";
+import { getButtonByOperationName } from "../../../components";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (
     <Grid item xs={12} sm={6} md={3} key={props.project.id}>
-      <Card>
+      <Card variant="outlined">
+        <CardHeader
+          title={props.project.name}
+          titleTypographyProps={{ variant: "h6" }}
+        />
+        <Divider />
         <CardContent>
-          <Typography gutterBottom variant="h6" component="div">
-            {props.project.name}
-          </Typography>
-          <Divider />
           <ProjectStatusToolbar project={props.project} />
           <Typography variant="body2" color="text.secondary">
             {props.project.description}
@@ -34,16 +36,9 @@ export default function ProjectCard(props: ProjectCardProps) {
         <CardActions sx={{ px: 0 }}>
           {props.operations.map(
             (operation) =>
-              !operation?.hide?.call(null, props.project) && (
-                <Button
-                  key={operation.name}
-                  onClick={() => operation.onClick(props.project.id)}
-                  variant={operation.variant}
-                  color={operation.color}
-                  size="small"
-                >
-                  {operation.label}
-                </Button>
+              !operation?.hide?.call(null, props.project) &&
+              getButtonByOperationName(operation.name, () =>
+                operation.onClick(props.project.id)
               )
           )}
         </CardActions>

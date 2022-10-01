@@ -1,13 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Button,
-  Grid,
-  FormGroup,
-  FormControlLabel,
-  Switch,
-} from "@mui/material";
-import { Page, PagedTable } from "../../components";
+import { Grid, FormGroup, FormControlLabel, Switch } from "@mui/material";
+import { Page, PagedTable, CreateButton } from "../../components";
 import ProjectCard from "./component/ProjectCard";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, Operation, ProjectInfo } from "../../global/types";
@@ -71,7 +65,6 @@ export default function ProjectsPage() {
       .then((response) => {
         setRows(response.data.records || []);
         setTotalCount(response.data.total);
-        setOpenLoading(true);
       })
       .catch((error) => {})
       .finally(() => {
@@ -84,7 +77,6 @@ export default function ProjectsPage() {
     server
       .delete(`${ROOT_URL}/${SERVER_URI.DELETE_PROJECT}/${id}`)
       .then(() => {
-        setOpenLoading(true);
         loadProjectData();
       })
       .catch((error) => console.error(error))
@@ -101,7 +93,6 @@ export default function ProjectsPage() {
           SERVER_URI.ACTIVE_PROJECT.replace(":projectId", id.toString())
       )
       .then(() => {
-        setOpenLoading(true);
         loadProjectData();
       })
       .catch((error) => console.error(error))
@@ -118,7 +109,6 @@ export default function ProjectsPage() {
           SERVER_URI.RELEASE_PROJECT.replace(":projectId", id.toString())
       )
       .then(() => {
-        setOpenLoading(true);
         loadProjectData();
       })
       .catch((error) => console.error(error))
@@ -135,7 +125,6 @@ export default function ProjectsPage() {
           SERVER_URI.CLOSE_PROJECT.replace(":projectId", id.toString())
       )
       .then(() => {
-        setOpenLoading(true);
         loadProjectData();
       })
       .catch((error) => console.error(error))
@@ -165,56 +154,34 @@ export default function ProjectsPage() {
     setCardView(cardView);
   };
 
-  const handleDeleteProject = (id: number | string): void =>
-    deleteProjectById(id);
-
-  const handleActiveProject = (id: number | string): void =>
-    activeProjectById(id);
-
-  const handleCloseProject = (id: number | string): void =>
-    closeProjectById(id);
-
-  const handleReleaseProjct = (id: number | string): void =>
-    releaseProjectById(id);
-
   const operations: Operation[] = [
     {
-      name: "view-project",
-      label: t("project-table.view-detail-btn"),
+      name: "detail",
       onClick: (id: number | string) =>
         navigate(URL.PROJECT_DETAIL.replace(":projectId", id.toString())),
-      color: "info",
     },
     {
-      name: "active-project",
-      label: t("project-table.active-btn"),
-      onClick: (id: number | string) => handleActiveProject(id),
-      color: "success",
+      name: "active",
+      onClick: (id: number | string) => activeProjectById(id),
       hide: (data: any) =>
         ![PROJECT_STATUS.READY, PROJECT_STATUS.ON_HOLD].includes(
           data.statusValue
         ),
     },
     {
-      name: "close-project",
-      label: t("project-table.close-btn"),
-      onClick: (id: number | string) => handleCloseProject(id),
-      color: "warning",
+      name: "close",
+      onClick: (id: number | string) => closeProjectById(id),
       hide: (data: any) =>
         ![PROJECT_STATUS.IN_PROCESS].includes(data.statusValue),
     },
     {
       name: "release",
-      label: t("project-table.release-btn"),
-      onClick: (id: number | string) => handleReleaseProjct(id),
-      color: "warning",
+      onClick: (id: number | string) => releaseProjectById(id),
       hide: (data: any) => data.publicToAll,
     },
     {
       name: "delete",
-      label: t("project-table.delete-btn"),
-      onClick: (id: number | string) => handleDeleteProject(id),
-      color: "error",
+      onClick: (id: number | string) => deleteProjectById(id),
     },
   ];
 
@@ -227,14 +194,7 @@ export default function ProjectsPage() {
         alignItems="center"
       >
         <Grid item>
-          <Button
-            color="primary"
-            variant="contained"
-            size="small"
-            onClick={() => navigate(URL.CREATE_PROJECT, { replace: true })}
-          >
-            {t("project-table.create-btn")}
-          </Button>
+          <CreateButton handleOnClick={() => navigate(URL.CREATE_PROJECT)} />
         </Grid>
         <Grid item>
           <FormGroup>

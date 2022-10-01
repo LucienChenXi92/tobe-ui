@@ -18,5 +18,11 @@ export const SERVER_URI = {
   CLOSE_PROJECT: "v1/project-infos/:projectId/close",
   RELEASE_PROJECT: "v1/project-infos/:projectId/release",
   GET_NEWS: "v1/news",
+
+  GET_ARTICLES: "v1/article-infos",
+  CREATE_ARTICLE: "v1/article-infos",
+  UPDATE_ARTICLE: "v1/article-infos",
+  DELETE_ARTICLE: "v1/article-infos",
+  RELEASE_ARTICLE: "v1/article-infos/:article/release",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;

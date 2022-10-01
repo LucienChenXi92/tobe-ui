@@ -3,6 +3,14 @@
     "edit-icon-button": {
       "save": "Save",
       "edit": "Edit"
+    },
+    "standard-button": {
+      "detail": "Detail",
+      "active": "Active",
+      "close": "Close",
+      "delete": "Delete",
+      "create": "Create",
+      "release": "Release"
     }
   },
   "sign-in": {
@@ -100,8 +108,7 @@
       "last-name": "Last Name",
       "phone-number": "Phone Number",
       "operation": "Operation"
-    },
-    "delete-btn": "Delete"
+    }
   },
   "project-table": {
     "title": "Project Management",
@@ -113,12 +120,6 @@
       "actual-end-date": "Actual end date",
       "operation": "Operation"
     },
-    "view-detail-btn": "Detail",
-    "active-btn": "Active",
-    "close-btn": "Close",
-    "release-btn": "Release",
-    "delete-btn": "Delete",
-    "create-btn": "Create",
     "card-view-btn": "Simple View",
     "card": {
       "tooltip": {
@@ -177,7 +178,8 @@
     "pages": {
       "dashboard": "Dashboard",
       "users": "Users",
-      "projects": "Projects"
+      "projects": "Projects",
+      "articles": "Articles"
     }
   },
   "dashboard-page": {
@@ -198,5 +200,18 @@
   },
   "about-page": {
     "page-main-title": "About Us"
+  },
+  "articles-page": {
+    "page-main-title": "Articles",
+    "article-table": {
+      "label": {
+        "title": "Title",
+        "subTitle": "Subtitle",
+        "description": "Description",
+        "createTime": "Create time",
+        "updateTime": "Update time",
+        "operation": "Operation"
+      }
+    }
   }
 }

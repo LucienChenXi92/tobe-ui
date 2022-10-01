@@ -84,7 +84,7 @@ const StandardNewsCard = (props: StandardNewsCardProps) => {
   const navigate = useNavigate();
   return (
     <Grid item xs={12} sm={6} md={3}>
-      <Card>
+      <Card variant="outlined">
         <CardHeader
           avatar={
             <Avatar alt={props.data.creater} src={props.data.avatarUrl} />
@@ -92,6 +92,7 @@ const StandardNewsCard = (props: StandardNewsCardProps) => {
           title={props.data.creater}
           subheader={props.data.createTime.toDateString()}
         />
+        <Divider />
         <CardActionArea onClick={() => navigate(props.data.detailsUrl)}>
           <CardContent>
             <Typography gutterBottom variant="h6" component="div">

@@ -91,9 +91,7 @@ export default function UsersPage() {
   const operations: Operation[] = [
     {
       name: "delete",
-      label: t("user-table.delete-btn"),
       onClick: (id: number | string) => handleDelete(id),
-      color: "error",
     },
   ];
 

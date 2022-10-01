@@ -1,6 +1,5 @@
 import {
   Paper,
-  Button,
   Table,
   TableBody,
   TableCell,
@@ -11,6 +10,7 @@ import {
 } from "@mui/material";
 import Loading from "./Loading";
 import { Column, Operation } from "../../global/types";
+import { getButtonByOperationName } from "./buttons/StandardButton";
 
 interface PagedTableProps {
   openLoading?: boolean;
@@ -72,15 +72,9 @@ export default function PagedTable(props: PagedTableProps) {
                         <TableCell key={column.id} align={column.align}>
                           {props.operations?.map(
                             (operation) =>
-                              !operation?.hide?.call(null, row) && (
-                                <Button
-                                  key={operation.name}
-                                  onClick={() => operation.onClick(row.id)}
-                                  variant={operation.variant}
-                                  color={operation.color}
-                                >
-                                  {operation.label}
-                                </Button>
+                              !operation?.hide?.call(null, row) &&
+                              getButtonByOperationName(operation.name, () =>
+                                operation.onClick(row.id)
                               )
                           )}
                         </TableCell>
