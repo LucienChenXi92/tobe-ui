@@ -4,7 +4,6 @@ import { styled } from "@mui/material/styles";
 import DashboardNav from "./DashboardNav";
 import DashboardHeader from "./header/DashboardHeader";
 import AppFooter from "./footer/AppFooter";
-import MyMenu from "./common/MyMenu";
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
   open?: boolean;
@@ -75,7 +74,6 @@ export default function DashboardLayout({ children }: { children: any }) {
         setOpenDrawer={setOpenDrawer}
         drawerWidth={drawerWidth}
       />
-      {/* <MyMenu /> */}
     </Box>
   );
 }

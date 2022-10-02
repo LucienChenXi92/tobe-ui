@@ -11,6 +11,9 @@
       "delete": "Delete",
       "create": "Create",
       "release": "Release"
+    },
+    "rich-editor": {
+      "placeholder": "Please input content..."
     }
   },
   "sign-in": {
@@ -212,6 +215,19 @@
         "updateTime": "Update time",
         "operation": "Operation"
       }
+    }
+  },
+  "article-creation-page": {
+    "page-main-title": "Create new article",
+    "expand-label": "Other secondary info",
+    "fields": {
+      "title": "Title",
+      "sub-title": "Subtitle",
+      "description": "Description"
+    },
+    "msg": {
+      "success": "Operation success",
+      "error": "Operation failed"
     }
   }
 }

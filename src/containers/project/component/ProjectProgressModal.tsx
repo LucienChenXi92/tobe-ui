@@ -104,7 +104,10 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
           </Divider>
 
           {!props.viewOnly && (
-            <Paper sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}>
+            <Paper
+              variant="outlined"
+              sx={{ mt: 2, mb: 6, p: { xs: 2, md: 3 } }}
+            >
               <Grid container item xs={12}>
                 <Grid item xs={12}>
                   <TextField

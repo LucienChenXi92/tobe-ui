@@ -79,7 +79,7 @@ export default function ProjectCreationPage() {
         enqueueSnackbar(t("project-creation-page.msg.success"), {
           variant: "success",
         });
-        navigate(URL.PROJECTS, { replace: true });
+        navigate(URL.PROJECTS);
       })
       .catch(() => {
         enqueueSnackbar(t("project-creation-page.msg.error"), {
@@ -94,7 +94,10 @@ export default function ProjectCreationPage() {
       openLoading={openLoading}
       pageTitle={t("project-creation-page.form-title")}
     >
-      <Paper sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}>
+      <Paper
+        variant="outlined"
+        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
+      >
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           {
             <React.Fragment>

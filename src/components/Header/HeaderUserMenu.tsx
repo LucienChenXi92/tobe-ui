@@ -51,7 +51,7 @@ export default function HeaderUserMenu() {
       ) : (
         <Button
           key={URL.SIGN_IN}
-          onClick={() => navigate(URL.SIGN_IN, { replace: true })}
+          onClick={() => navigate(URL.SIGN_IN)}
           sx={{ my: 2, color: "white", display: "block" }}
         >
           {t("app-header.sign-in-btn")}

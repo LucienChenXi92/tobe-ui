@@ -114,7 +114,7 @@ export default function ProfileSettingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={t("profile-setting.form-title")}>
-      <Paper sx={{ my: { xs: 8 }, p: { xs: 2, md: 3 } }}>
+      <Paper sx={{ my: { xs: 8 }, p: { xs: 2, md: 3 } }} variant="outlined">
         <Box component="form" noValidate onSubmit={handleSubmit}>
           {
             <React.Fragment>
@@ -155,6 +155,7 @@ export default function ProfileSettingPage() {
                             maxHeight: "107px",
                             overflow: "scroll",
                           }}
+                          variant="outlined"
                         >
                           {renderAvatarOptions(avatars)}
                         </Paper>

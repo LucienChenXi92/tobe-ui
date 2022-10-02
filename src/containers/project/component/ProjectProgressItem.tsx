@@ -57,7 +57,7 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
       .finally(() => setOpenLoading(false));
   }
   return (
-    <Paper sx={{ my: 2, p: { xs: 2, md: 3 } }}>
+    <Paper variant="outlined" sx={{ my: 2, p: { xs: 2, md: 3 } }}>
       <Grid container item xs={12}>
         {!props.viewOnly && (
           <Grid container item xs={12} justifyContent="flex-end">

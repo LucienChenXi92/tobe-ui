@@ -105,6 +105,7 @@ const StandardSmallWidget = (props: WidgetProps) => {
   return (
     <Grid item xs={6} sm={3}>
       <Paper
+        variant="outlined"
         onClick={() => navigate(props.link)}
         sx={{ p: 2, cursor: "pointer" }}
       >

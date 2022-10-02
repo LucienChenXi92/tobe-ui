@@ -121,7 +121,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
           )}
         </Grid>
       )}
-      <Paper sx={{ my: 0, p: { xs: 2, md: 3 } }}>
+      <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
         <Box component="form" noValidate>
           {project && (
             <Grid container spacing={3}>
@@ -145,7 +145,10 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
           )}
         </Box>
       </Paper>
-      <Paper sx={{ my: { xs: 2, md: 3 }, p: { xs: 2, md: 3 } }}>
+      <Paper
+        variant="outlined"
+        sx={{ my: { xs: 2, md: 3 }, p: { xs: 2, md: 3 } }}
+      >
         <Box component="form" noValidate>
           {project && (
             <Grid container spacing={3}>

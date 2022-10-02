@@ -8,7 +8,6 @@ import {
   ListItemText,
   ListItemIcon,
   Divider,
-  ClickAwayListener,
   useMediaQuery,
 } from "@mui/material";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
@@ -94,7 +93,7 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
         {authedPages.map((pageItem) => (
           <NavItem key={pageItem.label} disablePadding>
             <ListItemButton
-              onClick={() => navigate(pageItem.url, { replace: true })}
+              onClick={() => navigate(pageItem.url)}
               selected={pageItem.url === location.pathname}
             >
               <ListItemIcon>{pageItem.icon}</ListItemIcon>
@@ -146,7 +145,7 @@ export default function DashboardNav(props: DashboardNavProps) {
           variant="h6"
           noWrap
           component="a"
-          onClick={() => navigate("/", { replace: true })}
+          onClick={() => navigate("/")}
           sx={{
             ml: 2,
             display: { xs: "flex" },

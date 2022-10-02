@@ -8,6 +8,7 @@ import MyMenu from "./common/MyMenu";
 import PagedTable from "./common/PagedTable";
 import Page from "./Page";
 import EditIconButton from "./common/EditIconButton";
+import RichEditor from "./common/richEditor/RichEditor";
 import {
   ActiveButton,
   CreateButton,
@@ -29,6 +30,7 @@ export {
   Page,
   PagedTable,
   EditIconButton,
+  RichEditor,
   ActiveButton,
   CreateButton,
   CloseButton,

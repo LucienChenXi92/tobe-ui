@@ -46,7 +46,7 @@ export default function MyMenu() {
             key={pageItem.label}
             icon={pageItem.icon}
             tooltipTitle={t(pageItem.label)}
-            onClick={() => navigate(pageItem.url || "#", { replace: true })}
+            onClick={() => navigate(pageItem.url || "#")}
           />
         ))}
       </SpeedDial>

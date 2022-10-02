@@ -33,7 +33,7 @@ export default function SignInPage() {
         enqueueSnackbar(t("sign-in.msg.success"), {
           variant: "success",
         });
-        navigate(URL.HOME, { replace: true });
+        navigate(URL.HOME);
       })
       .catch(() => {
         enqueueSnackbar(t("sign-in.msg.error"), {

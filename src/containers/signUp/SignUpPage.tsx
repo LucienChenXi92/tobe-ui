@@ -52,7 +52,7 @@ export default function SignUpPage() {
         enqueueSnackbar(t("sign-up.msg.success"), {
           variant: "success",
         });
-        navigate(URL.SIGN_IN, { replace: true });
+        navigate(URL.SIGN_IN);
       })
       .catch(() => {
         enqueueSnackbar(t("sign-up.msg.error"), {
