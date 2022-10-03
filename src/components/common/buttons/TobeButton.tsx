@@ -2,7 +2,7 @@ import { ReactNode } from "react";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
-interface StandardButtonProps {
+interface TobeButtonProps {
   label?: string | undefined;
   handleOnClick?: () => void | undefined;
   color?:
@@ -36,7 +36,7 @@ export function getButtonByOperationName(
   }
 }
 
-export const DetailButton = (props: StandardButtonProps) => {
+export const DetailButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -49,7 +49,7 @@ export const DetailButton = (props: StandardButtonProps) => {
   );
 };
 
-export const ActiveButton = (props: StandardButtonProps) => {
+export const ActiveButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -62,7 +62,7 @@ export const ActiveButton = (props: StandardButtonProps) => {
   );
 };
 
-export const CreateButton = (props: StandardButtonProps) => {
+export const CreateButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -76,7 +76,7 @@ export const CreateButton = (props: StandardButtonProps) => {
   );
 };
 
-export const CloseButton = (props: StandardButtonProps) => {
+export const CloseButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -89,7 +89,7 @@ export const CloseButton = (props: StandardButtonProps) => {
   );
 };
 
-export const ReleaseButton = (props: StandardButtonProps) => {
+export const ReleaseButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -102,7 +102,7 @@ export const ReleaseButton = (props: StandardButtonProps) => {
   );
 };
 
-export const DeleteButton = (props: StandardButtonProps) => {
+export const DeleteButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button

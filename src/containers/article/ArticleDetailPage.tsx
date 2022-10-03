@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Grid, Paper, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
@@ -14,25 +15,54 @@ import {
 import { FieldWrapper } from "./component/FieldWrapper";
 import { URL } from "../../routes";
 
-export default function ArticleCreationPage() {
+interface ArticleDetailPageProp {
+  viewOnly: boolean;
+}
+
+export default function ArticleDetailPage(props: ArticleDetailPageProp) {
   const { t } = useTranslation();
+  const { articleId } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [htmlValue, setHtmlValue] = useState<string>("");
   const [textValue, setTextValue] = useState<string>("");
-  const [expanded, setExpanded] = useState<boolean>(false);
+  const [expanded, setExpanded] = useState<boolean>(true);
   const [title, setTitle] = useState<String | null>("");
   const [subTitle, setSubTitle] = useState<String | null>("");
 
-  function createArticle(): void {
+  useEffect(() => loadArticle(), []);
+
+  function loadArticle(): void {
     setOpenLoading(true);
     server
-      .post(
-        `${ROOT_URL}/${SERVER_URI.CREATE_ARTICLE}`,
+      .get(`${ROOT_URL}/${SERVER_URI.GET_ARTICLES}/${articleId}`, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      .then((response) => {
+        setHtmlValue(response.data.content);
+        setTitle(response.data.title);
+        setSubTitle(response.data.subTitle);
+      })
+      .catch(() => {
+        enqueueSnackbar(t("article-creation-page.msg.error"), {
+          variant: "error",
+        });
+      })
+      .finally(() => setOpenLoading(false));
+  }
+
+  function saveArticle(): void {
+    setOpenLoading(true);
+    server
+      .put(
+        `${ROOT_URL}/${SERVER_URI.UPDATE_ARTICLE}/${articleId}`,
         {
-          title: title,
-          subTitle: subTitle,
+          id: articleId,
+          title,
+          subTitle,
           content: htmlValue,
           description: textValue.trim().substring(0, 100),
         },
@@ -113,7 +143,7 @@ export default function ArticleCreationPage() {
           </Button>
           <Button
             color="primary"
-            onClick={() => createArticle()}
+            onClick={() => saveArticle()}
             variant="contained"
           >
             {t("article-creation-page.submit-btn")}

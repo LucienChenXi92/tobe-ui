@@ -17,6 +17,7 @@ import AboutPage from "../containers/aboutPage/AboutPage";
 import ArticlesPage from "../containers/article/ArticlesPage";
 import { useAuthDispatch } from "../contexts";
 import ArticleCreationPage from "../containers/article/ArticleCreationPage";
+import ArticleDetailPage from "../containers/article/ArticleDetailPage";
 
 function MainRouter() {
   return (
@@ -35,6 +36,10 @@ function MainRouter() {
           />
           <Route path={URL.ARTICLES} element={<ArticlesPage />} />
           <Route path={URL.CREATE_ARTICLE} element={<ArticleCreationPage />} />
+          <Route
+            path={URL.ARTICLE_DETAIL}
+            element={<ArticleDetailPage viewOnly={false} />}
+          />
         </Route>
 
         <Route element={<NonProtectedBasicLayoutRoute />}>

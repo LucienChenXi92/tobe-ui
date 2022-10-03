@@ -17,7 +17,12 @@ import {
   ReleaseButton,
   DeleteButton,
   getButtonByOperationName,
-} from "./common/buttons/StandardButton";
+} from "./common/buttons/TobeButton";
+import {
+  TobeAccordion,
+  TobeAccordionDetails,
+  TobeAccordionSummary,
+} from "./common/TobeAccordion";
 
 export {
   AppFooter,
@@ -38,4 +43,7 @@ export {
   ReleaseButton,
   DeleteButton,
   getButtonByOperationName,
+  TobeAccordion,
+  TobeAccordionDetails,
+  TobeAccordionSummary,
 };

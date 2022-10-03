@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import Loading from "./Loading";
 import { Column, Operation } from "../../global/types";
-import { getButtonByOperationName } from "./buttons/StandardButton";
+import { getButtonByOperationName } from "./buttons/TobeButton";
 
 interface PagedTableProps {
   openLoading?: boolean;
