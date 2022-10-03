@@ -13,7 +13,7 @@ interface ProjectStatusToolbarProps {
 export default function ProjectStatusToolbar(props: ProjectStatusToolbarProps) {
   const { t } = useTranslation();
   return (
-    <Box sx={{ my: 1 }}>
+    <Box>
       {props.project.statusValue === PROJECT_STATUS.FINISHED && (
         <Tooltip title={t("project-table.card.tooltip.closed")}>
           <CheckCircleOutlineIcon color="disabled" />

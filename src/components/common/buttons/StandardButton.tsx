@@ -19,19 +19,20 @@ interface StandardButtonProps {
 
 export function getButtonByOperationName(
   name: string,
-  handleOnClick: () => void
+  handleOnClick: () => void,
+  key?: string | number | undefined
 ): ReactNode {
   switch (name) {
     case "detail":
-      return <DetailButton handleOnClick={handleOnClick} />;
+      return <DetailButton handleOnClick={handleOnClick} key={key} />;
     case "active":
-      return <ActiveButton handleOnClick={handleOnClick} />;
+      return <ActiveButton handleOnClick={handleOnClick} key={key} />;
     case "close":
-      return <CloseButton handleOnClick={handleOnClick} />;
+      return <CloseButton handleOnClick={handleOnClick} key={key} />;
     case "delete":
-      return <DeleteButton handleOnClick={handleOnClick} />;
+      return <DeleteButton handleOnClick={handleOnClick} key={key} />;
     case "release":
-      return <ReleaseButton handleOnClick={handleOnClick} />;
+      return <ReleaseButton handleOnClick={handleOnClick} key={key} />;
   }
 }
 

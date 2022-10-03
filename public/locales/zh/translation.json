@@ -225,6 +225,8 @@
       "sub-title": "副标题",
       "description": "简述"
     },
+    "submit-btn": "Save",
+    "back-btn": "Back",
     "msg": {
       "success": "Operation success",
       "error": "Operation failed"

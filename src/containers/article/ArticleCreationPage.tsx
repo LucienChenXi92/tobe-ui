@@ -1,7 +1,6 @@
 import { useState } from "react";
 import {
   Accordion,
-  AccordionSummary,
   AccordionDetails,
   TextField,
   Button,
@@ -9,8 +8,12 @@ import {
   Paper,
   Typography,
 } from "@mui/material";
+import MuiAccordionSummary, {
+  AccordionSummaryProps,
+} from "@mui/material/AccordionSummary";
+import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { useNavigate } from "react-router-dom";
@@ -87,11 +90,7 @@ export default function ArticleCreationPage() {
             onChange={handleChange("panel1")}
             variant="outlined"
           >
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              sx={{ textAlign: "end" }}
-            >
-              <Grid sx={{ flexGrow: 1 }}></Grid>
+            <AccordionSummary expandIcon={<KeyboardArrowRightIcon />}>
               <Typography
                 color={"text.secondary"}
                 variant={"body2"}
@@ -119,8 +118,17 @@ export default function ArticleCreationPage() {
             setTextValue={setTextValue}
           />
         </Grid>
-        <Grid item xs={12} sx={{ my: 1 }}>
-          <Button onClick={() => createArticle()}>创建</Button>
+        <Grid container item xs={12} sx={{ my: 1, justifyContent: "flex-end" }}>
+          <Button onClick={() => window.history.back()}>
+            {t("article-creation-page.back-btn")}
+          </Button>
+          <Button
+            color="primary"
+            onClick={() => createArticle()}
+            variant="contained"
+          >
+            {t("article-creation-page.submit-btn")}
+          </Button>
         </Grid>
       </Grid>
     </Page>
@@ -161,3 +169,22 @@ const FieldWrapper = (props: {
     </Grid>
   );
 };
+
+const AccordionSummary = styled((props: AccordionSummaryProps) => (
+  <MuiAccordionSummary
+    expandIcon={<KeyboardArrowRightIcon sx={{ fontSize: "0.9rem" }} />}
+    {...props}
+  />
+))(({ theme }) => ({
+  backgroundColor:
+    theme.palette.mode === "dark"
+      ? "rgba(255, 255, 255, .05)"
+      : "rgba(0, 0, 0, .03)",
+  flexDirection: "row-reverse",
+  "& .MuiAccordionSummary-expandIconWrapper.Mui-expanded": {
+    transform: "rotate(90deg)",
+  },
+  "& .MuiAccordionSummary-content": {
+    marginLeft: theme.spacing(1) + "!important",
+  },
+}));

@@ -71,10 +71,12 @@ export default function PagedTable(props: PagedTableProps) {
                       return (
                         <TableCell key={column.id} align={column.align}>
                           {props.operations?.map(
-                            (operation) =>
+                            (operation, index) =>
                               !operation?.hide?.call(null, row) &&
-                              getButtonByOperationName(operation.name, () =>
-                                operation.onClick(row.id)
+                              getButtonByOperationName(
+                                operation.name,
+                                () => operation.onClick(row.id),
+                                `${operation.name}_${index}`
                               )
                           )}
                         </TableCell>

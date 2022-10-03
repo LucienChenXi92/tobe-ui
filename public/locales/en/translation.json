@@ -225,6 +225,8 @@
       "sub-title": "Subtitle",
       "description": "Description"
     },
+    "submit-btn": "Save",
+    "back-btn": "Back",
     "msg": {
       "success": "Operation success",
       "error": "Operation failed"

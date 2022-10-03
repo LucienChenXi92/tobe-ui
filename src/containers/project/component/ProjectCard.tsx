@@ -14,14 +14,14 @@ import { getButtonByOperationName } from "../../../components";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (
-    <Grid item xs={12} sm={6} md={3} key={props.project.id}>
+    <Grid item xs={12} sm={6} md={4} lg={3} key={props.project.id}>
       <Card variant="outlined">
         <CardHeader
           title={props.project.name}
           titleTypographyProps={{ variant: "h6" }}
         />
         <Divider />
-        <CardContent>
+        <CardContent sx={{ py: 1 }}>
           <ProjectStatusToolbar project={props.project} />
           <Typography variant="body2" color="text.secondary">
             {props.project.description}
@@ -35,10 +35,12 @@ export default function ProjectCard(props: ProjectCardProps) {
         <Divider />
         <CardActions sx={{ px: 0 }}>
           {props.operations.map(
-            (operation) =>
+            (operation, index) =>
               !operation?.hide?.call(null, props.project) &&
-              getButtonByOperationName(operation.name, () =>
-                operation.onClick(props.project.id)
+              getButtonByOperationName(
+                operation.name,
+                () => operation.onClick(props.project.id),
+                `${operation.name}_${index}`
               )
           )}
         </CardActions>

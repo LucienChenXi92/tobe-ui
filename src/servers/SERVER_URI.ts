@@ -23,6 +23,6 @@ export const SERVER_URI = {
   CREATE_ARTICLE: "v1/article-infos",
   UPDATE_ARTICLE: "v1/article-infos",
   DELETE_ARTICLE: "v1/article-infos",
-  RELEASE_ARTICLE: "v1/article-infos/:article/release",
+  RELEASE_ARTICLE: "v1/article-infos/:articleId/release",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;

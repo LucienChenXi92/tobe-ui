@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import {
   Typography,
+  Tooltip,
   Grid,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Divider,
@@ -10,11 +12,17 @@ import {
   FormControlLabel,
   Switch,
 } from "@mui/material";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { CreateButton, Page, PagedTable } from "../../components";
+import {
+  CreateButton,
+  Page,
+  PagedTable,
+  getButtonByOperationName,
+} from "../../components";
 import { URL } from "../../routes";
 import { Column, Operation } from "../../global/types";
 
@@ -65,7 +73,7 @@ export default function ArticlesPage() {
 
   useEffect(() => {
     loadArticles();
-  }, []);
+  }, [current, size, cardView]);
 
   function loadArticles(): void {
     setOpenLoading(true);
@@ -205,17 +213,24 @@ export default function ArticlesPage() {
       <Grid container spacing={2} sx={{ py: 2 }}>
         {cardView ? (
           articles.map((article: Article) => (
-            <Grid item xs={12} sm={6} md={3} key={article.id}>
+            <Grid item xs={12} sm={6} md={4} lg={3} key={article.id}>
               <Card variant="outlined">
                 <CardHeader title={article.title} />
                 <Divider />
-                <CardContent>
+                <CardContent sx={{ py: 1 }}>
+                  {article.publicToAll && (
+                    <Tooltip
+                      title={t("project-table.card.tooltip.public-to-all")}
+                    >
+                      <VerifiedIcon color="info" />
+                    </Tooltip>
+                  )}
                   <Typography
                     gutterBottom
-                    variant="body2"
+                    variant="subtitle2"
                     color="text.secondary"
                   >
-                    {article.description}
+                    <b>{article.subTitle}</b>
                   </Typography>
                   <Typography
                     gutterBottom
@@ -226,15 +241,17 @@ export default function ArticlesPage() {
                   </Typography>
                 </CardContent>
                 <Divider />
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="body2"
-                    color="text.secondary"
-                  >
-                    {"1.5万次浏览 · 2千次点赞"}
-                  </Typography>
-                </CardContent>
+                <CardActions sx={{ px: 0 }}>
+                  {operations.map(
+                    (operation, index) =>
+                      !operation?.hide?.call(null, article) &&
+                      getButtonByOperationName(
+                        operation.name,
+                        () => operation.onClick(article.id),
+                        `${operation.name}_${index}`
+                      )
+                  )}
+                </CardActions>
               </Card>
             </Grid>
           ))
