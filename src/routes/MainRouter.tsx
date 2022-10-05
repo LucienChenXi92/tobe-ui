@@ -18,6 +18,7 @@ import ArticlesPage from "../containers/article/ArticlesPage";
 import { useAuthDispatch } from "../contexts";
 import ArticleCreationPage from "../containers/article/ArticleCreationPage";
 import ArticleDetailPage from "../containers/article/ArticleDetailPage";
+import ArticleReadingPage from "../containers/article/ArticleReadingPage";
 
 function MainRouter() {
   return (
@@ -48,8 +49,12 @@ function MainRouter() {
           <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
           <Route path={URL.NEWS} element={<NewsPage />} />
           <Route
-            path={URL.NEWS_DETAIL}
+            path={URL.NEWS_PROJECT_DETAIL}
             element={<ProjectDetailPage viewOnly={true} />}
+          />
+          <Route
+            path={URL.NEWS_ARTICLE_DETAIL}
+            element={<ArticleReadingPage />}
           />
           <Route
             path={URL.ARTICLE}

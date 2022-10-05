@@ -199,7 +199,13 @@
     }
   },
   "news-page": {
-    "page-main-title": "Fresh News"
+    "page-main-title": "Fresh News",
+    "update-at": "Updated at ",
+    "publish-at": "Published at ",
+    "news-types": {
+      "project": "Project",
+      "article": "Article"
+    }
   },
   "about-page": {
     "page-main-title": "About Us"
@@ -230,6 +236,14 @@
     "msg": {
       "success": "Operation success",
       "error": "Operation failed"
+    }
+  },
+  "article-reading-page": {
+    "post-by": "Post by ",
+    "post-at": " at ",
+    "back-btn": "Back",
+    "msg": {
+      "error": "Failed to fetch data"
     }
   }
 }

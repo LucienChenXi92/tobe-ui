@@ -18,6 +18,7 @@
     "date-fns": "^2.29.0",
     "i18next": "^21.8.10",
     "i18next-http-backend": "^1.4.1",
+    "moment": "^2.29.4",
     "notistack": "v3.0.0-alpha.7",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

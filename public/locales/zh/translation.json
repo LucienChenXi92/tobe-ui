@@ -199,7 +199,13 @@
     }
   },
   "news-page": {
-    "page-main-title": "近期动态"
+    "page-main-title": "近期动态",
+    "update-at": "更新于 ",
+    "publish-at": "发表于 ",
+    "news-types": {
+      "project": "计划",
+      "article": "笔记"
+    }
   },
   "about-page": {
     "page-main-title": "关于我们"
@@ -230,6 +236,14 @@
     "msg": {
       "success": "Operation success",
       "error": "Operation failed"
+    }
+  },
+  "article-reading-page": {
+    "post-by": "作者 ",
+    "post-at": " 发表于 ",
+    "back-btn": "返回",
+    "msg": {
+      "error": "加载数据失败"
     }
   }
 }

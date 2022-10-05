@@ -1,4 +1,3 @@
-import React from "react";
 import { Toolbar, Box, Container, IconButton } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";

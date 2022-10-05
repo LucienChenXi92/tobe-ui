@@ -28,8 +28,8 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
   const [htmlValue, setHtmlValue] = useState<string>("");
   const [textValue, setTextValue] = useState<string>("");
   const [expanded, setExpanded] = useState<boolean>(true);
-  const [title, setTitle] = useState<String | null>("");
-  const [subTitle, setSubTitle] = useState<String | null>("");
+  const [title, setTitle] = useState<string>("");
+  const [subTitle, setSubTitle] = useState<string>("");
 
   useEffect(() => loadArticle(), []);
 

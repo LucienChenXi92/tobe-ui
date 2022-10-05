@@ -22,8 +22,8 @@ export default function ArticleCreationPage() {
   const [htmlValue, setHtmlValue] = useState<string>("");
   const [textValue, setTextValue] = useState<string>("");
   const [expanded, setExpanded] = useState<boolean>(false);
-  const [title, setTitle] = useState<String | null>("");
-  const [subTitle, setSubTitle] = useState<String | null>("");
+  const [title, setTitle] = useState<string>("");
+  const [subTitle, setSubTitle] = useState<string>("");
 
   function createArticle(): void {
     setOpenLoading(true);

@@ -6,7 +6,8 @@ export const URL = {
   ARTICLE: "/article",
   ABOUT: "/about",
   NEWS: "/news",
-  NEWS_DETAIL: "/news/:projectId",
+  NEWS_PROJECT_DETAIL: "/news/project/:projectId",
+  NEWS_ARTICLE_DETAIL: "/news/article/:articleId",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",

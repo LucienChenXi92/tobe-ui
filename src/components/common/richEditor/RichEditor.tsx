@@ -26,6 +26,7 @@ function RichEditor(props: RichEditorProps) {
       "group-video",
       "uploadImage",
       "fullScreen",
+      "emotion",
     ],
   };
 

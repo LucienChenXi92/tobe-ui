@@ -8,6 +8,5 @@ export const settings: Array<{ label: string; url: string }> = [
 
 export const pages: Array<{ label: string; url: string }> = [
   { label: "app-header.pages.news", url: URL.NEWS },
-  { label: "app-header.pages.article", url: URL.ARTICLE },
   { label: "app-header.pages.about", url: URL.ABOUT },
 ];
