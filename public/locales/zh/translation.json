@@ -191,11 +191,16 @@
   "dashboard-page": {
     "page-main-title": "汇总",
     "project": {
-      "title": "项目统计",
+      "title": "计划总览",
       "ongoing": "进行中项目",
       "finished": "完结的项目",
       "public": "公开的项目",
       "all": "所有的项目"
+    },
+    "article": {
+      "title": "笔记总览",
+      "public": "公开的笔记",
+      "all": "所有的笔记"
     }
   },
   "news-page": {
@@ -231,12 +236,15 @@
       "sub-title": "副标题",
       "description": "简述"
     },
-    "submit-btn": "Save",
-    "back-btn": "Back",
+    "submit-btn": "保存",
+    "back-btn": "返回",
     "msg": {
-      "success": "Operation success",
-      "error": "Operation failed"
+      "success": "操作成功",
+      "error": "操作失败"
     }
+  },
+  "article-detail-page": {
+    "page-main-title": "编辑笔记"
   },
   "article-reading-page": {
     "post-by": "作者 ",

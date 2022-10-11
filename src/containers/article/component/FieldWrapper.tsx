@@ -3,6 +3,7 @@ export const FieldWrapper = (props: {
   label: string;
   value: any;
   setValue: (v: any) => void;
+  maxLength: number;
 }) => {
   return (
     <Grid container item xs={12}>
@@ -28,6 +29,7 @@ export const FieldWrapper = (props: {
           variant="standard"
           value={props.value}
           onChange={(v) => props.setValue(v.target.value)}
+          error={props.value.length >= props.maxLength}
         />
       </Grid>
     </Grid>

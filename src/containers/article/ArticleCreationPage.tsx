@@ -69,6 +69,7 @@ export default function ArticleCreationPage() {
                 label={t("article-creation-page.fields.title")}
                 value={title}
                 setValue={setTitle}
+                maxLength={32}
               />
             </Grid>
           </Paper>
@@ -94,6 +95,7 @@ export default function ArticleCreationPage() {
                   label={t("article-creation-page.fields.sub-title")}
                   value={subTitle}
                   setValue={setSubTitle}
+                  maxLength={100}
                 />
               </Grid>
             </TobeAccordionDetails>

@@ -24,5 +24,6 @@ export const SERVER_URI = {
   UPDATE_ARTICLE: "v1/article-infos",
   DELETE_ARTICLE: "v1/article-infos",
   RELEASE_ARTICLE: "v1/article-infos/:articleId/release",
+  GET_ARTICLE_OVERVIEW: "v1/article-infos/overview",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;

@@ -50,7 +50,11 @@ export const StandardNewsCard = (props: StandardNewsCardProps) => {
             >
               {props.data.title}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography
+              variant="body2"
+              color="text.secondary"
+              sx={{ wordBreak: "break-all" }}
+            >
               {props.data.description}
             </Typography>
           </CardContent>

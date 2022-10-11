@@ -89,7 +89,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
   return (
     <Page
       openLoading={openLoading}
-      pageTitle={t("article-creation-page.page-main-title")}
+      pageTitle={t("article-detail-page.page-main-title")}
     >
       <Grid container sx={{ py: 2 }}>
         <Grid item xs={12}>
@@ -99,6 +99,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
                 label={t("article-creation-page.fields.title")}
                 value={title}
                 setValue={setTitle}
+                maxLength={32}
               />
             </Grid>
           </Paper>
@@ -124,6 +125,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
                   label={t("article-creation-page.fields.sub-title")}
                   value={subTitle}
                   setValue={setSubTitle}
+                  maxLength={100}
                 />
               </Grid>
             </TobeAccordionDetails>

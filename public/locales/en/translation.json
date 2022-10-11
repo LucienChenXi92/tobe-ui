@@ -194,6 +194,11 @@
       "public": "Public project",
       "all": "All project"
     },
+    "article": {
+      "title": "Article Data",
+      "public": "Public article",
+      "all": "All article"
+    },
     "msg": {
       "error": "Failed to fetch data"
     }
@@ -237,6 +242,9 @@
       "success": "Operation success",
       "error": "Operation failed"
     }
+  },
+  "article-detail-page": {
+    "page-main-title": "Edit article"
   },
   "article-reading-page": {
     "post-by": "Post by ",
