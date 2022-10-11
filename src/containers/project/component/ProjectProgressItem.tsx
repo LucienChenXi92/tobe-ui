@@ -15,7 +15,7 @@ interface ProjectProgressItemProps {
 export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   const { t } = useTranslation();
   const context = useAuthState();
-  const [openLoading, setOpenLoading] = useState<boolean>(false);
+  const [progress, setProgress] = useState<ProjectProgress>(props.progress);
   const [editable, setEditable] = useState<boolean>(false);
   const [progressDesc, setProgressDesc] = useState<string>(
     props.progress.description
@@ -28,7 +28,6 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
     setEditable(!editable);
   };
   function updateProgresss(): void {
-    setOpenLoading(true);
     server
       .put(
         `${ROOT_URL}/${SERVER_URI.CREATE_PROJECT_PROGRESS}/${props.progress.id}`,
@@ -48,13 +47,13 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",
         });
+        setProgress(response.data);
       })
       .catch(() => {
         enqueueSnackbar(t("project-detail-page.msg.error"), {
           variant: "error",
         });
-      })
-      .finally(() => setOpenLoading(false));
+      });
   }
   return (
     <Paper variant="outlined" sx={{ my: 2, p: { xs: 2, md: 3 } }}>
@@ -81,11 +80,11 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
         </Grid>
         <Grid item xs={12}>
           <Typography variant="body2" color={"gray"}>
-            {props.progress.updaterName}
+            {progress.updaterName}
             {" | "}
-            {new Date(props.progress.updateTime).toLocaleDateString()}
+            {new Date(progress.updateTime).toLocaleDateString()}
             {" - "}
-            {new Date(props.progress.updateTime).toLocaleTimeString()}
+            {new Date(progress.updateTime).toLocaleTimeString()}
           </Typography>
         </Grid>
       </Grid>
