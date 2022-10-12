@@ -19,7 +19,7 @@ export default function BasicLayout({ children }: { children: any }) {
       <GlobalHeader />
       <Box>
         <Stack
-          justifyContent="center"
+          justifyContent="start"
           alignItems="center"
           direction="column"
           sx={{
