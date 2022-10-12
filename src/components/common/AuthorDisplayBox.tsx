@@ -63,7 +63,7 @@ export default function AuthorDisplayBox(props: { userId: string }) {
           <Grid item xs={12}>
             <Typography variant="subtitle2" color="text.secondary">
               Blog:{" "}
-              <Link href={profile?.blog} target="_blank">
+              <Link href={profile?.blog} target="_blank" color="text.secondary">
                 {profile?.blog}
               </Link>
             </Typography>

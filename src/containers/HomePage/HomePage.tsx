@@ -73,6 +73,7 @@ function GreatingSection() {
         width: "100%",
         paddingLeft: "20%",
         paddingRight: "20%",
+        mt: "35vh",
       }}
     >
       <Grid item sm={false} md={4} />

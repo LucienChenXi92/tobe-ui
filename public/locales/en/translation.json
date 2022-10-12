@@ -1,4 +1,9 @@
 {
+  "breadcrumbs": {
+    "content": "Content",
+    "home": "Home",
+    "news": "News"
+  },
   "components": {
     "edit-icon-button": {
       "save": "Save",

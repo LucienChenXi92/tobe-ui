@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-  Avatar,
   Button,
+  Breadcrumbs,
   Divider,
   Grid,
   Paper,
+  Link,
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -60,7 +61,16 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <Grid container sx={{ py: 2 }} spacing={1}>
+      <Breadcrumbs aria-label="breadcrumb" sx={{ m: 1 }}>
+        <Link underline="hover" color="inherit" href="/">
+          {t("breadcrumbs.home")}
+        </Link>
+        <Link underline="hover" color="inherit" href="/news">
+          {t("breadcrumbs.news")}
+        </Link>
+        <Typography color="text.primary">{t("breadcrumbs.content")}</Typography>
+      </Breadcrumbs>
+      <Grid container spacing={1}>
         <Grid item sm={12} md={8}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid item xs={12} sx={{ my: 1 }}>
@@ -79,7 +89,7 @@ export default function ArticleReadingPage() {
                     sx={{ py: 1, px: 1, backgroundColor: "#f3f2ef" }}
                     variant="outlined"
                   >
-                    <Typography variant="subtitle2">
+                    <Typography variant="subtitle2" color="text.secondary">
                       {article?.subTitle}
                     </Typography>
                   </Paper>
