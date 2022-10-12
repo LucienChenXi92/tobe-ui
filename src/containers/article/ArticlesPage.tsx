@@ -32,7 +32,7 @@ interface Article {
   subTitle: string;
   content?: string;
   description: string;
-  creatorName: string;
+  authorName: string;
   likeCount: number;
   viewCount: number;
   publicToAll: boolean;

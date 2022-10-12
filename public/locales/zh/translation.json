@@ -86,7 +86,10 @@
       "last-name": "姓氏",
       "phone-number": "联系电话",
       "email": "邮箱地址",
-      "address": "联系地址"
+      "address": "联系地址",
+      "blog": "博客地址",
+      "introduction": "个人介绍",
+      "introduction-placeholder": "让大家更了解你..."
     },
     "back-btn": "返回",
     "submit-btn": "提交",

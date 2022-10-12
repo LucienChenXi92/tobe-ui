@@ -86,7 +86,10 @@
       "last-name": "Last name",
       "phone-number": "Phone number",
       "email": "Email",
-      "address": "Address"
+      "address": "Address",
+      "blog": "Blog home",
+      "introduction": "Introduction",
+      "introduction-placeholder": "Let others know more about you..."
     },
     "back-btn": "Back",
     "submit-btn": "Submit",

@@ -2,6 +2,7 @@ export const SERVER_URI = {
   LOGIN: "v1/auth/login",
   REFRESH_TOKEN: "v1/auth/refresh",
   GET_USERS: "v1/users",
+  GET_USER_BRIEF_PROFILE: "v1/users/brief-profile",
   CREATE_USER: "v1/users",
   UPDATE_USER: "v1/users",
   DELETE_USER: "v1/users",

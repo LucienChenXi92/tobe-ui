@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
-import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
+import {
+  Avatar,
+  Button,
+  Divider,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
 import moment from "moment";
+import { AuthorDisplayBox } from "../../components";
 
 interface ArticleDetail {
   content: string;
-  creatorName: string;
+  authorName: string;
+  authorId: string;
   description: string;
   id: string;
   likeCount: number;
@@ -18,6 +27,7 @@ interface ArticleDetail {
   publishTime: string;
   subTitle: string;
   title: string;
+  avatarUrl: string;
 }
 
 export default function ArticleReadingPage() {
@@ -50,33 +60,58 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <Grid container sx={{ py: 2 }}>
-        <Grid item xs={12} sx={{ my: 1 }} color="text.secondary">
-          <Typography variant="h6">{article?.subTitle}</Typography>
-        </Grid>
-        <Divider />
-        <Grid item xs={12} sx={{ my: 1 }}>
-          <Typography variant="body2" color="text.secondary">
-            {t("article-reading-page.post-by") +
-              article?.creatorName +
-              t("article-reading-page.post-at") +
-              moment(article?.publishTime).format("YYYY-MM-DD HH:mm")}
-          </Typography>
-        </Grid>
-        <Grid item xs={12} sx={{ my: 1 }}>
+      <Grid container sx={{ py: 2 }} spacing={1}>
+        <Grid item sm={12} md={8}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-            <Typography variant="body2" color="text.secondary">
-              <div
-                dangerouslySetInnerHTML={{ __html: article?.content || "" }}
-              />
-            </Typography>
+            <Grid item xs={12} sx={{ my: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                {t("article-reading-page.post-by") +
+                  article?.authorName +
+                  t("article-reading-page.post-at") +
+                  moment(article?.publishTime).format("YYYY-MM-DD HH:mm")}
+              </Typography>
+            </Grid>
+            <Divider />
+            {article?.subTitle && (
+              <>
+                <Grid item xs={12} sx={{ my: 1 }} color="text.secondary">
+                  <Paper
+                    sx={{ py: 1, px: 1, backgroundColor: "#f3f2ef" }}
+                    variant="outlined"
+                  >
+                    <Typography variant="subtitle2">
+                      {article?.subTitle}
+                    </Typography>
+                  </Paper>
+                </Grid>
+                <Divider />
+              </>
+            )}
+
+            <Grid item xs={12} sx={{ my: 1 }}>
+              <Typography variant="body2" color="text.secondary">
+                <div
+                  dangerouslySetInnerHTML={{ __html: article?.content || "" }}
+                />
+              </Typography>
+            </Grid>
+            <Grid
+              container
+              item
+              xs={12}
+              sx={{ my: 1, justifyContent: "flex-end" }}
+            >
+              <Button onClick={() => window.history.back()}>
+                {t("article-reading-page.back-btn")}
+              </Button>
+            </Grid>
           </Paper>
         </Grid>
-        <Grid container item xs={12} sx={{ my: 1, justifyContent: "flex-end" }}>
-          <Button onClick={() => window.history.back()}>
-            {t("article-reading-page.back-btn")}
-          </Button>
-        </Grid>
+        {article?.authorId && (
+          <Grid item sm={12} md={4}>
+            <AuthorDisplayBox userId={article?.authorId} />
+          </Grid>
+        )}
       </Grid>
     </Page>
   );
