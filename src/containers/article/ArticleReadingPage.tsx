@@ -71,54 +71,45 @@ export default function ArticleReadingPage() {
         <Typography color="text.primary">{t("breadcrumbs.content")}</Typography>
       </Breadcrumbs>
       <Grid container spacing={1}>
-        <Grid item sm={12} md={8}>
+        <Grid item sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-            <Grid item xs={12} sx={{ my: 1 }}>
-              <Typography variant="body2" color="text.secondary">
-                {t("article-reading-page.post-by") +
-                  article?.authorName +
-                  t("article-reading-page.post-at") +
-                  moment(article?.publishTime).format("YYYY-MM-DD HH:mm")}
-              </Typography>
-            </Grid>
-            <Divider />
-            {article?.subTitle && (
-              <>
-                <Grid item xs={12} sx={{ my: 1 }} color="text.secondary">
-                  <Paper
-                    sx={{ py: 1, px: 1, backgroundColor: "#f3f2ef" }}
-                    variant="outlined"
-                  >
-                    <Typography variant="subtitle2" color="text.secondary">
-                      {article?.subTitle}
-                    </Typography>
-                  </Paper>
-                </Grid>
-                <Divider />
-              </>
-            )}
+            <Grid container>
+              <Grid item xs={12} sx={{ my: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  {t("article-reading-page.post-by") +
+                    article?.authorName +
+                    t("article-reading-page.post-at") +
+                    moment(article?.publishTime).format("YYYY-MM-DD HH:mm")}
+                </Typography>
+              </Grid>
+              {article?.subTitle && (
+                <>
+                  <Grid item xs={12} sx={{ my: 1 }} color="text.secondary">
+                    <Paper
+                      sx={{ py: 1, px: 1, backgroundColor: "#f3f2ef" }}
+                      variant="outlined"
+                    >
+                      <Typography variant="subtitle2" color="text.secondary">
+                        {article?.subTitle}
+                      </Typography>
+                    </Paper>
+                  </Grid>
+                  <Divider />
+                </>
+              )}
 
-            <Grid item xs={12} sx={{ my: 1 }}>
-              <Typography variant="body2" color="text.secondary">
-                <div
-                  dangerouslySetInnerHTML={{ __html: article?.content || "" }}
-                />
-              </Typography>
-            </Grid>
-            <Grid
-              container
-              item
-              xs={12}
-              sx={{ my: 1, justifyContent: "flex-end" }}
-            >
-              <Button onClick={() => window.history.back()}>
-                {t("article-reading-page.back-btn")}
-              </Button>
+              <Grid item xs={12} sx={{ my: 1 }}>
+                <Typography variant="body2" color="text.secondary">
+                  <div
+                    dangerouslySetInnerHTML={{ __html: article?.content || "" }}
+                  />
+                </Typography>
+              </Grid>
             </Grid>
           </Paper>
         </Grid>
         {article?.authorId && (
-          <Grid item sm={12} md={4}>
+          <Grid item sm={12} md={3}>
             <AuthorDisplayBox userId={article?.authorId} />
           </Grid>
         )}
