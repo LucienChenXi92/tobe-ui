@@ -13,7 +13,7 @@ interface UserBriefProfileDTO {
   introduction: string;
 }
 
-export default function AuthorDisplayBox(props: { userId: string }) {
+export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
@@ -40,7 +40,7 @@ export default function AuthorDisplayBox(props: { userId: string }) {
       .finally(() => setOpenLoading(false));
   }
   return (
-    <Paper sx={{ py: 2, px: 2 }} variant="outlined">
+    <Paper sx={{ p: 0 }} variant="outlined">
       <Grid container>
         <Grid
           item
@@ -49,6 +49,7 @@ export default function AuthorDisplayBox(props: { userId: string }) {
           justifyContent="center"
           alignContent="center"
           direction="column"
+          sx={{ background: "secondary" }}
         >
           <Avatar
             alt={profile?.firstName}
@@ -60,7 +61,7 @@ export default function AuthorDisplayBox(props: { userId: string }) {
           </Typography>
         </Grid>
         {profile?.blog && (
-          <Grid item xs={12}>
+          <Grid item xs={12} sx={{ px: 2, py: 1 }}>
             <Typography variant="subtitle2" color="text.secondary">
               Blog:{" "}
               <Link href={profile?.blog} target="_blank" color="text.secondary">
@@ -70,8 +71,12 @@ export default function AuthorDisplayBox(props: { userId: string }) {
           </Grid>
         )}
         {profile?.blog && (
-          <Grid item xs={12}>
-            <Typography variant="subtitle2" color="text.secondary">
+          <Grid item xs={12} sx={{ px: 2, py: 1 }}>
+            <Typography
+              variant="subtitle2"
+              color="text.secondary"
+              sx={{ whiteSpace: "pre-wrap" }}
+            >
               {profile?.introduction}
             </Typography>
           </Grid>

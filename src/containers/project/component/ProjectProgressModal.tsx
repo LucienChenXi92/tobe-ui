@@ -10,10 +10,21 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
+import {
+  Timeline,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineConnector,
+  TimelineContent,
+  TimelineDot,
+  TimelineOppositeContent,
+  timelineOppositeContentClasses,
+} from "@mui/lab";
 import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";
 import ProjectProgressItem from "./ProjectProgressItem";
+import moment from "moment";
 
 interface ProjectProgressModalProps {
   projectId: string;
@@ -149,13 +160,37 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
               </Grid>
             </Paper>
           )}
-          {progresses.map((progress: ProjectProgress) => (
-            <ProjectProgressItem
-              progress={progress}
-              viewOnly={props.viewOnly}
-              key={progress.id}
-            />
-          ))}
+          <Timeline
+            sx={{
+              [`& .${timelineOppositeContentClasses.root}`]: {
+                flex: 0.2,
+              },
+              px: 0,
+            }}
+          >
+            {progresses.map((progress: ProjectProgress) => (
+              <TimelineItem key={progress.id}>
+                <TimelineOppositeContent>
+                  <Typography color="text.secondary" variant="body2">
+                    {moment(progress.createTime).format("hh:mm a")}
+                    <br />
+                    {moment(progress.createTime).format("MM/DD/YYYY")}
+                  </Typography>
+                </TimelineOppositeContent>
+                <TimelineSeparator>
+                  <TimelineDot color="secondary" />
+                  <TimelineConnector />
+                </TimelineSeparator>
+                <TimelineContent sx={{ pl: 1, pr: 0 }}>
+                  <ProjectProgressItem
+                    progress={progress}
+                    viewOnly={props.viewOnly}
+                    key={progress.id}
+                  />
+                </TimelineContent>
+              </TimelineItem>
+            ))}
+          </Timeline>
         </>
       )}
     </React.Fragment>

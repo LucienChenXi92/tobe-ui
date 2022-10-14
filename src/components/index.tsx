@@ -23,7 +23,7 @@ import {
   TobeAccordionDetails,
   TobeAccordionSummary,
 } from "./common/TobeAccordion";
-import AuthorDisplayBox from "./common/AuthorDisplayBox";
+import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
 
 export {
   AppFooter,
@@ -47,5 +47,5 @@ export {
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,
-  AuthorDisplayBox,
+  AuthorDisplayPanel,
 };

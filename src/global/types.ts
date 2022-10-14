@@ -51,5 +51,6 @@ export interface ProjectProgress {
   projectId: string;
   description: string;
   updaterName: string;
+  createTime: string;
   updateTime: string;
 }

@@ -56,7 +56,7 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
       });
   }
   return (
-    <Paper variant="outlined" sx={{ my: 2, p: { xs: 2, md: 3 } }}>
+    <Paper variant="outlined" sx={{ p: { xs: 1, md: 2 } }}>
       <Grid container item xs={12}>
         {!props.viewOnly && (
           <Grid container item xs={12} justifyContent="flex-end">
@@ -77,15 +77,6 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
             value={progressDesc}
             onChange={(event) => setProgressDesc(event.target.value)}
           />
-        </Grid>
-        <Grid item xs={12}>
-          <Typography variant="body2" color={"gray"}>
-            {progress.updaterName}
-            {" | "}
-            {new Date(progress.updateTime).toLocaleDateString()}
-            {" - "}
-            {new Date(progress.updateTime).toLocaleTimeString()}
-          </Typography>
         </Grid>
       </Grid>
     </Paper>

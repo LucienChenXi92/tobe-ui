@@ -14,7 +14,7 @@ import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
 import moment from "moment";
-import { AuthorDisplayBox } from "../../components";
+import { AuthorDisplayPanel } from "../../components";
 
 interface ArticleDetail {
   content: string;
@@ -110,7 +110,7 @@ export default function ArticleReadingPage() {
         </Grid>
         {article?.authorId && (
           <Grid item sm={12} md={3}>
-            <AuthorDisplayBox userId={article?.authorId} />
+            <AuthorDisplayPanel userId={article?.authorId} />
           </Grid>
         )}
       </Grid>
