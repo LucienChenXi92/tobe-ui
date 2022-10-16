@@ -49,12 +49,12 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
           justifyContent="center"
           alignContent="center"
           direction="column"
-          sx={{ background: "secondary" }}
+          sx={{ borderBottom: "1px solid #f1f1f1" }}
         >
           <Avatar
             alt={profile?.firstName}
             src={profile?.avatarUrl}
-            sx={{ width: 60, height: 60, margin: "0 auto" }}
+            sx={{ width: 60, height: 60, m: "0 auto", my: 2 }}
           ></Avatar>
           <Typography variant="h6" color="text.secondary">
             {profile?.firstName + " " + profile?.lastName}
