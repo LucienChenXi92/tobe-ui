@@ -69,7 +69,7 @@ export default function NewsPage() {
   function loadNews(): void {
     setOpenLoading(true);
     server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS}`, {
+      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS}?size=1000&current=1`, {
         headers: {
           "Content-Type": "application/json",
         },
