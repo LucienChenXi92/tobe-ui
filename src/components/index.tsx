@@ -9,6 +9,7 @@ import PagedTable from "./common/PagedTable";
 import Page from "./Page";
 import EditIconButton from "./common/EditIconButton";
 import RichEditor from "./common/richEditor/RichEditor";
+import RichReader from "./common/richEditor/RichReader";
 import {
   ActiveButton,
   CreateButton,
@@ -37,6 +38,7 @@ export {
   PagedTable,
   EditIconButton,
   RichEditor,
+  RichReader,
   ActiveButton,
   CreateButton,
   CloseButton,
