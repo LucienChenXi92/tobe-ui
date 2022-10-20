@@ -11,6 +11,7 @@ import { useAuthState } from "../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
 import moment from "moment";
@@ -84,10 +85,14 @@ export default function ArticleReadingPage() {
                   {t("article-reading-page.post-by") +
                     article?.authorName +
                     t("article-reading-page.post-at") +
-                    moment(article?.publishTime).format("YYYY-MM-DD HH:mm")}
+                    moment(article?.publishTime).format(
+                      "YYYY-MM-DD HH:mm"
+                    )}{" "}
+                  | {t("article-reading-page.view")} : {article?.viewCount}
                 </Typography>
                 {authState?.user.id === article?.authorId && (
                   <Link href={`/my/articles/${articleId}`} sx={{ flexGrow: 0 }}>
+                    <Divider />
                     <Typography
                       variant="body2"
                       color="text.secondary"

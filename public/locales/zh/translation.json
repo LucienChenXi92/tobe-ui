@@ -257,6 +257,7 @@
   "article-reading-page": {
     "post-by": "作者 ",
     "post-at": " 发表于 ",
+    "view": "阅读量",
     "back-btn": "返回",
     "msg": {
       "error": "加载数据失败"

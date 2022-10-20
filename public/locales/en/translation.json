@@ -257,6 +257,7 @@
   "article-reading-page": {
     "post-by": "Post by ",
     "post-at": " at ",
+    "view": "View",
     "back-btn": "Back",
     "msg": {
       "error": "Failed to fetch data"
