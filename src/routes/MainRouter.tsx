@@ -1,73 +1,101 @@
+import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import HomePage from "../containers/homePage/HomePage";
-import SignInPage from "../containers/signIn/SignInPage";
-import SignUpPage from "../containers/signUp/SignUpPage";
-import ProfileSettingPage from "../containers/profileSettingPage/ProfileSettingPage";
-import ProtectedRoutes from "./ProtectedRoutes";
-import DashboardPage from "../containers/myZone/DashboardPage";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
-import { BasicLayout } from "../components";
-import UsersPage from "../containers/myZone/UsersPage";
-import ProjectsPage from "../containers/project/ProjectsPage";
-import ProjectCreationPage from "../containers/project/ProjectCreationPage";
-import ProjectDetailPage from "../containers/project/ProjectDetailPage";
-import NewsPage from "../containers/news/NewsPage";
-import AboutPage from "../containers/aboutPage/AboutPage";
-import ArticlesPage from "../containers/article/ArticlesPage";
+import { BasicLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
-import ArticleCreationPage from "../containers/article/ArticleCreationPage";
-import ArticleDetailPage from "../containers/article/ArticleDetailPage";
-import ArticleReadingPage from "../containers/article/ArticleReadingPage";
+
+const HomePage = React.lazy(() => import("../containers/homePage/HomePage"));
+const NewsPage = React.lazy(() => import("../containers/news/NewsPage"));
+const AboutPage = React.lazy(() => import("../containers/aboutPage/AboutPage"));
+const SignInPage = React.lazy(() => import("../containers/signIn/SignInPage"));
+const SignUpPage = React.lazy(() => import("../containers/signUp/SignUpPage"));
+const ProfileSettingPage = React.lazy(
+  () => import("../containers/profileSettingPage/ProfileSettingPage")
+);
+const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
+const DashboardPage = React.lazy(
+  () => import("../containers/myZone/DashboardPage")
+);
+const UsersPage = React.lazy(() => import("../containers/myZone/UsersPage"));
+const ProjectsPage = React.lazy(
+  () => import("../containers/project/ProjectsPage")
+);
+const ProjectCreationPage = React.lazy(
+  () => import("../containers/project/ProjectCreationPage")
+);
+const ProjectDetailPage = React.lazy(
+  () => import("../containers/project/ProjectDetailPage")
+);
+const ArticlesPage = React.lazy(
+  () => import("../containers/article/ArticlesPage")
+);
+const ArticleCreationPage = React.lazy(
+  () => import("../containers/article/ArticleCreationPage")
+);
+const ArticleDetailPage = React.lazy(
+  () => import("../containers/article/ArticleDetailPage")
+);
+const ArticleReadingPage = React.lazy(
+  () => import("../containers/article/ArticleReadingPage")
+);
 
 function MainRouter() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={URL.HOME} element={<HomePage />} />
-        <Route element={<ProtectedRoutes />}>
-          <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-          <Route path={URL.DASHBOARD} element={<DashboardPage />} />
-          <Route path={URL.USERS} element={<UsersPage />} />
-          <Route path={URL.PROJECTS} element={<ProjectsPage />} />
-          <Route path={URL.CREATE_PROJECT} element={<ProjectCreationPage />} />
-          <Route
-            path={URL.PROJECT_DETAIL}
-            element={<ProjectDetailPage viewOnly={false} />}
-          />
-          <Route path={URL.ARTICLES} element={<ArticlesPage />} />
-          <Route path={URL.CREATE_ARTICLE} element={<ArticleCreationPage />} />
-          <Route
-            path={URL.ARTICLE_DETAIL}
-            element={<ArticleDetailPage viewOnly={false} />}
-          />
-        </Route>
+    <Suspense fallback={<Loading open={true} />}>
+      <BrowserRouter>
+        <Routes>
+          <Route path={URL.HOME} element={<HomePage />} />
+          <Route element={<ProtectedRoutes />}>
+            <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
+            <Route path={URL.DASHBOARD} element={<DashboardPage />} />
+            <Route path={URL.USERS} element={<UsersPage />} />
+            <Route path={URL.PROJECTS} element={<ProjectsPage />} />
+            <Route
+              path={URL.CREATE_PROJECT}
+              element={<ProjectCreationPage />}
+            />
+            <Route
+              path={URL.PROJECT_DETAIL}
+              element={<ProjectDetailPage viewOnly={false} />}
+            />
+            <Route path={URL.ARTICLES} element={<ArticlesPage />} />
+            <Route
+              path={URL.CREATE_ARTICLE}
+              element={<ArticleCreationPage />}
+            />
+            <Route
+              path={URL.ARTICLE_DETAIL}
+              element={<ArticleDetailPage viewOnly={false} />}
+            />
+          </Route>
 
-        <Route element={<NonProtectedBasicLayoutRoute />}>
-          <Route path={URL.SIGN_IN} element={<SignInPage />} />
-          <Route path={URL.SIGN_UP} element={<SignUpPage />} />
-          <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
-          <Route path={URL.NEWS} element={<NewsPage />} />
-          <Route
-            path={URL.NEWS_PROJECT_DETAIL}
-            element={<ProjectDetailPage viewOnly={true} />}
-          />
-          <Route
-            path={URL.NEWS_ARTICLE_DETAIL}
-            element={<ArticleReadingPage />}
-          />
-          <Route
-            path={URL.ARTICLE}
-            element={
-              <main style={{ padding: "1rem" }}>
-                <p>Coming soon!</p>
-              </main>
-            }
-          />
-          <Route path={URL.ABOUT} element={<AboutPage />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+          <Route element={<NonProtectedBasicLayoutRoute />}>
+            <Route path={URL.SIGN_IN} element={<SignInPage />} />
+            <Route path={URL.SIGN_UP} element={<SignUpPage />} />
+            <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
+            <Route path={URL.NEWS} element={<NewsPage />} />
+            <Route
+              path={URL.NEWS_PROJECT_DETAIL}
+              element={<ProjectDetailPage viewOnly={true} />}
+            />
+            <Route
+              path={URL.NEWS_ARTICLE_DETAIL}
+              element={<ArticleReadingPage />}
+            />
+            <Route
+              path={URL.ARTICLE}
+              element={
+                <main style={{ padding: "1rem" }}>
+                  <p>Coming soon!</p>
+                </main>
+              }
+            />
+            <Route path={URL.ABOUT} element={<AboutPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 }
 
