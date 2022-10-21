@@ -95,7 +95,7 @@ export default function SignUpPage() {
   }
 
   return (
-    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
+    <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: "15vh" }}>
       <Loading open={openLoading} />
       <Paper
         variant="outlined"
