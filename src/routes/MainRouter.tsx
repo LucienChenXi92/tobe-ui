@@ -4,11 +4,11 @@ import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
+import HomePage from "../containers/homePage/HomePage";
+import SignInPage from "../containers/signIn/SignInPage";
 
-const HomePage = React.lazy(() => import("../containers/homePage/HomePage"));
 const NewsPage = React.lazy(() => import("../containers/news/NewsPage"));
 const AboutPage = React.lazy(() => import("../containers/aboutPage/AboutPage"));
-const SignInPage = React.lazy(() => import("../containers/signIn/SignInPage"));
 const SignUpPage = React.lazy(() => import("../containers/signUp/SignUpPage"));
 const ProfileSettingPage = React.lazy(
   () => import("../containers/profileSettingPage/ProfileSettingPage")
