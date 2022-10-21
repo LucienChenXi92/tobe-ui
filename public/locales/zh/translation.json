@@ -68,6 +68,8 @@
       "btn-tooltip": "打开设置",
       "profile": "用户信息",
       "my-zone": "用户中心",
+      "projects": "计划",
+      "articles": "笔记",
       "sign-out": "登出系统"
     }
   },

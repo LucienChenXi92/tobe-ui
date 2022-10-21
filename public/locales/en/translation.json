@@ -68,6 +68,8 @@
       "btn-tooltip": "Open settings",
       "profile": "User Profile",
       "my-zone": "User Central",
+      "projects": "Projects",
+      "articles": "Articles",
       "sign-out": "Sign Out"
     }
   },

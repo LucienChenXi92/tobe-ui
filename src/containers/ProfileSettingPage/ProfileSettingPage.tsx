@@ -270,11 +270,11 @@ export default function ProfileSettingPage() {
             </Grid>
           </Grid>
         </Paper>
-        <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-          <Button onClick={() => window.history.back()} sx={{ mt: 3, ml: 1 }}>
+        <Box sx={{ display: "flex", my: 2, justifyContent: "flex-end" }}>
+          <Button onClick={() => window.history.back()}>
             {t("profile-setting.back-btn")}
           </Button>
-          <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
+          <Button variant="contained" type="submit">
             {t("profile-setting.submit-btn")}
           </Button>
         </Box>
