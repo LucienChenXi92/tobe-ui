@@ -60,6 +60,7 @@
   "app-header": {
     "sign-in-btn": "Sign In",
     "pages": {
+      "home": "Home",
       "news": "News",
       "about": "About",
       "article": "Article"

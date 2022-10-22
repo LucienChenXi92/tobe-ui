@@ -8,6 +8,7 @@ import {
   MenuItem,
   Tooltip,
 } from "@mui/material";
+import theme from "../../theme";
 import { URL, validateUrl } from "../../routes";
 import { useAuthState } from "../../contexts";
 import { useNavigate } from "react-router-dom";
@@ -41,7 +42,7 @@ export default function HeaderUserMenu() {
     <>
       {authContext.user ? (
         <Tooltip title={t("app-header.settings.btn-tooltip")}>
-          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+          <IconButton onClick={handleOpenUserMenu} sx={{ p: 0.5 }}>
             <Avatar
               alt={authContext.user.firstName}
               src={authContext.user.avatarUrl}
@@ -52,7 +53,18 @@ export default function HeaderUserMenu() {
         <Button
           key={URL.SIGN_IN}
           onClick={() => navigate(URL.SIGN_IN)}
-          sx={{ my: 2, color: "white", display: "block" }}
+          size="large"
+          sx={{
+            color: theme.palette.secondary.main,
+            fontSize: 18,
+            borderRadius: 0,
+            borderBottom: "3px solid transparent",
+            fontFamily: "PingFang SC,Roboto, Helvetica, Arial, sans-serif",
+            fontWeight: 700,
+            "&:hover": {
+              borderBottom: "3px solid " + theme.palette.secondary.main,
+            },
+          }}
         >
           {t("app-header.sign-in-btn")}
         </Button>

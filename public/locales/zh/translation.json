@@ -60,6 +60,7 @@
   "app-header": {
     "sign-in-btn": "登录",
     "pages": {
+      "home": "首页",
       "news": "近期动态",
       "about": "关于",
       "article": "文章"

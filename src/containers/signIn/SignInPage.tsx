@@ -7,6 +7,7 @@ import {
   TextField,
   Button,
   Link,
+  Container,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -46,89 +47,66 @@ export default function SignInPage() {
   };
 
   return (
-    <Grid
-      container
-      component="main"
-      sx={{
-        height: "95vh",
-        marginTop: "5vh",
-      }}
-    >
+    <Container component="main" maxWidth="sm" sx={{ mb: 4, mt: "15vh" }}>
       <Loading open={openLoading} />
-      <Grid
-        item
-        xs={false}
-        sm={5}
-        md={8}
+      <Paper
+        variant="outlined"
         sx={{
-          backgroundImage: "url(/images/login_bg.jpeg)",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
+          my: { xs: 3, md: 6 },
+          p: { xs: 2, md: 3 },
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
-      />
-      <Grid item xs={12} sm={7} md={4} component={Paper} elevation={6} square>
-        <Box
-          sx={{
-            my: 16,
-            mx: 5,
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <Typography component="h1" variant="h5">
-            {t("sign-in.title")}
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit}
-            sx={{ mt: 1 }}
+      >
+        <Typography component="h1" variant="h5">
+          {t("sign-in.title")}
+        </Typography>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label={t("sign-in.description.email")}
+            name="email"
+            autoComplete="email"
+            autoFocus
+            variant="standard"
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label={t("sign-in.description.password")}
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            variant="standard"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2 }}
           >
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label={t("sign-in.description.email")}
-              name="email"
-              autoComplete="email"
-              autoFocus
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label={t("sign-in.description.password")}
-              type="password"
-              id="password"
-              autoComplete="current-password"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-            >
-              {t("sign-in.sign-in-btn")}
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2">
-                  {t("sign-in.forget-pw-btn")}
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href={URL.SIGN_UP} variant="body2">
-                  {t("sign-in.sign-up-btn")}
-                </Link>
-              </Grid>
+            {t("sign-in.sign-in-btn")}
+          </Button>
+          <Grid container>
+            <Grid item xs>
+              <Link href="#" variant="body2">
+                {t("sign-in.forget-pw-btn")}
+              </Link>
             </Grid>
-          </Box>
+            <Grid item>
+              <Link href={URL.SIGN_UP} variant="body2">
+                {t("sign-in.sign-up-btn")}
+              </Link>
+            </Grid>
+          </Grid>
         </Box>
-      </Grid>
-    </Grid>
+      </Paper>
+    </Container>
   );
 }

@@ -107,10 +107,10 @@ export default function SignUpPage() {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h4">
+        <Typography component="h1" variant="h5">
           {t("sign-up.title")}
         </Typography>
-        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Grid container spacing={2}>
             <Grid item xs={6}>
               <TextField

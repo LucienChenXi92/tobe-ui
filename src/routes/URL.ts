@@ -23,5 +23,5 @@ export const URL = {
 };
 
 export function validateUrl(target: string): boolean {
-  return Object.values(URL).indexOf(target) > 0;
+  return Object.values(URL).indexOf(target) >= 0;
 }
