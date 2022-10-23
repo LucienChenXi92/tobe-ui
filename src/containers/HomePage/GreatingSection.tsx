@@ -65,6 +65,13 @@ export default function GreatingSection() {
             color: theme.palette.background.paper,
           }}
         >
+          <div data-src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+            <Title
+              main="1024, Happy programmer day!"
+              secondary="程序员节快乐！"
+              sx={{ color: theme.palette.background.paper }}
+            />
+          </div>
           <div data-src="https://images.pexels.com/photos/2663851/pexels-photo-2663851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
               main="Knowledge is a sword"
