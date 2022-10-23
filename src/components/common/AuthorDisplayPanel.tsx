@@ -3,15 +3,7 @@ import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { Avatar, Grid, Link, Paper, Typography } from "@mui/material";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-
-interface UserBriefProfileDTO {
-  id: string;
-  firstName: string;
-  lastName: string;
-  avatarUrl: string;
-  blog: string;
-  introduction: string;
-}
+import { UserBriefProfileDTO } from "../../global/types";
 
 export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();

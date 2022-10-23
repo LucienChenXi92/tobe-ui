@@ -21,6 +21,15 @@
       "placeholder": "Please input content..."
     }
   },
+  "home-page": {
+    "projects": "Projects",
+    "articles": "Articles",
+    "workout": "Workout",
+    "activities": "Activities",
+    "view-count": "View",
+    "end-line": "Here is the end line",
+    "top5-active-users": "Top 5 active users"
+  },
   "sign-in": {
     "title": "Sign In TOBE",
     "sign-in-btn": "Sign In",

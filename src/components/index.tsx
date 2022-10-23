@@ -19,6 +19,7 @@ import {
   DeleteButton,
   getButtonByOperationName,
 } from "./common/buttons/TobeButton";
+import { TobeImageButton } from "./common/buttons/TobeImageButton";
 import {
   TobeAccordion,
   TobeAccordionDetails,
@@ -39,6 +40,7 @@ export {
   EditIconButton,
   RichEditor,
   RichReader,
+  TobeImageButton,
   ActiveButton,
   CreateButton,
   CloseButton,

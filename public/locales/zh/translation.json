@@ -21,6 +21,15 @@
       "placeholder": "请输入内容..."
     }
   },
+  "home-page": {
+    "projects": "计划",
+    "articles": "笔记",
+    "workout": "锻炼",
+    "activities": "活动",
+    "view-count": "浏览",
+    "end-line": "实在是没有了。。。",
+    "top5-active-users": "活跃度 Top5 同学"
+  },
   "sign-in": {
     "title": "欢迎登陆 TOBE",
     "sign-in-btn": "登录",

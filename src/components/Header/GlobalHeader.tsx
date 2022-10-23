@@ -30,7 +30,7 @@ const GlobalHeader = () => {
       setShouldShowHeader(true);
     }
     // if scroll to the top, then reset the shouldShowHeader flag
-    if (document.documentElement.scrollTop == 0) {
+    if (document.documentElement.scrollTop === 0) {
       setShouldShowHeader(false);
     }
     if (

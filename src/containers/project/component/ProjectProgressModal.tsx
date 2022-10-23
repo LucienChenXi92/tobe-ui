@@ -109,7 +109,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
       ) : (
         <>
           <Divider>
-            <Typography variant="subtitle1" color="gray">
+            <Typography variant="subtitle1" color="text.sondary">
               {t("project-progress.title")}
             </Typography>
           </Divider>

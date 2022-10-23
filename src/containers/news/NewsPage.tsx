@@ -7,19 +7,8 @@ import { Page } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import theme from "../../theme";
 import moment from "moment";
+import { NewsDTO } from "../../global/types";
 import { StandardNewsCard } from "./StandardNewsCard";
-
-interface NewsDTO {
-  id: string;
-  title: string;
-  newsType: string;
-  description: string;
-  ownerName: string;
-  avatarUrl: string;
-  createTime: string;
-  updateTime: string | null;
-  publishTime: string | null;
-}
 
 export default function NewsPage() {
   const { t } = useTranslation();

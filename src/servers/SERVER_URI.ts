@@ -18,7 +18,6 @@ export const SERVER_URI = {
   ACTIVE_PROJECT: "v1/project-infos/:projectId/active",
   CLOSE_PROJECT: "v1/project-infos/:projectId/close",
   RELEASE_PROJECT: "v1/project-infos/:projectId/release",
-  GET_NEWS: "v1/news",
 
   GET_ARTICLES: "v1/article-infos",
   CREATE_ARTICLE: "v1/article-infos",
@@ -26,5 +25,10 @@ export const SERVER_URI = {
   DELETE_ARTICLE: "v1/article-infos",
   RELEASE_ARTICLE: "v1/article-infos/:articleId/release",
   GET_ARTICLE_OVERVIEW: "v1/article-infos/overview",
+
+  GET_NEWS: "v1/news",
+  GET_NEWS_ARTICLES: "v1/news/articles",
+
+  GET_NEWS_TOP_5_ACTIVE_USERS: "v1/news/top5-active-users",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;

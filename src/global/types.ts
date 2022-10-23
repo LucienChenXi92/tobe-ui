@@ -54,3 +54,25 @@ export interface ProjectProgress {
   createTime: string;
   updateTime: string;
 }
+
+export interface NewsDTO {
+  id: string;
+  title: string;
+  newsType: string;
+  description: string;
+  ownerName: string;
+  avatarUrl: string;
+  createTime: string;
+  updateTime: string | null;
+  publishTime: string | null;
+  viewCount: number;
+}
+
+export interface UserBriefProfileDTO {
+  id: string;
+  firstName: string;
+  lastName: string;
+  avatarUrl: string;
+  blog: string;
+  introduction: string;
+}
