@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Divider, Grid, Typography, Paper } from "@mui/material";
+import { Grid, Typography, Paper } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NewsDTO } from "../../global/types";
 import moment from "moment";
@@ -7,6 +8,7 @@ import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 export default function FeaturedArticles() {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
 
   useEffect(() => loadNews(), []);
@@ -33,6 +35,7 @@ export default function FeaturedArticles() {
           description={n.description}
           publishTime={n.publishTime}
           viewCount={n.viewCount}
+          onClick={() => navigate(`/news/article/${n.id}`)}
         />
       ))}
       <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
@@ -50,12 +53,14 @@ function ArticleItem(props: {
   description: string;
   publishTime: string | null;
   viewCount: number;
+  onClick: () => void;
 }) {
   const { t } = useTranslation();
   return (
     <Grid
       container
       item
+      onClick={props.onClick}
       xs={12}
       sx={{
         borderBottom: "1px solid rgba(0,0,0,0.12)",
