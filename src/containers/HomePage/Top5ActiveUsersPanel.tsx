@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Paper, Avatar, Divider } from "@mui/material";
+import { Grid, Typography, Paper, Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { UserBriefProfileDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 export default function Top5ActiveUsersPanel() {
   const { t } = useTranslation();
-  const [userata, setUserData] = useState<UserBriefProfileDTO[]>([]);
+  const [userData, setUserData] = useState<UserBriefProfileDTO[]>([]);
 
   useEffect(() => loadNews(), []);
 
@@ -22,7 +22,7 @@ export default function Top5ActiveUsersPanel() {
       })
       .catch(() => {});
   }
-  return (
+  return userData.length > 0 ? (
     <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
       <Grid
         item
@@ -33,12 +33,19 @@ export default function Top5ActiveUsersPanel() {
           {t("home-page.top5-active-users")}
         </Typography>
       </Grid>
-      {userata.map((n) => (
-        <Grid container item xs={12} alignItems="center" sx={{ px: 2 }}>
+      {userData.map((n) => (
+        <Grid
+          container
+          item
+          xs={12}
+          alignItems="center"
+          sx={{ px: 2 }}
+          key={n.id}
+        >
           <Avatar
             alt={n.firstName}
             src={n.avatarUrl}
-            sx={{ flexGrow: 0, mb: 1, mr: 2 }}
+            sx={{ flexGrow: 0, mb: 1, mr: 2, width: "30px", height: "30px" }}
           />
           <Typography
             color="text.secondary"
@@ -50,5 +57,7 @@ export default function Top5ActiveUsersPanel() {
         </Grid>
       ))}
     </Grid>
+  ) : (
+    <></>
   );
 }

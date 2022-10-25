@@ -25,7 +25,7 @@ export default function FeaturedArticles() {
       })
       .catch(() => {});
   }
-  return (
+  return newsData.length > 0 ? (
     <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
       {newsData.map((n) => (
         <ArticleItem
@@ -44,6 +44,8 @@ export default function FeaturedArticles() {
         </Typography>
       </Grid>
     </Grid>
+  ) : (
+    <></>
   );
 }
 

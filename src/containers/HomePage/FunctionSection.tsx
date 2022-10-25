@@ -1,4 +1,4 @@
-import { Container, Divider, Grid } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 import FeaturedArticles from "./FeaturedArticles";
 import Top5ActiveUsersPanel from "./Top5ActiveUsersPanel";
 
