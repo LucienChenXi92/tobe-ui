@@ -26,7 +26,8 @@ export interface ProjectInfo {
   name: string;
   description: string;
   statusValue: number;
-  owener: string;
+  owner: string;
+  ownerId: string;
   publicToAll: string;
   actualStartTime: string;
   targetStartTime: string;

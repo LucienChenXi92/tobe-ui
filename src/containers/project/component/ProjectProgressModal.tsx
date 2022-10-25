@@ -174,7 +174,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
                   <Typography color="text.secondary" variant="body2">
                     {moment(progress.createTime).format("hh:mm a")}
                     <br />
-                    {moment(progress.createTime).format("MM/DD/YYYY")}
+                    {moment(progress.createTime).format("YYYY/MM/DD")}
                   </Typography>
                 </TimelineOppositeContent>
                 <TimelineSeparator>

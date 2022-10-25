@@ -27,6 +27,9 @@ const ProjectCreationPage = React.lazy(
 const ProjectDetailPage = React.lazy(
   () => import("../containers/project/ProjectDetailPage")
 );
+const ProjectReadingPage = React.lazy(
+  () => import("../containers/project/ProjectReadingPage")
+);
 const ArticlesPage = React.lazy(
   () => import("../containers/article/ArticlesPage")
 );
@@ -77,7 +80,7 @@ function MainRouter() {
             <Route path={URL.NEWS} element={<NewsPage />} />
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
-              element={<ProjectDetailPage viewOnly={true} />}
+              element={<ProjectReadingPage />}
             />
             <Route
               path={URL.NEWS_ARTICLE_DETAIL}
