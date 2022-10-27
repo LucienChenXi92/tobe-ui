@@ -22,9 +22,10 @@ import {
   Page,
   PagedTable,
   getButtonByOperationName,
+  TagDisplayBar,
 } from "../../components";
 import { URL } from "../../routes";
-import { Column, Operation } from "../../global/types";
+import { Column, Operation, TagOption } from "../../global/types";
 
 interface Article {
   id: string;
@@ -37,6 +38,7 @@ interface Article {
   viewCount: number;
   publicToAll: boolean;
   publishTime: Date;
+  tags: TagOption[];
 }
 
 export default function ArticlesPage() {
@@ -215,23 +217,33 @@ export default function ArticlesPage() {
           articles.map((article: Article) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={article.id}>
               <Card variant="outlined">
-                <CardHeader title={article.title} />
+                <CardHeader
+                  title={article.title}
+                  subheader={
+                    <Typography
+                      gutterBottom
+                      variant="subtitle2"
+                      color="text.secondary"
+                    >
+                      <b>{article.subTitle}</b>
+                    </Typography>
+                  }
+                />
                 <Divider />
+                {article.tags.length > 0 && (
+                  <CardContent sx={{ py: 1 }}>
+                    <TagDisplayBar tags={article.tags} />
+                  </CardContent>
+                )}
+
                 <CardContent sx={{ py: 1 }}>
-                  {article.publicToAll && (
+                  {/* {article.publicToAll && (
                     <Tooltip
                       title={t("project-table.card.tooltip.public-to-all")}
                     >
                       <VerifiedIcon color="info" />
                     </Tooltip>
-                  )}
-                  <Typography
-                    gutterBottom
-                    variant="subtitle2"
-                    color="text.secondary"
-                  >
-                    <b>{article.subTitle}</b>
-                  </Typography>
+                  )} */}
                   <Typography
                     gutterBottom
                     variant="body2"
@@ -241,6 +253,7 @@ export default function ArticlesPage() {
                   </Typography>
                 </CardContent>
                 <Divider />
+
                 <CardActions sx={{ px: 0 }}>
                   {operations.map(
                     (operation, index) =>
