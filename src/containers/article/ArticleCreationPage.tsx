@@ -10,9 +10,11 @@ import {
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,
+  MultipleTagSelecter,
 } from "../../components";
 import { FieldWrapper } from "./component/FieldWrapper";
 import { URL } from "../../routes";
+import { TagOption } from "../../global/types";
 
 export default function ArticleCreationPage() {
   const { t } = useTranslation();
@@ -24,6 +26,7 @@ export default function ArticleCreationPage() {
   const [expanded, setExpanded] = useState<boolean>(false);
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
+  const [tagValues, setTagValues] = useState<TagOption[]>([]);
 
   function createArticle(): void {
     setOpenLoading(true);
@@ -35,6 +38,7 @@ export default function ArticleCreationPage() {
           subTitle: subTitle,
           content: htmlValue,
           description: textValue.trim().substring(0, 100),
+          tags: tagValues,
         },
         {
           headers: {
@@ -97,6 +101,30 @@ export default function ArticleCreationPage() {
                   setValue={setSubTitle}
                   maxLength={100}
                 />
+                <Grid container item xs={12} sx={{ mt: 1 }}>
+                  <Grid
+                    item
+                    sx={{
+                      flexGrow: 0,
+                      alignSelf: "end",
+                      textAlign: "end",
+                      pr: 1,
+                    }}
+                    xs={3}
+                    sm={2}
+                    md={1}
+                  >
+                    <Typography variant="subtitle1" color="text.secondary">
+                      {"标签"}
+                    </Typography>
+                  </Grid>
+                  <Grid item sx={{ flexGrow: 1 }}>
+                    <MultipleTagSelecter
+                      value={tagValues}
+                      setValue={setTagValues}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
             </TobeAccordionDetails>
           </TobeAccordion>

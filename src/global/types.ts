@@ -77,3 +77,8 @@ export interface UserBriefProfileDTO {
   blog: string;
   introduction: string;
 }
+
+export interface TagOption {
+  readonly value: string;
+  readonly label: string;
+}

@@ -19,6 +19,9 @@
     },
     "rich-editor": {
       "placeholder": "请输入内容..."
+    },
+    "tag-select": {
+      "msg": { "success": "添加成功", "error": "添加失败" }
     }
   },
   "home-page": {

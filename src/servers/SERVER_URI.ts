@@ -30,5 +30,8 @@ export const SERVER_URI = {
   GET_NEWS_ARTICLES: "v1/news/articles",
 
   GET_NEWS_TOP_5_ACTIVE_USERS: "v1/news/top5-active-users",
+
+  GET_TAGS: "v1/tags",
+  CREATE_TAG: "v1/tags",
 };
 export const ROOT_URL = process.env.REACT_APP_SERVER_ROOT_URL;

@@ -26,6 +26,7 @@ import {
   TobeAccordionSummary,
 } from "./common/TobeAccordion";
 import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
+import MultipleTagSelecter from "./common/MultipleTagSelecter";
 
 export {
   AppFooter,
@@ -52,4 +53,5 @@ export {
   TobeAccordionDetails,
   TobeAccordionSummary,
   AuthorDisplayPanel,
+  MultipleTagSelecter,
 };

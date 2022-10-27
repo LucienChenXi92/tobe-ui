@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Paper, Grid, TextField, Typography } from "@mui/material";
+import { Paper, Grid, TextField } from "@mui/material";
 import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";

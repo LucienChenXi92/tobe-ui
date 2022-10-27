@@ -7,7 +7,6 @@ import { Page } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import { AuthorDisplayPanel } from "../../components";
-import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
 import ProjectProgressModal from "./component/ProjectProgressModal";
 import moment from "moment";
 
@@ -56,7 +55,7 @@ export default function ProjectReadingPage() {
       </Grid>
 
       <Grid container spacing={1}>
-        <Grid item flexGrow={1}>
+        <Grid item xs={12} sm={12} md={9} lg={9}>
           <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
             {project && (
               <Grid container spacing={3}>

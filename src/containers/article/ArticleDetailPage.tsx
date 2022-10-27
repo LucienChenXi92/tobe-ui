@@ -11,9 +11,11 @@ import {
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,
+  MultipleTagSelecter,
 } from "../../components";
 import { FieldWrapper } from "./component/FieldWrapper";
 import { URL } from "../../routes";
+import { TagOption } from "../../global/types";
 
 interface ArticleDetailPageProp {
   viewOnly: boolean;
@@ -30,6 +32,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
   const [expanded, setExpanded] = useState<boolean>(true);
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
+  const [tagValues, setTagValues] = useState<TagOption[]>([]);
 
   useEffect(() => loadArticle(), []);
 
@@ -45,6 +48,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
         setHtmlValue(response.data.content);
         setTitle(response.data.title);
         setSubTitle(response.data.subTitle);
+        setTagValues(response.data.tags);
       })
       .catch(() => {
         enqueueSnackbar(t("article-creation-page.msg.error"), {
@@ -65,6 +69,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
           subTitle,
           content: htmlValue,
           description: textValue.trim().substring(0, 100),
+          tags: tagValues,
         },
         {
           headers: {
@@ -127,6 +132,30 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
                   setValue={setSubTitle}
                   maxLength={100}
                 />
+                <Grid container item xs={12} sx={{ mt: 1 }}>
+                  <Grid
+                    item
+                    sx={{
+                      flexGrow: 0,
+                      alignSelf: "end",
+                      textAlign: "end",
+                      pr: 1,
+                    }}
+                    xs={3}
+                    sm={2}
+                    md={1}
+                  >
+                    <Typography variant="subtitle1" color="text.secondary">
+                      {"标签"}
+                    </Typography>
+                  </Grid>
+                  <Grid item sx={{ flexGrow: 1 }}>
+                    <MultipleTagSelecter
+                      value={tagValues}
+                      setValue={setTagValues}
+                    />
+                  </Grid>
+                </Grid>
               </Grid>
             </TobeAccordionDetails>
           </TobeAccordion>
