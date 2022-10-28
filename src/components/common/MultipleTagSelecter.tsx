@@ -1,62 +1,85 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { enqueueSnackbar } from "notistack";
-import AsyncCreatableSelect from "react-select/async-creatable";
+import CreatableSelect from "react-select/creatable";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { StylesConfig } from "react-select";
 import { TagOption } from "../../global/types";
 
 const styles: StylesConfig<TagOption, true> = {};
 
-const loadTags = async (inputValue: string) => {
-  const response = await server.get(
-    `${ROOT_URL}/${SERVER_URI.GET_TAGS}?keyword=${inputValue}`,
-    {
-      headers: {
-        "Content-Type": "application/json",
-      },
-    }
-  );
-  return response.data.records;
-};
+export default function MultipleTagSelecter(props: {
+  value: TagOption[];
+  setValue: (newValue: TagOption[]) => void;
+}) {
+  const [options, setOptions] = useState<TagOption[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { t } = useTranslation();
 
-const createTag = async (inputValue: string) => {
-  if (inputValue.length >= 32) {
-    enqueueSnackbar("Too long!", { variant: "warning" });
-    return;
-  }
-
-  let response;
-  try {
-    response = await server.post(
-      `${ROOT_URL}/${SERVER_URI.CREATE_TAG}`,
-      {
-        keyword: inputValue,
-      },
-      {
+  function loadTags(inputValue: string) {
+    server
+      .get(`${ROOT_URL}/${SERVER_URI.GET_TAGS}?keyword=${inputValue}`, {
         headers: {
           "Content-Type": "application/json",
         },
-      }
-    );
-  } catch (error: any) {
-    enqueueSnackbar(error?.response?.data?.message, { variant: "error" });
+      })
+      .then((response) => {
+        setOptions(response.data.records);
+      })
+      .catch((error) => {
+        setOptions([]);
+      });
   }
-  enqueueSnackbar("Added", { variant: "success" });
-  return response?.data;
-};
 
-export default function MultipleTagSelecter(props: {
-  value: any;
-  setValue: (newValue: any) => void;
-}) {
+  const createTag = async (inputValue: string) => {
+    setIsLoading(true);
+    if (inputValue.length >= 32) {
+      enqueueSnackbar(t("components.tag-select.msg.warning"), {
+        variant: "warning",
+      });
+      return;
+    }
+
+    try {
+      const response = await server.post(
+        `${ROOT_URL}/${SERVER_URI.CREATE_TAG}`,
+        {
+          keyword: inputValue,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (isInstanceOfTagOption(response.data)) {
+        props.value.push(response.data);
+        props.setValue(props.value);
+        options.push(response.data);
+        setOptions(options);
+      }
+    } catch (error: any) {
+      enqueueSnackbar(error?.response?.data?.message, { variant: "error" });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  function isInstanceOfTagOption(object: any): object is TagOption {
+    return "label" in object && "value" in object;
+  }
+
   return (
-    <AsyncCreatableSelect
+    <CreatableSelect
       isMulti
-      defaultOptions
-      loadOptions={loadTags}
       onCreateOption={createTag}
-      onChange={(newValue) => props.setValue(newValue)}
+      onChange={(newValue: any) => props.setValue(newValue)}
+      onInputChange={(newValue: string) => loadTags(newValue)}
+      isDisabled={isLoading}
+      options={options}
       value={props.value}
       styles={styles}
+      placeholder={t("components.tag-select.placeholder")}
     />
   );
 }

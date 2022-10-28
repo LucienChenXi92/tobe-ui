@@ -21,7 +21,12 @@
       "placeholder": "请输入内容..."
     },
     "tag-select": {
-      "msg": { "success": "添加成功", "error": "添加失败" }
+      "placeholder": "请输入标签名...",
+      "msg": {
+        "success": "添加成功",
+        "error": "添加失败",
+        "warning": "名字长度过长"
+      }
     }
   },
   "home-page": {
@@ -257,7 +262,8 @@
     "fields": {
       "title": "标题",
       "sub-title": "副标题",
-      "description": "简述"
+      "description": "简述",
+      "tag": "标签"
     },
     "submit-btn": "保存",
     "back-btn": "返回",

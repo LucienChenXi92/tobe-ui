@@ -21,7 +21,12 @@
       "placeholder": "Please input content..."
     },
     "tag-select": {
-      "msg": { "success": "添加成功", "error": "添加失败" }
+      "placeholder": "Please input tag name...",
+      "msg": {
+        "success": "Tag created!",
+        "error": "Operation failed",
+        "warning": "Tag name is too long"
+      }
     }
   },
   "home-page": {
@@ -257,7 +262,8 @@
     "fields": {
       "title": "Title",
       "sub-title": "Subtitle",
-      "description": "Description"
+      "description": "Description",
+      "tag": "Tag"
     },
     "submit-btn": "Save",
     "back-btn": "Back",

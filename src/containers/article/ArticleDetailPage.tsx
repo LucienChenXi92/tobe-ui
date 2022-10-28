@@ -146,7 +146,7 @@ export default function ArticleDetailPage(props: ArticleDetailPageProp) {
                     md={1}
                   >
                     <Typography variant="subtitle1" color="text.secondary">
-                      {"标签"}
+                      {t("article-creation-page.fields.tag")}
                     </Typography>
                   </Grid>
                   <Grid item sx={{ flexGrow: 1 }}>
