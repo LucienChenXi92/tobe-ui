@@ -14,7 +14,12 @@ import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
 import moment from "moment";
-import { AuthorDisplayPanel, RichReader } from "../../components";
+import {
+  AuthorDisplayPanel,
+  RichReader,
+  TagDisplayBar,
+} from "../../components";
+import { TagOption } from "../../global/types";
 
 interface ArticleDetail {
   content: string;
@@ -29,6 +34,7 @@ interface ArticleDetail {
   subTitle: string;
   title: string;
   avatarUrl: string;
+  tags: TagOption[];
 }
 
 export default function ArticleReadingPage() {
@@ -116,6 +122,12 @@ export default function ArticleReadingPage() {
                   </Grid>
                   <Divider />
                 </>
+              )}
+
+              {article?.tags && (
+                <Grid item xs={12} sx={{ mb: 1 }}>
+                  <TagDisplayBar tags={article?.tags} />
+                </Grid>
               )}
 
               {article?.content && (

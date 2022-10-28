@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { TagDisplayBar } from "../../components";
+import { TagOption } from "../../global/types";
 
 interface StandardNewsCardProps {
   data: News;
@@ -25,6 +27,7 @@ interface News {
   updateTime: string | null;
   publishTime: string;
   detailsUrl: string;
+  tags: TagOption[];
 }
 
 export const StandardNewsCard = (props: StandardNewsCardProps) => {
@@ -57,6 +60,7 @@ export const StandardNewsCard = (props: StandardNewsCardProps) => {
             >
               {props.data.description}
             </Typography>
+            <TagDisplayBar tags={props.data.tags} />
           </CardContent>
         </CardActionArea>
         <Divider />

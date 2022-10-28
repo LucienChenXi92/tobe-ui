@@ -3,7 +3,8 @@ import { Chip, Grid } from "@mui/material";
 import { TagOption } from "../../global/types";
 
 const ListItem = styled("li")(({ theme }) => ({
-  margin: theme.spacing(0.5),
+  marginRight: theme.spacing(0.5),
+  marginTop: theme.spacing(1),
 }));
 
 export default function TagDisplayBar(props: { tags: TagOption[] }) {

@@ -3,7 +3,7 @@ import { Breadcrumbs, Grid, Paper, Link, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import { Page } from "../../components";
+import { Page, TagDisplayBar } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import { AuthorDisplayPanel } from "../../components";
@@ -70,6 +70,9 @@ export default function ProjectReadingPage() {
                   <Typography color="text.secondary" variant="body1">
                     {project.description}
                   </Typography>
+                </Grid>
+                <Grid item xs={12}>
+                  <TagDisplayBar tags={project.tags} />
                 </Grid>
               </Grid>
             )}

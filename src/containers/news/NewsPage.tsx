@@ -91,6 +91,7 @@ export default function NewsPage() {
                 ? format(n.publishTime)
                 : format(n.createTime),
               detailsUrl: `/news/${getSubRouteByTypeValue(n.newsType)}/${n.id}`,
+              tags: n.tags,
             }}
             key={n.id}
           />

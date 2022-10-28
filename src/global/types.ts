@@ -68,6 +68,7 @@ export interface NewsDTO {
   updateTime: string | null;
   publishTime: string | null;
   viewCount: number;
+  tags: TagOption[];
 }
 
 export interface UserBriefProfileDTO {
