@@ -2,16 +2,18 @@ import React, { useState } from "react";
 import { Box, Grid, TextField, Button, Paper } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Page } from "../../components";
+import { Page, MultipleTagSelecter } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useAuthState } from "../../contexts";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../routes";
+import { TagOption } from "../../global/types";
 
 export default function ProjectCreationPage() {
   const { t } = useTranslation();
-  const [openLoading, setOpenLoading] = useState(false);
+  const [openLoading, setOpenLoading] = useState<boolean>(false);
+  const [tagValue, setTagValue] = useState<TagOption[]>([]);
   const authState = useAuthState();
   const navigate = useNavigate();
   const { user } = authState;
@@ -68,6 +70,7 @@ export default function ProjectCreationPage() {
           description: data.get("description"),
           targetStartTime: fromTime,
           targetEndTime: toTime,
+          tags: tagValue
         },
         {
           headers: {
@@ -149,6 +152,10 @@ export default function ProjectCreationPage() {
                     maxRows={4}
                     minRows={4}
                   />
+                </Grid>
+
+                <Grid item xs={12}>
+                  <MultipleTagSelecter value={tagValue} setValue={setTagValue} />
                 </Grid>
               </Grid>
             </React.Fragment>

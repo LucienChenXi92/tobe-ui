@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import { formatDate } from "../../../commons";
 import ProjectStatusToolbar from "./ProjectStatusToolbar";
-import { getButtonByOperationName } from "../../../components";
+import { getButtonByOperationName, TagDisplayBar } from "../../../components";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (
@@ -33,6 +33,14 @@ export default function ProjectCard(props: ProjectCardProps) {
           </Typography>
         </CardContent>
         <Divider />
+        {props.project.tags.length > 0 && (
+          <>
+            <CardContent sx={{ py: 1 }}>
+              <TagDisplayBar tags={props.project.tags} />
+            </CardContent>
+            <Divider />
+          </>
+        )}
         <CardActions sx={{ px: 0 }}>
           {props.operations.map(
             (operation, index) =>

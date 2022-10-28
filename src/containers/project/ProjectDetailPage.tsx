@@ -3,13 +3,12 @@ import { Box, Grid, Paper, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import { Page } from "../../components";
+import { Page, MultipleTagSelecter, EditIconButton } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { ProjectInfo } from "../../global/types";
+import { ProjectInfo, TagOption } from "../../global/types";
 import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
 import ProjectProgressModal from "./component/ProjectProgressModal";
-import { EditIconButton } from "../../components";
 
 interface UpdatedProject {
   id: string;
@@ -17,6 +16,7 @@ interface UpdatedProject {
   description: string;
   targetStartTime: Date | null;
   targetEndTime: Date | null;
+  tags: TagOption[];
 }
 
 interface ProjectDetailPageProp {
@@ -26,7 +26,8 @@ interface ProjectDetailPageProp {
 export default function ProjectDetailPage(props: ProjectDetailPageProp) {
   const { t } = useTranslation();
   const { projectId } = useParams();
-  const [openLoading, setOpenLoading] = useState(false);
+  const [openLoading, setOpenLoading] = useState<boolean>(false);
+  const [tagValue, setTagValue] = useState<TagOption[]>([]);
   const { enqueueSnackbar } = useSnackbar();
   const [editable, setEditable] = useState<boolean>(false);
   const [project, setProject] = useState<ProjectInfo | null>(null);
@@ -75,6 +76,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
         setFromTime(new Date(response.data.targetStartTime));
         setToTime(new Date(response.data.targetEndTime));
         setDescription(response.data.description);
+        setTagValue(response.data.tags);
       })
       .catch(() => {
         enqueueSnackbar(t("project-detail-page.msg.error"), {
@@ -95,6 +97,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
         description: description || "",
         targetStartTime: fromTime,
         targetEndTime: toTime,
+        tags: tagValue,
       });
     }
     setEditable(!editable);
@@ -139,6 +142,13 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
                   disabled={!editable}
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <MultipleTagSelecter
+                  value={tagValue}
+                  setValue={setTagValue}
+                  disabled={!editable}
                 />
               </Grid>
             </Grid>

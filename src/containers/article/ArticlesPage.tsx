@@ -230,12 +230,6 @@ export default function ArticlesPage() {
                   }
                 />
                 <Divider />
-                {article.tags.length > 0 && (
-                  <CardContent sx={{ py: 1 }}>
-                    <TagDisplayBar tags={article.tags} />
-                  </CardContent>
-                )}
-
                 <CardContent sx={{ py: 1 }}>
                   {/* {article.publicToAll && (
                     <Tooltip
@@ -253,6 +247,14 @@ export default function ArticlesPage() {
                   </Typography>
                 </CardContent>
                 <Divider />
+                {article.tags.length > 0 && (
+                  <>
+                    <CardContent sx={{ py: 1 }}>
+                      <TagDisplayBar tags={article.tags} />
+                    </CardContent>
+                    <Divider />
+                  </>
+                )}
 
                 <CardActions sx={{ px: 0 }}>
                   {operations.map(

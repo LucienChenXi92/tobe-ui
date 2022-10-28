@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { enqueueSnackbar } from "notistack";
 import CreatableSelect from "react-select/creatable";
@@ -11,10 +11,13 @@ const styles: StylesConfig<TagOption, true> = {};
 export default function MultipleTagSelecter(props: {
   value: TagOption[];
   setValue: (newValue: TagOption[]) => void;
+  disabled?: boolean;
 }) {
   const [options, setOptions] = useState<TagOption[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const { t } = useTranslation();
+
+  useEffect(() => loadTags(""), []);
 
   function loadTags(inputValue: string) {
     server
@@ -75,7 +78,7 @@ export default function MultipleTagSelecter(props: {
       onCreateOption={createTag}
       onChange={(newValue: any) => props.setValue(newValue)}
       onInputChange={(newValue: string) => loadTags(newValue)}
-      isDisabled={isLoading}
+      isDisabled={props.disabled || isLoading}
       options={options}
       value={props.value}
       styles={styles}

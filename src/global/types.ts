@@ -33,6 +33,7 @@ export interface ProjectInfo {
   targetStartTime: string;
   actualEndTime: string;
   targetEndTime: string;
+  tags: TagOption[];
 }
 
 export interface PageItem {
