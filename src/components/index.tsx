@@ -28,6 +28,7 @@ import {
 import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
 import MultipleTagSelecter from "./common/MultipleTagSelecter";
 import TagDisplayBar from "./common/TagDisplayBar";
+import NewsBreadcrumbs from "./common/NewsBreadcrumbs";
 
 export {
   AppFooter,
@@ -56,4 +57,5 @@ export {
   AuthorDisplayPanel,
   MultipleTagSelecter,
   TagDisplayBar,
+  NewsBreadcrumbs,
 };

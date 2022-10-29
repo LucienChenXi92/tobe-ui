@@ -7,6 +7,7 @@ import moment from "moment";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { TagDisplayBar } from "../../components";
 import theme from "../../theme";
+import { TimeFormat } from "../../commons";
 
 export default function FeaturedArticles() {
   const { t } = useTranslation();
@@ -105,7 +106,7 @@ function ArticleItem(props: {
       </Grid>
       <Grid container item xs={12}>
         <Typography variant="body2" color="text.secondary">
-          {props.author} | {moment(props.publishTime).format("YYYY-MM-DD")} |{" "}
+          {props.author} | {TimeFormat.briefDateFormat(props.publishTime)} |{" "}
           {t("home-page.view-count")}: {props.viewCount}
         </Typography>
       </Grid>

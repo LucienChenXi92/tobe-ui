@@ -14,6 +14,7 @@
     "axios": "^0.27.2",
     "date-fns": "^2.29.0",
     "i18next": "^21.8.10",
+    "i18next-browser-languagedetector": "^7.0.0",
     "i18next-http-backend": "^1.4.1",
     "moment": "^2.29.4",
     "notistack": "v3.0.0-alpha.7",

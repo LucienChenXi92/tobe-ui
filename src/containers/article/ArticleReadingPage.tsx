@@ -1,25 +1,19 @@
 import { useEffect, useState } from "react";
-import {
-  Breadcrumbs,
-  Divider,
-  Grid,
-  Paper,
-  Link,
-  Typography,
-} from "@mui/material";
+import { Divider, Grid, Paper, Link, Typography } from "@mui/material";
 import { useAuthState } from "../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
-import moment from "moment";
 import {
   AuthorDisplayPanel,
+  NewsBreadcrumbs,
   RichReader,
   TagDisplayBar,
 } from "../../components";
 import { TagOption } from "../../global/types";
+import { TimeFormat } from "../../commons";
 
 interface ArticleDetail {
   content: string;
@@ -68,45 +62,38 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ m: 1 }}>
-        <Link underline="hover" color="inherit" href="/">
-          {t("breadcrumbs.home")}
-        </Link>
-        <Link underline="hover" color="inherit" href="/news">
-          {t("breadcrumbs.news")}
-        </Link>
-        <Typography color="text.primary">{t("breadcrumbs.content")}</Typography>
-      </Breadcrumbs>
+      <NewsBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
-              <Grid item container xs={12} sx={{ my: 1 }}>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  sx={{ flexGrow: 1 }}
-                >
-                  {t("article-reading-page.post-by") +
-                    article?.authorName +
-                    t("article-reading-page.post-at") +
-                    moment(article?.publishTime).format(
-                      "YYYY-MM-DD HH:mm"
-                    )}{" "}
-                  | {t("article-reading-page.view")} : {article?.viewCount}
-                </Typography>
-                {authState?.user.id === article?.authorId && (
-                  <Link href={`/my/articles/${articleId}`} sx={{ flexGrow: 0 }}>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ flexGrow: 1 }}
+              {article && (
+                <Grid item container xs={12} sx={{ my: 1 }}>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ flexGrow: 1 }}
+                  >
+                    {article.authorName} ·{" "}
+                    {TimeFormat.dateAndTimeFormat(article.publishTime)} ·{" "}
+                    {t("article-reading-page.view")} {article.viewCount}
+                  </Typography>
+                  {authState?.user.id === article.authorId && (
+                    <Link
+                      href={`/my/articles/${articleId}`}
+                      sx={{ flexGrow: 0 }}
                     >
-                      Edit
-                    </Typography>
-                  </Link>
-                )}
-              </Grid>
+                      <Typography
+                        variant="body2"
+                        color="text.secondary"
+                        sx={{ flexGrow: 1 }}
+                      >
+                        Edit
+                      </Typography>
+                    </Link>
+                  )}
+                </Grid>
+              )}
 
               {article?.subTitle && (
                 <>

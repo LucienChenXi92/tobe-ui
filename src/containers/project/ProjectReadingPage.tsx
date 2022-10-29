@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
-import { Breadcrumbs, Grid, Paper, Link, Typography } from "@mui/material";
+import { Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import moment from "moment";
 import { useParams } from "react-router-dom";
-import { Page, TagDisplayBar } from "../../components";
+import { NewsBreadcrumbs, Page, TagDisplayBar } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import { AuthorDisplayPanel } from "../../components";
 import ProjectProgressModal from "./component/ProjectProgressModal";
-import moment from "moment";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
@@ -40,20 +40,7 @@ export default function ProjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>
-      <Grid container>
-        <Breadcrumbs aria-label="breadcrumb" sx={{ m: 1, flexGrow: 1 }}>
-          <Link underline="hover" color="inherit" href="/">
-            {t("breadcrumbs.home")}
-          </Link>
-          <Link underline="hover" color="inherit" href="/news">
-            {t("breadcrumbs.news")}
-          </Link>
-          <Typography color="text.primary">
-            {t("breadcrumbs.content")}
-          </Typography>
-        </Breadcrumbs>
-      </Grid>
-
+      <NewsBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>

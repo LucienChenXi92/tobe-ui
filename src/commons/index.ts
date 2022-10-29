@@ -1,3 +1,5 @@
+import * as TimeFormat from "./TimeFormat";
+
 export const LOCAL_STORAGE_KEYS = {
   CURRENT_USER: "currentUser",
   ACCESS_TOKEN: "accessToken",
@@ -33,3 +35,5 @@ export function authed(requiredRole?: string[]): boolean {
 export function formatDate(time: string) {
   return time.substring(0, time.indexOf("T"));
 }
+
+export { TimeFormat };
