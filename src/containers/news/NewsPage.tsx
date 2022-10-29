@@ -6,9 +6,9 @@ import ArticleIcon from "@mui/icons-material/Article";
 import { Page } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import theme from "../../theme";
-import moment from "moment";
 import { NewsDTO } from "../../global/types";
 import { StandardNewsCard } from "./StandardNewsCard";
+import { TimeFormat } from "../../commons";
 
 export default function NewsPage() {
   const { t } = useTranslation();
@@ -70,10 +70,6 @@ export default function NewsPage() {
       .finally(() => setOpenLoading(false));
   }
 
-  function format(dateStr: string) {
-    return moment(dateStr).format("YYYY-MM-DD HH:mm");
-  }
-
   return (
     <Page pageTitle={t("news-page.page-main-title")} openLoading={openLoading}>
       <Grid container spacing={2} sx={{ py: 2 }}>
@@ -85,11 +81,13 @@ export default function NewsPage() {
               newsTypeIcon: getNewsTypeIconByValue(n.newsType),
               creater: n.ownerName,
               avatarUrl: n.avatarUrl,
-              createTime: format(n.createTime),
-              updateTime: n.updateTime ? format(n.updateTime) : null,
+              createTime: TimeFormat.briefDateFormat(n.createTime),
+              updateTime: n.updateTime
+                ? TimeFormat.briefDateFormat(n.updateTime)
+                : null,
               publishTime: n.publishTime
-                ? format(n.publishTime)
-                : format(n.createTime),
+                ? TimeFormat.briefDateFormat(n.publishTime)
+                : TimeFormat.briefDateFormat(n.createTime),
               detailsUrl: `/news/${getSubRouteByTypeValue(n.newsType)}/${n.id}`,
               tags: n.tags,
             }}

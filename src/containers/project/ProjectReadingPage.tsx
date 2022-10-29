@@ -2,13 +2,13 @@ import { useState, useEffect } from "react";
 import { Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import moment from "moment";
 import { useParams } from "react-router-dom";
 import { NewsBreadcrumbs, Page, TagDisplayBar } from "../../components";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import { AuthorDisplayPanel } from "../../components";
 import ProjectProgressModal from "./component/ProjectProgressModal";
+import { TimeFormat } from "../../commons";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
@@ -114,7 +114,7 @@ const TimeField = (props: { time: string; label: string }) =>
         {props.label}
       </Typography>
       <Typography color="text.secondary" variant="body1">
-        {moment(props.time).format("YYYY-MM-DD")}
+        {TimeFormat.dateFormat(props.time)}
       </Typography>
     </Grid>
   ) : (

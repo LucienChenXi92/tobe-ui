@@ -24,7 +24,7 @@ import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";
 import ProjectProgressItem from "./ProjectProgressItem";
-import moment from "moment";
+import { TimeFormat } from "../../../commons";
 
 interface ProjectProgressModalProps {
   projectId: string;
@@ -172,9 +172,9 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
               <TimelineItem key={progress.id}>
                 <TimelineOppositeContent>
                   <Typography color="text.secondary" variant="body2">
-                    {moment(progress.createTime).format("hh:mm a")}
+                    {TimeFormat.timeFormat(progress.createTime)}
                     <br />
-                    {moment(progress.createTime).format("YYYY/MM/DD")}
+                    {TimeFormat.dateFormat(progress.createTime)}
                   </Typography>
                 </TimelineOppositeContent>
                 <TimelineSeparator>
