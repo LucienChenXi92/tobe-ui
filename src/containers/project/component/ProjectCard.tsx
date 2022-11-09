@@ -32,15 +32,14 @@ export default function ProjectCard(props: ProjectCardProps) {
             {" ~ "} {formatDate(props.project.targetEndTime)}
           </Typography>
         </CardContent>
-        <Divider />
         {props.project.tags.length > 0 && (
           <>
             <CardContent sx={{ py: 1 }}>
               <TagDisplayBar tags={props.project.tags} />
             </CardContent>
-            <Divider />
           </>
         )}
+        <Divider />
         <CardActions sx={{ px: 0 }}>
           {props.operations.map(
             (operation, index) =>

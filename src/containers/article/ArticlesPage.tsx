@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   Typography,
-  Tooltip,
   Grid,
   Card,
   CardActions,
@@ -12,7 +11,6 @@ import {
   FormControlLabel,
   Switch,
 } from "@mui/material";
-import VerifiedIcon from "@mui/icons-material/Verified";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
@@ -231,13 +229,6 @@ export default function ArticlesPage() {
                 />
                 <Divider />
                 <CardContent sx={{ py: 1 }}>
-                  {/* {article.publicToAll && (
-                    <Tooltip
-                      title={t("project-table.card.tooltip.public-to-all")}
-                    >
-                      <VerifiedIcon color="info" />
-                    </Tooltip>
-                  )} */}
                   <Typography
                     gutterBottom
                     variant="body2"
@@ -246,16 +237,14 @@ export default function ArticlesPage() {
                     {article.description}
                   </Typography>
                 </CardContent>
-                <Divider />
                 {article.tags.length > 0 && (
                   <>
-                    <CardContent sx={{ py: 1 }}>
+                    <CardContent sx={{ justifyItems: "center" }}>
                       <TagDisplayBar tags={article.tags} />
                     </CardContent>
-                    <Divider />
                   </>
                 )}
-
+                <Divider />
                 <CardActions sx={{ px: 0 }}>
                   {operations.map(
                     (operation, index) =>
