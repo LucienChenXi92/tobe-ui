@@ -8,6 +8,9 @@ import HomePage from "../containers/homePage/HomePage";
 import SignInPage from "../containers/signIn/SignInPage";
 
 const NewsPage = React.lazy(() => import("../containers/news/NewsPage"));
+const NewsSearchPage = React.lazy(
+  () => import("../containers/news/NewsSearchPage")
+);
 const AboutPage = React.lazy(() => import("../containers/aboutPage/AboutPage"));
 const SignUpPage = React.lazy(() => import("../containers/signUp/SignUpPage"));
 const ProfileSettingPage = React.lazy(
@@ -78,6 +81,7 @@ function MainRouter() {
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
             <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
             <Route path={URL.NEWS} element={<NewsPage />} />
+            <Route path={URL.NEWS_SEARCH} element={<NewsSearchPage />} />
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
               element={<ProjectReadingPage />}

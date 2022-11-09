@@ -28,6 +28,7 @@ export const SERVER_URI = {
 
   GET_NEWS: "v1/news",
   GET_NEWS_ARTICLES: "v1/news/articles",
+  GET_NEWS_PROJECTS: "v1/news/projects",
 
   GET_NEWS_TOP_5_ACTIVE_USERS: "v1/news/top5-active-users",
 

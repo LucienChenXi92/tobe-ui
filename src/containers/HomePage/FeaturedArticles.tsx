@@ -2,12 +2,9 @@ import { useState, useEffect } from "react";
 import { Grid, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { NewsDTO, TagOption } from "../../global/types";
-import moment from "moment";
+import { NewsDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { TagDisplayBar } from "../../components";
-import theme from "../../theme";
-import { TimeFormat } from "../../commons";
+import { ArticleItem } from "../../components";
 
 export default function FeaturedArticles() {
   const { t } = useTranslation();
@@ -28,6 +25,7 @@ export default function FeaturedArticles() {
       })
       .catch(() => {});
   }
+
   return newsData.length > 0 ? (
     <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
       {newsData.map((n) => (
@@ -50,69 +48,5 @@ export default function FeaturedArticles() {
     </Grid>
   ) : (
     <></>
-  );
-}
-
-function ArticleItem(props: {
-  author: string;
-  title: string;
-  description: string;
-  publishTime: string | null;
-  viewCount: number;
-  tags: TagOption[];
-  onClick: () => void;
-}) {
-  const { t } = useTranslation();
-  return (
-    <Grid
-      container
-      item
-      onClick={props.onClick}
-      xs={12}
-      sx={{
-        borderBottom: "1px solid rgba(0,0,0,0.12)",
-        p: 2,
-      }}
-    >
-      <Grid
-        container
-        item
-        xs={12}
-        sx={{
-          cursor: "pointer",
-          "&:hover": {
-            color: theme.palette.secondary.main,
-          },
-        }}
-      >
-        <Typography variant="h6" sx={{ wordBreak: "break-all" }}>
-          <b>{props.title}</b>
-        </Typography>
-      </Grid>
-      <Grid
-        container
-        item
-        xs={12}
-        sx={{
-          my: 1,
-          color: theme.palette.text.secondary,
-          cursor: "pointer",
-          "&:hover": {
-            color: theme.palette.secondary.main,
-          },
-        }}
-      >
-        <Typography variant="body2">{props.description}</Typography>
-      </Grid>
-      <Grid container item xs={12}>
-        <Typography variant="body2" color="text.secondary">
-          {props.author} | {TimeFormat.briefDateFormat(props.publishTime)} |{" "}
-          {t("home-page.view-count")}: {props.viewCount}
-        </Typography>
-      </Grid>
-      <Grid container item xs={12}>
-        <TagDisplayBar tags={props.tags} />
-      </Grid>
-    </Grid>
   );
 }

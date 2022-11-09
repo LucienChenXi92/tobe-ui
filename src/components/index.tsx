@@ -29,8 +29,10 @@ import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
 import MultipleTagSelecter from "./common/MultipleTagSelecter";
 import TagDisplayBar from "./common/TagDisplayBar";
 import NewsBreadcrumbs from "./common/NewsBreadcrumbs";
+import ArticleItem from "./common/ArticleItem";
 
 export {
+  ArticleItem,
   AppFooter,
   BasicLayout,
   DashboardLayout,
