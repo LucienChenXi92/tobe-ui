@@ -70,10 +70,7 @@ function MainRouter() {
               path={URL.CREATE_ARTICLE}
               element={<ArticleCreationPage />}
             />
-            <Route
-              path={URL.ARTICLE_DETAIL}
-              element={<ArticleDetailPage viewOnly={false} />}
-            />
+            <Route path={URL.ARTICLE_DETAIL} element={<ArticleDetailPage />} />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>
