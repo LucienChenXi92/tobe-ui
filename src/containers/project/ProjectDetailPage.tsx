@@ -5,25 +5,12 @@ import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { Page, MultipleTagSelecter, EditIconButton } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
-import { ProjectInfo, TagOption } from "../../global/types";
+import { ProjectInfo, TagOption, ProjectUpdateDTO } from "../../global/types";
 import ProjectStatusToolbar from "./component/ProjectStatusToolbar";
 import ProjectProgressModal from "./component/ProjectProgressModal";
+import { getProject, updateProject } from "./ProjectService";
 
-interface UpdatedProject {
-  id: string;
-  name: string;
-  description: string;
-  targetStartTime: Date | null;
-  targetEndTime: Date | null;
-  tags: TagOption[];
-}
-
-interface ProjectDetailPageProp {
-  viewOnly: boolean;
-}
-
-export default function ProjectDetailPage(props: ProjectDetailPageProp) {
+export default function ProjectDetailPage() {
   const { t } = useTranslation();
   const { projectId } = useParams();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
@@ -34,22 +21,12 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
   const [fromTime, setFromTime] = useState<Date | null>(null);
   const [toTime, setToTime] = useState<Date | null>(null);
   const [description, setDescription] = useState<string | null>(null);
-  const { viewOnly } = props;
 
   useEffect(() => loadProject(projectId || ""), []);
 
-  function updateProject(updatedProject: UpdatedProject): void {
+  function handleProjectUpdate(updatedProject: ProjectUpdateDTO): void {
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/${SERVER_URI.UPDATE_PROJECT}/${updatedProject.id}`,
-        updatedProject,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    updateProject(updatedProject)
       .then((response) => {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",
@@ -65,12 +42,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
 
   function loadProject(projectId: string): void {
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_PROJECTS}/${projectId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getProject(projectId)
       .then((response) => {
         setProject(response.data);
         setFromTime(new Date(response.data.targetStartTime));
@@ -91,7 +63,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
       return;
     }
     if (editable) {
-      updateProject({
+      handleProjectUpdate({
         id: project.id,
         name: project.name,
         description: description || "",
@@ -114,14 +86,12 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
           <Grid item flexGrow={1}>
             <ProjectStatusToolbar project={project} />
           </Grid>
-          {!viewOnly && (
-            <Grid item flexGrow={0}>
-              <EditIconButton
-                editable={editable}
-                handleEditableChange={handleEditableChange}
-              />
-            </Grid>
-          )}
+          <Grid item flexGrow={0}>
+            <EditIconButton
+              editable={editable}
+              handleEditableChange={handleEditableChange}
+            />
+          </Grid>
         </Grid>
       )}
       <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
@@ -216,7 +186,7 @@ export default function ProjectDetailPage(props: ProjectDetailPageProp) {
         </Box>
       </Paper>
       {projectId && (
-        <ProjectProgressModal projectId={projectId} viewOnly={viewOnly} />
+        <ProjectProgressModal projectId={projectId} viewOnly={false} />
       )}
     </Page>
   );

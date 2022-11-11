@@ -4,19 +4,16 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Page, MultipleTagSelecter } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useAuthState } from "../../contexts";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../routes";
 import { TagOption } from "../../global/types";
+import { createProject } from "./ProjectService";
 
 export default function ProjectCreationPage() {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [tagValue, setTagValue] = useState<TagOption[]>([]);
-  const authState = useAuthState();
   const navigate = useNavigate();
-  const { user } = authState;
   const { enqueueSnackbar } = useSnackbar();
   const [fromTime, setFromTime] = React.useState<Date | null>(null);
   const [toTime, setToTime] = React.useState<Date | null>(null);
@@ -27,7 +24,7 @@ export default function ProjectCreationPage() {
     if (!validateForm(data)) {
       return;
     }
-    createProject(data);
+    handleProjectCreation(data);
   };
 
   function validateForm(data: FormData): boolean {
@@ -59,25 +56,15 @@ export default function ProjectCreationPage() {
     });
   }
 
-  function createProject(data: FormData): void {
+  function handleProjectCreation(data: FormData): void {
     setOpenLoading(true);
-    server
-      .post(
-        `${ROOT_URL}/${SERVER_URI.CREATE_PROJECT}`,
-        {
-          id: user.id,
-          name: data.get("projectName"),
-          description: data.get("description"),
-          targetStartTime: fromTime,
-          targetEndTime: toTime,
-          tags: tagValue
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    createProject({
+      name: data.get("projectName")?.toString() || "",
+      description: data.get("description")?.toString() || "",
+      targetStartTime: fromTime,
+      targetEndTime: toTime,
+      tags: tagValue,
+    })
       .then((response) => {
         enqueueSnackbar(t("project-creation-page.msg.success"), {
           variant: "success",
@@ -155,7 +142,10 @@ export default function ProjectCreationPage() {
                 </Grid>
 
                 <Grid item xs={12}>
-                  <MultipleTagSelecter value={tagValue} setValue={setTagValue} />
+                  <MultipleTagSelecter
+                    value={tagValue}
+                    setValue={setTagValue}
+                  />
                 </Grid>
               </Grid>
             </React.Fragment>

@@ -3,11 +3,17 @@ import { useTranslation } from "react-i18next";
 import { Grid, FormGroup, FormControlLabel, Switch } from "@mui/material";
 import { Page, PagedTable, CreateButton } from "../../components";
 import ProjectCard from "./component/ProjectCard";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { Column, Operation, ProjectInfo } from "../../global/types";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../routes";
 import { PROJECT_STATUS } from "./consts";
+import {
+  getProjects,
+  deleteProject,
+  activeProject,
+  releaseProject,
+  closeProject,
+} from "./ProjectService";
 
 export default function ProjectsPage() {
   const [current, setCurrent] = useState<number>(0);
@@ -56,12 +62,7 @@ export default function ProjectsPage() {
 
   function loadProjectData() {
     setOpenLoading(true);
-    server
-      .get(
-        `${ROOT_URL}/${SERVER_URI.GET_PROJECTS}?size=${size}&current=${
-          current + 1
-        }`
-      )
+    getProjects(size, current)
       .then((response) => {
         setRows(response.data.records || []);
         setTotalCount(response.data.total);
@@ -74,8 +75,7 @@ export default function ProjectsPage() {
 
   function deleteProjectById(id: number | string) {
     setOpenLoading(true);
-    server
-      .delete(`${ROOT_URL}/${SERVER_URI.DELETE_PROJECT}/${id}`)
+    deleteProject(id)
       .then(() => {
         loadProjectData();
       })
@@ -87,11 +87,7 @@ export default function ProjectsPage() {
 
   function activeProjectById(id: number | string) {
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/` +
-          SERVER_URI.ACTIVE_PROJECT.replace(":projectId", id.toString())
-      )
+    activeProject(id)
       .then(() => {
         loadProjectData();
       })
@@ -103,11 +99,7 @@ export default function ProjectsPage() {
 
   function releaseProjectById(id: number | string) {
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/` +
-          SERVER_URI.RELEASE_PROJECT.replace(":projectId", id.toString())
-      )
+    releaseProject(id)
       .then(() => {
         loadProjectData();
       })
@@ -119,11 +111,7 @@ export default function ProjectsPage() {
 
   function closeProjectById(id: number | string) {
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/` +
-          SERVER_URI.CLOSE_PROJECT.replace(":projectId", id.toString())
-      )
+    closeProject(id)
       .then(() => {
         loadProjectData();
       })

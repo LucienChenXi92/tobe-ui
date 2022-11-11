@@ -4,11 +4,11 @@ import { Grid, Tooltip } from "@mui/material";
 import FlagIcon from "@mui/icons-material/Flag";
 import ArticleIcon from "@mui/icons-material/Article";
 import { Page } from "../../components";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import theme from "../../theme";
 import { NewsDTO } from "../../global/types";
 import { StandardNewsCard } from "./StandardNewsCard";
 import { TimeFormat } from "../../commons";
+import { getAllNews } from "./NewsService";
 
 export default function NewsPage() {
   const { t } = useTranslation();
@@ -57,12 +57,7 @@ export default function NewsPage() {
 
   function loadNews(): void {
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS}?size=1000&current=1`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getAllNews()
       .then((response) => {
         setNewsData(response.data.records);
       })

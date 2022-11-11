@@ -49,7 +49,7 @@ export interface ProjectCardProps {
 }
 
 export interface ProjectProgress {
-  id: string | undefined;
+  id: string;
   projectId: string;
   description: string;
   updaterName: string;
@@ -83,4 +83,25 @@ export interface UserBriefProfileDTO {
 export interface TagOption {
   readonly value: string;
   readonly label: string;
+}
+
+export interface ProjectCreationDTO {
+  name: string;
+  description: string;
+  targetStartTime: Date | null;
+  targetEndTime: Date | null;
+  tags: TagOption[];
+}
+
+export interface ProjectUpdateDTO extends ProjectCreationDTO {
+  id: string;
+}
+
+export interface ProjectProgressCreationDTO {
+  projectId: string;
+  description: string;
+}
+
+export interface ProjectProgressUpdateDTO extends ProjectProgressCreationDTO {
+  id: string;
 }

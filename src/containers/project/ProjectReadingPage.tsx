@@ -4,11 +4,11 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { NewsBreadcrumbs, Page, TagDisplayBar } from "../../components";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ProjectInfo } from "../../global/types";
 import { AuthorDisplayPanel } from "../../components";
 import ProjectProgressModal from "./component/ProjectProgressModal";
 import { TimeFormat } from "../../commons";
+import { getProject } from "./ProjectService";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
@@ -21,12 +21,7 @@ export default function ProjectReadingPage() {
 
   function loadProject(projectId: string): void {
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_PROJECTS}/${projectId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getProject(projectId)
       .then((response) => {
         setProject(response.data);
       })

@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { useNavigate, useParams } from "react-router-dom";
 import { Paper, Grid, Typography } from "@mui/material";
 import { Page, ArticleItem } from "../../components";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { NewsDTO } from "../../global/types";
+import { getNews } from "./NewsService";
 
 export default function NewsSearchPage() {
   const { t } = useTranslation();
@@ -17,15 +17,7 @@ export default function NewsSearchPage() {
 
   function loadNews(): void {
     setOpenLoading(true);
-    server
-      .get(
-        `${ROOT_URL}/${SERVER_URI.GET_NEWS}/${newsType}?size=1000&current=1`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    getNews(newsType || "articles")
       .then((response) => {
         setNewsData(response.data.records);
       })

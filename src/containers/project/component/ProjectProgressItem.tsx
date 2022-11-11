@@ -2,10 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Paper, Grid, TextField } from "@mui/material";
-import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
 import { useAuthState } from "../../../contexts";
 import { EditIconButton } from "../../../components";
+import { updateProgress } from "../ProjectService";
 
 interface ProjectProgressItemProps {
   progress: ProjectProgress;
@@ -23,26 +23,16 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   const { enqueueSnackbar } = useSnackbar();
   const handleEditableChange = () => {
     if (editable) {
-      updateProgresss();
+      handleProgresssUpdate();
     }
     setEditable(!editable);
   };
-  function updateProgresss(): void {
-    server
-      .put(
-        `${ROOT_URL}/${SERVER_URI.CREATE_PROJECT_PROGRESS}/${props.progress.id}`,
-        {
-          id: props.progress.id,
-          projectId: props.progress.projectId,
-          updaterId: context.user.id,
-          description: progressDesc,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+  function handleProgresssUpdate(): void {
+    updateProgress({
+      id: props.progress.id,
+      projectId: props.progress.projectId,
+      description: progressDesc,
+    })
       .then((response) => {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",

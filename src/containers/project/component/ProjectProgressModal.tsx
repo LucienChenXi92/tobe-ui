@@ -20,11 +20,10 @@ import {
   TimelineOppositeContent,
   timelineOppositeContentClasses,
 } from "@mui/lab";
-import { server, ROOT_URL, SERVER_URI } from "../../../servers";
 import { ProjectProgress } from "../../../global/types";
-import { useAuthState } from "../../../contexts";
 import ProjectProgressItem from "./ProjectProgressItem";
 import { TimeFormat } from "../../../commons";
+import { getProgresses, createProgress } from "../ProjectService";
 
 interface ProjectProgressModalProps {
   projectId: string;
@@ -33,7 +32,6 @@ interface ProjectProgressModalProps {
 
 export default function ProjectProgressModal(props: ProjectProgressModalProps) {
   const { t } = useTranslation();
-  const context = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
@@ -43,16 +41,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
 
   function loadProgressses(projectId: string): void {
     setOpenLoading(true);
-    server
-      .get(
-        `${ROOT_URL}/` +
-          SERVER_URI.GET_PROJECT_PROGRESSES.replace(":projectId", projectId),
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    getProgresses(projectId)
       .then((response) => {
         setProgresses(response.data.records);
       })
@@ -64,7 +53,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
       .finally(() => setOpenLoading(false));
   }
 
-  function createProgresss(): void {
+  function handleProgressCreation(): void {
     if (!newProgress.trim()) {
       enqueueSnackbar(t("project-progress.msg.warning"), {
         variant: "warning",
@@ -73,20 +62,10 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
     }
 
     setOpenLoading(true);
-    server
-      .post(
-        `${ROOT_URL}/${SERVER_URI.CREATE_PROJECT_PROGRESS}`,
-        {
-          projectId: props.projectId,
-          updaterId: context.user.id,
-          description: newProgress,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    createProgress({
+      projectId: props.projectId,
+      description: newProgress,
+    })
       .then((response) => {
         setNewProgress("");
         enqueueSnackbar(t("project-progress.msg.success"), {
@@ -152,7 +131,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
                   <Button
                     variant="contained"
                     size="small"
-                    onClick={createProgresss}
+                    onClick={handleProgressCreation}
                   >
                     {t("project-progress.send-btn")}
                   </Button>

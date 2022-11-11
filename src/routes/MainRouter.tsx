@@ -61,10 +61,7 @@ function MainRouter() {
               path={URL.CREATE_PROJECT}
               element={<ProjectCreationPage />}
             />
-            <Route
-              path={URL.PROJECT_DETAIL}
-              element={<ProjectDetailPage viewOnly={false} />}
-            />
+            <Route path={URL.PROJECT_DETAIL} element={<ProjectDetailPage />} />
             <Route path={URL.ARTICLES} element={<ArticlesPage />} />
             <Route
               path={URL.CREATE_ARTICLE}
