@@ -105,3 +105,14 @@ export interface ProjectProgressCreationDTO {
 export interface ProjectProgressUpdateDTO extends ProjectProgressCreationDTO {
   id: string;
 }
+export interface ArticleCreationDTO {
+  title: string;
+  subTitle: string;
+  content: string;
+  description: string;
+  tags: TagOption[];
+}
+
+export interface ArticleUpdateDTO extends ArticleCreationDTO {
+  id: string;
+}

@@ -2,12 +2,12 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page";
 import { URL } from "../../routes";
 import { TagOption } from "../../global/types";
 import ArticleEditMainSection from "./component/ArticleEditMainSection";
+import { getArticle, updateArticle } from "./ArticleService";
 
 export default function ArticleDetailPage() {
   const { t } = useTranslation();
@@ -24,13 +24,12 @@ export default function ArticleDetailPage() {
   useEffect(() => loadArticle(), []);
 
   function loadArticle(): void {
+    if (!articleId) {
+      return window.history.back();
+    }
+
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_ARTICLES}/${articleId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getArticle(articleId)
       .then((response) => {
         setHtmlValue(response.data.content);
         setTitle(response.data.title);
@@ -46,24 +45,22 @@ export default function ArticleDetailPage() {
   }
 
   function saveArticle(): void {
+    if (!articleId) {
+      return;
+    }
+
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/${SERVER_URI.UPDATE_ARTICLE}/${articleId}`,
-        {
-          id: articleId,
-          title,
-          subTitle,
-          content: htmlValue,
-          description: textValue.trim().substring(0, 100),
-          tags: tagValues,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    updateArticle({
+      id: articleId,
+      title,
+      subTitle,
+      content: htmlValue,
+      description:
+        textValue.trim().length >= 100
+          ? textValue.trim().substring(0, 97) + "..."
+          : textValue.trim(),
+      tags: tagValues,
+    })
       .then((response) => {
         enqueueSnackbar(t("article-creation-page.msg.success"), {
           variant: "success",

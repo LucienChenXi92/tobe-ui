@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { useNavigate } from "react-router-dom";
 import Page from "../../components/Page";
 import { URL } from "../../routes";
 import { TagOption } from "../../global/types";
 import ArticleEditMainSection from "./component/ArticleEditMainSection";
+import { createArticle } from "./ArticleService";
 
 export default function ArticleCreationPage() {
   const { t } = useTranslation();
@@ -19,24 +19,18 @@ export default function ArticleCreationPage() {
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
 
-  function createArticle(): void {
+  function saveArticle(): void {
     setOpenLoading(true);
-    server
-      .post(
-        `${ROOT_URL}/${SERVER_URI.CREATE_ARTICLE}`,
-        {
-          title: title,
-          subTitle: subTitle,
-          content: htmlValue,
-          description: textValue.trim().substring(0, 100),
-          tags: tagValues,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    createArticle({
+      title: title,
+      subTitle: subTitle,
+      content: htmlValue,
+      description:
+        textValue.trim().length >= 100
+          ? textValue.trim().substring(0, 97) + "..."
+          : textValue.trim(),
+      tags: tagValues,
+    })
       .then((response) => {
         enqueueSnackbar(t("article-creation-page.msg.success"), {
           variant: "success",
@@ -67,7 +61,7 @@ export default function ArticleCreationPage() {
         setHtmlValue={setHtmlValue}
         textValue={textValue}
         setTextValue={setTextValue}
-        onClickPrimaryBtn={createArticle}
+        onClickPrimaryBtn={saveArticle}
       />
     </Page>
   );

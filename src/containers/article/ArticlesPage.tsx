@@ -14,7 +14,6 @@ import {
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import {
   CreateButton,
   Page,
@@ -24,6 +23,7 @@ import {
 } from "../../components";
 import { URL } from "../../routes";
 import { Column, Operation, TagOption } from "../../global/types";
+import { getArticles, deleteArticle, releaseArticle } from "./ArticleService";
 
 interface Article {
   id: string;
@@ -77,17 +77,7 @@ export default function ArticlesPage() {
 
   function loadArticles(): void {
     setOpenLoading(true);
-    server
-      .get(
-        `${ROOT_URL}/${SERVER_URI.GET_ARTICLES}?size=${size}&current=${
-          current + 1
-        }`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      )
+    getArticles(size, current)
       .then((response) => {
         setArticles(response.data.records || []);
         setTotalCount(response.data.total);
@@ -102,11 +92,7 @@ export default function ArticlesPage() {
 
   function releaseArticleById(id: number | string) {
     setOpenLoading(true);
-    server
-      .put(
-        `${ROOT_URL}/` +
-          SERVER_URI.RELEASE_ARTICLE.replace(":articleId", id.toString())
-      )
+    releaseArticle(id)
       .then(() => {
         loadArticles();
       })
@@ -118,8 +104,7 @@ export default function ArticlesPage() {
 
   function deleteArticleById(id: number | string) {
     setOpenLoading(true);
-    server
-      .delete(`${ROOT_URL}/${SERVER_URI.DELETE_ARTICLE}/${id}`)
+    deleteArticle(id)
       .then(() => {
         loadArticles();
       })

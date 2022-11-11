@@ -4,7 +4,6 @@ import { useAuthState } from "../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import Page from "../../components/Page";
 import {
   AuthorDisplayPanel,
@@ -14,6 +13,7 @@ import {
 } from "../../components";
 import { TagOption } from "../../global/types";
 import { TimeFormat } from "../../commons";
+import { getArticle } from "./ArticleService";
 
 interface ArticleDetail {
   content: string;
@@ -43,12 +43,7 @@ export default function ArticleReadingPage() {
 
   function loadArticle(): void {
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_ARTICLES}/${articleId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getArticle(articleId || "")
       .then((response) => {
         setArticle(response.data);
       })
