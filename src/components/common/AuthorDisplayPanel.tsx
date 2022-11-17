@@ -62,7 +62,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
             </Typography>
           </Grid>
         )}
-        {profile?.blog && (
+        {profile?.introduction && (
           <Grid item xs={12} sx={{ px: 2, py: 1 }}>
             <Typography
               variant="subtitle2"
