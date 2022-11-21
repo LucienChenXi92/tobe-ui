@@ -37,7 +37,7 @@ export default function FeaturedArticles() {
           publishTime={n.publishTime}
           viewCount={n.viewCount}
           tags={n.tags}
-          onClick={() => navigate(`/news/article/${n.id}`)}
+          onClick={() => navigate(`/news/articles/${n.id}`)}
         />
       ))}
       <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>

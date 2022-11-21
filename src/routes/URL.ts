@@ -7,8 +7,8 @@ export const URL = {
   ABOUT: "/about",
   NEWS: "/news",
   NEWS_SEARCH: "/news-search/:newsType",
-  NEWS_PROJECT_DETAIL: "/news/project/:projectId",
-  NEWS_ARTICLE_DETAIL: "/news/article/:articleId",
+  NEWS_PROJECT_DETAIL: "/news/projects/:projectId",
+  NEWS_ARTICLE_DETAIL: "/news/articles/:articleId",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",

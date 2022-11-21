@@ -24,6 +24,7 @@
     "react-hook-form": "^7.33.0",
     "react-hook-form-mui": "^3.8.0",
     "react-i18next": "^11.17.2",
+    "react-meta-tags": "^1.0.1",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-select": "^5.5.6",

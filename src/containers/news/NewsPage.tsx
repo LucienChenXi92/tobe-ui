@@ -45,9 +45,9 @@ export default function NewsPage() {
   function getSubRouteByTypeValue(typeValue: string) {
     switch (typeValue) {
       case "1":
-        return "project";
+        return "projects";
       case "2":
-        return "article";
+        return "articles";
       default:
         return "";
     }

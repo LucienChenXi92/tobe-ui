@@ -14,6 +14,7 @@ import {
 import { TagOption } from "../../global/types";
 import { TimeFormat } from "../../commons";
 import { getArticle } from "./ArticleService";
+import { MetaTags } from "react-meta-tags";
 
 interface ArticleDetail {
   content: string;
@@ -57,6 +58,13 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
+      <MetaTags>
+        <meta name="description" content={article?.description} />
+        <meta name="image" content={article?.avatarUrl} />
+        <meta name="authur" content={article?.authorName} />
+        <meta property="og:decription" content={article?.description} />
+        <meta property="og:image" content={article?.avatarUrl} />
+      </MetaTags>
       <NewsBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
