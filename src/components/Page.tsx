@@ -1,4 +1,6 @@
 import { Container, Divider, Typography } from "@mui/material";
+import { useEffect } from "react";
+import project from "../../package.json";
 import Loading from "./common/Loading";
 
 interface PageProps {
@@ -8,7 +10,15 @@ interface PageProps {
   sx?: any;
 }
 
-export default function page(props: PageProps) {
+export default function Page(props: PageProps) {
+  
+  useEffect(() => {
+    window.document.title = `${project.name.toUpperCase()} | ${props.pageTitle}`;
+    return function restoreTitle() {
+      window.document.title = `${project.name.toUpperCase()}`;
+    }
+  });
+
   return (
     <Container
       sx={{
