@@ -64,13 +64,14 @@ export default function ArticleReadingPage() {
           name="image"
           content={`${window.location.origin}/${article?.avatarUrl}`}
         />
-        <meta name="authur" content={article?.authorName} />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={article?.title} />
         <meta property="og:decription" content={article?.description} />
         <meta
           property="og:image"
           content={`${window.location.origin}/${article?.avatarUrl}`}
         />
-        <meta property="og:authur" content={article?.authorName} />
+        <meta property="og:url" content={window.location.origin} />
       </MetaTags>
       <NewsBreadcrumbs />
       <Grid container spacing={1}>
