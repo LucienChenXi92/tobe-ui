@@ -60,10 +60,17 @@ export default function ArticleReadingPage() {
     <Page openLoading={openLoading} pageTitle={article?.title}>
       <MetaTags>
         <meta name="description" content={article?.description} />
-        <meta name="image" content={article?.avatarUrl} />
+        <meta
+          name="image"
+          content={`${window.location.origin}/${article?.avatarUrl}`}
+        />
         <meta name="authur" content={article?.authorName} />
         <meta property="og:decription" content={article?.description} />
-        <meta property="og:image" content={article?.avatarUrl} />
+        <meta
+          property="og:image"
+          content={`${window.location.origin}/${article?.avatarUrl}`}
+        />
+        <meta property="og:authur" content={article?.authorName} />
       </MetaTags>
       <NewsBreadcrumbs />
       <Grid container spacing={1}>
