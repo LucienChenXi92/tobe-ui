@@ -62,14 +62,14 @@ export default function ArticleReadingPage() {
         <meta name="description" content={article?.description} />
         <meta
           name="image"
-          content={`${window.location.origin}/${article?.avatarUrl}`}
+          content={`${window.location.origin}${article?.avatarUrl}`}
         />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={article?.title} />
-        <meta property="og:decription" content={article?.description} />
+        <meta property="og:description" content={article?.description} />
         <meta
           property="og:image"
-          content={`${window.location.origin}/${article?.avatarUrl}`}
+          content={`${window.location.origin}${article?.avatarUrl}`}
         />
         <meta property="og:url" content={window.location.origin} />
       </MetaTags>
