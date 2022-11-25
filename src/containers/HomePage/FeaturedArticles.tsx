@@ -18,7 +18,7 @@ export default function FeaturedArticles() {
   function loadNews(): void {
     server
       .get(
-        `${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=15&current=${current}`,
+        `${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=10&current=${current}`,
         {
           headers: {
             "Content-Type": "application/json",
