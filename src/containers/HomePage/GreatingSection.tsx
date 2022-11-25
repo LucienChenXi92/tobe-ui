@@ -54,7 +54,7 @@ export default function GreatingSection() {
       <Grid
         container
         sx={{
-          mt: "8vh",
+          mt: "60px",
         }}
       >
         <AutoplaySlider

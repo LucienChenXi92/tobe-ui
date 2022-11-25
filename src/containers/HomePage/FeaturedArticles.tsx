@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Paper } from "@mui/material";
+import { Button, Grid, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NewsDTO } from "../../global/types";
@@ -10,18 +10,25 @@ export default function FeaturedArticles() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
+  const [current, setCurrent] = useState<number>(1);
+  const [totalPage, setTotalPage] = useState<number>(1);
 
-  useEffect(() => loadNews(), []);
+  useEffect(() => loadNews(), [current]);
 
   function loadNews(): void {
     server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=1000&current=1`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(
+        `${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=15&current=${current}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((response) => {
-        setNewsData(response.data.records);
+        setNewsData(newsData.concat(response.data.records));
+        setCurrent(response.data.current);
+        setTotalPage(response.data.pages);
       })
       .catch(() => {});
   }
@@ -40,11 +47,19 @@ export default function FeaturedArticles() {
           onClick={() => navigate(`/news/articles/${n.id}`)}
         />
       ))}
-      <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
-        <Typography color="text.secondary" variant="body2">
-          {t("home-page.end-line")}
-        </Typography>
-      </Grid>
+      {current >= totalPage ? (
+        <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
+          <Typography color="text.secondary" variant="body2">
+            {t("home-page.end-line")}
+          </Typography>
+        </Grid>
+      ) : (
+        <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
+          <Button variant="text" onClick={() => setCurrent(current + 1)}>
+            {t("home-page.load-more")}
+          </Button>
+        </Grid>
+      )}
     </Grid>
   ) : (
     <></>

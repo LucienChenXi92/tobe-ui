@@ -12,7 +12,7 @@ function RichReader(props: RichEditorReaderProps) {
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
   const editorConfig: Partial<IEditorConfig> = {
-    readOnly: true
+    readOnly: true,
   };
 
   useEffect(() => {
@@ -28,7 +28,12 @@ function RichReader(props: RichEditorReaderProps) {
       value={props.htmlValue}
       defaultConfig={editorConfig}
       mode="default"
-      style={{ margin: "0px", padding: "0px", width: "100%"  }}
+      style={{
+        margin: "0px",
+        padding: "0px",
+        width: "100%",
+        color: "text.secondary",
+      }}
     />
   );
 }
