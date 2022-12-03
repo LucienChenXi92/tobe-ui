@@ -131,18 +131,6 @@ export default function ArticlesPage() {
       align: "center",
     },
     {
-      id: "creatTime",
-      label: t("articles-page.article-table.label.createTime"),
-      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
-      align: "center",
-    },
-    {
-      id: "updateTime",
-      label: t("articles-page.article-table.label.updateTime"),
-      format: (value) => (value ? new Date(value).toLocaleDateString() : ""),
-      align: "center",
-    },
-    {
       id: "operation",
       label: t("articles-page.article-table.label.operation"),
       align: "left",

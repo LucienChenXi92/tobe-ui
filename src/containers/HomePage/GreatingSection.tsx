@@ -67,22 +67,19 @@ export default function GreatingSection() {
         >
           <div data-src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main="1024, Happy programmer day!"
-              secondary="程序员节快乐！"
+              main="To be a better yourself!"
               sx={{ color: theme.palette.background.paper }}
             />
           </div>
           <div data-src="https://images.pexels.com/photos/2663851/pexels-photo-2663851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main="Knowledge is a sword"
-              secondary="知识作剑"
+              main="Knowledge is sword"
               sx={{ color: theme.palette.background.paper }}
             />
           </div>
           <div data-src="https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main={"Health is a shield"}
-              secondary="健康为盾"
+              main={"Health is shield"}
               sx={{ color: theme.palette.background.paper }}
             />
           </div>
