@@ -6,31 +6,50 @@ import { NewsDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { ArticleItem } from "../../components";
 
-export default function FeaturedArticles() {
+enum LoadType {
+  Append,
+  Replace,
+}
+
+export default function FeaturedArticles(props: { tags: string[] }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
   const [current, setCurrent] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
 
-  useEffect(() => loadNews(), [current]);
+  useEffect(() => handleTagFilterChange(props.tags), [props.tags]);
 
-  function loadNews(): void {
+  function loadNews(
+    loadType: LoadType,
+    currentPage: number,
+    tags: string[]
+  ): void {
     server
       .get(
-        `${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=10&current=${current}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
+        `${ROOT_URL}/${SERVER_URI.GET_NEWS_ARTICLES}?size=10&current=${currentPage}&tags=${tags}`
       )
       .then((response) => {
-        setNewsData(newsData.concat(response.data.records));
+        if (loadType === LoadType.Append) {
+          setNewsData(newsData.concat(response.data.records));
+        } else {
+          setNewsData(response.data.records);
+        }
         setCurrent(response.data.current);
         setTotalPage(response.data.pages);
       })
       .catch(() => {});
+  }
+
+  // reset filter and load the first page data
+  // the tags must passed from args othervise the value is not up to date
+  function handleTagFilterChange(tags: string[]) {
+    loadNews(LoadType.Replace, 1, tags);
+  }
+
+  // based on current filters and load more data
+  function handleLoadMoreArticles() {
+    loadNews(LoadType.Append, current + 1, props.tags);
   }
 
   return newsData.length > 0 ? (
@@ -55,7 +74,7 @@ export default function FeaturedArticles() {
         </Grid>
       ) : (
         <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
-          <Button variant="text" onClick={() => setCurrent(current + 1)}>
+          <Button variant="text" onClick={handleLoadMoreArticles}>
             {t("home-page.load-more")}
           </Button>
         </Grid>

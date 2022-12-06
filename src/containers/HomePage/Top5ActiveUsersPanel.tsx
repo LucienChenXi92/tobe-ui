@@ -8,20 +8,17 @@ export default function Top5ActiveUsersPanel() {
   const { t } = useTranslation();
   const [userData, setUserData] = useState<UserBriefProfileDTO[]>([]);
 
-  useEffect(() => loadNews(), []);
+  useEffect(() => loadUsers(), []);
 
-  function loadNews(): void {
+  function loadUsers(): void {
     server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS_TOP_5_ACTIVE_USERS}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(`${ROOT_URL}/${SERVER_URI.GET_NEWS_TOP_5_ACTIVE_USERS}`)
       .then((response) => {
         setUserData(response.data);
       })
       .catch(() => {});
   }
+
   return userData.length > 0 ? (
     <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
       <Grid

@@ -85,6 +85,10 @@ export interface TagOption {
   readonly label: string;
 }
 
+export interface TagStatisticDTO extends TagOption {
+  readonly count: number;
+}
+
 export interface ProjectCreationDTO {
   name: string;
   description: string;

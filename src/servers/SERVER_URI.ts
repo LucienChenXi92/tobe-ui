@@ -31,6 +31,7 @@ export const SERVER_URI = {
   GET_NEWS_PROJECTS: "v1/news/projects",
 
   GET_NEWS_TOP_5_ACTIVE_USERS: "v1/news/top5-active-users",
+  GET_TAG_STATISTICS: "v1/news/tag-statistics",
 
   GET_TAGS: "v1/tags",
   CREATE_TAG: "v1/tags",
