@@ -1,6 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { Chip, Grid } from "@mui/material";
 import { TagOption } from "../../global/types";
+import theme from "../../theme";
 
 const ListItem = styled("li")(({ theme }) => ({
   marginRight: theme.spacing(0.5),
@@ -23,7 +24,19 @@ export default function TagDisplayBar(props: { tags: TagOption[] }) {
       {props.tags.map((data) => {
         return (
           <ListItem key={data.value}>
-            <Chip label={data.label} variant="outlined" size="small" />
+            <Chip
+              label={data.label}
+              variant="outlined"
+              size="small"
+              sx={{
+                color: "text.secondary",
+                margin: "auto",
+                borderRadius: 3,
+                "&:hover": {
+                  color: theme.palette.secondary.main,
+                },
+              }}
+            />
           </ListItem>
         );
       })}
