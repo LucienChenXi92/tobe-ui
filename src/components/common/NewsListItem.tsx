@@ -1,12 +1,12 @@
 import { Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { TagOption } from "../../global/types";
-import { TagDisplayBar } from "../../components";
+import { TagDisplayBar } from "..";
 import theme from "../../theme";
 import { TimeFormat } from "../../commons";
 
-export default function ArticleItem(props: {
-  author: string;
+export default function NewsListItem(props: {
+  owner: string;
   title: string;
   description: string;
   publishTime: string | null;
@@ -58,7 +58,7 @@ export default function ArticleItem(props: {
       </Grid>
       <Grid container item xs={12}>
         <Typography variant="body2" color="text.secondary">
-          {props.author} | {TimeFormat.briefDateFormat(props.publishTime)} |{" "}
+          {props.owner} | {TimeFormat.briefDateFormat(props.publishTime)} |{" "}
           {t("home-page.view-count")}: {props.viewCount}
         </Typography>
       </Grid>

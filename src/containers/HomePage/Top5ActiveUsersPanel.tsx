@@ -24,7 +24,12 @@ export default function Top5ActiveUsersPanel() {
       <Grid
         item
         xs={12}
-        sx={{ px: 2, py: 1, mb: 1, borderBottom: "1px solid rgba(0,0,0,0.12)" }}
+        sx={{
+          px: 2,
+          py: 1.5,
+          mb: 1,
+          borderBottom: "1px solid rgba(0,0,0,0.12)",
+        }}
       >
         <Typography color="text.secondary" variant="subtitle1">
           {t("home-page.top5-active-users")}

@@ -60,7 +60,7 @@ export interface ProjectProgress {
 export interface NewsDTO {
   id: string;
   title: string;
-  newsType: string;
+  domain: string;
   description: string;
   ownerName: string;
   avatarUrl: string;
@@ -119,4 +119,9 @@ export interface ArticleCreationDTO {
 
 export interface ArticleUpdateDTO extends ArticleCreationDTO {
   id: string;
+}
+
+export enum Domain {
+  Article = "ARTICLE",
+  Project = "PROJECT",
 }

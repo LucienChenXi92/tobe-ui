@@ -15,9 +15,9 @@ export default function NewsPage() {
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
 
-  function getNewsTypeIconByValue(typeValue: string) {
-    switch (typeValue) {
-      case "1":
+  function getDomainIconByValue(domain: string) {
+    switch (domain) {
+      case "PROJECT":
         return (
           <Tooltip title={t("news-page.news-types.project")}>
             <FlagIcon
@@ -29,7 +29,7 @@ export default function NewsPage() {
             />
           </Tooltip>
         );
-      case "2":
+      case "ARTICLE":
         return (
           <Tooltip title={t("news-page.news-types.article")}>
             <ArticleIcon
@@ -39,17 +39,6 @@ export default function NewsPage() {
         );
       default:
         return null;
-    }
-  }
-
-  function getSubRouteByTypeValue(typeValue: string) {
-    switch (typeValue) {
-      case "1":
-        return "projects";
-      case "2":
-        return "articles";
-      default:
-        return "";
     }
   }
 
@@ -73,7 +62,7 @@ export default function NewsPage() {
             data={{
               title: n.title,
               description: n.description,
-              newsTypeIcon: getNewsTypeIconByValue(n.newsType),
+              newsTypeIcon: getDomainIconByValue(n.domain),
               creater: n.ownerName,
               avatarUrl: n.avatarUrl,
               createTime: TimeFormat.briefDateFormat(n.createTime),
@@ -83,7 +72,7 @@ export default function NewsPage() {
               publishTime: n.publishTime
                 ? TimeFormat.briefDateFormat(n.publishTime)
                 : TimeFormat.briefDateFormat(n.createTime),
-              detailsUrl: `/news/${getSubRouteByTypeValue(n.newsType)}/${n.id}`,
+              detailsUrl: `/news/${n.domain?.toLowerCase()}s/${n.id}`,
               tags: n.tags,
             }}
             key={n.id}

@@ -1,4 +1,5 @@
 import { AxiosPromise } from "axios";
+import { Domain } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 const options = {
@@ -7,9 +8,16 @@ const options = {
   },
 };
 
-export function getNews(newsType: string): AxiosPromise {
+export function getNewsByTags(
+  domain: Domain,
+  size: number,
+  current: number,
+  tags: string[]
+): AxiosPromise {
   return server.get(
-    `${ROOT_URL}/${SERVER_URI.GET_NEWS}/${newsType}?size=1000&current=1`,
+    `${ROOT_URL}/${
+      SERVER_URI.GET_NEWS
+    }/${domain.toLowerCase()}s?size=${size}&current=${current}&tags=${tags}`,
     options
   );
 }

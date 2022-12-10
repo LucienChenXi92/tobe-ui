@@ -11,10 +11,11 @@ import {
   Checkbox,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { TagStatisticDTO } from "../../global/types";
+import { Domain, TagStatisticDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 
 export default function TagStatisticsFilter(props: {
+  domain: Domain;
   checked: string[];
   setChecked: (newValue: string[]) => void;
 }) {
@@ -33,15 +34,13 @@ export default function TagStatisticsFilter(props: {
     props.setChecked(newChecked);
   };
 
-  useEffect(() => loadData(), []);
+  useEffect(() => loadData(), [props.domain]);
 
   function loadData(): void {
     server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_TAG_STATISTICS}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(
+        `${ROOT_URL}/${SERVER_URI.GET_TAG_STATISTICS}?domain=${props.domain}`
+      )
       .then((response) => {
         setTagStatistics(response.data);
       })
@@ -55,7 +54,12 @@ export default function TagStatisticsFilter(props: {
       <Grid
         item
         xs={12}
-        sx={{ px: 2, py: 1, mb: 1, borderBottom: "1px solid rgba(0,0,0,0.12)" }}
+        sx={{
+          px: 2,
+          py: 1.5,
+          mb: 1,
+          borderBottom: "1px solid rgba(0,0,0,0.12)",
+        }}
       >
         <Typography color="text.secondary" variant="subtitle1">
           {t("home-page.tag-statistics")}

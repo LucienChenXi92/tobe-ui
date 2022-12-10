@@ -1,19 +1,29 @@
 import { useState } from "react";
 import { Container, Grid } from "@mui/material";
-import FeaturedArticles from "./FeaturedArticles";
+import { Domain } from "../../global/types";
+import FeaturedNews from "./FeaturedNews";
 import Top5ActiveUsersPanel from "./Top5ActiveUsersPanel";
 import TagStatisticsFilter from "./TagStatisticsFilter";
 
 export default function FunctionSection() {
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
-
+  const [domain, setDomain] = useState<Domain>(Domain.Article);
   console.log("render Parent!");
+
+  function handleDomainChange(newValue: Domain) {
+    setCheckedTags([]);
+    setDomain(newValue);
+  }
 
   return (
     <Container sx={{ my: 3 }}>
       <Grid container spacing={2}>
         <Grid item sm={12} md={9}>
-          <FeaturedArticles tags={checkedTags} />
+          <FeaturedNews
+            tags={checkedTags}
+            domain={domain}
+            handleDomainChange={handleDomainChange}
+          />
         </Grid>
         <Grid container item sm={false} md={3} spacing={2} direction="column">
           <Grid item>
@@ -21,6 +31,7 @@ export default function FunctionSection() {
           </Grid>
           <Grid item>
             <TagStatisticsFilter
+              domain={domain}
               checked={checkedTags}
               setChecked={setCheckedTags}
             />
