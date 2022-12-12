@@ -41,18 +41,27 @@ export default function Top5ActiveUsersPanel() {
           item
           xs={12}
           alignItems="center"
+          justifyContent="center"
           sx={{ px: 2 }}
           key={n.id}
         >
           <Avatar
             alt={n.firstName}
             src={n.avatarUrl}
-            sx={{ flexGrow: 0, mb: 1, mr: 2, width: "30px", height: "30px" }}
+            sx={{
+              flexGrow: 0,
+              mb: 1,
+              mr: 4,
+            }}
           />
           <Typography
             color="text.secondary"
-            variant="subtitle1"
-            sx={{ flexGrow: 1 }}
+            sx={{
+              flexGrow: 1,
+              fontSize: "0.875rem",
+              fontWeight: 400,
+              lineHeight: 1.43,
+            }}
           >
             {n.firstName + " " + n.lastName}
           </Typography>

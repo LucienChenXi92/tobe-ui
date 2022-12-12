@@ -71,11 +71,12 @@ export default function TagStatisticsFilter(props: {
           const labelId = `checkbox-list-label-${n.value}`;
 
           return (
-            <ListItem key={n.value} disablePadding>
+            <ListItem key={n.value} sx={{ py: 0 }}>
               <ListItemButton
                 role={undefined}
                 onClick={handleToggle(n.value)}
                 dense
+                color="text.secondary"
               >
                 <ListItemIcon>
                   <Checkbox
@@ -89,7 +90,9 @@ export default function TagStatisticsFilter(props: {
                 <ListItemText
                   id={labelId}
                   primary={`${n.label}(${n.count})`}
-                  color="secondary"
+                  sx={{
+                    color: "text.secondary",
+                  }}
                 />
               </ListItemButton>
             </ListItem>

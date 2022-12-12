@@ -82,7 +82,7 @@ export default function FeaturedArticles(props: {
         <Tab value={Domain.Article} label={t("home-page.articles")} />
         <Tab value={Domain.Project} label={t("home-page.projects")} />
       </Tabs>
-      {newsData.length > 0 && (
+      {newsData.length > 0 ? (
         <>
           {newsData.map((n) => (
             <NewsListItem
@@ -112,6 +112,19 @@ export default function FeaturedArticles(props: {
             </Grid>
           )}
         </>
+      ) : (
+        <Grid
+          container
+          item
+          xs={12}
+          justifyContent="center"
+          alignContent="center"
+          sx={{ my: 1, minHeight: "100px" }}
+        >
+          <Typography color="text.secondary" variant="body2">
+            {t("home-page.no-content")}
+          </Typography>
+        </Grid>
       )}
     </Grid>
   );

@@ -170,6 +170,7 @@ const HeaderContent = () => {
           onClick={() => navigate("/")}
           sx={{
             mr: 2,
+            ml: "30px",
             display: { xs: "flex", md: "none" },
             flexGrow: 1,
             fontWeight: 700,

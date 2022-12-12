@@ -32,9 +32,6 @@ export default function TagDisplayBar(props: { tags: TagOption[] }) {
                 color: "text.secondary",
                 margin: "auto",
                 borderRadius: 3,
-                "&:hover": {
-                  color: theme.palette.secondary.main,
-                },
               }}
             />
           </ListItem>
