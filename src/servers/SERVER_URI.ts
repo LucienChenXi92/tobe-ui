@@ -8,7 +8,6 @@ export const SERVER_URI = {
   DELETE_USER: "v1/users",
 
   GET_PROJECTS: "v1/project-infos",
-  GET_PROJECT_OVERVIEW: "v1/project-infos/overview",
   CREATE_PROJECT: "v1/project-infos",
   UPDATE_PROJECT: "v1/project-infos",
   DELETE_PROJECT: "v1/project-infos",
@@ -24,7 +23,7 @@ export const SERVER_URI = {
   UPDATE_ARTICLE: "v1/article-infos",
   DELETE_ARTICLE: "v1/article-infos",
   RELEASE_ARTICLE: "v1/article-infos/:articleId/release",
-  GET_ARTICLE_OVERVIEW: "v1/article-infos/overview",
+  GET_OVERVIEW: "v1/overview",
 
   GET_NEWS: "v1/news",
 

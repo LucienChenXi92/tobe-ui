@@ -5,15 +5,17 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
+import VisibilityIcon from '@mui/icons-material/Visibility';
 import VerifiedIcon from "@mui/icons-material/Verified";
-import TaskAltIcon from "@mui/icons-material/TaskAlt";
 import StorageIcon from "@mui/icons-material/Storage";
 import Page from "../../components/Page";
 import { URL } from "../../routes";
+import { Domain } from "../../global/types";
 
 interface BaseInfoOverview {
   totalNum: number;
   publicNum: number;
+  totalViewCount: number;
 }
 
 interface ProjectInfoOverview extends BaseInfoOverview {
@@ -29,47 +31,28 @@ export default function DashboardPage() {
   const [projectData, setProjectData] = useState<ProjectInfoOverview>({
     totalNum: 0,
     publicNum: 0,
+    totalViewCount: 0,
     ongoingNum: 0,
-    finishedNum: 0,
+    finishedNum: 0
   });
   const [articleData, setArticleData] = useState<ArticleInfoOverview>({
     totalNum: 0,
     publicNum: 0,
+    totalViewCount: 0
   });
 
   useEffect(() => loadData(), []);
 
   function loadData(): void {
-    loadProjectOverview();
-    loadArticleOverview();
+    loadOverview(Domain.Project, setProjectData);
+    loadOverview(Domain.Article, setArticleData);
   }
 
-  function loadProjectOverview(): void {
+  function loadOverview(domain: Domain, setData: (any: any) => void): void {
     server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_PROJECT_OVERVIEW}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .get(`${ROOT_URL}/${SERVER_URI.GET_OVERVIEW}/${domain}`)
       .then((response) => {
-        setProjectData(response.data);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("dashboard-page.msg.error"), {
-          variant: "error",
-        });
-      });
-  }
-
-  function loadArticleOverview(): void {
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_ARTICLE_OVERVIEW}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-      .then((response) => {
-        setArticleData(response.data);
+        setData(response.data);
       })
       .catch(() => {
         enqueueSnackbar(t("dashboard-page.msg.error"), {
@@ -98,10 +81,10 @@ export default function DashboardPage() {
           icon={<VerifiedIcon color="info" sx={{ fontSize: 50 }} />}
         />
         <StandardSmallWidget
-          value={projectData.finishedNum}
-          label={t("dashboard-page.project.finished")}
+          value={(projectData.totalViewCount / 1000).toFixed(1)}
+          label={t("dashboard-page.project.view-count")}
           link={URL.PROJECTS}
-          icon={<TaskAltIcon color="success" sx={{ fontSize: 50 }} />}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 50 }} />}
         />
         <StandardSmallWidget
           value={projectData.totalNum}
@@ -122,6 +105,12 @@ export default function DashboardPage() {
           icon={<VerifiedIcon color="info" sx={{ fontSize: 50 }} />}
         />
         <StandardSmallWidget
+          value={(articleData.totalViewCount / 1000).toFixed(1)}
+          label={t("dashboard-page.article.view-count")}
+          link={URL.PROJECTS}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 50 }} />}
+        />
+        <StandardSmallWidget
           value={articleData.totalNum}
           label={t("dashboard-page.article.all")}
           link={URL.ARTICLES}
@@ -133,7 +122,7 @@ export default function DashboardPage() {
 }
 
 interface WidgetProps {
-  value: number;
+  value: number | string; 
   label: string;
   link: string;
   icon: any;

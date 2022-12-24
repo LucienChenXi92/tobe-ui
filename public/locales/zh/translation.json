@@ -224,14 +224,15 @@
     "project": {
       "title": "计划总览",
       "ongoing": "进行中项目",
-      "finished": "完结的项目",
       "public": "公开的项目",
-      "all": "所有的项目"
+      "all": "所有的项目",
+      "view-count": "浏览量(以千计)"
     },
     "article": {
       "title": "笔记总览",
       "public": "公开的笔记",
-      "all": "所有的笔记"
+      "all": "所有的笔记",
+      "view-count": "浏览量(以千计)"
     }
   },
   "news-page": {

@@ -221,14 +221,15 @@
     "project": {
       "title": "Project Data",
       "ongoing": "Ongoing project",
-      "finished": "Finished project",
       "public": "Public project",
-      "all": "All project"
+      "all": "All project",
+      "view-count": "View count(In thousands)"
     },
     "article": {
       "title": "Article Data",
       "public": "Public article",
-      "all": "All article"
+      "all": "All article",
+      "view-count": "View count(In thousands)"
     },
     "msg": {
       "error": "Failed to fetch data"
