@@ -8,7 +8,7 @@ import theme from "../../../theme";
 import { NewsDTO } from "../../../global/types";
 import { StandardNewsCard } from "./StandardNewsCard";
 import { TimeFormat } from "../../../commons";
-import { getAllNews } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 
 export default function NewsPage() {
   const { t } = useTranslation();
@@ -46,7 +46,7 @@ export default function NewsPage() {
 
   function loadNews(): void {
     setOpenLoading(true);
-    getAllNews()
+    PublicDataService.getAllNews()
       .then((response) => {
         setNewsData(response.data.records);
       })

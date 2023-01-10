@@ -3,7 +3,7 @@ import { Grid, Typography, Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { UserBriefProfileDTO } from "../../../global/types";
 import { SidePanel } from "../../../components";
-import { getTop5ActiveUsers } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 
 export default function Top5ActiveUsersPanel() {
   const { t } = useTranslation();
@@ -12,7 +12,7 @@ export default function Top5ActiveUsersPanel() {
   useEffect(() => loadUsers(), []);
 
   function loadUsers(): void {
-    getTop5ActiveUsers()
+    PublicDataService.getTop5ActiveUsers()
       .then((response) => {
         setUserData(response.data);
       })

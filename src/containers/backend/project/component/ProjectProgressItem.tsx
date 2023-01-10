@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Paper, Grid, TextField } from "@mui/material";
 import { ProjectProgress } from "../../../../global/types";
-import { useAuthState } from "../../../../contexts";
 import { EditIconButton } from "../../../../components";
 import { ProjectService } from "../../../../services";
 
@@ -14,7 +13,6 @@ interface ProjectProgressItemProps {
 
 export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   const { t } = useTranslation();
-  const context = useAuthState();
   const [progress, setProgress] = useState<ProjectProgress>(props.progress);
   const [editable, setEditable] = useState<boolean>(false);
   const [progressDesc, setProgressDesc] = useState<string>(

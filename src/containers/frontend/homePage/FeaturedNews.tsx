@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
 import { NewsListItem } from "../../../components";
-import { getNewsByTags } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 
 enum LoadType {
   Append,
@@ -34,7 +34,7 @@ export default function FeaturedArticles(props: {
     _currentPage: number,
     _tags: string[]
   ): void {
-    getNewsByTags(_domain, 10, _currentPage, _tags)
+    PublicDataService.getNewsByTags(_domain, 10, _currentPage, _tags)
       .then((response) => {
         if (_loadType === LoadType.Append) {
           setNewsData(newsData.concat(response.data.records));

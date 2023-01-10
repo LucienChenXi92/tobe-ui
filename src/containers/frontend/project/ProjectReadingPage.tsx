@@ -8,7 +8,7 @@ import { ProjectInfo } from "../../../global/types";
 import { AuthorDisplayPanel } from "../../../components";
 import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
 import { TimeFormat } from "../../../commons";
-import { getProjectById } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
@@ -21,7 +21,7 @@ export default function ProjectReadingPage() {
 
   function loadProject(projectId: string): void {
     setOpenLoading(true);
-    getProjectById(projectId)
+    PublicDataService.getProjectById(projectId)
       .then((response) => {
         setProject(response.data);
       })

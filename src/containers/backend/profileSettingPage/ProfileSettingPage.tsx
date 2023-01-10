@@ -128,6 +128,7 @@ export default function ProfileSettingPage() {
                       src={avatarUrl}
                       width="100%"
                       onClick={handleShowAvatarsChange}
+                      alt={avatarUrl}
                     ></img>
                   ) : (
                     <PersonIcon

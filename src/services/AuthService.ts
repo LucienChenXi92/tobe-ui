@@ -1,5 +1,5 @@
 import { AxiosPromise } from "axios";
-import { server, ROOT_URL } from ".";
+import { server } from ".";
 
 const AUTH_URI = "v1/auth";
 const requestOptions = {
@@ -9,7 +9,7 @@ const requestOptions = {
 };
 
 export function login(data: any): AxiosPromise {
-  return server.post(`${ROOT_URL}/${AUTH_URI}/login`, data, requestOptions);
+  return server.post(`/${AUTH_URI}/login`, data, requestOptions);
 }
 
 export function refreshToken(refreshToken: string) {

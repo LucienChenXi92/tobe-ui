@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { SidePanel } from "../../../components";
 import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
-import { getNewsByTags } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 import { Grid, Typography, Link } from "@mui/material";
 import { URL } from "../../../routes";
 
@@ -16,7 +16,7 @@ export default function RelevantArticlePanel(props: {
   useEffect(() => loadNews(), []);
 
   function loadNews(): void {
-    getNewsByTags(Domain.Article, 100, 1, props.tages)
+    PublicDataService.getNewsByTags(Domain.Article, 100, 1, props.tages)
       .then((response) => {
         setArticle(
           response.data.records.filter((n: NewsDTO) => n.id !== props.articleId)

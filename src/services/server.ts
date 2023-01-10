@@ -1,10 +1,10 @@
 import axios from "axios";
 import { LOCAL_STORAGE_KEYS } from "../commons";
-import { ROOT_URL, AuthService } from ".";
+import { AuthService } from ".";
 import { URL } from "../routes";
 
 const server = axios.create({
-  baseURL: ROOT_URL,
+  baseURL: process.env.REACT_APP_SERVER_ROOT_URL,
   timeout: 60000,
 });
 

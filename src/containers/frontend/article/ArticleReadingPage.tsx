@@ -13,7 +13,7 @@ import {
 } from "../../../components";
 import { ArticleDetailDTO } from "../../../global/types";
 import { TimeFormat } from "../../../commons";
-import { getArticleById } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 import RelevantArticlePanel from "./RelevantArticlePanel";
 
 export default function ArticleReadingPage() {
@@ -28,7 +28,7 @@ export default function ArticleReadingPage() {
 
   function loadArticle(): void {
     setOpenLoading(true);
-    getArticleById(articleId || "")
+    PublicDataService.getArticleById(articleId || "")
       .then((response) => {
         setArticle(response.data);
       })

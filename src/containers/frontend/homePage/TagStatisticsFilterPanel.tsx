@@ -10,7 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Domain, TagStatisticDTO } from "../../../global/types";
 import { SidePanel } from "../../../components";
-import { getTagStatistics } from "../../../services/PublicDataService";
+import { PublicDataService } from "../../../services";
 
 export default function TagStatisticsFilterPanel(props: {
   domain: Domain;
@@ -35,7 +35,7 @@ export default function TagStatisticsFilterPanel(props: {
   useEffect(() => loadData(), [props.domain]);
 
   function loadData(): void {
-    getTagStatistics(props.domain)
+    PublicDataService.getTagStatistics(props.domain)
       .then((response) => {
         setTagStatistics(response.data);
       })

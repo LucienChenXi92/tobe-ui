@@ -3,19 +3,17 @@ import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { Avatar, Grid, Link, Paper, Typography } from "@mui/material";
 import { UserBriefProfileDTO } from "../../global/types";
-import { getBriefProfileByUserId } from "../../services/PublicDataService";
+import { PublicDataService } from "../../services";
 
 export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
-  const [openLoading, setOpenLoading] = useState<boolean>(false);
   const { enqueueSnackbar } = useSnackbar();
   const [profile, setProfile] = useState<UserBriefProfileDTO | null>(null);
 
   useEffect(() => loadProfile(), []);
 
   function loadProfile(): void {
-    setOpenLoading(true);
-    getBriefProfileByUserId(props.userId)
+    PublicDataService.getBriefProfileByUserId(props.userId)
       .then((response) => {
         setProfile(response.data);
       })
@@ -24,7 +22,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
           variant: "error",
         });
       })
-      .finally(() => setOpenLoading(false));
+      .finally();
   }
   return (
     <Paper sx={{ p: 0, mb: 2 }} variant="outlined">

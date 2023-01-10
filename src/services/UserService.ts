@@ -1,16 +1,14 @@
 import { AxiosPromise } from "axios";
-import { server, ROOT_URL } from ".";
+import { server } from ".";
 
 const USER_URI = "v1/users";
 
 export function getUsers(size: number, current: number): AxiosPromise {
-  return server.get(
-    `${ROOT_URL}/${USER_URI}?size=${size}&current=${current + 1}`
-  );
+  return server.get(`/${USER_URI}?size=${size}&current=${current + 1}`);
 }
 
 export function deleteUser(id: number | string): AxiosPromise {
-  return server.delete(`${ROOT_URL}/${USER_URI}/${id}`);
+  return server.delete(`/${USER_URI}/${id}`);
 }
 
 export function createUser(data: {
@@ -19,7 +17,7 @@ export function createUser(data: {
   email: string | undefined;
   password: string | undefined;
 }): AxiosPromise {
-  return server.post(`${ROOT_URL}/${USER_URI}`, data, {
+  return server.post(`/${USER_URI}`, data, {
     headers: {
       "Content-Type": "application/json",
     },
@@ -38,7 +36,7 @@ export function updateUser(data: {
   introduction: string | undefined;
   blog: string | undefined;
 }): AxiosPromise {
-  return server.put(`${ROOT_URL}/${USER_URI}/${data.id}`, data, {
+  return server.put(`/${USER_URI}/${data.id}`, data, {
     headers: {
       "Content-Type": "application/json",
     },
