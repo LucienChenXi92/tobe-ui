@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { Avatar, Grid, Link, Paper, Typography } from "@mui/material";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import { UserBriefProfileDTO } from "../../global/types";
+import { getBriefProfileByUserId } from "../../services/PublicDataService";
 
 export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
@@ -15,12 +15,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
 
   function loadProfile(): void {
     setOpenLoading(true);
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_USER_BRIEF_PROFILE}/${props.userId}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    getBriefProfileByUserId(props.userId)
       .then((response) => {
         setProfile(response.data);
       })

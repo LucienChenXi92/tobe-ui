@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { enqueueSnackbar } from "notistack";
 import CreatableSelect from "react-select/creatable";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { TagService } from "../../services";
 import { StylesConfig } from "react-select";
 import { TagOption } from "../../global/types";
 
@@ -20,12 +20,7 @@ export default function MultipleTagSelecter(props: {
   useEffect(() => loadTags(""), []);
 
   function loadTags(inputValue: string) {
-    server
-      .get(`${ROOT_URL}/${SERVER_URI.GET_TAGS}?keyword=${inputValue}`, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+    TagService.getTags(inputValue)
       .then((response) => {
         setOptions(response.data.records);
       })
@@ -44,17 +39,7 @@ export default function MultipleTagSelecter(props: {
     }
 
     try {
-      const response = await server.post(
-        `${ROOT_URL}/${SERVER_URI.CREATE_TAG}`,
-        {
-          keyword: inputValue,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await TagService.createTag(inputValue);
       if (isInstanceOfTagOption(response.data)) {
         props.value.push(response.data);
         props.setValue(props.value);

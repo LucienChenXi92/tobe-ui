@@ -1,5 +1,5 @@
 import React from "react";
-import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { AuthService } from "../../services";
 import { Action } from "../types";
 import { LOCAL_STORAGE_KEYS } from "../../commons";
 
@@ -7,18 +7,8 @@ export async function loginUser(
   dispatch: React.Dispatch<Action>,
   signInPayload: any
 ) {
-  const requestOptions = {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  };
-
   try {
-    let response = await server.post(
-      `${ROOT_URL}/${SERVER_URI.LOGIN}`,
-      signInPayload,
-      requestOptions
-    );
+    let response = await AuthService.login(signInPayload);
     let data = response.data;
 
     if (data.userProfile) {

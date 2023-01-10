@@ -4,43 +4,43 @@ import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { BasicLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
-import HomePage from "../containers/homePage/HomePage";
-import SignInPage from "../containers/signIn/SignInPage";
+import HomePage from "../containers/frontend/homePage/HomePage";
+import SignInPage from "../containers/frontend/signIn/SignInPage";
 
-const NewsPage = React.lazy(() => import("../containers/news/NewsPage"));
-const AboutPage = React.lazy(() => import("../containers/aboutPage/AboutPage"));
-const SignUpPage = React.lazy(() => import("../containers/signUp/SignUpPage"));
+const NewsPage = React.lazy(() => import("../containers/frontend/news/NewsPage"));
+const AboutPage = React.lazy(() => import("../containers/frontend/aboutPage/AboutPage"));
+const SignUpPage = React.lazy(() => import("../containers/frontend/signUp/SignUpPage"));
 const ProfileSettingPage = React.lazy(
-  () => import("../containers/profileSettingPage/ProfileSettingPage")
+  () => import("../containers/backend/profileSettingPage/ProfileSettingPage")
 );
 const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
 const DashboardPage = React.lazy(
-  () => import("../containers/myZone/DashboardPage")
+  () => import("../containers/backend/dashboard/DashboardPage")
 );
-const UsersPage = React.lazy(() => import("../containers/myZone/UsersPage"));
+const UsersPage = React.lazy(() => import("../containers/backend/user/UsersPage"));
 const ProjectsPage = React.lazy(
-  () => import("../containers/project/ProjectsPage")
+  () => import("../containers/backend/project/ProjectsPage")
 );
 const ProjectCreationPage = React.lazy(
-  () => import("../containers/project/ProjectCreationPage")
+  () => import("../containers/backend/project/ProjectCreationPage")
 );
 const ProjectDetailPage = React.lazy(
-  () => import("../containers/project/ProjectDetailPage")
+  () => import("../containers/backend/project/ProjectDetailPage")
 );
 const ProjectReadingPage = React.lazy(
-  () => import("../containers/project/ProjectReadingPage")
+  () => import("../containers/frontend/project/ProjectReadingPage")
 );
 const ArticlesPage = React.lazy(
-  () => import("../containers/article/ArticlesPage")
+  () => import("../containers/backend/article/ArticlesPage")
 );
 const ArticleCreationPage = React.lazy(
-  () => import("../containers/article/ArticleCreationPage")
+  () => import("../containers/backend/article/ArticleCreationPage")
 );
 const ArticleDetailPage = React.lazy(
-  () => import("../containers/article/ArticleDetailPage")
+  () => import("../containers/backend/article/ArticleDetailPage")
 );
 const ArticleReadingPage = React.lazy(
-  () => import("../containers/article/ArticleReadingPage")
+  () => import("../containers/frontend/article/ArticleReadingPage")
 );
 
 function MainRouter() {
