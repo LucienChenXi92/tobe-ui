@@ -4,32 +4,17 @@ import { useAuthState } from "../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import Page from "../../components/Page";
+import { Page } from "../../components";
 import {
   AuthorDisplayPanel,
   NewsBreadcrumbs,
   RichReader,
   TagDisplayBar,
 } from "../../components";
-import { TagOption } from "../../global/types";
+import { ArticleDetailDTO } from "../../global/types";
 import { TimeFormat } from "../../commons";
 import { getArticle } from "./ArticleService";
-
-interface ArticleDetail {
-  content: string;
-  authorName: string;
-  authorId: string;
-  description: string;
-  id: string;
-  likeCount: number;
-  viewCount: number;
-  publicToAll: boolean;
-  publishTime: string;
-  subTitle: string;
-  title: string;
-  avatarUrl: string;
-  tags: TagOption[];
-}
+import RelevantArticlePanel from "./RelevantArticlePanel";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
@@ -37,7 +22,7 @@ export default function ArticleReadingPage() {
   const authState = useAuthState();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
-  const [article, setArticle] = useState<ArticleDetail | null>(null);
+  const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 
   useEffect(() => loadArticle(), []);
 
@@ -120,11 +105,18 @@ export default function ArticleReadingPage() {
             </Grid>
           </Paper>
         </Grid>
-        {article?.authorId && (
-          <Grid item sm={12} md={3}>
+
+        <Grid item sm={12} md={3}>
+          {article?.authorId && (
             <AuthorDisplayPanel userId={article?.authorId} />
-          </Grid>
-        )}
+          )}
+          {article?.tags && (
+            <RelevantArticlePanel
+              articleId={article.id}
+              tages={article?.tags.map((i) => i.value)}
+            />
+          )}
+        </Grid>
       </Grid>
     </Page>
   );

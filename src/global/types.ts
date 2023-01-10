@@ -121,6 +121,22 @@ export interface ArticleUpdateDTO extends ArticleCreationDTO {
   id: string;
 }
 
+export interface ArticleDetailDTO {
+  content: string;
+  authorName: string;
+  authorId: string;
+  description: string;
+  id: string;
+  likeCount: number;
+  viewCount: number;
+  publicToAll: boolean;
+  publishTime: string;
+  subTitle: string;
+  title: string;
+  avatarUrl: string;
+  tags: TagOption[];
+}
+
 export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",

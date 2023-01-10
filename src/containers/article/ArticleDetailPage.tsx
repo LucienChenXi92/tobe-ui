@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { useNavigate } from "react-router-dom";
-import Page from "../../components/Page";
+import { Page } from "../../components";
 import { URL } from "../../routes";
 import { TagOption } from "../../global/types";
 import ArticleEditMainSection from "./component/ArticleEditMainSection";

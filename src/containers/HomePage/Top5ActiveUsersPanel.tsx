@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import { Grid, Typography, Paper, Avatar } from "@mui/material";
+import { Grid, Typography, Avatar } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { UserBriefProfileDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { SidePanel } from "../../components";
 
 export default function Top5ActiveUsersPanel() {
   const { t } = useTranslation();
@@ -20,21 +21,7 @@ export default function Top5ActiveUsersPanel() {
   }
 
   return userData.length > 0 ? (
-    <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
-      <Grid
-        item
-        xs={12}
-        sx={{
-          px: 2,
-          py: 1.5,
-          mb: 1,
-          borderBottom: "1px solid rgba(0,0,0,0.12)",
-        }}
-      >
-        <Typography color="text.secondary" variant="subtitle1">
-          {t("home-page.top5-active-users")}
-        </Typography>
-      </Grid>
+    <SidePanel title={t("home-page.top5-active-users")}>
       {userData.map((n) => (
         <Grid
           container
@@ -67,7 +54,7 @@ export default function Top5ActiveUsersPanel() {
           </Typography>
         </Grid>
       ))}
-    </Grid>
+    </SidePanel>
   ) : (
     <></>
   );

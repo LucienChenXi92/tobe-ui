@@ -1,8 +1,5 @@
 import { useState, useEffect } from "react";
 import {
-  Grid,
-  Typography,
-  Paper,
   List,
   ListItem,
   ListItemIcon,
@@ -13,6 +10,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { Domain, TagStatisticDTO } from "../../global/types";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
+import { SidePanel } from "../../components";
 
 export default function TagStatisticsFilter(props: {
   domain: Domain;
@@ -50,22 +48,7 @@ export default function TagStatisticsFilter(props: {
   console.log("render Tag");
 
   return tagStatistics.length > 0 ? (
-    <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
-      <Grid
-        item
-        xs={12}
-        sx={{
-          px: 2,
-          py: 1.5,
-          mb: 1,
-          borderBottom: "1px solid rgba(0,0,0,0.12)",
-        }}
-      >
-        <Typography color="text.secondary" variant="subtitle1">
-          {t("home-page.tag-statistics")}
-        </Typography>
-      </Grid>
-
+    <SidePanel title={t("home-page.tag-statistics")}>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
         {tagStatistics.map((n) => {
           const labelId = `checkbox-list-label-${n.value}`;
@@ -99,7 +82,7 @@ export default function TagStatisticsFilter(props: {
           );
         })}
       </List>
-    </Grid>
+    </SidePanel>
   ) : (
     <></>
   );

@@ -1,7 +1,7 @@
 import { Container, Divider, Typography } from "@mui/material";
 import { useEffect } from "react";
-import project from "../../package.json";
-import Loading from "./common/Loading";
+import project from "../../../package.json";
+import Loading from "./Loading";
 
 interface PageProps {
   openLoading?: boolean;

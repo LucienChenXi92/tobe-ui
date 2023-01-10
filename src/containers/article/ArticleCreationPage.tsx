@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
-import Page from "../../components/Page";
+import { Page } from "../../components";
 import { URL } from "../../routes";
 import { TagOption } from "../../global/types";
 import ArticleEditMainSection from "./component/ArticleEditMainSection";

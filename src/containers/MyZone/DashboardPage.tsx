@@ -5,10 +5,10 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { server, ROOT_URL, SERVER_URI } from "../../servers";
 import TimelapseIcon from "@mui/icons-material/Timelapse";
-import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityIcon from "@mui/icons-material/Visibility";
 import VerifiedIcon from "@mui/icons-material/Verified";
 import StorageIcon from "@mui/icons-material/Storage";
-import Page from "../../components/Page";
+import { Page } from "../../components";
 import { URL } from "../../routes";
 import { Domain } from "../../global/types";
 
@@ -33,12 +33,12 @@ export default function DashboardPage() {
     publicNum: 0,
     totalViewCount: 0,
     ongoingNum: 0,
-    finishedNum: 0
+    finishedNum: 0,
   });
   const [articleData, setArticleData] = useState<ArticleInfoOverview>({
     totalNum: 0,
     publicNum: 0,
-    totalViewCount: 0
+    totalViewCount: 0,
   });
 
   useEffect(() => loadData(), []);
@@ -122,7 +122,7 @@ export default function DashboardPage() {
 }
 
 interface WidgetProps {
-  value: number | string; 
+  value: number | string;
   label: string;
   link: string;
   icon: any;

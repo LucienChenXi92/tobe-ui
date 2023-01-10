@@ -284,6 +284,7 @@
     "post-at": " at ",
     "view": "View",
     "back-btn": "Back",
+    "relevant-articles": "Relevant articles",
     "msg": {
       "error": "Failed to fetch data"
     }

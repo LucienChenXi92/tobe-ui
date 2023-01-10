@@ -6,7 +6,7 @@ import Copyright from "./common/CopyRight";
 import Loading from "./common/Loading";
 import MyMenu from "./common/MyMenu";
 import PagedTable from "./common/PagedTable";
-import Page from "./Page";
+import Page from "./common/Page";
 import EditIconButton from "./common/EditIconButton";
 import RichEditor from "./common/richEditor/RichEditor";
 import RichReader from "./common/richEditor/RichReader";
@@ -30,6 +30,7 @@ import MultipleTagSelecter from "./common/MultipleTagSelecter";
 import TagDisplayBar from "./common/TagDisplayBar";
 import NewsBreadcrumbs from "./common/NewsBreadcrumbs";
 import NewsListItem from "./common/NewsListItem";
+import SidePanel from "./common/SidePanel";
 
 export {
   NewsListItem,
@@ -60,4 +61,5 @@ export {
   MultipleTagSelecter,
   TagDisplayBar,
   NewsBreadcrumbs,
+  SidePanel,
 };
