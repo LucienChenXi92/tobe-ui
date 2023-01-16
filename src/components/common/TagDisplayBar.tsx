@@ -1,7 +1,6 @@
 import { styled } from "@mui/material/styles";
 import { Chip, Grid } from "@mui/material";
 import { TagOption } from "../../global/types";
-import theme from "../../theme";
 
 const ListItem = styled("li")(({ theme }) => ({
   marginRight: theme.spacing(0.5),

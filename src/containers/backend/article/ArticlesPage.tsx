@@ -121,11 +121,6 @@ export default function ArticlesPage() {
       align: "center",
     },
     {
-      id: "subTitle",
-      label: t("articles-page.article-table.label.subTitle"),
-      align: "center",
-    },
-    {
       id: "description",
       label: t("articles-page.article-table.label.description"),
       align: "center",
