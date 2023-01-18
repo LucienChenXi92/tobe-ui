@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Tabs, Tab, Button, Grid, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -23,43 +23,49 @@ export default function FeaturedArticles(props: {
   const [current, setCurrent] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
 
-  useEffect(
-    () => handleTagFilterChange(props.tags, props.domain),
-    [props.tags, props.domain]
+  const loadNews = useCallback(
+    (
+      _domain: Domain,
+      _loadType: LoadType,
+      _currentPage: number,
+      _tags: string[],
+      _newsData: NewsDTO[]
+    ): void => {
+      PublicDataService.getNewsByTags(_domain, 10, _currentPage, _tags)
+        .then((response) => {
+          if (_loadType === LoadType.Append) {
+            setNewsData(_newsData.concat(response.data.records));
+          } else {
+            setNewsData(response.data.records);
+          }
+          setCurrent(response.data.current);
+          setTotalPage(response.data.pages);
+        })
+        .catch(() => {});
+    },
+    []
   );
 
-  function loadNews(
-    _domain: Domain,
-    _loadType: LoadType,
-    _currentPage: number,
-    _tags: string[]
-  ): void {
-    PublicDataService.getNewsByTags(_domain, 10, _currentPage, _tags)
-      .then((response) => {
-        if (_loadType === LoadType.Append) {
-          setNewsData(newsData.concat(response.data.records));
-        } else {
-          setNewsData(response.data.records);
-        }
-        setCurrent(response.data.current);
-        setTotalPage(response.data.pages);
-      })
-      .catch(() => {});
-  }
-
-  // reset filter and load the first page data
-  // the tags must passed from args othervise the value is not up to date
-  function handleTagFilterChange(tags: string[], _domain: Domain) {
-    loadNews(_domain, LoadType.Replace, 1, tags);
-  }
-
   // based on current filters and load more data
-  function handleLoadMoreArticles() {
-    loadNews(props.domain, LoadType.Append, current + 1, props.tags);
-  }
+  const handleLoadMoreArticles = (): void => {
+    loadNews(props.domain, LoadType.Append, current + 1, props.tags, newsData);
+  };
+
+  useEffect(() => {
+    // reset filter and load the first page data
+    const handleTagFilterChange = (): void => {
+      loadNews(props.domain, LoadType.Replace, 1, props.tags, newsData);
+    };
+    handleTagFilterChange();
+  }, [props.domain, props.tags, loadNews]); // eslint-disable-line
 
   return (
-    <Grid container component={Paper} sx={{ p: 0 }} variant="outlined">
+    <Grid
+      container
+      component={Paper}
+      sx={{ p: 0, width: "100%" }}
+      variant="outlined"
+    >
       <Tabs
         value={props.domain}
         onChange={(event: React.SyntheticEvent, newValue: Domain) =>

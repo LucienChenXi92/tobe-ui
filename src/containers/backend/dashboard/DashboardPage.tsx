@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Divider, Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -40,25 +40,26 @@ export default function DashboardPage() {
     publicNum: 0,
     totalViewCount: 0,
   });
-
-  useEffect(() => loadData(), []);
-
-  function loadData(): void {
+  const loadOverview = useCallback(
+    (domain: Domain, setData: (any: any) => void): void => {
+      OverviewService.getOverviewData(domain)
+        .then((response) => {
+          setData(response.data);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("dashboard-page.msg.error"), {
+            variant: "error",
+          });
+        });
+    },
+    [enqueueSnackbar, t]
+  );
+  const loadData = useCallback((): void => {
     loadOverview(Domain.Project, setProjectData);
     loadOverview(Domain.Article, setArticleData);
-  }
+  }, [loadOverview]);
 
-  function loadOverview(domain: Domain, setData: (any: any) => void): void {
-    OverviewService.getOverviewData(domain)
-      .then((response) => {
-        setData(response.data);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("dashboard-page.msg.error"), {
-          variant: "error",
-        });
-      });
-  }
+  useEffect(() => loadData(), [loadData]);
 
   return (
     <Page openLoading={false} pageTitle={t("dashboard-page.page-main-title")}>

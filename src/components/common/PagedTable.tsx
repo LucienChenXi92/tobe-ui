@@ -28,6 +28,7 @@ interface PagedTableProps {
 export default function PagedTable(props: PagedTableProps) {
   return (
     <Paper
+      variant="outlined"
       sx={{
         ...{
           width: "100%",

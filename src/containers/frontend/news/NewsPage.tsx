@@ -42,17 +42,18 @@ export default function NewsPage() {
     }
   }
 
-  useEffect(() => loadNews(), []);
-
-  function loadNews(): void {
-    setOpenLoading(true);
-    PublicDataService.getAllNews()
-      .then((response) => {
-        setNewsData(response.data.records);
-      })
-      .catch(() => {})
-      .finally(() => setOpenLoading(false));
-  }
+  useEffect(() => {
+    function loadNews(): void {
+      setOpenLoading(true);
+      PublicDataService.getAllNews()
+        .then((response) => {
+          setNewsData(response.data.records);
+        })
+        .catch(() => {})
+        .finally(() => setOpenLoading(false));
+    }
+    loadNews();
+  }, []);
 
   return (
     <Page pageTitle={t("news-page.page-main-title")} openLoading={openLoading}>

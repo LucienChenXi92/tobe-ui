@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   Typography,
   Grid,
@@ -71,11 +71,7 @@ export default function ArticlesPage() {
     setCardView(cardView);
   };
 
-  useEffect(() => {
-    loadArticles();
-  }, [current, size, cardView]);
-
-  function loadArticles(): void {
+  const loadArticles = useCallback((): void => {
     setOpenLoading(true);
     ArticleService.getArticles(size, current)
       .then((response) => {
@@ -88,7 +84,11 @@ export default function ArticlesPage() {
         });
       })
       .finally(() => setOpenLoading(false));
-  }
+  }, [current, enqueueSnackbar, size, t]);
+
+  useEffect(() => {
+    loadArticles();
+  }, [loadArticles]);
 
   function releaseArticleById(id: number | string) {
     setOpenLoading(true);
@@ -178,9 +178,9 @@ export default function ArticlesPage() {
           </FormGroup>
         </Grid>
       </Grid>
-      <Grid container spacing={2} sx={{ py: 2 }}>
-        {cardView ? (
-          articles.map((article: Article) => (
+      {cardView ? (
+        <Grid container spacing={1}>
+          {articles.map((article: Article) => (
             <Grid item xs={12} sm={6} md={4} lg={3} key={article.id}>
               <Card variant="outlined">
                 <CardHeader
@@ -226,20 +226,20 @@ export default function ArticlesPage() {
                 </CardActions>
               </Card>
             </Grid>
-          ))
-        ) : (
-          <PagedTable
-            columns={columns}
-            rows={articles}
-            totalCount={totalCount}
-            size={size}
-            current={current}
-            operations={operations}
-            handleChangeCurrent={handleChangeCurrent}
-            handleChangeSize={handleChangeSize}
-          />
-        )}
-      </Grid>
+          ))}
+        </Grid>
+      ) : (
+        <PagedTable
+          columns={columns}
+          rows={articles}
+          totalCount={totalCount}
+          size={size}
+          current={current}
+          operations={operations}
+          handleChangeCurrent={handleChangeCurrent}
+          handleChangeSize={handleChangeSize}
+        />
+      )}
     </Page>
   );
 }

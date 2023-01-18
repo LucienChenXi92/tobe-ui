@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { Page, PagedTable } from "../../../components";
 import { Column, UserData, Operation } from "../../../global/types";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,21 @@ export default function UsersPage() {
   const [totalCount, setTotalCount] = useState<number>(0);
   const { t } = useTranslation();
 
-  useEffect(() => loadUserData(), [current, size]);
+  const loadUserData = useCallback((): void => {
+    setOpenLoading(true);
+    UserService.getUsers(size, current)
+      .then((response) => {
+        setRows(response.data.records || []);
+        setTotalCount(response.data.total);
+        setOpenLoading(true);
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setOpenLoading(false);
+      });
+  }, [current, size]);
+
+  useEffect(() => loadUserData(), [loadUserData]);
 
   const columns: readonly Column[] = [
     { id: "id", label: t("user-table.label.id"), align: "center" },
@@ -39,20 +53,6 @@ export default function UsersPage() {
       align: "center",
     },
   ];
-
-  function loadUserData() {
-    setOpenLoading(true);
-    UserService.getUsers(size, current)
-      .then((response) => {
-        setRows(response.data.records || []);
-        setTotalCount(response.data.total);
-        setOpenLoading(true);
-      })
-      .catch((error) => {})
-      .finally(() => {
-        setOpenLoading(false);
-      });
-  }
 
   function deleteUserDate(id: number | string) {
     setOpenLoading(true);

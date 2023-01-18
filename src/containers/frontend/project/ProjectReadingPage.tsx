@@ -3,9 +3,13 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import { NewsBreadcrumbs, Page, TagDisplayBar } from "../../../components";
+import {
+  AuthorDisplayPanel,
+  NewsBreadcrumbs,
+  Page,
+  TagDisplayBar,
+} from "../../../components";
 import { ProjectInfo } from "../../../global/types";
-import { AuthorDisplayPanel } from "../../../components";
 import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
 import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
@@ -17,21 +21,22 @@ export default function ProjectReadingPage() {
   const { enqueueSnackbar } = useSnackbar();
   const [project, setProject] = useState<ProjectInfo | null>(null);
 
-  useEffect(() => loadProject(projectId || ""), []);
-
-  function loadProject(projectId: string): void {
-    setOpenLoading(true);
-    PublicDataService.getProjectById(projectId)
-      .then((response) => {
-        setProject(response.data);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("project-detail-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
+  useEffect(() => {
+    function loadProject(projectId: string): void {
+      setOpenLoading(true);
+      PublicDataService.getProjectById(projectId)
+        .then((response) => {
+          setProject(response.data);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("project-detail-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    }
+    loadProject(projectId || "");
+  }, [enqueueSnackbar, t, projectId]);
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>

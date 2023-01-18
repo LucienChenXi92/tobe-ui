@@ -10,7 +10,10 @@ import {
 } from "@mui/material";
 import { formatDate } from "../../../../commons";
 import ProjectStatusToolbar from "./ProjectStatusToolbar";
-import { getButtonByOperationName, TagDisplayBar } from "../../../../components";
+import {
+  getButtonByOperationName,
+  TagDisplayBar,
+} from "../../../../components";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (

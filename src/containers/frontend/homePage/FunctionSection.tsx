@@ -16,7 +16,7 @@ export default function FunctionSection() {
 
   return (
     <Container sx={{ my: 3 }}>
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         <Grid item sm={12} md={9}>
           <FeaturedNews
             tags={checkedTags}

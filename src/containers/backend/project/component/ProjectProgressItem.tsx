@@ -27,8 +27,8 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   };
   function handleProgresssUpdate(): void {
     ProjectService.updateProgress({
-      id: props.progress.id,
-      projectId: props.progress.projectId,
+      id: progress.id,
+      projectId: progress.projectId,
       description: progressDesc,
     })
       .then((response) => {

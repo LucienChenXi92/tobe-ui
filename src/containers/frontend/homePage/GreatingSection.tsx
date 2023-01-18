@@ -73,13 +73,13 @@ export default function GreatingSection() {
           </div>
           <div data-src="https://images.pexels.com/photos/2663851/pexels-photo-2663851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main="Knowledge is sword"
+              main="Knowledge is like a sword"
               sx={{ color: theme.palette.background.paper }}
             />
           </div>
           <div data-src="https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main={"Health is shield"}
+              main={"Health is like a shield"}
               sx={{ color: theme.palette.background.paper }}
             />
           </div>

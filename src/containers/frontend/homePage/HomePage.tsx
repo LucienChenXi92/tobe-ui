@@ -7,7 +7,7 @@ export default function HomePage() {
   return (
     <BasicLayout>
       <GreatingSection />
-      <NavigationSection />
+      {/* <NavigationSection /> */}
       <FunctionSection />
     </BasicLayout>
   );

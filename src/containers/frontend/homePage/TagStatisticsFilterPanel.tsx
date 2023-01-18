@@ -32,22 +32,22 @@ export default function TagStatisticsFilterPanel(props: {
     props.setChecked(newChecked);
   };
 
-  useEffect(() => loadData(), [props.domain]);
-
-  function loadData(): void {
-    PublicDataService.getTagStatistics(props.domain)
-      .then((response) => {
-        setTagStatistics(response.data);
-      })
-      .catch(() => {});
-  }
+  useEffect(() => {
+    function loadData(): void {
+      PublicDataService.getTagStatistics(props.domain)
+        .then((response) => {
+          setTagStatistics(response.data);
+        })
+        .catch(() => {});
+    }
+    loadData();
+  }, [props.domain]);
 
   return tagStatistics.length > 0 ? (
     <SidePanel title={t("home-page.tag-statistics")}>
       <List sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}>
         {tagStatistics.map((n) => {
           const labelId = `checkbox-list-label-${n.value}`;
-
           return (
             <ListItem key={n.value} sx={{ py: 0 }}>
               <ListItemButton

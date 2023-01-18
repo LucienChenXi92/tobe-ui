@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
@@ -37,21 +37,27 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
   const [newProgress, setNewProgress] = useState<string>("");
   const { enqueueSnackbar } = useSnackbar();
 
-  useEffect(() => loadProgressses(props.projectId), []);
+  const loadProgressses = useCallback(
+    (projectId: string): void => {
+      setOpenLoading(true);
+      PublicDataService.getProgressesByProjectId(projectId)
+        .then((response) => {
+          setProgresses(response.data.records);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("project-progress.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [enqueueSnackbar, t]
+  );
 
-  function loadProgressses(projectId: string): void {
-    setOpenLoading(true);
-    PublicDataService.getProgressesByProjectId(projectId)
-      .then((response) => {
-        setProgresses(response.data.records);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("project-progress.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
+  useEffect(
+    () => loadProgressses(props.projectId),
+    [loadProgressses, props.projectId]
+  );
 
   function handleProgressCreation(): void {
     if (!newProgress.trim()) {

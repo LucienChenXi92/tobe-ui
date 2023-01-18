@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Grid, FormGroup, FormControlLabel, Switch } from "@mui/material";
 import { Page, PagedTable, CreateButton } from "../../../components";
@@ -19,7 +19,20 @@ export default function ProjectsPage() {
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  useEffect(() => loadProjectData(), [current, size, cardView]);
+  const loadProjectData = useCallback((): void => {
+    setOpenLoading(true);
+    ProjectService.getProjects(size, current)
+      .then((response) => {
+        setRows(response.data.records || []);
+        setTotalCount(response.data.total);
+      })
+      .catch((error) => {})
+      .finally(() => {
+        setOpenLoading(false);
+      });
+  }, [current, size]);
+
+  useEffect(() => loadProjectData(), [loadProjectData]);
 
   const columns: readonly Column[] = [
     { id: "name", label: t("project-table.label.name"), align: "center" },
@@ -53,19 +66,6 @@ export default function ProjectsPage() {
       align: "center",
     },
   ];
-
-  function loadProjectData() {
-    setOpenLoading(true);
-    ProjectService.getProjects(size, current)
-      .then((response) => {
-        setRows(response.data.records || []);
-        setTotalCount(response.data.total);
-      })
-      .catch((error) => {})
-      .finally(() => {
-        setOpenLoading(false);
-      });
-  }
 
   function deleteProjectById(id: number | string) {
     setOpenLoading(true);
@@ -194,7 +194,7 @@ export default function ProjectsPage() {
         </Grid>
       </Grid>
       {cardView ? (
-        <Grid container spacing={1} sx={{ py: 1 }}>
+        <Grid container spacing={1}>
           {rows.map((item: any) => (
             <ProjectCard operations={operations} project={item} key={item.id} />
           ))}

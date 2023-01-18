@@ -9,15 +9,16 @@ export default function Top5ActiveUsersPanel() {
   const { t } = useTranslation();
   const [userData, setUserData] = useState<UserBriefProfileDTO[]>([]);
 
-  useEffect(() => loadUsers(), []);
-
-  function loadUsers(): void {
-    PublicDataService.getTop5ActiveUsers()
-      .then((response) => {
-        setUserData(response.data);
-      })
-      .catch(() => {});
-  }
+  useEffect(() => {
+    function loadUsers(): void {
+      PublicDataService.getTop5ActiveUsers()
+        .then((response) => {
+          setUserData(response.data);
+        })
+        .catch(() => {});
+    }
+    loadUsers();
+  }, []);
 
   return userData.length > 0 ? (
     <SidePanel title={t("home-page.top5-active-users")}>
