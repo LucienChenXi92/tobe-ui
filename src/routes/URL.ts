@@ -3,16 +3,25 @@ export const URL = {
   SIGN_IN: "/sign-in",
   SIGN_OUT: "/sign-out",
   SIGN_UP: "/sign-up",
-  BLOG: "/blog",
+  ARTICLE: "/article",
   ABOUT: "/about",
   NEWS: "/news",
+  NEWS_PROJECT_DETAIL: "/news/projects/:projectId",
+  NEWS_ARTICLE_DETAIL: "/news/articles/:articleId",
 
-  PROFILE: "/my/profile",
+  MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",
-  USERS: "/my/dashboard/users",
-  PROJECTS: "/my/dashboard/projects",
+  PROFILE: "/my/profile",
+  USERS: "/my/users",
+  PROJECTS: "/my/projects",
+  PROJECT_DETAIL: "/my/projects/:projectId",
+  CREATE_PROJECT: "/my/projects/create-project",
+
+  ARTICLES: "/my/articles",
+  ARTICLE_DETAIL: "/my/articles/:articleId",
+  CREATE_ARTICLE: "/my/articles/create-article",
 };
 
 export function validateUrl(target: string): boolean {
-  return Object.values(URL).indexOf(target) > 0;
+  return Object.values(URL).indexOf(target) >= 0;
 }

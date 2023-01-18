@@ -1,6 +1,48 @@
 {
+  "breadcrumbs": {
+    "content": "Content",
+    "home": "Home",
+    "news": "News"
+  },
+  "components": {
+    "edit-icon-button": {
+      "save": "Save",
+      "edit": "Edit"
+    },
+    "standard-button": {
+      "detail": "Detail",
+      "active": "Active",
+      "close": "Close",
+      "delete": "Delete",
+      "create": "Create",
+      "release": "Release"
+    },
+    "rich-editor": {
+      "placeholder": "Please input content..."
+    },
+    "tag-select": {
+      "placeholder": "Please input tag name...",
+      "msg": {
+        "success": "Tag created!",
+        "error": "Operation failed",
+        "warning": "Tag name is too long"
+      }
+    }
+  },
+  "home-page": {
+    "projects": "Projects",
+    "articles": "Articles",
+    "workout": "Workout",
+    "activities": "Activities",
+    "view-count": "View",
+    "end-line": "Here is the end line",
+    "load-more": "Load more",
+    "no-content": "No available content",
+    "top5-active-users": "Top 5 active users",
+    "tag-statistics": "Featured tags"
+  },
   "sign-in": {
-    "title": "Sign In ",
+    "title": "Sign In TOBE",
     "sign-in-btn": "Sign In",
     "forget-pw-btn": "Forget password?",
     "sign-up-btn": "Don't have an account? Sign Up",
@@ -38,14 +80,17 @@
   "app-header": {
     "sign-in-btn": "Sign In",
     "pages": {
+      "home": "Home",
       "news": "News",
       "about": "About",
-      "blog": "Blog"
+      "article": "Article"
     },
     "settings": {
       "btn-tooltip": "Open settings",
-      "profile": "Profile",
-      "dashboard": "Dashboard",
+      "profile": "User Profile",
+      "my-zone": "User Central",
+      "projects": "Projects",
+      "articles": "Articles",
       "sign-out": "Sign Out"
     }
   },
@@ -63,13 +108,16 @@
     "blog": "Blog"
   },
   "profile-setting": {
-    "form-title": "Profile",
+    "form-title": "Your Profile",
     "fields": {
       "first-name": "First name",
       "last-name": "Last name",
       "phone-number": "Phone number",
       "email": "Email",
-      "address": "Address"
+      "address": "Address",
+      "blog": "Blog home",
+      "introduction": "Introduction",
+      "introduction-placeholder": "Let others know more about you..."
     },
     "back-btn": "Back",
     "submit-btn": "Submit",
@@ -78,7 +126,14 @@
       "error": "Update failed"
     }
   },
+  "my-menu": {
+    "actions": {
+      "share": "Share",
+      "create-project": "Create a project"
+    }
+  },
   "user-table": {
+    "title": "User Management",
     "label": {
       "id": "ID",
       "email": "Email",
@@ -87,7 +142,151 @@
       "last-name": "Last Name",
       "phone-number": "Phone Number",
       "operation": "Operation"
+    }
+  },
+  "project-table": {
+    "title": "Project Management",
+    "label": {
+      "name": "Name",
+      "target-start-date": "Target start date",
+      "target-end-date": "Target end date",
+      "actual-start-date": "Actual start date",
+      "actual-end-date": "Actual end date",
+      "operation": "Operation"
     },
-    "delete-btn": "Delete"
+    "card-view-btn": "Simple View",
+    "card": {
+      "tooltip": {
+        "public-to-all": "Visiable to everyone",
+        "in-process": "In process",
+        "closed": "Closed"
+      }
+    }
+  },
+  "project-creation-page": {
+    "form-title": "Create a new project",
+    "fields": {
+      "name": "Project Name",
+      "description": "Description",
+      "target-start-time": "Target start time",
+      "target-end-time": "Target end time"
+    },
+    "back-btn": "Back",
+    "submit-btn": "Submit",
+    "msg": {
+      "success": "Created",
+      "error": "Creation failed",
+      "warning": {
+        "name-empty": "Project name cannot be empty",
+        "target-start-time-empty": "Target start time cannot be empty",
+        "target-end-time-empty": "Target end time cannot be empty",
+        "target-invalid-start-end-time": "Target start time cannot behind end time"
+      }
+    }
+  },
+  "project-detail-page": {
+    "fields": {
+      "name": "Project Name",
+      "description": "Description",
+      "target-start-time": "Target start time",
+      "target-end-time": "Target end time",
+      "actual-start-time": "Actual start time",
+      "actual-end-time": "Actual end time"
+    },
+    "msg": {
+      "error": "Operation failed",
+      "success": "Operation success"
+    }
+  },
+  "project-progress": {
+    "title": "Progresses",
+    "add-new-tip": "Any fresh news to share?",
+    "send-btn": "Send",
+    "msg": {
+      "error": "Operation failed",
+      "warning": "Please type in valid context",
+      "success": "Operation success"
+    }
+  },
+  "dashboard-nav": {
+    "pages": {
+      "dashboard": "Dashboard",
+      "users": "Users",
+      "projects": "Projects",
+      "articles": "Articles"
+    }
+  },
+  "dashboard-page": {
+    "page-main-title": "Overview",
+    "project": {
+      "title": "Project Data",
+      "ongoing": "Ongoing project",
+      "public": "Public project",
+      "all": "All project",
+      "view-count": "View count(In thousands)"
+    },
+    "article": {
+      "title": "Article Data",
+      "public": "Public article",
+      "all": "All article",
+      "view-count": "View count(In thousands)"
+    },
+    "msg": {
+      "error": "Failed to fetch data"
+    }
+  },
+  "news-page": {
+    "page-main-title": "Fresh News",
+    "update-at": "Updated at ",
+    "publish-at": "Published at ",
+    "news-types": {
+      "project": "Project",
+      "article": "Article"
+    }
+  },
+  "about-page": {
+    "page-main-title": "About Us"
+  },
+  "articles-page": {
+    "page-main-title": "Articles",
+    "article-table": {
+      "label": {
+        "title": "Title",
+        "subTitle": "Subtitle",
+        "description": "Description",
+        "createTime": "Create time",
+        "updateTime": "Update time",
+        "operation": "Operation"
+      }
+    }
+  },
+  "article-creation-page": {
+    "page-main-title": "Create new article",
+    "expand-label": "Other secondary info",
+    "fields": {
+      "title": "Title",
+      "sub-title": "Subtitle",
+      "description": "Description",
+      "tag": "Tag"
+    },
+    "submit-btn": "Save",
+    "back-btn": "Back",
+    "msg": {
+      "success": "Operation success",
+      "error": "Operation failed"
+    }
+  },
+  "article-detail-page": {
+    "page-main-title": "Edit article"
+  },
+  "article-reading-page": {
+    "post-by": "Post by ",
+    "post-at": " at ",
+    "view": "View",
+    "back-btn": "Back",
+    "relevant-articles": "Relevant articles",
+    "msg": {
+      "error": "Failed to fetch data"
+    }
   }
 }

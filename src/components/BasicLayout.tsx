@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
-import AppHeader from "./AppHeader/AppHeader";
-import AppFooter from "./AppFooter/AppFooter";
+import GlobalHeader from "./header/GlobalHeader";
+import AppFooter from "./footer/AppFooter";
 
 /**
  * BasicLayout, a flex container with the basic header, footer
@@ -16,10 +16,10 @@ export default function BasicLayout({ children }: { children: any }) {
         minHeight: "100vh",
       }}
     >
-      <AppHeader />
+      <GlobalHeader />
       <Box>
         <Stack
-          justifyContent="center"
+          justifyContent="start"
           alignItems="center"
           direction="column"
           sx={{
@@ -28,6 +28,7 @@ export default function BasicLayout({ children }: { children: any }) {
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: { md: "flex" },
+            p: 0,
           }}
         >
           {children}

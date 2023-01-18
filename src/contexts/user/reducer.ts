@@ -1,5 +1,5 @@
-import { Action, AuthState } from "../Basic";
-import { LOCAL_STORAGE_KEYS } from "../../consts";
+import { Action, AuthState } from "../types";
+import { LOCAL_STORAGE_KEYS } from "../../commons";
 
 let user: any = localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER)
   ? JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER) || "")
@@ -14,12 +14,12 @@ export const AuthReducer = (
   action: Action
 ): AuthState => {
   switch (action.type) {
-    case "REQUEST_SUCCESS":
+    case "LOGIN_SUCCESS":
       return {
         ...initialState,
         user: action.payload,
       };
-    case "REQUEST_CLEAN":
+    case "LOGOUT":
       return {
         ...initialState,
         user: null,
