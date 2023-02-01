@@ -19,10 +19,7 @@ export default function ProjectCard(props: ProjectCardProps) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3} key={props.project.id}>
       <Card variant="outlined">
-        <CardHeader
-          title={props.project.name}
-          titleTypographyProps={{ variant: "h6" }}
-        />
+        <CardHeader title={props.project.name} />
         <Divider />
         <CardContent sx={{ py: 1 }}>
           <ProjectStatusToolbar project={props.project} />
@@ -34,14 +31,11 @@ export default function ProjectCard(props: ProjectCardProps) {
             Planed: {formatDate(props.project.targetStartTime)}
             {" ~ "} {formatDate(props.project.targetEndTime)}
           </Typography>
+          {props.project.tags.length > 0 && (
+            <TagDisplayBar tags={props.project.tags} />
+          )}
         </CardContent>
-        {props.project.tags.length > 0 && (
-          <>
-            <CardContent sx={{ py: 1 }}>
-              <TagDisplayBar tags={props.project.tags} />
-            </CardContent>
-          </>
-        )}
+
         <Divider />
         <CardActions sx={{ px: 0 }}>
           {props.operations.map(
