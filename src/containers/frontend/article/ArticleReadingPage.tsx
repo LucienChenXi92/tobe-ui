@@ -24,21 +24,22 @@ export default function ArticleReadingPage() {
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 
-  useEffect(() => loadArticle(), []);
-
-  function loadArticle(): void {
-    setOpenLoading(true);
-    PublicDataService.getArticleById(articleId || "")
-      .then((response) => {
-        setArticle(response.data);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("article-reading-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
+  useEffect(() => {
+    function loadArticle(): void {
+      setOpenLoading(true);
+      PublicDataService.getArticleById(articleId || "")
+        .then((response) => {
+          setArticle(response.data);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("article-reading-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    }
+    loadArticle();
+  }, [t, articleId, enqueueSnackbar]);
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>

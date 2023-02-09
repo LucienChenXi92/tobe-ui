@@ -20,6 +20,8 @@ export const URL = {
   ARTICLES: "/my/articles",
   ARTICLE_DETAIL: "/my/articles/:articleId",
   CREATE_ARTICLE: "/my/articles/create-article",
+
+  CREATE_COLLECTION: "/my/collections/create-collection",
 };
 
 export function validateUrl(target: string): boolean {

@@ -7,9 +7,15 @@ import { useAuthDispatch } from "../contexts";
 import HomePage from "../containers/frontend/homePage/HomePage";
 import SignInPage from "../containers/frontend/signIn/SignInPage";
 
-const NewsPage = React.lazy(() => import("../containers/frontend/news/NewsPage"));
-const AboutPage = React.lazy(() => import("../containers/frontend/aboutPage/AboutPage"));
-const SignUpPage = React.lazy(() => import("../containers/frontend/signUp/SignUpPage"));
+const NewsPage = React.lazy(
+  () => import("../containers/frontend/news/NewsPage")
+);
+const AboutPage = React.lazy(
+  () => import("../containers/frontend/aboutPage/AboutPage")
+);
+const SignUpPage = React.lazy(
+  () => import("../containers/frontend/signUp/SignUpPage")
+);
 const ProfileSettingPage = React.lazy(
   () => import("../containers/backend/profileSettingPage/ProfileSettingPage")
 );
@@ -17,7 +23,9 @@ const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
 const DashboardPage = React.lazy(
   () => import("../containers/backend/dashboard/DashboardPage")
 );
-const UsersPage = React.lazy(() => import("../containers/backend/user/UsersPage"));
+const UsersPage = React.lazy(
+  () => import("../containers/backend/user/UsersPage")
+);
 const ProjectsPage = React.lazy(
   () => import("../containers/backend/project/ProjectsPage")
 );
@@ -43,6 +51,10 @@ const ArticleReadingPage = React.lazy(
   () => import("../containers/frontend/article/ArticleReadingPage")
 );
 
+const TagCollectionCreationPage = React.lazy(
+  () => import("../containers/backend/collection/TagCollectionCreationPage")
+);
+
 function MainRouter() {
   return (
     <Suspense fallback={<Loading open={true} />}>
@@ -65,6 +77,10 @@ function MainRouter() {
               element={<ArticleCreationPage />}
             />
             <Route path={URL.ARTICLE_DETAIL} element={<ArticleDetailPage />} />
+            <Route
+              path={URL.CREATE_COLLECTION}
+              element={<TagCollectionCreationPage />}
+            />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>
