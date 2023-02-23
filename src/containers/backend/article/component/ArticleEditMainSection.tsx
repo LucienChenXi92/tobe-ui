@@ -39,7 +39,7 @@ export default function ArticleEditMainSection(
               label={t("article-creation-page.fields.title")}
               value={props.title}
               setValue={props.setTitle}
-              maxLength={32}
+              maxLength={128}
             />
           </Grid>
         </Paper>
