@@ -26,14 +26,14 @@ export default function FunctionSection() {
         </Grid>
         <Grid container item sm={false} md={3} spacing={2} direction="column">
           <Grid item>
-            <Top5ActiveUsersPanel />
-          </Grid>
-          <Grid item>
             <TagStatisticsFilterPanel
               domain={domain}
               checked={checkedTags}
               setChecked={setCheckedTags}
             />
+          </Grid>
+          <Grid item>
+            <Top5ActiveUsersPanel />
           </Grid>
         </Grid>
       </Grid>

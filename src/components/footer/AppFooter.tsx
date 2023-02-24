@@ -11,7 +11,7 @@ import {
 import { LANGUAGE } from "../../i18n";
 import { useTranslation } from "react-i18next";
 import { changeLanguage } from "i18next";
-import Copyright from "../common/CopyRight";
+import Copyright from "./CopyRight";
 
 export default function AppFooter() {
   const availableLangs: Array<{ label: string; value: string }> = [

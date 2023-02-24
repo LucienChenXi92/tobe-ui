@@ -17,12 +17,12 @@ import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { URL } from "../routes";
-import { authed, AUTHORITY } from "../commons";
 import { useTranslation } from "react-i18next";
-import theme from "../theme";
-import { PageItem } from "../global/types";
-import project from "../../package.json";
+import { URL } from "../../routes";
+import { authed, AUTHORITY } from "../../commons";
+import theme from "../../theme";
+import { PageItem } from "../../global/types";
+import project from "../../../package.json";
 
 interface DashboardNavProps {
   setOpenDrawer: (newValue: boolean) => void;

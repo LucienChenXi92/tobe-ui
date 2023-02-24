@@ -47,7 +47,7 @@ export const StandardNewsCard = (props: StandardNewsCardProps) => {
         <CardActionArea onClick={() => navigate(props.data.detailsUrl)}>
           <CardContent>
             <Typography
-              variant="h6"
+              variant="subtitle1"
               component="div"
               sx={{ justifyContent: "center" }}
             >

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { Avatar, Grid, Link, Paper, Typography } from "@mui/material";
@@ -9,10 +9,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [profile, setProfile] = useState<UserBriefProfileDTO | null>(null);
-
-  useEffect(() => loadProfile(), []);
-
-  function loadProfile(): void {
+  const loadProfile = useCallback((): void => {
     PublicDataService.getBriefProfileByUserId(props.userId)
       .then((response) => {
         setProfile(response.data);
@@ -21,9 +18,11 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
         enqueueSnackbar(t("article-reading-page.msg.error"), {
           variant: "error",
         });
-      })
-      .finally();
-  }
+      });
+  }, [enqueueSnackbar, t, props.userId]);
+
+  useEffect(() => loadProfile(), [loadProfile]);
+
   return (
     <Paper sx={{ p: 0, mb: 2 }} variant="outlined">
       <Grid container>

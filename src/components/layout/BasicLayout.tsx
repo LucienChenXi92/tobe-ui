@@ -1,6 +1,6 @@
 import { Box, Stack } from "@mui/material";
-import GlobalHeader from "./header/GlobalHeader";
-import AppFooter from "./footer/AppFooter";
+import { GlobalHeader } from "../header";
+import { AppFooter } from "../footer";
 
 /**
  * BasicLayout, a flex container with the basic header, footer
