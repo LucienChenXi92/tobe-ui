@@ -7,9 +7,6 @@ import { useAuthDispatch } from "../contexts";
 import HomePage from "../containers/frontend/homePage/HomePage";
 import SignInPage from "../containers/frontend/signIn/SignInPage";
 
-const NewsPage = React.lazy(
-  () => import("../containers/frontend/news/NewsPage")
-);
 const AboutPage = React.lazy(
   () => import("../containers/frontend/aboutPage/AboutPage")
 );
@@ -87,7 +84,6 @@ function MainRouter() {
             <Route path={URL.SIGN_IN} element={<SignInPage />} />
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
             <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
-            <Route path={URL.NEWS} element={<NewsPage />} />
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
               element={<ProjectReadingPage />}

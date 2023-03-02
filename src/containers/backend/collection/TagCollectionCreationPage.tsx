@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Page } from "../../../components";
 import { Box, Button, Paper } from "@mui/material";
-import { Canvas } from 'reaflow';
-
 interface Node {
   id: string;
   name: string;
@@ -17,24 +15,6 @@ interface Node {
 
 export default function TagCollectionCreationPage() {
   const { t } = useTranslation();
-  const nodes = [
-    {
-      id: '1',
-      text: '1'
-    },
-    {
-      id: '2',
-      text: '2'
-    }
-  ];
-  
-  const edges = [
-    {
-      id: '1-2',
-      from: '1',
-      to: '2'
-    }
-  ];
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     // do nothing
@@ -46,12 +26,6 @@ export default function TagCollectionCreationPage() {
         sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
       >
         <Box justifyContent="center" >
-          <Canvas
-            nodes={nodes}
-            edges={edges}
-            maxWidth={window.innerWidth / 2}
-            maxHeight={500}
-          />
         </Box>
         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>

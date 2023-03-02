@@ -8,9 +8,6 @@ export default function NewsBreadcrumbs() {
       <Link underline="hover" color="inherit" href="/">
         {t("breadcrumbs.home")}
       </Link>
-      <Link underline="hover" color="inherit" href="/news">
-        {t("breadcrumbs.news")}
-      </Link>
       <Typography color="text.primary">{t("breadcrumbs.content")}</Typography>
     </Breadcrumbs>
   );
