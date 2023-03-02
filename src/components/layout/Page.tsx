@@ -12,8 +12,8 @@ interface PageProps {
 
 export default function Page(props: PageProps) {
   useEffect(() => {
-    window.document.title = `${project.name.toUpperCase()} | ${
-      props.pageTitle || ""
+    window.document.title = `${project.name.toUpperCase()} ${
+      props.pageTitle ? " | " + props.pageTitle : ""
     }`;
     return function restoreTitle() {
       window.document.title = `${project.name.toUpperCase()}`;
