@@ -90,6 +90,7 @@ export default function TagCollectionDetailPage() {
       .then((response) => {
         setCollection(response.data);
         setDescription(response.data.description);
+        setCoverImgUrl(response.data.coverImgUrl);
         treeData.children = convert(response.data.tagTree);
         setTreeData(treeData);
       })
@@ -186,36 +187,18 @@ export default function TagCollectionDetailPage() {
           )}
         </Box>
       </Paper>
-      <Grid container>
-        <Grid
-          item
-          xs={12}
-          sm={12}
-          md={6}
-          component={Paper}
-          variant="outlined"
-          sx={{ p: 2 }}
-        >
+      <Grid container component={Paper} variant="outlined">
+        <Grid item xs={12} sm={12} md={6} sx={{ p: 2 }}>
           <TreePanel
             nodes={treeData}
             onNodeFocus={(event, id) => setCurrentNodeId(id)}
           />
         </Grid>
-        <Grid
-          container
-          item
-          xs={12}
-          sm={6}
-          sx={{
-            pl: { xs: 0, sm: 1 },
-            mt: 1,
-          }}
-          spacing={1}
-        >
-          <Grid item xs={12} sm={12}>
+        <Grid container item xs={12} sm={6} sx={{ p: 2 }}>
+          <Grid item xs={12} sm={12} sx={{ alignSelf: "flex-start", p: 1 }}>
             <SingleTagSelecter value={targetTag} setValue={setTargetTag} />
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ alignSelf: "flex-end" }}>
+          <Grid item xs={12} sm={6} sx={{ alignSelf: "flex-end", p: 1 }}>
             <Button
               fullWidth
               variant="contained"
@@ -224,7 +207,7 @@ export default function TagCollectionDetailPage() {
               {t("collection-detail-page.btn.add")}
             </Button>
           </Grid>
-          <Grid item xs={12} sm={6} sx={{ alignSelf: "flex-end" }}>
+          <Grid item xs={12} sm={6} sx={{ alignSelf: "flex-end", p: 1 }}>
             <Button
               fullWidth
               variant="contained"
