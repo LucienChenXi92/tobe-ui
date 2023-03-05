@@ -16,10 +16,10 @@ import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import {
+  ActionButtonBar,
   CreateButton,
   Page,
   PagedTable,
-  getButtonByOperationName,
   TagDisplayBar,
 } from "../../../components";
 import { URL } from "../../../routes";
@@ -220,15 +220,7 @@ export default function ArticlesPage() {
                 </CardContent>
                 <Divider />
                 <CardActions sx={{ px: 0 }}>
-                  {operations.map(
-                    (operation, index) =>
-                      !operation?.hide?.call(null, article) &&
-                      getButtonByOperationName(
-                        operation.name,
-                        () => operation.onClick(article.id),
-                        `${operation.name}_${index}`
-                      )
-                  )}
+                  <ActionButtonBar operations={operations} target={article} />
                 </CardActions>
               </Card>
             </Grid>

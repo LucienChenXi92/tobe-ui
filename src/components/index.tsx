@@ -7,8 +7,8 @@ import {
   DetailButton,
   ReleaseButton,
   DeleteButton,
-  getButtonByOperationName,
 } from "./common/buttons/TobeButton";
+import ActionButtonBar from "./common/ActionButtonBar";
 import { TobeImageButton } from "./common/buttons/TobeImageButton";
 import EditIconButton from "./common/buttons/EditIconButton";
 import {
@@ -43,7 +43,7 @@ export {
   DetailButton,
   ReleaseButton,
   DeleteButton,
-  getButtonByOperationName,
+  ActionButtonBar,
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,

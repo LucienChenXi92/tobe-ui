@@ -10,10 +10,7 @@ import {
 } from "@mui/material";
 import { formatDate } from "../../../../commons";
 import ProjectStatusToolbar from "./ProjectStatusToolbar";
-import {
-  getButtonByOperationName,
-  TagDisplayBar,
-} from "../../../../components";
+import { ActionButtonBar, TagDisplayBar } from "../../../../components";
 
 export default function ProjectCard(props: ProjectCardProps) {
   return (
@@ -38,15 +35,10 @@ export default function ProjectCard(props: ProjectCardProps) {
 
         <Divider />
         <CardActions sx={{ px: 0 }}>
-          {props.operations.map(
-            (operation, index) =>
-              !operation?.hide?.call(null, props.project) &&
-              getButtonByOperationName(
-                operation.name,
-                () => operation.onClick(props.project.id),
-                `${operation.name}_${index}`
-              )
-          )}
+          <ActionButtonBar
+            operations={props.operations}
+            target={props.project}
+          />
         </CardActions>
       </Card>
     </Grid>

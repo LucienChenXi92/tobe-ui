@@ -11,11 +11,7 @@ import {
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
-import {
-  CreateButton,
-  Page,
-  getButtonByOperationName,
-} from "../../../components";
+import { ActionButtonBar, CreateButton, Page } from "../../../components";
 import { URL } from "../../../routes";
 import { Operation, TagOption } from "../../../global/types";
 import { CollectionService } from "../../../services";
@@ -144,15 +140,7 @@ export default function TagCollectionsPage() {
               </CardContent>
               <Divider />
               <CardActions sx={{ px: 0 }}>
-                {operations.map(
-                  (operation, index) =>
-                    !operation?.hide?.call(null, collection) &&
-                    getButtonByOperationName(
-                      operation.name,
-                      () => operation.onClick(collection.id),
-                      `${operation.name}_${index}`
-                    )
-                )}
+                <ActionButtonBar operations={operations} target={collection} />
               </CardActions>
             </Card>
           </Grid>
