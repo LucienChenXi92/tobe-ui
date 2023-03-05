@@ -20,9 +20,11 @@ import Loading from "./common/Loading";
 import PagedTable from "./common/PagedTable";
 import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
 import MultipleTagSelecter from "./common/MultipleTagSelecter";
+import SingleTagSelecter from "./common/SingleTagSelecter";
 import TagDisplayBar from "./common/TagDisplayBar";
 import NewsBreadcrumbs from "./common/NewsBreadcrumbs";
 import NewsListItem from "./common/NewsListItem";
+import TreePanel from "./common/TreePanel";
 
 export {
   NewsListItem,
@@ -47,7 +49,9 @@ export {
   TobeAccordionSummary,
   AuthorDisplayPanel,
   MultipleTagSelecter,
+  SingleTagSelecter,
   TagDisplayBar,
   NewsBreadcrumbs,
   SidePanel,
+  TreePanel,
 };

@@ -51,6 +51,12 @@ const ArticleReadingPage = React.lazy(
 const TagCollectionCreationPage = React.lazy(
   () => import("../containers/backend/collection/TagCollectionCreationPage")
 );
+const TagCollectionDetailPage = React.lazy(
+  () => import("../containers/backend/collection/TagCollectionDetailPage")
+);
+const TagCollectionsPage = React.lazy(
+  () => import("../containers/backend/collection/TagCollectionsPage")
+);
 
 function MainRouter() {
   return (
@@ -77,6 +83,11 @@ function MainRouter() {
             <Route
               path={URL.CREATE_COLLECTION}
               element={<TagCollectionCreationPage />}
+            />
+            <Route path={URL.COLLECTIONS} element={<TagCollectionsPage />} />
+            <Route
+              path={URL.COLLECTION_DETAIL}
+              element={<TagCollectionDetailPage />}
             />
           </Route>
 

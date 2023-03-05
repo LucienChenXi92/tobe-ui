@@ -22,6 +22,8 @@ export const URL = {
   CREATE_ARTICLE: "/my/articles/create-article",
 
   CREATE_COLLECTION: "/my/collections/create-collection",
+  COLLECTION_DETAIL: "/my/collections/:collectionId",
+  COLLECTIONS: "/my/collections",
 };
 
 export function validateUrl(target: string): boolean {

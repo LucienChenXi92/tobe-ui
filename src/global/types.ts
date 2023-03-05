@@ -141,3 +141,52 @@ export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",
 }
+
+export interface TagCollectionCreationDTO {
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+}
+
+export interface TagCollectionUpdateDTO {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+}
+
+export interface TagCollectionGeneralDTO {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+  tags: TagRelationshipGeneralDTO[];
+}
+
+export interface TagRelationshipCreateDTO {
+  parentId: number | null;
+  tagId: number;
+  collectionId: string;
+}
+
+export interface TagRelationshipGeneralDTO {
+  id: number;
+  parentId: number;
+  value: number;
+  label: string;
+  collectionId: string;
+}
+
+export interface RenderTree {
+  id: string;
+  name: string;
+  children?: readonly RenderTree[];
+}
+
+export interface TagRelationship {
+  id: number;
+  parentId: number;
+  tagId: number;
+  label: string;
+  children: TagRelationship[];
+}

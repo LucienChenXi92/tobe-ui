@@ -213,7 +213,8 @@
       "dashboard": "Dashboard",
       "users": "Users",
       "projects": "Projects",
-      "articles": "Articles"
+      "articles": "Articles",
+      "collections": "Collections"
     }
   },
   "dashboard-page": {
@@ -261,7 +262,7 @@
     }
   },
   "article-creation-page": {
-    "page-main-title": "Create new article",
+    "page-main-title": "Create a new article",
     "expand-label": "Other secondary info",
     "fields": {
       "title": "Title",
@@ -288,5 +289,35 @@
     "msg": {
       "error": "Failed to fetch data"
     }
+  },
+  "collection-creation-page": {
+    "page-main-title": "Create a new tag collection",
+    "fields": {
+      "name": "Collection Name",
+      "description": "Description",
+      "cover-img-url": "Cover Image URL"
+    },
+    "msg": {
+      "success": "Created",
+      "error": "Creation failed",
+      "warning": {
+        "name-empty": "Collection name cannot be empty"
+      }
+    },
+    "submit-btn": "Save",
+    "back-btn": "Back"
+  },
+  "collection-detail-page": {
+    "btn": {
+      "add": "Add",
+      "delete": "Delete"
+    },
+    "msg": {
+      "success": "Operation success",
+      "error": "Operation failed"
+    }
+  },
+  "collections-page": {
+    "page-main-title": "Tag collections"
   }
 }
