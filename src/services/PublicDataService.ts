@@ -22,6 +22,16 @@ export function getNewsByTags(
   );
 }
 
+export function getCollections(size: number, current: number): AxiosPromise {
+  return server.get(
+    `/${API_DATA_URI}/collections?size=${size}&current=${current}`
+  );
+}
+
+export function getCollectionById(id: string | number): AxiosPromise {
+  return server.get(`/${API_DATA_URI}/collections/${id}`);
+}
+
 export function getArticleById(id: string | number): AxiosPromise {
   return server.get(`/${API_DATA_URI}/articles/${id}`);
 }

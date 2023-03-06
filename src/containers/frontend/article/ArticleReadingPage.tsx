@@ -4,12 +4,12 @@ import { useAuthState } from "../../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Page } from "../../../components";
 import {
   AuthorDisplayPanel,
   NewsBreadcrumbs,
   RichReader,
   TagDisplayBar,
+  Page,
 } from "../../../components";
 import { ArticleDetailDTO } from "../../../global/types";
 import { TimeFormat } from "../../../commons";
@@ -18,9 +18,9 @@ import RelevantArticlePanel from "./RelevantArticlePanel";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
   const { articleId } = useParams();
   const authState = useAuthState();
-  const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 

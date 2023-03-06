@@ -83,7 +83,8 @@
       "home": "首页",
       "news": "近期动态",
       "about": "关于",
-      "article": "文章"
+      "article": "文章",
+      "collections": "专辑"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -91,6 +92,7 @@
       "my-zone": "用户中心",
       "projects": "计划",
       "articles": "笔记",
+      "collections": "专辑",
       "sign-out": "登出系统"
     }
   },
@@ -318,6 +320,20 @@
     }
   },
   "collections-page": {
-    "page-main-title": "标签专辑"
+    "page-main-title": "专辑"
+  },
+  "collections-list-page": {
+    "page-main-title": "专辑",
+    "msg": {
+      "error": "加载数据失败"
+    }
+  },
+  "collection-reading-page": {
+    "tip": {
+      "tba": "敬请期待"
+    },
+    "msg": {
+      "error": "加载数据失败"
+    }
   }
 }

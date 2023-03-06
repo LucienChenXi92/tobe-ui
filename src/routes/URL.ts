@@ -5,9 +5,11 @@ export const URL = {
   SIGN_UP: "/sign-up",
   ARTICLE: "/article",
   ABOUT: "/about",
-  NEWS: "/news",
   NEWS_PROJECT_DETAIL: "/news/projects/:projectId",
   NEWS_ARTICLE_DETAIL: "/news/articles/:articleId",
+
+  COLLECTIONS_PAGE: "/collections",
+  COLLECTION_READING_PAGE: "/collections/:collectionId",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",

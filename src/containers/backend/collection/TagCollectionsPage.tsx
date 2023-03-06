@@ -13,21 +13,8 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { ActionButtonBar, CreateButton, Page } from "../../../components";
 import { URL } from "../../../routes";
-import { Operation, TagOption } from "../../../global/types";
+import { Operation, TagCollection } from "../../../global/types";
 import { CollectionService } from "../../../services";
-
-interface TagCollection {
-  id: string;
-  name: string;
-  description: string;
-  coverImgUrl: string;
-  ownerId: string;
-  likeCount: number;
-  viewCount: number;
-  publicToAll: boolean;
-  publishTime: Date;
-  tags: TagOption[];
-}
 
 export default function TagCollectionsPage() {
   const { t } = useTranslation();

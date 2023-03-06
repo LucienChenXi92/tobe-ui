@@ -160,7 +160,13 @@ export interface TagCollectionGeneralDTO {
   name: string;
   description: string;
   coverImgUrl?: string;
-  tags: TagRelationshipGeneralDTO[];
+  ownerId: string;
+  ownerName: string;
+  avatarUrl: string;
+  publicToAll: boolean;
+  publishTime: string;
+  viewCount: number;
+  tagTree: TagRelationshipGeneralDTO[];
 }
 
 export interface TagRelationshipCreateDTO {
@@ -172,9 +178,12 @@ export interface TagRelationshipCreateDTO {
 export interface TagRelationshipGeneralDTO {
   id: number;
   parentId: number;
-  value: number;
+  tagId: number;
   label: string;
   collectionId: string;
+  relatedArticles: NewsDTO[];
+  relatedProjects: NewsDTO[];
+  children: TagRelationshipGeneralDTO[];
 }
 
 export interface RenderTree {
@@ -189,4 +198,17 @@ export interface TagRelationship {
   tagId: number;
   label: string;
   children: TagRelationship[];
+}
+
+export interface TagCollection {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl: string;
+  ownerId: string;
+  likeCount: number;
+  viewCount: number;
+  publicToAll: boolean;
+  publishTime: Date;
+  tags: TagOption[];
 }
