@@ -83,7 +83,8 @@
       "home": "Home",
       "news": "News",
       "about": "About",
-      "article": "Article"
+      "article": "Article",
+      "collections": "Collection"
     },
     "settings": {
       "btn-tooltip": "Open settings",
@@ -91,6 +92,7 @@
       "my-zone": "User Central",
       "projects": "Projects",
       "articles": "Articles",
+      "collections": "Collections",
       "sign-out": "Sign Out"
     }
   },
@@ -318,6 +320,20 @@
     }
   },
   "collections-page": {
-    "page-main-title": "Tag collections"
+    "page-main-title": "Collections"
+  },
+  "collections-list-page": {
+    "page-main-title": "Collections",
+    "msg": {
+      "error": "Failed to fetch data"
+    }
+  },
+  "collection-reading-page": {
+    "tip": {
+      "tba": "To be continued"
+    },
+    "msg": {
+      "error": "Failed to fetch data"
+    }
   }
 }
