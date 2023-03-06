@@ -40,7 +40,7 @@ export default function TagCollectionDetailPage() {
   const [targetTag, setTargetTag] = useState<TagOption | null>(null);
 
   const convert = (tagRelationships: TagRelationship[]): RenderTree[] => {
-    if (!Array.isArray(tagRelationships) || tagRelationships.length == 0) {
+    if (!Array.isArray(tagRelationships) || tagRelationships.length === 0) {
       return [];
     }
     return tagRelationships.map((t) => {
