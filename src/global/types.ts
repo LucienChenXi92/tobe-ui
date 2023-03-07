@@ -212,3 +212,8 @@ export interface TagCollection {
   publishTime: Date;
   tags: TagOption[];
 }
+
+export interface BreadcrumbsNode {
+  label: string;
+  href: string;
+}

@@ -1,25 +1,37 @@
 import { useEffect, useState } from "react";
 import { Divider, Grid, Paper, Link, Typography } from "@mui/material";
 import { useAuthState } from "../../../contexts";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   AuthorDisplayPanel,
-  NewsBreadcrumbs,
+  TobeBreadcrumbs,
   RichReader,
   TagDisplayBar,
   Page,
 } from "../../../components";
-import { ArticleDetailDTO } from "../../../global/types";
+import { ArticleDetailDTO, BreadcrumbsNode } from "../../../global/types";
 import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
 import RelevantArticlePanel from "./RelevantArticlePanel";
+import { URL } from "../../../routes";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const { articleId } = useParams();
+  let [searchParams] = useSearchParams();
+  const breadcrumbs: BreadcrumbsNode[] = [];
+  if (searchParams.has("collectionId") && searchParams.has("collectionName")) {
+    breadcrumbs.push({
+      label: searchParams.get("collectionName") || "",
+      href: URL.COLLECTION_READING_PAGE.replace(
+        ":collectionId",
+        searchParams.get("collectionId") || ""
+      ),
+    });
+  }
   const authState = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
@@ -43,7 +55,7 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <NewsBreadcrumbs />
+      <TobeBreadcrumbs nodes={breadcrumbs} />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">

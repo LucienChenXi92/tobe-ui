@@ -22,7 +22,7 @@ import AuthorDisplayPanel from "./common/AuthorDisplayPanel";
 import MultipleTagSelecter from "./common/MultipleTagSelecter";
 import SingleTagSelecter from "./common/SingleTagSelecter";
 import TagDisplayBar from "./common/TagDisplayBar";
-import NewsBreadcrumbs from "./common/NewsBreadcrumbs";
+import TobeBreadcrumbs from "./common/TobeBreadcrumbs";
 import NewsListItem from "./common/NewsListItem";
 import TreePanel from "./common/TreePanel";
 
@@ -51,7 +51,7 @@ export {
   MultipleTagSelecter,
   SingleTagSelecter,
   TagDisplayBar,
-  NewsBreadcrumbs,
+  TobeBreadcrumbs,
   SidePanel,
   TreePanel,
 };

@@ -84,7 +84,7 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
-      "collections": "专辑"
+      "collections": "专题"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -92,7 +92,7 @@
       "my-zone": "用户中心",
       "projects": "计划",
       "articles": "笔记",
-      "collections": "专辑",
+      "collections": "专题",
       "sign-out": "登出系统"
     }
   },
@@ -216,7 +216,7 @@
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
-      "collections": "专辑"
+      "collections": "专题"
     },
     "msg": {
       "error": "获取数据失败"
@@ -293,17 +293,17 @@
     }
   },
   "collection-creation-page": {
-    "page-main-title": "创建一个标签专辑",
+    "page-main-title": "创建一个标签专题",
     "fields": {
-      "name": "专辑名",
-      "description": "专辑描述",
+      "name": "专题名",
+      "description": "专题描述",
       "cover-img-url": "封面链接"
     },
     "msg": {
       "success": "创建成功",
       "error": "创建失败",
       "warning": {
-        "name-empty": "专辑名不能为空"
+        "name-empty": "专题名不能为空"
       }
     },
     "submit-btn": "保存",
@@ -320,10 +320,10 @@
     }
   },
   "collections-page": {
-    "page-main-title": "专辑"
+    "page-main-title": "专题"
   },
   "collections-list-page": {
-    "page-main-title": "专辑",
+    "page-main-title": "专题",
     "msg": {
       "error": "加载数据失败"
     }
