@@ -157,7 +157,11 @@ export default function TagCollectionReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={collection?.name}>
-      <TobeBreadcrumbs />
+      <TobeBreadcrumbs
+        nodes={[
+          { label: t("breadcrumbs.collections"), href: URL.COLLECTIONS_PAGE },
+        ]}
+      />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">

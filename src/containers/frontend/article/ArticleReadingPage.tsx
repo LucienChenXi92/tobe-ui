@@ -25,6 +25,10 @@ export default function ArticleReadingPage() {
   const breadcrumbs: BreadcrumbsNode[] = [];
   if (searchParams.has("collectionId") && searchParams.has("collectionName")) {
     breadcrumbs.push({
+      label: t("breadcrumbs.collections"),
+      href: URL.COLLECTIONS_PAGE,
+    });
+    breadcrumbs.push({
       label: searchParams.get("collectionName") || "",
       href: URL.COLLECTION_READING_PAGE.replace(
         ":collectionId",

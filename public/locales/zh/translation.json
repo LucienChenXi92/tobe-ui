@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "正文",
     "home": "首页",
-    "news": "近期动态"
+    "collections": "专题"
   },
   "components": {
     "edit-icon-button": {
