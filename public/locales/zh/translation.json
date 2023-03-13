@@ -293,7 +293,7 @@
     }
   },
   "subject-creation-page": {
-    "page-main-title": "创建一个标签专题",
+    "page-main-title": "创建一个专题",
     "fields": {
       "name": "专题名",
       "description": "专题描述",
