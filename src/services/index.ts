@@ -6,7 +6,7 @@ import * as ProjectService from "./ProjectService";
 import * as PublicDataService from "./PublicDataService";
 import * as OverviewService from "./OverviewService";
 import * as TagService from "./TagService";
-import * as CollectionService from "./CollectionService";
+import * as SubjectService from "./SubjectService";
 
 export {
   server,
@@ -17,5 +17,5 @@ export {
   PublicDataService,
   OverviewService,
   TagService,
-  CollectionService,
+  SubjectService,
 };

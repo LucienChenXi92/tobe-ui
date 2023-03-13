@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { PublicDataService } from "../../../services";
 import {
-  TagCollectionGeneralDTO,
+  SubjectInfoGeneralDTO,
   TagRelationshipGeneralDTO,
   NewsDTO,
 } from "../../../global/types";
@@ -14,12 +14,12 @@ import { TimeFormat } from "../../../commons";
 import { URL } from "../../../routes";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 
-export default function TagCollectionReadingPage() {
+export default function SubjectReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
-  const [collection, setCollection] = useState<TagCollectionGeneralDTO>();
-  const { collectionId } = useParams();
+  const [subject, setSubject] = useState<SubjectInfoGeneralDTO>();
+  const { subjectId } = useParams();
 
   const Section = (props: { text: string; variant: SectionVariant }) => {
     return (
@@ -46,31 +46,29 @@ export default function TagCollectionReadingPage() {
     return (
       <Grid item xs={12}>
         <Typography color={"textSecondary"}>
-          {t("collection-reading-page.tip.tba")}
+          {t("subject-reading-page.tip.tba")}
         </Typography>
       </Grid>
     );
   };
 
-  function printCollectionTree(
-    collection: TagCollectionGeneralDTO | undefined
-  ) {
-    if (!collection) {
+  function printSubjectTree(subject: SubjectInfoGeneralDTO | undefined) {
+    if (!subject) {
       return (
         <Typography color="textSecondary">
-          {t("collection-reading-page.tip.tba")}
+          {t("subject-reading-page.tip.tba")}
         </Typography>
       );
     }
     const result: JSX.Element[] = [];
-    const deepth = getDepthOfTree(collection.tagTree);
+    const deepth = getDepthOfTree(subject.tagTree);
     convertTreeToList(
-      collection.tagTree,
+      subject.tagTree,
       0,
       result,
       sectionVariants.slice(0, deepth).reverse(),
-      collection.id,
-      collection.name
+      subject.id,
+      subject.name
     );
     return (
       <Grid container flexDirection="row">
@@ -84,8 +82,8 @@ export default function TagCollectionReadingPage() {
     depth: number,
     elements: JSX.Element[],
     sectionVariants: SectionVariant[],
-    collectionId: string,
-    collectionName: string
+    subjectId: string,
+    subjectName: string
   ): void {
     if (!treeNodes || treeNodes.length === 0) {
       return;
@@ -102,7 +100,7 @@ export default function TagCollectionReadingPage() {
               text={a.title}
               href={
                 URL.NEWS_ARTICLE_DETAIL.replace(":articleId", a.id) +
-                `?collectionId=${collectionId}&collectionName=${collectionName}`
+                `?subjectId=${subjectId}&subjectName=${subjectName}`
               }
             />
           );
@@ -116,8 +114,8 @@ export default function TagCollectionReadingPage() {
           depth + 1,
           elements,
           sectionVariants,
-          collectionId,
-          collectionName
+          subjectId,
+          subjectName
         );
       });
     }
@@ -141,12 +139,12 @@ export default function TagCollectionReadingPage() {
   useEffect(() => {
     function load(): void {
       setOpenLoading(true);
-      PublicDataService.getCollectionById(collectionId || "")
+      PublicDataService.getSubjectById(subjectId || "")
         .then((response) => {
-          setCollection(response.data);
+          setSubject(response.data);
         })
         .catch(() => {
-          enqueueSnackbar(t("collections-reading-page.msg.error"), {
+          enqueueSnackbar(t("subjects-reading-page.msg.error"), {
             variant: "error",
           });
         })
@@ -156,16 +154,14 @@ export default function TagCollectionReadingPage() {
   }, [t, enqueueSnackbar]);
 
   return (
-    <Page openLoading={openLoading} pageTitle={collection?.name}>
+    <Page openLoading={openLoading} pageTitle={subject?.name}>
       <TobeBreadcrumbs
-        nodes={[
-          { label: t("breadcrumbs.collections"), href: URL.COLLECTIONS_PAGE },
-        ]}
+        nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-            {collection && (
+            {subject && (
               <Grid container>
                 <Grid item container xs={12} sx={{ my: 1 }}>
                   <Typography
@@ -173,21 +169,19 @@ export default function TagCollectionReadingPage() {
                     color="text.secondary"
                     sx={{ flexGrow: 1 }}
                   >
-                    {collection.ownerName} ·{" "}
-                    {TimeFormat.dateAndTimeFormat(collection.publishTime)} ·{" "}
-                    {t("article-reading-page.view")} {collection.viewCount}
+                    {subject.ownerName} ·{" "}
+                    {TimeFormat.dateAndTimeFormat(subject.publishTime)} ·{" "}
+                    {t("article-reading-page.view")} {subject.viewCount}
                   </Typography>
                 </Grid>
-                {printCollectionTree(collection)}
+                {printSubjectTree(subject)}
               </Grid>
             )}
           </Paper>
         </Grid>
 
         <Grid item sm={12} md={3}>
-          {collection?.ownerId && (
-            <AuthorDisplayPanel userId={collection?.ownerId} />
-          )}
+          {subject?.ownerId && <AuthorDisplayPanel userId={subject?.ownerId} />}
         </Grid>
       </Grid>
     </Page>

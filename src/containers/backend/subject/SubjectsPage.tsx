@@ -13,24 +13,24 @@ import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import { ActionButtonBar, CreateButton, Page } from "../../../components";
 import { URL } from "../../../routes";
-import { Operation, TagCollection } from "../../../global/types";
-import { CollectionService } from "../../../services";
+import { Operation, SubjectInfo } from "../../../global/types";
+import { SubjectService } from "../../../services";
 
-export default function TagCollectionsPage() {
+export default function SubjectsPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
-  const [collections, setCollections] = useState<TagCollection[]>([]);
+  const [subjects, setSubjects] = useState<SubjectInfo[]>([]);
   const [current, setCurrent] = useState<number>(0);
   const [size, setSize] = useState<number>(1000);
   const [totalCount, setTotalCount] = useState<number>(0);
   const navigate = useNavigate();
 
-  const loadCollections = useCallback((): void => {
+  const loadSubjects = useCallback((): void => {
     setOpenLoading(true);
-    CollectionService.get(size, current)
+    SubjectService.get(size, current)
       .then((response) => {
-        setCollections(response.data.records || []);
+        setSubjects(response.data.records || []);
         setTotalCount(response.data.total);
       })
       .catch(() => {
@@ -42,14 +42,14 @@ export default function TagCollectionsPage() {
   }, [current, enqueueSnackbar, size, t]);
 
   useEffect(() => {
-    loadCollections();
-  }, [loadCollections]);
+    loadSubjects();
+  }, [loadSubjects]);
 
   function releaseById(id: number | string) {
     setOpenLoading(true);
-    CollectionService.releaseById(id)
+    SubjectService.releaseById(id)
       .then(() => {
-        loadCollections();
+        loadSubjects();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -59,9 +59,9 @@ export default function TagCollectionsPage() {
 
   function deleteById(id: number | string) {
     setOpenLoading(true);
-    CollectionService.deleteById(id)
+    SubjectService.deleteById(id)
       .then(() => {
-        loadCollections();
+        loadSubjects();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -73,7 +73,7 @@ export default function TagCollectionsPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.COLLECTION_DETAIL.replace(":collectionId", id.toString())),
+        navigate(URL.SUBJECT_DETAIL.replace(":subjectId", id.toString())),
     },
     {
       name: "release",
@@ -89,7 +89,7 @@ export default function TagCollectionsPage() {
   return (
     <Page
       openLoading={openLoading}
-      pageTitle={t("collections-page.page-main-title")}
+      pageTitle={t("subjects-page.page-main-title")}
     >
       <Grid
         container
@@ -98,18 +98,18 @@ export default function TagCollectionsPage() {
         alignItems="center"
       >
         <Grid item>
-          <CreateButton handleOnClick={() => navigate(URL.CREATE_COLLECTION)} />
+          <CreateButton handleOnClick={() => navigate(URL.CREATE_SUBJECT)} />
         </Grid>
       </Grid>
 
       <Grid container spacing={1}>
-        {collections.map((collection: TagCollection) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={collection.id}>
+        {subjects.map((subject: SubjectInfo) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={subject.id}>
             <Card variant="outlined">
               <CardMedia
                 sx={{ height: 140 }}
-                image={collection.coverImgUrl}
-                title={collection.name}
+                image={subject.coverImgUrl}
+                title={subject.name}
               />
 
               <CardContent sx={{ py: 1 }}>
@@ -119,15 +119,15 @@ export default function TagCollectionsPage() {
                   color="text.secondary"
                   component="div"
                 >
-                  {collection.name}
+                  {subject.name}
                 </Typography>
                 <Typography gutterBottom variant="body2" color="text.secondary">
-                  {collection.description}
+                  {subject.description}
                 </Typography>
               </CardContent>
               <Divider />
               <CardActions sx={{ px: 0 }}>
-                <ActionButtonBar operations={operations} target={collection} />
+                <ActionButtonBar operations={operations} target={subject} />
               </CardActions>
             </Card>
           </Grid>

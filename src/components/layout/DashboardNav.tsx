@@ -60,9 +60,9 @@ const basicPageItems: PageItem[] = [
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
-    label: "dashboard-nav.pages.collections",
+    label: "dashboard-nav.pages.subjects",
     icon: <CollectionsBookmarkIcon />,
-    url: URL.COLLECTIONS,
+    url: URL.SUBJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
 ];

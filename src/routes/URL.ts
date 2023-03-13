@@ -8,8 +8,8 @@ export const URL = {
   NEWS_PROJECT_DETAIL: "/news/projects/:projectId",
   NEWS_ARTICLE_DETAIL: "/news/articles/:articleId",
 
-  COLLECTIONS_PAGE: "/collections",
-  COLLECTION_READING_PAGE: "/collections/:collectionId",
+  SUBJECTS_PAGE: "/subjects",
+  SUBJECT_READING_PAGE: "/subjects/:subjectId",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",
@@ -23,9 +23,9 @@ export const URL = {
   ARTICLE_DETAIL: "/my/articles/:articleId",
   CREATE_ARTICLE: "/my/articles/create-article",
 
-  CREATE_COLLECTION: "/my/collections/create-collection",
-  COLLECTION_DETAIL: "/my/collections/:collectionId",
-  COLLECTIONS: "/my/collections",
+  CREATE_SUBJECT: "/my/subjects/create-subject",
+  SUBJECT_DETAIL: "/my/subjects/:subjectId",
+  SUBJECTS: "/my/subjects",
 };
 
 export function validateUrl(target: string): boolean {

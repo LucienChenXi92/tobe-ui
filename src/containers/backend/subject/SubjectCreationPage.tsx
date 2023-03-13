@@ -5,9 +5,9 @@ import { Box, Button, Paper, TextField, Grid } from "@mui/material";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../routes";
-import { CollectionService } from "../../../services";
+import { SubjectService } from "../../../services";
 
-export default function TagCollectionCreationPage() {
+export default function SubjectCreationPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
@@ -16,8 +16,8 @@ export default function TagCollectionCreationPage() {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    if (!data.get("collectionName")) {
-      enqueueSnackbar(t("project-creation-page.msg.warning.name-empty"), {
+    if (!data.get("subjectName")) {
+      enqueueSnackbar(t("subject-creation-page.msg.warning.name-empty"), {
         variant: "warning",
       });
       return;
@@ -27,19 +27,19 @@ export default function TagCollectionCreationPage() {
 
   function handleCreation(data: FormData): void {
     setOpenLoading(true);
-    CollectionService.create({
-      name: data.get("collectionName")?.toString() || "",
+    SubjectService.create({
+      name: data.get("subjectName")?.toString() || "",
       description: data.get("description")?.toString() || "",
       coverImgUrl: data.get("coverImgUrl")?.toString() || "",
     })
       .then((response) => {
-        enqueueSnackbar(t("collection-creation-page.msg.success"), {
+        enqueueSnackbar(t("subject-creation-page.msg.success"), {
           variant: "success",
         });
-        navigate(URL.COLLECTIONS);
+        navigate(URL.SUBJECTS);
       })
       .catch(() => {
-        enqueueSnackbar(t("collection-creation-page.msg.error"), {
+        enqueueSnackbar(t("subject-creation-page.msg.error"), {
           variant: "error",
         });
       })
@@ -49,7 +49,7 @@ export default function TagCollectionCreationPage() {
   return (
     <Page
       openLoading={openLoading}
-      pageTitle={t("collection-creation-page.page-main-title")}
+      pageTitle={t("subject-creation-page.page-main-title")}
     >
       <Paper
         variant="outlined"
@@ -60,9 +60,9 @@ export default function TagCollectionCreationPage() {
             <Grid item xs={12}>
               <TextField
                 required
-                id="collectionName"
-                name="collectionName"
-                label={t("collection-creation-page.fields.name")}
+                id="subjectName"
+                name="subjectName"
+                label={t("subject-creation-page.fields.name")}
                 fullWidth
                 autoComplete="name"
                 variant="standard"
@@ -72,7 +72,7 @@ export default function TagCollectionCreationPage() {
               <TextField
                 id="coverImgUrl"
                 name="coverImgUrl"
-                label={t("collection-creation-page.fields.cover-img-url")}
+                label={t("subject-creation-page.fields.cover-img-url")}
                 fullWidth
                 autoComplete="coverImgUrl"
                 variant="standard"
@@ -82,7 +82,7 @@ export default function TagCollectionCreationPage() {
               <TextField
                 id="description"
                 name="description"
-                label={t("collection-creation-page.fields.description")}
+                label={t("subject-creation-page.fields.description")}
                 fullWidth
                 autoComplete="description"
                 variant="standard"
@@ -94,10 +94,10 @@ export default function TagCollectionCreationPage() {
           </Grid>
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <Button onClick={() => window.history.back()} sx={{ mt: 3, ml: 1 }}>
-              {t("collection-creation-page.back-btn")}
+              {t("subject-creation-page.back-btn")}
             </Button>
             <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
-              {t("collection-creation-page.submit-btn")}
+              {t("subject-creation-page.submit-btn")}
             </Button>
           </Box>
         </Box>

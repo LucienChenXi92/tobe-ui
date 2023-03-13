@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "Content",
     "home": "Home",
-    "collections": "专题"
+    "subjects": "专题"
   },
   "components": {
     "edit-icon-button": {
@@ -84,7 +84,7 @@
       "news": "News",
       "about": "About",
       "article": "Article",
-      "collections": "Collection"
+      "subjects": "Subject"
     },
     "settings": {
       "btn-tooltip": "Open settings",
@@ -92,7 +92,7 @@
       "my-zone": "User Central",
       "projects": "Projects",
       "articles": "Articles",
-      "collections": "Collections",
+      "subjects": "Subjects",
       "sign-out": "Sign Out"
     }
   },
@@ -216,7 +216,7 @@
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
-      "collections": "Collections"
+      "subjects": "Subjects"
     }
   },
   "dashboard-page": {
@@ -292,10 +292,10 @@
       "error": "Failed to fetch data"
     }
   },
-  "collection-creation-page": {
-    "page-main-title": "Create a new tag collection",
+  "subject-creation-page": {
+    "page-main-title": "Create a new subject",
     "fields": {
-      "name": "Collection Name",
+      "name": "Subject Name",
       "description": "Description",
       "cover-img-url": "Cover Image URL"
     },
@@ -303,13 +303,13 @@
       "success": "Created",
       "error": "Creation failed",
       "warning": {
-        "name-empty": "Collection name cannot be empty"
+        "name-empty": "Subject name cannot be empty"
       }
     },
     "submit-btn": "Save",
     "back-btn": "Back"
   },
-  "collection-detail-page": {
+  "subject-detail-page": {
     "btn": {
       "add": "Add",
       "delete": "Delete"
@@ -319,16 +319,16 @@
       "error": "Operation failed"
     }
   },
-  "collections-page": {
-    "page-main-title": "Collections"
+  "subjects-page": {
+    "page-main-title": "Subjects"
   },
-  "collections-list-page": {
-    "page-main-title": "Collections",
+  "subjects-list-page": {
+    "page-main-title": "Subjects",
     "msg": {
       "error": "Failed to fetch data"
     }
   },
-  "collection-reading-page": {
+  "subject-reading-page": {
     "tip": {
       "tba": "To be continued"
     },

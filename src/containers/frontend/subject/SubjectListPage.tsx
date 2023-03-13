@@ -3,26 +3,26 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Page } from "../../../components";
 import { PublicDataService } from "../../../services";
-import { TagCollection } from "../../../global/types";
+import { SubjectInfo } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
 import { Typography, Grid, Card, CardContent, CardMedia } from "@mui/material";
 
-export default function TagCollectionListPage() {
+export default function SubjectListPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
-  const [collections, setCollections] = useState<TagCollection[]>([]);
+  const [subjects, setSubjects] = useState<SubjectInfo[]>([]);
 
   useEffect(() => {
     function load(): void {
       setOpenLoading(true);
-      PublicDataService.getCollections(1000, 0)
+      PublicDataService.getSubjects(1000, 0)
         .then((response) => {
-          setCollections(response.data.records || []);
+          setSubjects(response.data.records || []);
         })
         .catch(() => {
-          enqueueSnackbar(t("collections-list-page.msg.error"), {
+          enqueueSnackbar(t("subjects-list-page.msg.error"), {
             variant: "error",
           });
         })
@@ -34,7 +34,7 @@ export default function TagCollectionListPage() {
   return (
     <Page
       openLoading={openLoading}
-      pageTitle={t("collections-list-page.page-main-title")}
+      pageTitle={t("subjects-list-page.page-main-title")}
     >
       <Grid
         container
@@ -43,26 +43,26 @@ export default function TagCollectionListPage() {
           pt: 2,
         }}
       >
-        {collections.map((collection: TagCollection) => (
+        {subjects.map((subject: SubjectInfo) => (
           <Grid
             item
             xs={12}
             sm={6}
             md={4}
             lg={3}
-            key={collection.id}
+            key={subject.id}
             sx={{
               cursor: "pointer",
             }}
           >
             <Card
               variant="outlined"
-              onClick={() => navigate(`/collections/${collection.id}`)}
+              onClick={() => navigate(`/subjects/${subject.id}`)}
             >
               <CardMedia
                 sx={{ height: 140 }}
-                image={collection.coverImgUrl}
-                title={collection.name}
+                image={subject.coverImgUrl}
+                title={subject.name}
               />
               <CardContent sx={{ py: 1 }}>
                 <Typography
@@ -71,10 +71,10 @@ export default function TagCollectionListPage() {
                   color="text.secondary"
                   component="div"
                 >
-                  {collection.name}
+                  {subject.name}
                 </Typography>
                 <Typography gutterBottom variant="body2" color="text.secondary">
-                  {collection.description}
+                  {subject.description}
                 </Typography>
               </CardContent>
             </Card>

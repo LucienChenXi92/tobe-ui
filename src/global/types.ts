@@ -142,20 +142,20 @@ export enum Domain {
   Project = "PROJECT",
 }
 
-export interface TagCollectionCreationDTO {
+export interface SubjectInfoCreationDTO {
   name: string;
   description: string;
   coverImgUrl?: string;
 }
 
-export interface TagCollectionUpdateDTO {
+export interface SubjectInfoUpdateDTO {
   id: string;
   name: string;
   description: string;
   coverImgUrl?: string;
 }
 
-export interface TagCollectionGeneralDTO {
+export interface SubjectInfoGeneralDTO {
   id: string;
   name: string;
   description: string;
@@ -172,7 +172,7 @@ export interface TagCollectionGeneralDTO {
 export interface TagRelationshipCreateDTO {
   parentId: number | null;
   tagId: number;
-  collectionId: string;
+  subjectId: string;
 }
 
 export interface TagRelationshipGeneralDTO {
@@ -180,7 +180,7 @@ export interface TagRelationshipGeneralDTO {
   parentId: number;
   tagId: number;
   label: string;
-  collectionId: string;
+  subjectId: string;
   relatedArticles: NewsDTO[];
   relatedProjects: NewsDTO[];
   children: TagRelationshipGeneralDTO[];
@@ -200,7 +200,7 @@ export interface TagRelationship {
   children: TagRelationship[];
 }
 
-export interface TagCollection {
+export interface SubjectInfo {
   id: string;
   name: string;
   description: string;

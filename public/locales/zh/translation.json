@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "正文",
     "home": "首页",
-    "collections": "专题"
+    "subjects": "专题"
   },
   "components": {
     "edit-icon-button": {
@@ -84,7 +84,7 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
-      "collections": "专题"
+      "subjects": "专题"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -92,7 +92,7 @@
       "my-zone": "用户中心",
       "projects": "计划",
       "articles": "笔记",
-      "collections": "专题",
+      "subjects": "专题",
       "sign-out": "登出系统"
     }
   },
@@ -216,7 +216,7 @@
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
-      "collections": "专题"
+      "subjects": "专题"
     },
     "msg": {
       "error": "获取数据失败"
@@ -292,7 +292,7 @@
       "error": "加载数据失败"
     }
   },
-  "collection-creation-page": {
+  "subject-creation-page": {
     "page-main-title": "创建一个标签专题",
     "fields": {
       "name": "专题名",
@@ -309,7 +309,7 @@
     "submit-btn": "保存",
     "back-btn": "返回"
   },
-  "collection-detail-page": {
+  "subject-detail-page": {
     "btn": {
       "add": "新增",
       "delete": "删除"
@@ -319,16 +319,16 @@
       "error": "操作失败"
     }
   },
-  "collections-page": {
+  "subjects-page": {
     "page-main-title": "专题"
   },
-  "collections-list-page": {
+  "subjects-list-page": {
     "page-main-title": "专题",
     "msg": {
       "error": "加载数据失败"
     }
   },
-  "collection-reading-page": {
+  "subject-reading-page": {
     "tip": {
       "tba": "敬请期待"
     },

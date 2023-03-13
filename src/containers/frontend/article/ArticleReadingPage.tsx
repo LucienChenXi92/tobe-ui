@@ -23,16 +23,16 @@ export default function ArticleReadingPage() {
   const { articleId } = useParams();
   let [searchParams] = useSearchParams();
   const breadcrumbs: BreadcrumbsNode[] = [];
-  if (searchParams.has("collectionId") && searchParams.has("collectionName")) {
+  if (searchParams.has("subjectId") && searchParams.has("subjectName")) {
     breadcrumbs.push({
-      label: t("breadcrumbs.collections"),
-      href: URL.COLLECTIONS_PAGE,
+      label: t("breadcrumbs.subjects"),
+      href: URL.SUBJECTS_PAGE,
     });
     breadcrumbs.push({
-      label: searchParams.get("collectionName") || "",
-      href: URL.COLLECTION_READING_PAGE.replace(
-        ":collectionId",
-        searchParams.get("collectionId") || ""
+      label: searchParams.get("subjectName") || "",
+      href: URL.SUBJECT_READING_PAGE.replace(
+        ":subjectId",
+        searchParams.get("subjectId") || ""
       ),
     });
   }

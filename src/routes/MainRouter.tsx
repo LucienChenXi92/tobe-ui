@@ -48,22 +48,22 @@ const ArticleReadingPage = React.lazy(
   () => import("../containers/frontend/article/ArticleReadingPage")
 );
 
-const TagCollectionCreationPage = React.lazy(
-  () => import("../containers/backend/collection/TagCollectionCreationPage")
+const SubjectCreationPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectCreationPage")
 );
-const TagCollectionDetailPage = React.lazy(
-  () => import("../containers/backend/collection/TagCollectionDetailPage")
+const SubjectDetailPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectDetailPage")
 );
-const TagCollectionsPage = React.lazy(
-  () => import("../containers/backend/collection/TagCollectionsPage")
-);
-
-const TagCollectionListPage = React.lazy(
-  () => import("../containers/frontend/collection/TagCollectionListPage")
+const SubjectsPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectsPage")
 );
 
-const TagCollectionReadingPage = React.lazy(
-  () => import("../containers/frontend/collection/TagCollectionReadingPage")
+const SubjectListPage = React.lazy(
+  () => import("../containers/frontend/subject/SubjectListPage")
+);
+
+const SubjectReadingPage = React.lazy(
+  () => import("../containers/frontend/subject/SubjectReadingPage")
 );
 
 function MainRouter() {
@@ -89,14 +89,11 @@ function MainRouter() {
             />
             <Route path={URL.ARTICLE_DETAIL} element={<ArticleDetailPage />} />
             <Route
-              path={URL.CREATE_COLLECTION}
-              element={<TagCollectionCreationPage />}
+              path={URL.CREATE_SUBJECT}
+              element={<SubjectCreationPage />}
             />
-            <Route path={URL.COLLECTIONS} element={<TagCollectionsPage />} />
-            <Route
-              path={URL.COLLECTION_DETAIL}
-              element={<TagCollectionDetailPage />}
-            />
+            <Route path={URL.SUBJECTS} element={<SubjectsPage />} />
+            <Route path={URL.SUBJECT_DETAIL} element={<SubjectDetailPage />} />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>
@@ -111,13 +108,10 @@ function MainRouter() {
               path={URL.NEWS_ARTICLE_DETAIL}
               element={<ArticleReadingPage />}
             />
+            <Route path={URL.SUBJECTS_PAGE} element={<SubjectListPage />} />
             <Route
-              path={URL.COLLECTIONS_PAGE}
-              element={<TagCollectionListPage />}
-            />
-            <Route
-              path={URL.COLLECTION_READING_PAGE}
-              element={<TagCollectionReadingPage />}
+              path={URL.SUBJECT_READING_PAGE}
+              element={<SubjectReadingPage />}
             />
             <Route
               path={URL.ARTICLE}
