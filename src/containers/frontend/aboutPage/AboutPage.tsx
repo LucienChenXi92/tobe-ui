@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Divider, Grid, Hidden, Typography } from "@mui/material";
+import { Divider, Grid, Hidden, Typography, Link } from "@mui/material";
 import { Page } from "../../../components";
 import { url } from "inspector";
 
@@ -55,10 +55,10 @@ export default function AboutPage() {
             variant="h6"
             sx={{ mt: 2, mb: 1 }}
           >
-            关于“我”
+            关于”我”
           </Typography>
           <Typography color="textSecondary">
-            大家好，我是 Lucien Chen，一名90后全栈开发者，同时也是 TOBE
+            大家好，我是 Lucien Chen（陈熹），一名90后全栈开发者，同时也是 TOBE
             的创建者。一直以来我都对科技非常感兴趣，特别是对如何将技术来帮助人们优化生活，实现自我成长和进步有着强烈的追求。
           </Typography>
           <br />
@@ -87,6 +87,30 @@ export default function AboutPage() {
             <img width={"100%"} height={"100%"} src={"/images/lucien.JPG"} />
           </Grid>
         </Hidden>
+      </Grid>
+
+      <Grid container sx={{ py: 4 }}>
+        <Grid item xs={12} sm={12}>
+          <Typography
+            color={"textSecondary"}
+            variant="h6"
+            sx={{ mt: 2, mb: 1 }}
+          >
+            联系我们
+          </Typography>
+          <Typography color="textSecondary">微信：LucienChen_ChenXi</Typography>
+          <Typography color="textSecondary">邮箱：474504303@qq.com</Typography>
+          <Typography color="textSecondary">
+            领英：
+            <Link
+              color="textSecondary"
+              target="blank"
+              href="https://www.linkedin.com/in/lucien-chen-219ab6175/?original_referer=https%3A%2F%2Flucienchen.xyz%2F"
+            >
+              Lucien Chen
+            </Link>
+          </Typography>
+        </Grid>
       </Grid>
     </Page>
   );
