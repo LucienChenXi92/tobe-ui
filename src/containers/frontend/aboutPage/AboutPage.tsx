@@ -1,7 +1,6 @@
 import { useTranslation } from "react-i18next";
-import { Divider, Grid, Hidden, Typography, Link } from "@mui/material";
+import { Grid, Hidden, Typography, Link } from "@mui/material";
 import { Page } from "../../../components";
-import { url } from "inspector";
 
 export default function AboutPage() {
   const { t } = useTranslation();
@@ -34,6 +33,7 @@ export default function AboutPage() {
         </Grid>
         <Grid item xs={12} sm={4} sx={{ px: 4, pt: { xs: 8, sm: 8 } }}>
           <img
+            alt="grown-pic"
             width={"100%"}
             height={"100%"}
             src={
@@ -46,7 +46,12 @@ export default function AboutPage() {
       <Grid container sx={{ py: 4 }}>
         <Hidden mdDown>
           <Grid item xs={12} sm={4} sx={{ px: 2, pt: 8 }}>
-            <img width={"100%"} height={"80%"} src={"/images/lucien.JPG"} />
+            <img
+              alt="lucien-avatar"
+              width={"100%"}
+              height={"80%"}
+              src={"/images/lucien.JPG"}
+            />
           </Grid>
         </Hidden>
         <Grid item xs={12} sm={12} md={8}>
@@ -84,7 +89,12 @@ export default function AboutPage() {
 
         <Hidden mdUp>
           <Grid item xs={12} sx={{ p: 4 }}>
-            <img width={"100%"} height={"100%"} src={"/images/lucien.JPG"} />
+            <img
+              alt="lucien-avatar"
+              width={"100%"}
+              height={"100%"}
+              src={"/images/lucien.JPG"}
+            />
           </Grid>
         </Hidden>
       </Grid>
