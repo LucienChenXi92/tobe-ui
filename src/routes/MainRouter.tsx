@@ -113,14 +113,6 @@ function MainRouter() {
               path={URL.SUBJECT_READING_PAGE}
               element={<SubjectReadingPage />}
             />
-            <Route
-              path={URL.ARTICLE}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>Coming soon!</p>
-                </main>
-              }
-            />
             <Route path={URL.ABOUT} element={<AboutPage />} />
           </Route>
         </Routes>
