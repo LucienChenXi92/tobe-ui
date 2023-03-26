@@ -7,6 +7,14 @@ import { useAuthDispatch } from "../contexts";
 import HomePage from "../containers/frontend/homePage/HomePage";
 import SignInPage from "../containers/frontend/signIn/SignInPage";
 
+const ToolsPage = React.lazy(
+  () => import("../containers/frontend/tool/ToolsPage")
+);
+
+const Pomodoro = React.lazy(
+  () => import("../containers/frontend/tool/Pomodoro")
+);
+
 const AboutPage = React.lazy(
   () => import("../containers/frontend/aboutPage/AboutPage")
 );
@@ -113,6 +121,8 @@ function MainRouter() {
               path={URL.SUBJECT_READING_PAGE}
               element={<SubjectReadingPage />}
             />
+            <Route path={URL.TOOLS_PAGE} element={<ToolsPage />} />
+            <Route path={URL.TOOL_POMODORO} element={<Pomodoro />} />
             <Route path={URL.ABOUT} element={<AboutPage />} />
           </Route>
         </Routes>

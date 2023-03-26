@@ -84,7 +84,8 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
-      "subjects": "专题"
+      "subject": "专题",
+      "tool": "工具"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -334,6 +335,24 @@
     },
     "msg": {
       "error": "加载数据失败"
+    }
+  },
+  "tools-list-page": {
+    "page-main-title": "工具",
+    "pomodoro": {
+      "name": "番茄时钟",
+      "desc": "一款基于番茄时间管理理论的闹钟"
+    }
+  },
+  "tools-pomodoro": {
+    "page-main-title": "番茄时钟",
+    "tip": {
+      "start": "开始一轮工作倒计时"
+    },
+    "btn": {
+      "start": "开始",
+      "pause": "暂停",
+      "reset": "重置"
     }
   }
 }

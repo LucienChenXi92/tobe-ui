@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "Content",
     "home": "Home",
-    "subjects": "专题"
+    "subjects": "Subject"
   },
   "components": {
     "edit-icon-button": {
@@ -84,7 +84,8 @@
       "news": "News",
       "about": "About",
       "article": "Article",
-      "subjects": "Subject"
+      "subject": "Subject",
+      "tool": "Tool"
     },
     "settings": {
       "btn-tooltip": "Open settings",
@@ -334,6 +335,24 @@
     },
     "msg": {
       "error": "Failed to fetch data"
+    }
+  },
+  "tools-list-page": {
+    "page-main-title": "Tools",
+    "pomodoro": {
+      "name": "Pomodoro",
+      "desc": "A timer based on the Pomodoro time management technique."
+    }
+  },
+  "tools-pomodoro": {
+    "page-main-title": "Pomodoro",
+    "tip": {
+      "start": "Start a countdown"
+    },
+    "btn": {
+      "start": "Start",
+      "pause": "Pause",
+      "reset": "Reset"
     }
   }
 }

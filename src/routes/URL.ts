@@ -11,6 +11,9 @@ export const URL = {
   SUBJECTS_PAGE: "/subjects",
   SUBJECT_READING_PAGE: "/subjects/:subjectId",
 
+  TOOLS_PAGE: "/tools",
+  TOOL_POMODORO: "/tools/pomodoro",
+
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",
   PROFILE: "/my/profile",
