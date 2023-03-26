@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useNavigate } from "react-router-dom";
 import { Page } from "../../../components";
 import {
   Box,
@@ -10,7 +9,6 @@ import {
   CircularProgress,
   CircularProgressProps,
 } from "@mui/material";
-import { min } from "date-fns/esm";
 
 export default function Pomodoro() {
   const { t } = useTranslation();
@@ -93,9 +91,8 @@ export default function Pomodoro() {
           sx={{
             mt: 5,
             display: "flex",
-            height: "30vh",
-            width: "30vh",
-            borderRadius: "15vh",
+            height: "50vh",
+            width: "50vh",
           }}
         >
           {secLeft > 0 ? (
@@ -151,7 +148,7 @@ function CircularProgressWithLabel(
       <CircularProgress
         variant="determinate"
         {...props}
-        size="30vh"
+        size="50vh"
         color={props.workState ? "secondary" : "success"}
         thickness={5}
       />
@@ -168,15 +165,14 @@ function CircularProgressWithLabel(
           flexDirection: "column",
         }}
       >
+        <Typography variant="h2" component="div" color="primary">
+          {props.minText}:{props.secText}
+        </Typography>
         <Typography
           variant="h5"
           component="div"
           color="text.secondary"
         >{`${Math.round(props.value)}%`}</Typography>
-
-        <Typography variant="h5" component="div" color="text.secondary">
-          {props.minText}:{props.secText}
-        </Typography>
       </Box>
     </Box>
   );
