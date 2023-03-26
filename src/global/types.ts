@@ -141,3 +141,79 @@ export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",
 }
+
+export interface SubjectInfoCreationDTO {
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+}
+
+export interface SubjectInfoUpdateDTO {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+}
+
+export interface SubjectInfoGeneralDTO {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl?: string;
+  ownerId: string;
+  ownerName: string;
+  avatarUrl: string;
+  publicToAll: boolean;
+  publishTime: string;
+  viewCount: number;
+  tagTree: TagRelationshipGeneralDTO[];
+}
+
+export interface TagRelationshipCreateDTO {
+  parentId: number | null;
+  tagId: number;
+  subjectId: string;
+}
+
+export interface TagRelationshipGeneralDTO {
+  id: number;
+  parentId: number;
+  tagId: number;
+  label: string;
+  subjectId: string;
+  relatedArticles: NewsDTO[];
+  relatedProjects: NewsDTO[];
+  children: TagRelationshipGeneralDTO[];
+}
+
+export interface RenderTree {
+  id: string;
+  name: string;
+  children?: readonly RenderTree[];
+}
+
+export interface TagRelationship {
+  id: number;
+  parentId: number;
+  tagId: number;
+  label: string;
+  children: TagRelationship[];
+}
+
+export interface SubjectInfo {
+  id: string;
+  name: string;
+  description: string;
+  coverImgUrl: string;
+  ownerId: string;
+  likeCount: number;
+  viewCount: number;
+  publicToAll: boolean;
+  publishTime: Date;
+  tags: TagOption[];
+}
+
+export interface BreadcrumbsNode {
+  label: string;
+  href: string;
+}

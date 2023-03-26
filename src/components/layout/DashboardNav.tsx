@@ -12,17 +12,18 @@ import {
 } from "@mui/material";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
+import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import FlagIcon from "@mui/icons-material/Flag";
 import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { URL } from "../routes";
-import { authed, AUTHORITY } from "../commons";
 import { useTranslation } from "react-i18next";
-import theme from "../theme";
-import { PageItem } from "../global/types";
-import project from "../../package.json";
+import { URL } from "../../routes";
+import { authed, AUTHORITY } from "../../commons";
+import theme from "../../theme";
+import { PageItem } from "../../global/types";
+import project from "../../../package.json";
 
 interface DashboardNavProps {
   setOpenDrawer: (newValue: boolean) => void;
@@ -56,6 +57,12 @@ const basicPageItems: PageItem[] = [
     label: "dashboard-nav.pages.articles",
     icon: <ArticleIcon />,
     url: URL.ARTICLES,
+    requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
+  },
+  {
+    label: "dashboard-nav.pages.subjects",
+    icon: <CollectionsBookmarkIcon />,
+    url: URL.SUBJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
 ];

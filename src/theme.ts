@@ -31,6 +31,21 @@ const theme = createTheme({
         },
       },
     },
+    MuiCardHeader: {
+      styleOverrides: {
+        content: {
+          width: "100%",
+        },
+        title: {
+          maxWidth: "100%",
+          display: "block",
+          whiteSpace: "nowrap",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
+          fontSize: "1rem",
+        },
+      },
+    },
   },
 });
 

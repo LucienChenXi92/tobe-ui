@@ -7,9 +7,20 @@ import { useAuthDispatch } from "../contexts";
 import HomePage from "../containers/frontend/homePage/HomePage";
 import SignInPage from "../containers/frontend/signIn/SignInPage";
 
-const NewsPage = React.lazy(() => import("../containers/frontend/news/NewsPage"));
-const AboutPage = React.lazy(() => import("../containers/frontend/aboutPage/AboutPage"));
-const SignUpPage = React.lazy(() => import("../containers/frontend/signUp/SignUpPage"));
+const ToolsPage = React.lazy(
+  () => import("../containers/frontend/tool/ToolsPage")
+);
+
+const Pomodoro = React.lazy(
+  () => import("../containers/frontend/tool/Pomodoro")
+);
+
+const AboutPage = React.lazy(
+  () => import("../containers/frontend/aboutPage/AboutPage")
+);
+const SignUpPage = React.lazy(
+  () => import("../containers/frontend/signUp/SignUpPage")
+);
 const ProfileSettingPage = React.lazy(
   () => import("../containers/backend/profileSettingPage/ProfileSettingPage")
 );
@@ -17,7 +28,9 @@ const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
 const DashboardPage = React.lazy(
   () => import("../containers/backend/dashboard/DashboardPage")
 );
-const UsersPage = React.lazy(() => import("../containers/backend/user/UsersPage"));
+const UsersPage = React.lazy(
+  () => import("../containers/backend/user/UsersPage")
+);
 const ProjectsPage = React.lazy(
   () => import("../containers/backend/project/ProjectsPage")
 );
@@ -43,6 +56,24 @@ const ArticleReadingPage = React.lazy(
   () => import("../containers/frontend/article/ArticleReadingPage")
 );
 
+const SubjectCreationPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectCreationPage")
+);
+const SubjectDetailPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectDetailPage")
+);
+const SubjectsPage = React.lazy(
+  () => import("../containers/backend/subject/SubjectsPage")
+);
+
+const SubjectListPage = React.lazy(
+  () => import("../containers/frontend/subject/SubjectListPage")
+);
+
+const SubjectReadingPage = React.lazy(
+  () => import("../containers/frontend/subject/SubjectReadingPage")
+);
+
 function MainRouter() {
   return (
     <Suspense fallback={<Loading open={true} />}>
@@ -65,13 +96,18 @@ function MainRouter() {
               element={<ArticleCreationPage />}
             />
             <Route path={URL.ARTICLE_DETAIL} element={<ArticleDetailPage />} />
+            <Route
+              path={URL.CREATE_SUBJECT}
+              element={<SubjectCreationPage />}
+            />
+            <Route path={URL.SUBJECTS} element={<SubjectsPage />} />
+            <Route path={URL.SUBJECT_DETAIL} element={<SubjectDetailPage />} />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>
             <Route path={URL.SIGN_IN} element={<SignInPage />} />
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
             <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
-            <Route path={URL.NEWS} element={<NewsPage />} />
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
               element={<ProjectReadingPage />}
@@ -80,14 +116,13 @@ function MainRouter() {
               path={URL.NEWS_ARTICLE_DETAIL}
               element={<ArticleReadingPage />}
             />
+            <Route path={URL.SUBJECTS_PAGE} element={<SubjectListPage />} />
             <Route
-              path={URL.ARTICLE}
-              element={
-                <main style={{ padding: "1rem" }}>
-                  <p>Coming soon!</p>
-                </main>
-              }
+              path={URL.SUBJECT_READING_PAGE}
+              element={<SubjectReadingPage />}
             />
+            <Route path={URL.TOOLS_PAGE} element={<ToolsPage />} />
+            <Route path={URL.TOOL_POMODORO} element={<Pomodoro />} />
             <Route path={URL.ABOUT} element={<AboutPage />} />
           </Route>
         </Routes>

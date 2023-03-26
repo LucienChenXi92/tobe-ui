@@ -22,8 +22,14 @@ export function getNewsByTags(
   );
 }
 
-export function getAllNews(): AxiosPromise {
-  return server.get(`/${API_DATA_URI}/news?size=1000&current=1`, options);
+export function getSubjects(size: number, current: number): AxiosPromise {
+  return server.get(
+    `/${API_DATA_URI}/subjects?size=${size}&current=${current}`
+  );
+}
+
+export function getSubjectById(id: string | number): AxiosPromise {
+  return server.get(`/${API_DATA_URI}/subjects/${id}`);
 }
 
 export function getArticleById(id: string | number): AxiosPromise {

@@ -10,15 +10,16 @@ import {
   FormGroup,
   FormControlLabel,
   Switch,
+  Tooltip,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import {
+  ActionButtonBar,
   CreateButton,
   Page,
   PagedTable,
-  getButtonByOperationName,
   TagDisplayBar,
 } from "../../../components";
 import { URL } from "../../../routes";
@@ -190,8 +191,17 @@ export default function ArticlesPage() {
                       gutterBottom
                       variant="subtitle2"
                       color="text.secondary"
+                      sx={{
+                        maxWidth: "100%",
+                        display: "block",
+                        whiteSpace: "nowrap",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                      }}
                     >
-                      <b>{article.subTitle}</b>
+                      <Tooltip title={article.subTitle}>
+                        <b>{article.subTitle}</b>
+                      </Tooltip>
                     </Typography>
                   }
                 />
@@ -204,25 +214,13 @@ export default function ArticlesPage() {
                   >
                     {article.description}
                   </Typography>
+                  {article.tags.length > 0 && (
+                    <TagDisplayBar tags={article.tags} />
+                  )}
                 </CardContent>
-                {article.tags.length > 0 && (
-                  <>
-                    <CardContent sx={{ justifyItems: "center" }}>
-                      <TagDisplayBar tags={article.tags} />
-                    </CardContent>
-                  </>
-                )}
                 <Divider />
                 <CardActions sx={{ px: 0 }}>
-                  {operations.map(
-                    (operation, index) =>
-                      !operation?.hide?.call(null, article) &&
-                      getButtonByOperationName(
-                        operation.name,
-                        () => operation.onClick(article.id),
-                        `${operation.name}_${index}`
-                      )
-                  )}
+                  <ActionButtonBar operations={operations} target={article} />
                 </CardActions>
               </Card>
             </Grid>

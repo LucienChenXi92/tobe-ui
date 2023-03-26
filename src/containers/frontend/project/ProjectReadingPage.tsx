@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import {
   AuthorDisplayPanel,
-  NewsBreadcrumbs,
+  TobeBreadcrumbs,
   Page,
   TagDisplayBar,
 } from "../../../components";
@@ -40,7 +40,7 @@ export default function ProjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>
-      <NewsBreadcrumbs />
+      <TobeBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>

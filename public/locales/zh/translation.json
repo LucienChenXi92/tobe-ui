@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "正文",
     "home": "首页",
-    "news": "近期动态"
+    "subjects": "专题"
   },
   "components": {
     "edit-icon-button": {
@@ -83,7 +83,9 @@
       "home": "首页",
       "news": "近期动态",
       "about": "关于",
-      "article": "文章"
+      "article": "文章",
+      "subject": "专题",
+      "tool": "工具"
     },
     "settings": {
       "btn-tooltip": "打开设置",
@@ -91,6 +93,7 @@
       "my-zone": "用户中心",
       "projects": "计划",
       "articles": "笔记",
+      "subjects": "专题",
       "sign-out": "登出系统"
     }
   },
@@ -213,7 +216,8 @@
       "dashboard": "汇总",
       "users": "用户",
       "projects": "计划",
-      "articles": "笔记"
+      "articles": "笔记",
+      "subjects": "专题"
     },
     "msg": {
       "error": "获取数据失败"
@@ -245,7 +249,7 @@
     }
   },
   "about-page": {
-    "page-main-title": "关于我们"
+    "page-main-title": "关于"
   },
   "articles-page": {
     "page-main-title": "笔记",
@@ -287,6 +291,68 @@
     "relevant-articles": "相关内容",
     "msg": {
       "error": "加载数据失败"
+    }
+  },
+  "subject-creation-page": {
+    "page-main-title": "创建一个专题",
+    "fields": {
+      "name": "专题名",
+      "description": "专题描述",
+      "cover-img-url": "封面链接"
+    },
+    "msg": {
+      "success": "创建成功",
+      "error": "创建失败",
+      "warning": {
+        "name-empty": "专题名不能为空"
+      }
+    },
+    "submit-btn": "保存",
+    "back-btn": "返回"
+  },
+  "subject-detail-page": {
+    "btn": {
+      "add": "新增",
+      "delete": "删除"
+    },
+    "msg": {
+      "success": "操作成功",
+      "error": "操作失败"
+    }
+  },
+  "subjects-page": {
+    "page-main-title": "专题"
+  },
+  "subjects-list-page": {
+    "page-main-title": "专题",
+    "msg": {
+      "error": "加载数据失败"
+    }
+  },
+  "subject-reading-page": {
+    "tip": {
+      "tba": "敬请期待"
+    },
+    "msg": {
+      "error": "加载数据失败"
+    }
+  },
+  "tools-list-page": {
+    "page-main-title": "工具",
+    "pomodoro": {
+      "name": "番茄时钟",
+      "desc": "一款基于番茄时间管理理论的闹钟"
+    }
+  },
+  "tools-pomodoro": {
+    "page-main-title": "番茄时钟",
+    "tip": {
+      "start": "开始一轮工作倒计时"
+    },
+    "btn": {
+      "start": "开始",
+      "pause": "暂停",
+      "reset": "重置"
     }
   }
 }

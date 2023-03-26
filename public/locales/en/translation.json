@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "Content",
     "home": "Home",
-    "news": "News"
+    "subjects": "Subject"
   },
   "components": {
     "edit-icon-button": {
@@ -83,7 +83,9 @@
       "home": "Home",
       "news": "News",
       "about": "About",
-      "article": "Article"
+      "article": "Article",
+      "subject": "Subject",
+      "tool": "Tool"
     },
     "settings": {
       "btn-tooltip": "Open settings",
@@ -91,6 +93,7 @@
       "my-zone": "User Central",
       "projects": "Projects",
       "articles": "Articles",
+      "subjects": "Subjects",
       "sign-out": "Sign Out"
     }
   },
@@ -213,7 +216,8 @@
       "dashboard": "Dashboard",
       "users": "Users",
       "projects": "Projects",
-      "articles": "Articles"
+      "articles": "Articles",
+      "subjects": "Subjects"
     }
   },
   "dashboard-page": {
@@ -261,7 +265,7 @@
     }
   },
   "article-creation-page": {
-    "page-main-title": "Create new article",
+    "page-main-title": "Create a new article",
     "expand-label": "Other secondary info",
     "fields": {
       "title": "Title",
@@ -287,6 +291,68 @@
     "relevant-articles": "Relevant articles",
     "msg": {
       "error": "Failed to fetch data"
+    }
+  },
+  "subject-creation-page": {
+    "page-main-title": "Create a new subject",
+    "fields": {
+      "name": "Subject Name",
+      "description": "Description",
+      "cover-img-url": "Cover Image URL"
+    },
+    "msg": {
+      "success": "Created",
+      "error": "Creation failed",
+      "warning": {
+        "name-empty": "Subject name cannot be empty"
+      }
+    },
+    "submit-btn": "Save",
+    "back-btn": "Back"
+  },
+  "subject-detail-page": {
+    "btn": {
+      "add": "Add",
+      "delete": "Delete"
+    },
+    "msg": {
+      "success": "Operation success",
+      "error": "Operation failed"
+    }
+  },
+  "subjects-page": {
+    "page-main-title": "Subjects"
+  },
+  "subjects-list-page": {
+    "page-main-title": "Subjects",
+    "msg": {
+      "error": "Failed to fetch data"
+    }
+  },
+  "subject-reading-page": {
+    "tip": {
+      "tba": "To be continued"
+    },
+    "msg": {
+      "error": "Failed to fetch data"
+    }
+  },
+  "tools-list-page": {
+    "page-main-title": "Tools",
+    "pomodoro": {
+      "name": "Pomodoro",
+      "desc": "A timer based on the Pomodoro time management technique."
+    }
+  },
+  "tools-pomodoro": {
+    "page-main-title": "Pomodoro",
+    "tip": {
+      "start": "Start a countdown"
+    },
+    "btn": {
+      "start": "Start",
+      "pause": "Pause",
+      "reset": "Reset"
     }
   }
 }

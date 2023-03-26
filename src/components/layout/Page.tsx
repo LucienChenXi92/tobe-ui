@@ -1,7 +1,7 @@
 import { Container, Divider, Typography } from "@mui/material";
 import { useEffect } from "react";
+import Loading from "../common/Loading";
 import project from "../../../package.json";
-import Loading from "./Loading";
 
 interface PageProps {
   openLoading?: boolean;
@@ -12,8 +12,8 @@ interface PageProps {
 
 export default function Page(props: PageProps) {
   useEffect(() => {
-    window.document.title = `${project.name.toUpperCase()} | ${
-      props.pageTitle
+    window.document.title = `${project.name.toUpperCase()} ${
+      props.pageTitle ? " | " + props.pageTitle : ""
     }`;
     return function restoreTitle() {
       window.document.title = `${project.name.toUpperCase()}`;
@@ -26,7 +26,7 @@ export default function Page(props: PageProps) {
         ...{
           minHeight: "95vh",
           pt: "9.5vh",
-          pb: 2
+          pb: 2,
         },
         ...props.sx,
       }}

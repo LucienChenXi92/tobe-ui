@@ -32,19 +32,23 @@ export default function ArticleEditMainSection(
   const [expanded, setExpanded] = useState<boolean>(false);
   return (
     <Grid container sx={{ py: 2 }}>
-      <Grid item xs={12}>
-        <Paper sx={{ width: "100%", py: 2, px: 2 }} variant="outlined">
-          <Grid container item xs={12}>
-            <FieldWrapper
-              label={t("article-creation-page.fields.title")}
-              value={props.title}
-              setValue={props.setTitle}
-              maxLength={32}
-            />
-          </Grid>
-        </Paper>
+      <Grid
+        item
+        xs={12}
+        component={Paper}
+        variant="outlined"
+        sx={{ width: "100%", py: 2, px: 2 }}
+      >
+        <Grid container item xs={12}>
+          <FieldWrapper
+            label={t("article-creation-page.fields.title")}
+            value={props.title}
+            setValue={props.setTitle}
+            maxLength={128}
+          />
+        </Grid>
       </Grid>
-      <Grid item xs={12} sx={{ my: 1 }}>
+      <Grid item xs={12} sx={{ mt: 1 }}>
         <TobeAccordion
           expanded={expanded}
           onChange={() => setExpanded(!expanded)}

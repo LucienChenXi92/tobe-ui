@@ -10,14 +10,14 @@ import {
   Menu,
   MenuItem,
 } from "@mui/material";
-import theme from "../../theme";
+import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { validateUrl } from "../../routes";
 import { useTranslation } from "react-i18next";
-import MenuIcon from "@mui/icons-material/Menu";
-import project from "../../../package.json";
+import theme from "../../theme";
 import { pages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
+import project from "../../../package.json";
 
 const GlobalHeader = () => {
   const [yIndex, setYIndex] = useState<number>(0);

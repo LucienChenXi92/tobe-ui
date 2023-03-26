@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -19,14 +19,10 @@ export default function ArticleDetailPage() {
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
-
-  useEffect(() => loadArticle(), []);
-
-  function loadArticle(): void {
+  const loadArticle = useCallback((): void => {
     if (!articleId) {
       return window.history.back();
     }
-
     setOpenLoading(true);
     ArticleService.getArticle(articleId)
       .then((response) => {
@@ -41,7 +37,9 @@ export default function ArticleDetailPage() {
         });
       })
       .finally(() => setOpenLoading(false));
-  }
+  }, [articleId, enqueueSnackbar, t]);
+
+  useEffect(() => loadArticle(), [loadArticle]);
 
   function saveArticle(): void {
     if (!articleId) {
