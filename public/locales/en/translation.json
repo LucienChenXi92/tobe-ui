@@ -307,6 +307,7 @@
     "post-at": " at ",
     "view": "View",
     "back-btn": "Back",
+    "edit-btn": "Edit",
     "relevant-articles": "Relevant articles",
     "msg": {
       "error": "Failed to fetch data"
@@ -361,6 +362,10 @@
     "pomodoro": {
       "name": "Pomodoro",
       "desc": "A timer based on the Pomodoro time management technique."
+    },
+    "time-converter": {
+      "name": "Time Coverter",
+      "desc": "An easy-use tool for time-zone and timestamp converting."
     }
   },
   "tools-pomodoro": {
@@ -373,5 +378,13 @@
       "pause": "Pause",
       "reset": "Reset"
     }
+  },
+  "tools-time-converter": {
+    "page-main-title": "Time Converter",
+    "curent-timestamp": "Current Timestamp",
+    "timestamp-label": "Timestamp(Unix)",
+    "time-label": "Local Time",
+    "timestamp-input-helper": "Please input timestamp",
+    "time-input-helper": "Please input time"
   }
 }

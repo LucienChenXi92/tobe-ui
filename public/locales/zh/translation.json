@@ -307,6 +307,7 @@
     "post-at": " 发表于 ",
     "view": "阅读量",
     "back-btn": "返回",
+    "edit-btn": "编辑",
     "relevant-articles": "相关内容",
     "msg": {
       "error": "加载数据失败"
@@ -361,6 +362,10 @@
     "pomodoro": {
       "name": "番茄时钟",
       "desc": "一款基于番茄时间管理理论的闹钟"
+    },
+    "time-converter": {
+      "name": "时间转换工具",
+      "desc": "一款便于使用的时间戳转换工具"
     }
   },
   "tools-pomodoro": {
@@ -373,5 +378,13 @@
       "pause": "暂停",
       "reset": "重置"
     }
+  },
+  "tools-time-converter": {
+    "page-main-title": "时间转换",
+    "curent-timestamp": "当前时间戳（Timestamp）",
+    "timestamp-label": "时间戳(Unix)",
+    "time-label": "本地时间",
+    "timestamp-input-helper": "请输入时间戳",
+    "time-input-helper": "请输入时间"
   }
 }

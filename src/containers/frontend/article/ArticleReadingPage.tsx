@@ -85,7 +85,7 @@ export default function ArticleReadingPage() {
                         color="text.secondary"
                         sx={{ flexGrow: 1 }}
                       >
-                        Edit
+                        {t("article-reading-page.edit-btn")}
                       </Typography>
                     </Link>
                   )}

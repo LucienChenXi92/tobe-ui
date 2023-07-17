@@ -21,6 +21,12 @@ export default function ToolsPage() {
       img: "https://images.pexels.com/photos/3938343/pexels-photo-3938343.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
       desc: t("tools-list-page.pomodoro.desc"),
     },
+    {
+      name: t("tools-list-page.time-converter.name"),
+      url: URL.TOOL_TIME_CONVERTER,
+      img: "https://images.pexels.com/photos/8327971/pexels-photo-8327971.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      desc: t("tools-list-page.time-converter.desc"),
+    },
   ];
 
   return (

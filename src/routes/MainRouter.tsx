@@ -15,6 +15,10 @@ const Pomodoro = React.lazy(
   () => import("../containers/frontend/tool/Pomodoro")
 );
 
+const TimeConverter = React.lazy(
+  () => import("../containers/frontend/tool/TimeConverter")
+);
+
 const AboutPage = React.lazy(
   () => import("../containers/frontend/aboutPage/AboutPage")
 );
@@ -123,6 +127,7 @@ function MainRouter() {
             />
             <Route path={URL.TOOLS_PAGE} element={<ToolsPage />} />
             <Route path={URL.TOOL_POMODORO} element={<Pomodoro />} />
+            <Route path={URL.TOOL_TIME_CONVERTER} element={<TimeConverter />} />
             <Route path={URL.ABOUT} element={<AboutPage />} />
           </Route>
         </Routes>
