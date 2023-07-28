@@ -281,7 +281,9 @@
         "updateTime": "Update time",
         "operation": "Operation"
       }
-    }
+    },
+    "recent-only": "Recent only",
+    "search-box-placeholder": "Search..."
   },
   "article-creation-page": {
     "page-main-title": "Create a new article",

@@ -13,7 +13,7 @@ const options = {
   },
 };
 
-const PROJECT_URI = "v1/project-infos";
+const PROJECT_URI = "v1/projects";
 const PROGRESSES_URI = "v1/project-progresses";
 
 export function getProjects(size: number, current: number): AxiosPromise {

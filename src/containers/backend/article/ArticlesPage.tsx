@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import {
   Typography,
+  TextField,
   Grid,
   Card,
   CardActions,
@@ -25,6 +26,9 @@ import {
 import { URL } from "../../../routes";
 import { Column, Operation, TagOption } from "../../../global/types";
 import { ArticleService } from "../../../services";
+import theme from "../../../theme";
+import { TimeFormat } from "../../../commons";
+import moment from "moment";
 
 interface Article {
   id: string;
@@ -46,9 +50,11 @@ export default function ArticlesPage() {
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [articles, setArticles] = useState<Article[]>([]);
   const [cardView, setCardView] = useState<boolean>(true);
+  const [recentOnly, setRecentOnly] = useState<boolean>(true);
   const [current, setCurrent] = useState<number>(0);
   const [size, setSize] = useState<number>(1000);
   const [totalCount, setTotalCount] = useState<number>(0);
+  const [keyword, setKeyword] = useState<string>("");
   const navigate = useNavigate();
 
   const handleChangeCurrent = (event: unknown, newPage: number): void => {
@@ -72,9 +78,18 @@ export default function ArticlesPage() {
     setCardView(cardView);
   };
 
+  const handleRecentOnlyChange = (recentOnly: boolean): void => {
+    setCurrent(0);
+    setRecentOnly(recentOnly);
+  };
+
+  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(event.target.value);
+  }
+
   const loadArticles = useCallback((): void => {
     setOpenLoading(true);
-    ArticleService.getArticles(size, current)
+    ArticleService.getArticles(size, current, keyword, recentOnly ? TimeFormat.dateFormat(moment().subtract(30, 'days').calendar()): "")
       .then((response) => {
         setArticles(response.data.records || []);
         setTotalCount(response.data.total);
@@ -85,8 +100,7 @@ export default function ArticlesPage() {
         });
       })
       .finally(() => setOpenLoading(false));
-  }, [current, enqueueSnackbar, size, t]);
-
+  }, [current, enqueueSnackbar, size, t, keyword, recentOnly]);
   useEffect(() => {
     loadArticles();
   }, [loadArticles]);
@@ -158,13 +172,13 @@ export default function ArticlesPage() {
       <Grid
         container
         sx={{ py: 1 }}
-        justifyContent="space-between"
         alignItems="center"
       >
-        <Grid item>
+        <Grid item flex={0}>
           <CreateButton handleOnClick={() => navigate(URL.CREATE_ARTICLE)} />
         </Grid>
-        <Grid item>
+        <Grid item flex={1}/>
+        <Grid item sx={{ mr: 1}}>
           <FormGroup>
             <FormControlLabel
               control={
@@ -177,6 +191,23 @@ export default function ArticlesPage() {
               label={t("project-table.card-view-btn")}
             />
           </FormGroup>
+        </Grid>
+        <Grid item sx={{ mr: 1}}>
+          <FormGroup>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={recentOnly}
+                  onClick={() => handleRecentOnlyChange(!recentOnly)}
+                  color="secondary"
+                />
+              }
+              label={t("articles-page.recent-only")}
+            />
+          </FormGroup>
+        </Grid>
+        <Grid item sx={{backgroundColor: theme.palette.common.white, width: { xs: "100%", sm: "20%" } }}>
+          <TextField placeholder={t("articles-page.search-box-placeholder")} type="search" size="small" onChange={handleKeywordChange} fullWidth/>
         </Grid>
       </Grid>
       {cardView ? (

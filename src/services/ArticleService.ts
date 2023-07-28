@@ -2,10 +2,10 @@ import { AxiosPromise } from "axios";
 import { server } from ".";
 import { ArticleCreationDTO, ArticleUpdateDTO } from "../global/types";
 
-const ARTICLE_URI = "v1/article-infos";
+const ARTICLE_URI = "v1/articles";
 
-export function getArticles(size: number, current: number): AxiosPromise {
-  return server.get(`/${ARTICLE_URI}?size=${size}&current=${current + 1}`);
+export function getArticles(size: number, current: number, keyword: string, updateFrom: string): AxiosPromise {
+  return server.get(`/${ARTICLE_URI}?size=${size}&current=${current + 1}&keyword=${keyword}&updateFrom=${updateFrom}`);
 }
 
 export function getArticle(id: string): AxiosPromise {

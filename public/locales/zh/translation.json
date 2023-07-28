@@ -281,7 +281,9 @@
         "updateTime": "更新时间",
         "operation": "操作"
       }
-    }
+    },
+    "recent-only": "最新内容",
+    "search-box-placeholder": "搜索..."
   },
   "article-creation-page": {
     "page-main-title": "创建新的笔记",
