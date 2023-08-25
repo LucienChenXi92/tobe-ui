@@ -80,7 +80,7 @@ export default function VocabulariesPage() {
     loadData();
   }, [loadData]);
 
-  function releaseArticleById(id: number | string) {
+  function releaseById(id: number | string) {
     setOpenLoading(true);
     VocabularyService.releaseById(id)
       .then(() => {
@@ -92,7 +92,7 @@ export default function VocabulariesPage() {
       });
   }
 
-  function deleteArticleById(id: number | string) {
+  function deleteById(id: number | string) {
     setOpenLoading(true);
     VocabularyService.deleteById(id)
       .then(() => {
@@ -126,16 +126,16 @@ export default function VocabulariesPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.ARTICLE_DETAIL.replace(":vocabularyId", id.toString())),
+        navigate(URL.VOCABULARY_DETAIL.replace(":id", id.toString())),
     },
     {
       name: "release",
-      onClick: (id: number | string) => releaseArticleById(id),
+      onClick: (id: number | string) => releaseById(id),
       hide: (data: any) => data.publicToAll,
     },
     {
       name: "delete",
-      onClick: (id: number | string) => deleteArticleById(id),
+      onClick: (id: number | string) => deleteById(id),
     },
   ];
 

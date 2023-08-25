@@ -19,7 +19,7 @@ export default function SubjectReadingPage() {
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [subject, setSubject] = useState<SubjectInfoGeneralDTO>();
-  const { subjectId } = useParams();
+  const { id } = useParams();
 
   const Section = (props: { text: string; variant: SectionVariant }) => {
     return (
@@ -100,7 +100,7 @@ export default function SubjectReadingPage() {
                 key={a.id}
                 text={a.title}
                 href={
-                  URL.NEWS_ARTICLE_DETAIL.replace(":articleId", a.id) +
+                  URL.NEWS_ARTICLE_DETAIL.replace(":id", a.id) +
                   `?subjectId=${subjectId}&subjectName=${subjectName}`
                 }
               />
@@ -108,7 +108,11 @@ export default function SubjectReadingPage() {
           );
         });
         if (articles && articles.length > 0) {
-          elements.push(<Grid container flexDirection="row">{articles}</Grid>)
+          elements.push(
+            <Grid container flexDirection="row">
+              {articles}
+            </Grid>
+          );
         }
 
         if (n.children.length === 0 && n.relatedArticles.length === 0) {
@@ -144,7 +148,7 @@ export default function SubjectReadingPage() {
   useEffect(() => {
     function load(): void {
       setOpenLoading(true);
-      PublicDataService.getSubjectById(subjectId || "")
+      PublicDataService.getSubjectById(id || "")
         .then((response) => {
           setSubject(response.data);
         })

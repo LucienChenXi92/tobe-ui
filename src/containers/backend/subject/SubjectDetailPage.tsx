@@ -22,13 +22,13 @@ export default function SubjectDetailPage() {
   const ROOT = "root";
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const { subjectId } = useParams();
+  const { id } = useParams();
   const [editable, setEditable] = useState<boolean>(false);
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [subject, setSubject] = useState<SubjectInfoGeneralDTO | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [coverImgUrl, setCoverImgUrl] = useState<string | null>(null);
-  useEffect(() => loadSubject(subjectId || ""), []);
+  useEffect(() => loadSubject(id || ""), []);
   const [treeData, setTreeData] = useState<RenderTree>({
     id: ROOT,
     name: "ROOT",
@@ -103,16 +103,16 @@ export default function SubjectDetailPage() {
     setOpenLoading(true);
     const parentId =
       currentNodeId === ROOT ? null : Number.parseInt(currentNodeId);
-    if (!targetTag || !subjectId) {
+    if (!targetTag || !id) {
       return;
     }
     const tagId = Number.parseInt(targetTag.value);
     SubjectService.createRelationship({
       parentId,
       tagId,
-      subjectId,
+      subjectId: id,
     }).then((response) => {
-      loadSubject(subjectId);
+      loadSubject(id);
       setTargetTag(null);
     });
   }
@@ -121,11 +121,11 @@ export default function SubjectDetailPage() {
     setOpenLoading(true);
     const targetId =
       currentNodeId === ROOT ? null : Number.parseInt(currentNodeId);
-    if (!targetId || !subjectId) {
+    if (!targetId || !id) {
       return;
     }
     SubjectService.deleteRelationship(targetId).then((response) => {
-      loadSubject(subjectId);
+      loadSubject(id);
       setTargetTag(null);
     });
   }

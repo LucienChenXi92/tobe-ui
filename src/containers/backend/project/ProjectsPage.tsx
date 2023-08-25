@@ -129,7 +129,7 @@ export default function ProjectsPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.PROJECT_DETAIL.replace(":projectId", id.toString())),
+        navigate(URL.PROJECT_DETAIL.replace(":id", id.toString())),
     },
     {
       name: "active",

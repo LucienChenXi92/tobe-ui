@@ -86,6 +86,10 @@ const VocabularyCreationPage = React.lazy(
   () => import("../containers/backend/vocabulary/VocabularyCreationPage")
 );
 
+const VocabularyDetailPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabularyDetailPage")
+);
+
 function MainRouter() {
   return (
     <Suspense fallback={<Loading open={true} />}>
@@ -119,6 +123,10 @@ function MainRouter() {
               element={<VocabularyCreationPage />}
             />
             <Route path={URL.VOCABULARIES} element={<VocabulariesPage />} />
+            <Route
+              path={URL.VOCABULARY_DETAIL}
+              element={<VocabularyDetailPage />}
+            />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>

@@ -91,7 +91,7 @@
     "settings": {
       "btn-tooltip": "打开设置",
       "profile": "用户信息",
-      "my-zone": "用户中心",
+      "my-zone": "统计",
       "projects": "计划",
       "articles": "笔记",
       "vocabularies": "单词本",
@@ -215,7 +215,7 @@
   },
   "dashboard-nav": {
     "pages": {
-      "dashboard": "汇总",
+      "dashboard": "统计",
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
@@ -227,7 +227,7 @@
     }
   },
   "dashboard-page": {
-    "page-main-title": "汇总",
+    "page-main-title": "统计",
     "project": {
       "title": "计划总览",
       "ongoing": "进行中项目",

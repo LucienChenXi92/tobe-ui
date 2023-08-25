@@ -10,7 +10,7 @@ import { ArticleService } from "../../../services";
 
 export default function ArticleDetailPage() {
   const { t } = useTranslation();
-  const { articleId } = useParams();
+  const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
@@ -20,11 +20,11 @@ export default function ArticleDetailPage() {
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
   const loadData = useCallback((): void => {
-    if (!articleId) {
+    if (!id) {
       return window.history.back();
     }
     setOpenLoading(true);
-    ArticleService.getById(articleId)
+    ArticleService.getById(id)
       .then((response) => {
         setHtmlValue(response.data.content);
         setTitle(response.data.title);
@@ -37,18 +37,18 @@ export default function ArticleDetailPage() {
         });
       })
       .finally(() => setOpenLoading(false));
-  }, [articleId, enqueueSnackbar, t]);
+  }, [id, enqueueSnackbar, t]);
 
   useEffect(() => loadData(), [loadData]);
 
   function saveArticle(): void {
-    if (!articleId) {
+    if (!id) {
       return;
     }
 
     setOpenLoading(true);
     ArticleService.update({
-      id: articleId,
+      id: id,
       title,
       subTitle,
       content: htmlValue,

@@ -126,7 +126,7 @@ export default function ArticlesPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.ARTICLE_DETAIL.replace(":articleId", id.toString())),
+        navigate(URL.ARTICLE_DETAIL.replace(":id", id.toString())),
     },
     {
       name: "release",
