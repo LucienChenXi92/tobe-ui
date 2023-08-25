@@ -27,6 +27,11 @@
         "error": "Operation failed",
         "warning": "Tag name is too long"
       }
+    },
+    "function-bar": {
+      "recent-only": "Recent only",
+      "card-view-btn": "Simple View",
+      "search-box-placeholder": "Search..."
     }
   },
   "home-page": {
@@ -34,6 +39,8 @@
     "articles": "Articles",
     "workout": "Workout",
     "activities": "Activities",
+    "subjects": "Subjects",
+    "tools": "Tools",
     "view-count": "View",
     "end-line": "Here is the end line",
     "load-more": "Load more",
@@ -219,7 +226,7 @@
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
-      "vocabulary": "Vocabulary",
+      "vocabularies": "Vocabulary",
       "subjects": "Subjects"
     }
   },
@@ -417,6 +424,7 @@
     "page-main-title": "Time Converter",
     "curent-timestamp": "Current Timestamp",
     "timestamp-label": "Timestamp(Unix)",
+    "tip": ", click button to get your current local time",
     "time-label": "Local Time",
     "timestamp-input-helper": "Please input timestamp",
     "time-input-helper": "Please input time"

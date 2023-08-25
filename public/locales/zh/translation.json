@@ -27,6 +27,11 @@
         "error": "添加失败",
         "warning": "名字长度过长"
       }
+    },
+    "function-bar": {
+      "recent-only": "最新内容",
+      "card-view-btn": "精简模式",
+      "search-box-placeholder": "搜索..."
     }
   },
   "home-page": {
@@ -35,6 +40,8 @@
     "workout": "锻炼",
     "activities": "活动",
     "view-count": "浏览",
+    "subjects": "专题",
+    "tools": "工具",
     "end-line": "实在是没有了。。。",
     "load-more": "加载更多",
     "no-content": "找不到相关内容",
@@ -84,7 +91,7 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
-      "vocabulary": "单词本",
+      "vocabulary": "单词",
       "subject": "专题",
       "tool": "工具"
     },
@@ -94,7 +101,7 @@
       "my-zone": "统计",
       "projects": "计划",
       "articles": "笔记",
-      "vocabularies": "单词本",
+      "vocabularies": "单词",
       "subjects": "专题",
       "sign-out": "登出系统"
     }
@@ -159,7 +166,6 @@
       "actual-end-date": "实际结束日期",
       "operation": "操作"
     },
-    "card-view-btn": "精简模式",
     "card": {
       "tooltip": {
         "public-to-all": "对所有人可见",
@@ -219,7 +225,7 @@
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
-      "vocabularies": "单词本",
+      "vocabularies": "单词",
       "subjects": "专题"
     },
     "msg": {
@@ -284,9 +290,7 @@
         "updateTime": "更新时间",
         "operation": "操作"
       }
-    },
-    "recent-only": "最新内容",
-    "search-box-placeholder": "搜索..."
+    }
   },
   "article-creation-page": {
     "page-main-title": "创建新的笔记",
@@ -363,7 +367,7 @@
     }
   },
   "vocabulary-creation-page": {
-    "page-main-title": "创建一个单词本",
+    "page-main-title": "创建一个单词集",
     "fields": {
       "title": "标题",
       "description": "描述",
@@ -378,7 +382,7 @@
     "back-btn": "返回"
   },
   "vocabularies-page": {
-    "page-main-title": "单词本",
+    "page-main-title": "单词",
     "vocabulary-table": {
       "label": {
         "title": "标题",
@@ -387,9 +391,7 @@
         "updateTime": "更新时间",
         "operation": "操作"
       }
-    },
-    "recent-only": "最新内容",
-    "search-box-placeholder": "搜索..."
+    }
   },
   "tools-list-page": {
     "page-main-title": "工具",
@@ -416,6 +418,7 @@
   "tools-time-converter": {
     "page-main-title": "时间转换",
     "curent-timestamp": "当前时间戳（Timestamp）",
+    "tip": ", 点击右侧按键查询当前时间",
     "timestamp-label": "时间戳(Unix)",
     "time-label": "本地时间",
     "timestamp-input-helper": "请输入时间戳",

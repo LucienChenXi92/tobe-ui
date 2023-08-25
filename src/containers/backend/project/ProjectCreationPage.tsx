@@ -58,7 +58,7 @@ export default function ProjectCreationPage() {
 
   function handleProjectCreation(data: FormData): void {
     setOpenLoading(true);
-    ProjectService.createProject({
+    ProjectService.create({
       name: data.get("projectName")?.toString() || "",
       description: data.get("description")?.toString() || "",
       targetStartTime: fromTime,

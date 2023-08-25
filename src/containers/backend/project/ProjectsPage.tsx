@@ -1,27 +1,42 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Grid, FormGroup, FormControlLabel, Switch } from "@mui/material";
-import { Page, CreateButton, GeneralTableView } from "../../../components";
+import { Grid } from "@mui/material";
+import {
+  Page,
+  GeneralTableView,
+  GeneralListPageFunctionBar,
+} from "../../../components";
 import ProjectCard from "./component/ProjectCard";
 import { Column, Operation, ProjectInfo } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../routes";
 import { PROJECT_STATUS } from "./consts";
 import { ProjectService } from "../../../services";
+import { TimeFormat } from "../../../commons";
+import moment from "moment";
 
 export default function ProjectsPage() {
   const [current, setCurrent] = useState<number>(0);
   const [size, setSize] = useState<number>(1000);
   const [rows, setRows] = useState<ProjectInfo[]>([]);
   const [openLoading, setOpenLoading] = useState(false);
-  const [totalCount, setTotalCount] = useState<number>(0);
   const [cardView, setCardView] = useState<boolean>(true);
+  const [recentOnly, setRecentOnly] = useState<boolean>(true);
+  const [totalCount, setTotalCount] = useState<number>(0);
+  const [keyword, setKeyword] = useState<string>("");
   const { t } = useTranslation();
   const navigate = useNavigate();
 
-  const loadProjectData = useCallback((): void => {
+  const loadData = useCallback((): void => {
     setOpenLoading(true);
-    ProjectService.getProjects(size, current)
+    ProjectService.get(
+      size,
+      current,
+      keyword,
+      recentOnly
+        ? TimeFormat.dateFormat(moment().subtract(30, "days").calendar())
+        : ""
+    )
       .then((response) => {
         setRows(response.data.records || []);
         setTotalCount(response.data.total);
@@ -30,9 +45,9 @@ export default function ProjectsPage() {
       .finally(() => {
         setOpenLoading(false);
       });
-  }, [current, size]);
+  }, [current, size, t, keyword, recentOnly]);
 
-  useEffect(() => loadProjectData(), [loadProjectData]);
+  useEffect(() => loadData(), [loadData]);
 
   const columns: readonly Column[] = [
     { id: "name", label: t("project-table.label.name"), align: "center" },
@@ -69,9 +84,9 @@ export default function ProjectsPage() {
 
   function deleteProjectById(id: number | string) {
     setOpenLoading(true);
-    ProjectService.deleteProject(id)
+    ProjectService.deleteById(id)
       .then(() => {
-        loadProjectData();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -81,9 +96,9 @@ export default function ProjectsPage() {
 
   function activeProjectById(id: number | string) {
     setOpenLoading(true);
-    ProjectService.activeProject(id)
+    ProjectService.activeById(id)
       .then(() => {
-        loadProjectData();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -93,9 +108,9 @@ export default function ProjectsPage() {
 
   function releaseProjectById(id: number | string) {
     setOpenLoading(true);
-    ProjectService.releaseProject(id)
+    ProjectService.releaseById(id)
       .then(() => {
-        loadProjectData();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -105,25 +120,15 @@ export default function ProjectsPage() {
 
   function closeProjectById(id: number | string) {
     setOpenLoading(true);
-    ProjectService.closeProject(id)
+    ProjectService.closeById(id)
       .then(() => {
-        loadProjectData();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {
         setOpenLoading(false);
       });
   }
-
-  const handleViewChange = (cardView: boolean): void => {
-    if (cardView) {
-      setSize(1000);
-    } else {
-      setSize(10);
-    }
-    setCurrent(0);
-    setCardView(cardView);
-  };
 
   const operations: Operation[] = [
     {
@@ -158,30 +163,16 @@ export default function ProjectsPage() {
 
   return (
     <Page pageTitle={t("project-table.title")} openLoading={openLoading}>
-      <Grid
-        container
-        sx={{ py: 1 }}
-        justifyContent="space-between"
-        alignItems="center"
-      >
-        <Grid item>
-          <CreateButton handleOnClick={() => navigate(URL.CREATE_PROJECT)} />
-        </Grid>
-        <Grid item>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={cardView}
-                  onClick={() => handleViewChange(!cardView)}
-                  color="secondary"
-                />
-              }
-              label={t("project-table.card-view-btn")}
-            />
-          </FormGroup>
-        </Grid>
-      </Grid>
+      <GeneralListPageFunctionBar
+        createNewAction={() => navigate(URL.CREATE_VOCABULARY)}
+        cardView={cardView}
+        recentOnly={recentOnly}
+        setSize={setSize}
+        setCurrent={setCurrent}
+        setCardView={setCardView}
+        setRecentOnly={setRecentOnly}
+        setKeyword={setKeyword}
+      />
       {cardView ? (
         <Grid container spacing={1}>
           {rows.map((item: any) => (

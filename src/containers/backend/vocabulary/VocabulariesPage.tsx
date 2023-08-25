@@ -1,24 +1,16 @@
 import { useEffect, useState, useCallback } from "react";
-import {
-  TextField,
-  Grid,
-  FormGroup,
-  FormControlLabel,
-  Switch,
-} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 import { useSnackbar } from "notistack";
 import {
-  CreateButton,
   Page,
   GeneralCardView,
   GeneralTableView,
+  GeneralListPageFunctionBar,
 } from "../../../components";
 import { URL } from "../../../routes";
 import { Column, Operation, VocabularyDetailDTO } from "../../../global/types";
 import { VocabularyService } from "../../../services";
-import theme from "../../../theme";
 import { TimeFormat } from "../../../commons";
 import moment from "moment";
 
@@ -34,25 +26,6 @@ export default function VocabulariesPage() {
   const [totalCount, setTotalCount] = useState<number>(0);
   const [keyword, setKeyword] = useState<string>("");
   const navigate = useNavigate();
-
-  const handleViewChange = (cardView: boolean): void => {
-    if (cardView) {
-      setSize(1000);
-    } else {
-      setSize(10);
-    }
-    setCurrent(0);
-    setCardView(cardView);
-  };
-
-  const handleRecentOnlyChange = (recentOnly: boolean): void => {
-    setCurrent(0);
-    setRecentOnly(recentOnly);
-  };
-
-  const handleKeywordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setKeyword(event.target.value);
-  };
 
   const loadData = useCallback((): void => {
     setOpenLoading(true);
@@ -144,55 +117,16 @@ export default function VocabulariesPage() {
       openLoading={openLoading}
       pageTitle={t("vocabularies-page.page-main-title")}
     >
-      <Grid container sx={{ py: 1 }} alignItems="center">
-        <Grid item flex={0}>
-          <CreateButton handleOnClick={() => navigate(URL.CREATE_VOCABULARY)} />
-        </Grid>
-        <Grid item flex={1} />
-        <Grid item sx={{ mr: 1 }}>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={cardView}
-                  onClick={() => handleViewChange(!cardView)}
-                  color="secondary"
-                />
-              }
-              label={t("project-table.card-view-btn")}
-            />
-          </FormGroup>
-        </Grid>
-        <Grid item sx={{ mr: 1 }}>
-          <FormGroup>
-            <FormControlLabel
-              control={
-                <Switch
-                  checked={recentOnly}
-                  onClick={() => handleRecentOnlyChange(!recentOnly)}
-                  color="secondary"
-                />
-              }
-              label={t("vocabularies-page.recent-only")}
-            />
-          </FormGroup>
-        </Grid>
-        <Grid
-          item
-          sx={{
-            backgroundColor: theme.palette.common.white,
-            width: { xs: "100%", sm: "20%" },
-          }}
-        >
-          <TextField
-            placeholder={t("vocabularies-page.search-box-placeholder")}
-            type="search"
-            size="small"
-            onChange={handleKeywordChange}
-            fullWidth
-          />
-        </Grid>
-      </Grid>
+      <GeneralListPageFunctionBar
+        createNewAction={() => navigate(URL.CREATE_VOCABULARY)}
+        cardView={cardView}
+        recentOnly={recentOnly}
+        setSize={setSize}
+        setCurrent={setCurrent}
+        setCardView={setCardView}
+        setRecentOnly={setRecentOnly}
+        setKeyword={setKeyword}
+      />
       {cardView ? (
         <GeneralCardView data={vocabularies} operations={operations} />
       ) : (

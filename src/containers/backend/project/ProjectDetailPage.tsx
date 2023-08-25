@@ -30,7 +30,7 @@ export default function ProjectDetailPage() {
 
   function handleProjectUpdate(updatedProject: ProjectUpdateDTO): void {
     setOpenLoading(true);
-    ProjectService.updateProject(updatedProject)
+    ProjectService.update(updatedProject)
       .then((response) => {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",
@@ -46,7 +46,7 @@ export default function ProjectDetailPage() {
 
   function loadProject(projectId: string): void {
     setOpenLoading(true);
-    ProjectService.getProject(projectId)
+    ProjectService.getById(projectId)
       .then((response) => {
         setProject(response.data);
         setFromTime(new Date(response.data.targetStartTime));
