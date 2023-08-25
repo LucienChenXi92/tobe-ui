@@ -35,7 +35,7 @@ export default function VocabularyDetailPage() {
         setTagValue(response.data.tags);
       })
       .catch(() => {
-        enqueueSnackbar(t("subject-detail-page.msg.error"), {
+        enqueueSnackbar(t("vocabulary-detail-page.msg.error"), {
           variant: "error",
         });
       })

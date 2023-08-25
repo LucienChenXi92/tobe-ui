@@ -146,7 +146,7 @@ export default function VocabulariesPage() {
     >
       <Grid container sx={{ py: 1 }} alignItems="center">
         <Grid item flex={0}>
-          <CreateButton handleOnClick={() => navigate(URL.CREATE_ARTICLE)} />
+          <CreateButton handleOnClick={() => navigate(URL.CREATE_VOCABULARY)} />
         </Grid>
         <Grid item flex={1} />
         <Grid item sx={{ mr: 1 }}>
