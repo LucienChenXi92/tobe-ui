@@ -12,10 +12,11 @@ import {
 } from "@mui/material";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import CollectionsBookmarkIcon from "@mui/icons-material/CollectionsBookmark";
 import FlagIcon from "@mui/icons-material/Flag";
 import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
+import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
+import AccountTreeIcon from "@mui/icons-material/AccountTree";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
@@ -60,8 +61,14 @@ const basicPageItems: PageItem[] = [
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
+    label: "dashboard-nav.pages.vocabularies",
+    icon: <PlaylistAddIcon />,
+    url: URL.VOCABULARIES,
+    requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
+  },
+  {
     label: "dashboard-nav.pages.subjects",
-    icon: <CollectionsBookmarkIcon />,
+    icon: <AccountTreeIcon />,
     url: URL.SUBJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },

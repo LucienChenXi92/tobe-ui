@@ -30,6 +30,10 @@ export const URL = {
   CREATE_SUBJECT: "/my/subjects/create-subject",
   SUBJECT_DETAIL: "/my/subjects/:subjectId",
   SUBJECTS: "/my/subjects",
+
+  CREATE_VOCABULARY: "/my/vocabularies/create-vocabularies",
+  VOCABULARY_DETAIL: "/my/vocabularies/:vocabularyId",
+  VOCABULARIES: "/my/vocabularies",
 };
 
 export function validateUrl(target: string): boolean {

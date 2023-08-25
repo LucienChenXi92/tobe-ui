@@ -84,6 +84,7 @@
       "news": "News",
       "about": "About",
       "article": "Article",
+      "vocabulary": "Vocabulary",
       "subject": "Subject",
       "tool": "Tool"
     },
@@ -93,6 +94,7 @@
       "my-zone": "User Central",
       "projects": "Projects",
       "articles": "Articles",
+      "vocabularies": "Vocabularies",
       "subjects": "Subjects",
       "sign-out": "Sign Out"
     }
@@ -217,6 +219,7 @@
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
+      "vocabulary": "Vocabulary",
       "subjects": "Subjects"
     }
   },
@@ -358,6 +361,35 @@
     "msg": {
       "error": "Failed to fetch data"
     }
+  },
+  "vocabulary-creation-page": {
+    "page-main-title": "Create a new vocabulary",
+    "fields": {
+      "title": "Title",
+      "description": "Description",
+      "language": "Language",
+      "tags": "Tags"
+    },
+    "msg": {
+      "success": "Created",
+      "error": "Creation failed"
+    },
+    "submit-btn": "Save",
+    "back-btn": "Back"
+  },
+  "vocabularies-page": {
+    "page-main-title": "Vocabulary",
+    "vocabulary-table": {
+      "label": {
+        "title": "Title",
+        "description": "Description",
+        "createTime": "Create time",
+        "updateTime": "Update time",
+        "operation": "Operation"
+      }
+    },
+    "recent-only": "Recent only",
+    "search-box-placeholder": "Search..."
   },
   "tools-list-page": {
     "page-main-title": "Tools",

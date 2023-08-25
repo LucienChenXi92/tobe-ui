@@ -25,6 +25,8 @@ import TagDisplayBar from "./common/TagDisplayBar";
 import TobeBreadcrumbs from "./common/TobeBreadcrumbs";
 import NewsListItem from "./common/NewsListItem";
 import TreePanel from "./common/TreePanel";
+import GeneralCardView from "./common/GeneralCardView";
+import GeneralTableView from "./common/GeneralTableView";
 
 export {
   NewsListItem,
@@ -54,4 +56,6 @@ export {
   TobeBreadcrumbs,
   SidePanel,
   TreePanel,
+  GeneralCardView,
+  GeneralTableView,
 };

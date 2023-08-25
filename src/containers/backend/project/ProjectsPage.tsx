@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { Grid, FormGroup, FormControlLabel, Switch } from "@mui/material";
-import { Page, PagedTable, CreateButton } from "../../../components";
+import { Page, CreateButton, GeneralTableView } from "../../../components";
 import ProjectCard from "./component/ProjectCard";
 import { Column, Operation, ProjectInfo } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
@@ -115,17 +115,6 @@ export default function ProjectsPage() {
       });
   }
 
-  const handleChangeCurrent = (event: unknown, newPage: number): void => {
-    setCurrent(newPage);
-  };
-
-  const handleChangeSize = (
-    event: React.ChangeEvent<HTMLInputElement>
-  ): void => {
-    setSize(+event.target.value);
-    setCurrent(0);
-  };
-
   const handleViewChange = (cardView: boolean): void => {
     if (cardView) {
       setSize(1000);
@@ -200,15 +189,15 @@ export default function ProjectsPage() {
           ))}
         </Grid>
       ) : (
-        <PagedTable
-          columns={columns}
-          rows={rows}
-          totalCount={totalCount}
-          size={size}
-          current={current}
+        <GeneralTableView
+          data={rows}
           operations={operations}
-          handleChangeCurrent={handleChangeCurrent}
-          handleChangeSize={handleChangeSize}
+          columns={columns}
+          size={size}
+          setSize={setSize}
+          current={current}
+          setCurrent={setCurrent}
+          totalCount={totalCount}
         />
       )}
     </Page>

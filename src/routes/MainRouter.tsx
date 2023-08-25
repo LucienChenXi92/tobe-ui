@@ -78,6 +78,14 @@ const SubjectReadingPage = React.lazy(
   () => import("../containers/frontend/subject/SubjectReadingPage")
 );
 
+const VocabulariesPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabulariesPage")
+);
+
+const VocabularyCreationPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabularyCreationPage")
+);
+
 function MainRouter() {
   return (
     <Suspense fallback={<Loading open={true} />}>
@@ -106,6 +114,11 @@ function MainRouter() {
             />
             <Route path={URL.SUBJECTS} element={<SubjectsPage />} />
             <Route path={URL.SUBJECT_DETAIL} element={<SubjectDetailPage />} />
+            <Route
+              path={URL.CREATE_VOCABULARY}
+              element={<VocabularyCreationPage />}
+            />
+            <Route path={URL.VOCABULARIES} element={<VocabulariesPage />} />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>

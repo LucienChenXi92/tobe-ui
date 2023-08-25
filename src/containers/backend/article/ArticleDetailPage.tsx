@@ -19,12 +19,12 @@ export default function ArticleDetailPage() {
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
-  const loadArticle = useCallback((): void => {
+  const loadData = useCallback((): void => {
     if (!articleId) {
       return window.history.back();
     }
     setOpenLoading(true);
-    ArticleService.getArticle(articleId)
+    ArticleService.getById(articleId)
       .then((response) => {
         setHtmlValue(response.data.content);
         setTitle(response.data.title);
@@ -39,7 +39,7 @@ export default function ArticleDetailPage() {
       .finally(() => setOpenLoading(false));
   }, [articleId, enqueueSnackbar, t]);
 
-  useEffect(() => loadArticle(), [loadArticle]);
+  useEffect(() => loadData(), [loadData]);
 
   function saveArticle(): void {
     if (!articleId) {
@@ -47,7 +47,7 @@ export default function ArticleDetailPage() {
     }
 
     setOpenLoading(true);
-    ArticleService.updateArticle({
+    ArticleService.update({
       id: articleId,
       title,
       subTitle,

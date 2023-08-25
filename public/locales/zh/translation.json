@@ -84,6 +84,7 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
+      "vocabulary": "单词本",
       "subject": "专题",
       "tool": "工具"
     },
@@ -93,6 +94,7 @@
       "my-zone": "用户中心",
       "projects": "计划",
       "articles": "笔记",
+      "vocabularies": "单词本",
       "subjects": "专题",
       "sign-out": "登出系统"
     }
@@ -217,6 +219,7 @@
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
+      "vocabularies": "单词本",
       "subjects": "专题"
     },
     "msg": {
@@ -358,6 +361,35 @@
     "msg": {
       "error": "加载数据失败"
     }
+  },
+  "vocabulary-creation-page": {
+    "page-main-title": "创建一个单词本",
+    "fields": {
+      "title": "标题",
+      "description": "描述",
+      "language": "语言",
+      "tags": "标签"
+    },
+    "msg": {
+      "success": "创建成功",
+      "error": "创建失败"
+    },
+    "submit-btn": "保存",
+    "back-btn": "返回"
+  },
+  "vocabularies-page": {
+    "page-main-title": "单词本",
+    "vocabulary-table": {
+      "label": {
+        "title": "标题",
+        "description": "简述",
+        "createTime": "创建时间",
+        "updateTime": "更新时间",
+        "operation": "操作"
+      }
+    },
+    "recent-only": "最新内容",
+    "search-box-placeholder": "搜索..."
   },
   "tools-list-page": {
     "page-main-title": "工具",
