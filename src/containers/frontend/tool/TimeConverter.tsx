@@ -90,6 +90,18 @@ const WorldMapPanel = (props: { timestamp: string }) => {
     { country: "jp", value: 9 }, // japan
     { country: "au", value: 10 }, //austrilia
     { country: "eg", value: 3 }, //austrilia
+    { country: "CA", value: -4 }, // canada
+    { country: "AF", value: 2 },
+    { country: "CJ", value: -5 },
+    { country: "CT", value: 1 },
+    { country: "CU", value: -4 },
+    { country: "GH", value: 0 },
+    { country: "GR", value: 3 },
+    { country: "IR", value: 3.5 },
+    { country: "KN", value: 9 },
+    { country: "KS", value: 9 },
+    { country: "SN", value: 8 },
+    { country: "TN", value: 3 },
   ];
 
   return (
