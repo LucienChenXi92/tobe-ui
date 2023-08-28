@@ -16,15 +16,15 @@ import { PublicDataService } from "../../../services";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
-  const { projectId } = useParams();
+  const { id } = useParams();
   const [openLoading, setOpenLoading] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const [project, setProject] = useState<ProjectInfo | null>(null);
 
   useEffect(() => {
-    function loadProject(projectId: string): void {
+    function loadProject(id: string): void {
       setOpenLoading(true);
-      PublicDataService.getProjectById(projectId)
+      PublicDataService.getProjectById(id)
         .then((response) => {
           setProject(response.data);
         })
@@ -35,8 +35,8 @@ export default function ProjectReadingPage() {
         })
         .finally(() => setOpenLoading(false));
     }
-    loadProject(projectId || "");
-  }, [enqueueSnackbar, t, projectId]);
+    loadProject(id || "");
+  }, [enqueueSnackbar, t, id]);
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>
@@ -100,9 +100,7 @@ export default function ProjectReadingPage() {
           </Grid>
         )}
       </Grid>
-      {projectId && (
-        <ProjectProgressModal projectId={projectId} viewOnly={true} />
-      )}
+      {id && <ProjectProgressModal projectId={id} viewOnly={true} />}
     </Page>
   );
 }

@@ -121,25 +121,51 @@ export interface ArticleUpdateDTO extends ArticleCreationDTO {
   id: string;
 }
 
-export interface ArticleDetailDTO {
+export interface ArticleDetailDTO extends GeneralCardData {
   content: string;
   authorName: string;
   authorId: string;
-  description: string;
-  id: string;
   likeCount: number;
   viewCount: number;
   publicToAll: boolean;
   publishTime: string;
   subTitle: string;
-  title: string;
   avatarUrl: string;
+}
+
+export interface VocabularyCreationDTO {
+  title: string;
+  description: string;
+  language: string;
   tags: TagOption[];
+}
+
+export interface VocabularyDetailDTO extends GeneralCardData {
+  authorName: string;
+  authorId: string;
+  likeCount: number;
+  viewCount: number;
+  publicToAll: boolean;
+  publishTime: string;
+  language: string;
+  avatarUrl: string;
+}
+
+export interface GeneralCardData {
+  id: string;
+  title: string;
+  description: string;
+  tags: TagOption[];
+}
+
+export interface VocabularyUpdateDTO extends VocabularyCreationDTO {
+  id: string;
 }
 
 export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",
+  Vocabulary = "VOCABULARY",
 }
 
 export interface SubjectInfoCreationDTO {

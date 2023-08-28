@@ -21,7 +21,7 @@ export default function ArticleCreationPage() {
 
   function saveArticle(): void {
     setOpenLoading(true);
-    ArticleService.createArticle({
+    ArticleService.create({
       title: title,
       subTitle: subTitle,
       content: htmlValue,

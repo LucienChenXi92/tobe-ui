@@ -1,1 +1,12 @@
 @import "./components/index.css";
+
+.worldmap__figure-container {
+  width: 100%;
+  margin-left: 0%;
+  margin-right: 0%;
+  display: flex;
+}
+
+.worldmap__figure-container > svg {
+  margin: auto;
+}

@@ -13,22 +13,31 @@ const options = {
   },
 };
 
-const PROJECT_URI = "v1/project-infos";
+const PROJECT_URI = "v1/projects";
 const PROGRESSES_URI = "v1/project-progresses";
 
-export function getProjects(size: number, current: number): AxiosPromise {
-  return server.get(`/${PROJECT_URI}?size=${size}&current=${current + 1}`);
+export function get(
+  size: number,
+  current: number,
+  keyword: string,
+  updateFrom: string
+): AxiosPromise {
+  return server.get(
+    `/${PROJECT_URI}?size=${size}&current=${
+      current + 1
+    }&keyword=${keyword}&updateFrom=${updateFrom}`
+  );
 }
 
-export function getProject(id: number | string): AxiosPromise {
+export function getById(id: number | string): AxiosPromise {
   return server.get(`/${PROJECT_URI}/${id}`);
 }
 
-export function createProject(newProject: ProjectCreationDTO): AxiosPromise {
+export function create(newProject: ProjectCreationDTO): AxiosPromise {
   return server.post(`/${PROJECT_URI}`, newProject, options);
 }
 
-export function updateProject(updatedProject: ProjectUpdateDTO) {
+export function update(updatedProject: ProjectUpdateDTO) {
   return server.put(
     `/${PROJECT_URI}/${updatedProject.id}`,
     updatedProject,
@@ -36,19 +45,19 @@ export function updateProject(updatedProject: ProjectUpdateDTO) {
   );
 }
 
-export function deleteProject(id: number | string): AxiosPromise {
+export function deleteById(id: number | string): AxiosPromise {
   return server.delete(`/${PROJECT_URI}/${id}`);
 }
 
-export function activeProject(id: number | string): AxiosPromise {
+export function activeById(id: number | string): AxiosPromise {
   return server.put(`/${PROJECT_URI}/${id}/active`);
 }
 
-export function releaseProject(id: number | string): AxiosPromise {
+export function releaseById(id: number | string): AxiosPromise {
   return server.put(`/${PROJECT_URI}/${id}/release`);
 }
 
-export function closeProject(id: number | string): AxiosPromise {
+export function closeById(id: number | string): AxiosPromise {
   return server.put(`/${PROJECT_URI}/${id}/close`);
 }
 

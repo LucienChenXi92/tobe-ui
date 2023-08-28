@@ -1,30 +1,42 @@
 import { Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { TobeImageButton } from "../../../components";
+import { useNavigate } from "react-router-dom";
+import { URL } from "../../../routes";
 
 export default function NavigationSection() {
   const { t } = useTranslation();
-  const images: { url: string; title: string; value: string | undefined }[] = [
+  const navigate = useNavigate();
+  const images: {
+    backgroundUrl: string;
+    title: string;
+    value: string | undefined;
+    url: string;
+  }[] = [
     {
-      url: "https://images.pexels.com/photos/204511/pexels-photo-204511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: t("home-page.articles"),
-      value: "ARTICLE",
+      backgroundUrl:
+        "https://images.pexels.com/photos/204511/pexels-photo-204511.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      title: t("home-page.subjects"),
+      value: "SUBJECT",
+      url: URL.SUBJECTS_PAGE,
     },
     {
-      url: "https://images.pexels.com/photos/669986/pexels-photo-669986.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      title: t("home-page.projects"),
-      value: "PROJECT",
+      backgroundUrl:
+        "https://images.pexels.com/photos/175039/pexels-photo-175039.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      title: t("home-page.tools"),
+      value: "TOOL",
+      url: URL.TOOLS_PAGE,
     },
   ];
   return images.length > 0 ? (
-    <Container sx={{ mt: 3 }}>
+    <Container sx={{ mt: 1 }}>
       <Grid container spacing={2}>
         {images.map((image) => (
           <Grid container item xs={6} md={6} key={image.title}>
             <TobeImageButton
-              imageUrl={image.url}
+              imageUrl={image.backgroundUrl}
               title={image.title}
-              handleOnClick={() => alert("敬请期待！")}
+              handleOnClick={() => navigate(image.url)}
             />
           </Grid>
         ))}

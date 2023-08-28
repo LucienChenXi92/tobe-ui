@@ -32,7 +32,7 @@ export default function RelevantArticlePanel(props: {
         <Grid item xs={12} sx={{ px: 2, py: 1 }} key={item.id}>
           <Typography variant="subtitle2" color="text.secondary">
             <Link
-              href={URL.NEWS_ARTICLE_DETAIL.replace(":articleId", item.id)}
+              href={URL.NEWS_ARTICLE_DETAIL.replace(":id", item.id)}
               target="_blank"
               color="text.secondary"
             >

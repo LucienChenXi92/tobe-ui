@@ -20,7 +20,7 @@ import { URL } from "../../../routes";
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const { articleId } = useParams();
+  const { id } = useParams();
   let [searchParams] = useSearchParams();
   const breadcrumbs: BreadcrumbsNode[] = [];
   if (searchParams.has("subjectId") && searchParams.has("subjectName")) {
@@ -31,7 +31,7 @@ export default function ArticleReadingPage() {
     breadcrumbs.push({
       label: searchParams.get("subjectName") || "",
       href: URL.SUBJECT_READING_PAGE.replace(
-        ":subjectId",
+        ":id",
         searchParams.get("subjectId") || ""
       ),
     });
@@ -43,7 +43,7 @@ export default function ArticleReadingPage() {
   useEffect(() => {
     function loadArticle(): void {
       setOpenLoading(true);
-      PublicDataService.getArticleById(articleId || "")
+      PublicDataService.getArticleById(id || "")
         .then((response) => {
           setArticle(response.data);
         })
@@ -55,7 +55,7 @@ export default function ArticleReadingPage() {
         .finally(() => setOpenLoading(false));
     }
     loadArticle();
-  }, [t, articleId, enqueueSnackbar]);
+  }, [t, id, enqueueSnackbar]);
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
@@ -76,16 +76,13 @@ export default function ArticleReadingPage() {
                     {t("article-reading-page.view")} {article.viewCount}
                   </Typography>
                   {authState?.user.id === article.authorId && (
-                    <Link
-                      href={`/my/articles/${articleId}`}
-                      sx={{ flexGrow: 0 }}
-                    >
+                    <Link href={`/my/articles/${id}`} sx={{ flexGrow: 0 }}>
                       <Typography
                         variant="body2"
                         color="text.secondary"
                         sx={{ flexGrow: 1 }}
                       >
-                        Edit
+                        {t("article-reading-page.edit-btn")}
                       </Typography>
                     </Link>
                   )}

@@ -5,30 +5,35 @@ export const URL = {
   SIGN_UP: "/sign-up",
   ARTICLE: "/article",
   ABOUT: "/about",
-  NEWS_PROJECT_DETAIL: "/news/projects/:projectId",
-  NEWS_ARTICLE_DETAIL: "/news/articles/:articleId",
+  NEWS_PROJECT_DETAIL: "/news/projects/:id",
+  NEWS_ARTICLE_DETAIL: "/news/articles/:id",
 
   SUBJECTS_PAGE: "/subjects",
-  SUBJECT_READING_PAGE: "/subjects/:subjectId",
+  SUBJECT_READING_PAGE: "/subjects/:id",
 
   TOOLS_PAGE: "/tools",
   TOOL_POMODORO: "/tools/pomodoro",
+  TOOL_TIME_CONVERTER: "/tools/time-coverter",
 
   MY_ZONE: "/my/dashboard",
   DASHBOARD: "/my/dashboard",
   PROFILE: "/my/profile",
   USERS: "/my/users",
   PROJECTS: "/my/projects",
-  PROJECT_DETAIL: "/my/projects/:projectId",
+  PROJECT_DETAIL: "/my/projects/:id",
   CREATE_PROJECT: "/my/projects/create-project",
 
   ARTICLES: "/my/articles",
-  ARTICLE_DETAIL: "/my/articles/:articleId",
+  ARTICLE_DETAIL: "/my/articles/:id",
   CREATE_ARTICLE: "/my/articles/create-article",
 
   CREATE_SUBJECT: "/my/subjects/create-subject",
-  SUBJECT_DETAIL: "/my/subjects/:subjectId",
+  SUBJECT_DETAIL: "/my/subjects/:id",
   SUBJECTS: "/my/subjects",
+
+  CREATE_VOCABULARY: "/my/vocabularies/create-vocabularies",
+  VOCABULARY_DETAIL: "/my/vocabularies/:id",
+  VOCABULARIES: "/my/vocabularies",
 };
 
 export function validateUrl(target: string): boolean {

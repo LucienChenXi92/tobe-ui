@@ -15,6 +15,10 @@ const Pomodoro = React.lazy(
   () => import("../containers/frontend/tool/Pomodoro")
 );
 
+const TimeConverter = React.lazy(
+  () => import("../containers/frontend/tool/TimeConverter")
+);
+
 const AboutPage = React.lazy(
   () => import("../containers/frontend/aboutPage/AboutPage")
 );
@@ -74,6 +78,18 @@ const SubjectReadingPage = React.lazy(
   () => import("../containers/frontend/subject/SubjectReadingPage")
 );
 
+const VocabulariesPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabulariesPage")
+);
+
+const VocabularyCreationPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabularyCreationPage")
+);
+
+const VocabularyDetailPage = React.lazy(
+  () => import("../containers/backend/vocabulary/VocabularyDetailPage")
+);
+
 function MainRouter() {
   return (
     <Suspense fallback={<Loading open={true} />}>
@@ -102,6 +118,15 @@ function MainRouter() {
             />
             <Route path={URL.SUBJECTS} element={<SubjectsPage />} />
             <Route path={URL.SUBJECT_DETAIL} element={<SubjectDetailPage />} />
+            <Route
+              path={URL.CREATE_VOCABULARY}
+              element={<VocabularyCreationPage />}
+            />
+            <Route path={URL.VOCABULARIES} element={<VocabulariesPage />} />
+            <Route
+              path={URL.VOCABULARY_DETAIL}
+              element={<VocabularyDetailPage />}
+            />
           </Route>
 
           <Route element={<NonProtectedBasicLayoutRoute />}>
@@ -123,6 +148,7 @@ function MainRouter() {
             />
             <Route path={URL.TOOLS_PAGE} element={<ToolsPage />} />
             <Route path={URL.TOOL_POMODORO} element={<Pomodoro />} />
+            <Route path={URL.TOOL_TIME_CONVERTER} element={<TimeConverter />} />
             <Route path={URL.ABOUT} element={<AboutPage />} />
           </Route>
         </Routes>

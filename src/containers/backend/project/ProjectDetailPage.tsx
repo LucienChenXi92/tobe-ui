@@ -16,7 +16,7 @@ import { ProjectService } from "../../../services";
 
 export default function ProjectDetailPage() {
   const { t } = useTranslation();
-  const { projectId } = useParams();
+  const { id } = useParams();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [tagValue, setTagValue] = useState<TagOption[]>([]);
   const { enqueueSnackbar } = useSnackbar();
@@ -26,11 +26,11 @@ export default function ProjectDetailPage() {
   const [toTime, setToTime] = useState<Date | null>(null);
   const [description, setDescription] = useState<string | null>(null);
 
-  useEffect(() => loadProject(projectId || ""), []);
+  useEffect(() => loadProject(id || ""), []);
 
   function handleProjectUpdate(updatedProject: ProjectUpdateDTO): void {
     setOpenLoading(true);
-    ProjectService.updateProject(updatedProject)
+    ProjectService.update(updatedProject)
       .then((response) => {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",
@@ -46,7 +46,7 @@ export default function ProjectDetailPage() {
 
   function loadProject(projectId: string): void {
     setOpenLoading(true);
-    ProjectService.getProject(projectId)
+    ProjectService.getById(projectId)
       .then((response) => {
         setProject(response.data);
         setFromTime(new Date(response.data.targetStartTime));
@@ -189,9 +189,7 @@ export default function ProjectDetailPage() {
           )}
         </Box>
       </Paper>
-      {projectId && (
-        <ProjectProgressModal projectId={projectId} viewOnly={false} />
-      )}
+      {id && <ProjectProgressModal projectId={id} viewOnly={false} />}
     </Page>
   );
 }

@@ -10,7 +10,7 @@ import { ArticleService } from "../../../services";
 
 export default function ArticleDetailPage() {
   const { t } = useTranslation();
-  const { articleId } = useParams();
+  const { id } = useParams();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
@@ -19,12 +19,12 @@ export default function ArticleDetailPage() {
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
-  const loadArticle = useCallback((): void => {
-    if (!articleId) {
+  const loadData = useCallback((): void => {
+    if (!id) {
       return window.history.back();
     }
     setOpenLoading(true);
-    ArticleService.getArticle(articleId)
+    ArticleService.getById(id)
       .then((response) => {
         setHtmlValue(response.data.content);
         setTitle(response.data.title);
@@ -37,18 +37,18 @@ export default function ArticleDetailPage() {
         });
       })
       .finally(() => setOpenLoading(false));
-  }, [articleId, enqueueSnackbar, t]);
+  }, [id, enqueueSnackbar, t]);
 
-  useEffect(() => loadArticle(), [loadArticle]);
+  useEffect(() => loadData(), [loadData]);
 
   function saveArticle(): void {
-    if (!articleId) {
+    if (!id) {
       return;
     }
 
     setOpenLoading(true);
-    ArticleService.updateArticle({
-      id: articleId,
+    ArticleService.update({
+      id: id,
       title,
       subTitle,
       content: htmlValue,

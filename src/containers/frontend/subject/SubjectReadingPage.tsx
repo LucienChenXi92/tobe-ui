@@ -19,7 +19,7 @@ export default function SubjectReadingPage() {
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [subject, setSubject] = useState<SubjectInfoGeneralDTO>();
-  const { subjectId } = useParams();
+  const { id } = useParams();
 
   const Section = (props: { text: string; variant: SectionVariant }) => {
     return (
@@ -61,7 +61,7 @@ export default function SubjectReadingPage() {
       );
     }
     const result: JSX.Element[] = [];
-    const deepth = getDepthOfTree(subject.tagTree);
+    const deepth: number = getDepthOfTree(subject.tagTree);
     convertTreeToList(
       subject.tagTree,
       0,
@@ -92,19 +92,28 @@ export default function SubjectReadingPage() {
         elements.push(
           <Section text={n.label} variant={sectionVariants[depth]} key={n.id} />
         );
-
+        let articles: JSX.Element[] = [];
         n.relatedArticles.forEach((a: NewsDTO) => {
-          elements.push(
-            <ArticleLink
-              key={a.id}
-              text={a.title}
-              href={
-                URL.NEWS_ARTICLE_DETAIL.replace(":articleId", a.id) +
-                `?subjectId=${subjectId}&subjectName=${subjectName}`
-              }
-            />
+          articles.push(
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+              <ArticleLink
+                key={a.id}
+                text={a.title}
+                href={
+                  URL.NEWS_ARTICLE_DETAIL.replace(":id", a.id) +
+                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                }
+              />
+            </Grid>
           );
         });
+        if (articles && articles.length > 0) {
+          elements.push(
+            <Grid container flexDirection="row">
+              {articles}
+            </Grid>
+          );
+        }
 
         if (n.children.length === 0 && n.relatedArticles.length === 0) {
           elements.push(<ToBeContinuedTip />);
@@ -139,7 +148,7 @@ export default function SubjectReadingPage() {
   useEffect(() => {
     function load(): void {
       setOpenLoading(true);
-      PublicDataService.getSubjectById(subjectId || "")
+      PublicDataService.getSubjectById(id || "")
         .then((response) => {
           setSubject(response.data);
         })

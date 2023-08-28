@@ -9,16 +9,16 @@ import {
   GeneralListPageFunctionBar,
 } from "../../../components";
 import { URL } from "../../../routes";
-import { Column, Operation, ArticleDetailDTO } from "../../../global/types";
-import { ArticleService } from "../../../services";
+import { Column, Operation, VocabularyDetailDTO } from "../../../global/types";
+import { VocabularyService } from "../../../services";
 import { TimeFormat } from "../../../commons";
 import moment from "moment";
 
-export default function ArticlesPage() {
+export default function VocabulariesPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
-  const [articles, setArticles] = useState<ArticleDetailDTO[]>([]);
+  const [vocabularies, setVocabularies] = useState<VocabularyDetailDTO[]>([]);
   const [cardView, setCardView] = useState<boolean>(true);
   const [recentOnly, setRecentOnly] = useState<boolean>(true);
   const [current, setCurrent] = useState<number>(0);
@@ -29,7 +29,7 @@ export default function ArticlesPage() {
 
   const loadData = useCallback((): void => {
     setOpenLoading(true);
-    ArticleService.get(
+    VocabularyService.get(
       size,
       current,
       keyword,
@@ -38,7 +38,7 @@ export default function ArticlesPage() {
         : ""
     )
       .then((response) => {
-        setArticles(response.data.records || []);
+        setVocabularies(response.data.records || []);
         setTotalCount(response.data.total);
       })
       .catch(() => {
@@ -53,9 +53,9 @@ export default function ArticlesPage() {
     loadData();
   }, [loadData]);
 
-  function releaseArticleById(id: number | string) {
+  function releaseById(id: number | string) {
     setOpenLoading(true);
-    ArticleService.releaseById(id)
+    VocabularyService.releaseById(id)
       .then(() => {
         loadData();
       })
@@ -65,9 +65,9 @@ export default function ArticlesPage() {
       });
   }
 
-  function deleteArticleById(id: number | string) {
+  function deleteById(id: number | string) {
     setOpenLoading(true);
-    ArticleService.deleteById(id)
+    VocabularyService.deleteById(id)
       .then(() => {
         loadData();
       })
@@ -80,17 +80,17 @@ export default function ArticlesPage() {
   const columns: readonly Column[] = [
     {
       id: "title",
-      label: t("articles-page.article-table.label.title"),
+      label: t("vocabularies-page.vocabulary-table.label.title"),
       align: "center",
     },
     {
       id: "description",
-      label: t("articles-page.article-table.label.description"),
+      label: t("vocabularies-page.vocabulary-table.label.description"),
       align: "center",
     },
     {
       id: "operation",
-      label: t("articles-page.article-table.label.operation"),
+      label: t("vocabularies-page.vocabulary-table.label.operation"),
       align: "left",
     },
   ];
@@ -99,26 +99,26 @@ export default function ArticlesPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.ARTICLE_DETAIL.replace(":id", id.toString())),
+        navigate(URL.VOCABULARY_DETAIL.replace(":id", id.toString())),
     },
     {
       name: "release",
-      onClick: (id: number | string) => releaseArticleById(id),
+      onClick: (id: number | string) => releaseById(id),
       hide: (data: any) => data.publicToAll,
     },
     {
       name: "delete",
-      onClick: (id: number | string) => deleteArticleById(id),
+      onClick: (id: number | string) => deleteById(id),
     },
   ];
 
   return (
     <Page
       openLoading={openLoading}
-      pageTitle={t("articles-page.page-main-title")}
+      pageTitle={t("vocabularies-page.page-main-title")}
     >
       <GeneralListPageFunctionBar
-        createNewAction={() => navigate(URL.CREATE_ARTICLE)}
+        createNewAction={() => navigate(URL.CREATE_VOCABULARY)}
         cardView={cardView}
         recentOnly={recentOnly}
         setSize={setSize}
@@ -128,10 +128,10 @@ export default function ArticlesPage() {
         setKeyword={setKeyword}
       />
       {cardView ? (
-        <GeneralCardView data={articles} operations={operations} />
+        <GeneralCardView data={vocabularies} operations={operations} />
       ) : (
         <GeneralTableView
-          data={articles}
+          data={vocabularies}
           operations={operations}
           columns={columns}
           size={size}

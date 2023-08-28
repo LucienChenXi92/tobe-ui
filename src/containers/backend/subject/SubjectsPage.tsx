@@ -73,7 +73,7 @@ export default function SubjectsPage() {
     {
       name: "detail",
       onClick: (id: number | string) =>
-        navigate(URL.SUBJECT_DETAIL.replace(":subjectId", id.toString())),
+        navigate(URL.SUBJECT_DETAIL.replace(":id", id.toString())),
     },
     {
       name: "release",

@@ -23,6 +23,20 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none"
+        }
+      }
+    },
+    MuiTab: {
+      styleOverrides: {
+        root: {
+          textTransform: "none"
+        }
+      }
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {

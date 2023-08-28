@@ -25,7 +25,7 @@ export default function Page(props: PageProps) {
       sx={{
         ...{
           minHeight: "95vh",
-          pt: "9.5vh",
+          pt: "11vh",
           pb: 2,
         },
         ...props.sx,
