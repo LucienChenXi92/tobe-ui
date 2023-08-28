@@ -164,7 +164,7 @@ export default function ProjectsPage() {
   return (
     <Page pageTitle={t("project-table.title")} openLoading={openLoading}>
       <GeneralListPageFunctionBar
-        createNewAction={() => navigate(URL.CREATE_VOCABULARY)}
+        createNewAction={() => navigate(URL.CREATE_PROJECT)}
         cardView={cardView}
         recentOnly={recentOnly}
         setSize={setSize}
