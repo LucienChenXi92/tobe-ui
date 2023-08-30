@@ -428,5 +428,21 @@
     "time-label": "Local Time",
     "timestamp-input-helper": "Please input timestamp",
     "time-input-helper": "Please input time"
+  },
+  "word-dialog": {
+    "add": "Add",
+    "title": "Edit a word",
+    "fields": {
+      "word": "Text",
+      "partOfSpeech": "Part of Speech",
+      "meaningInChinese": "Meaning in Chinese",
+      "meaningInEnglish": "Meaning in English"
+    },
+    "save": "Save",
+    "back": "Back",
+    "msg": {
+      "error": "Operation failed",
+      "success": "Operation success"
+    }
   }
 }

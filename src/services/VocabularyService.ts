@@ -1,8 +1,13 @@
 import { AxiosPromise } from "axios";
 import { server } from ".";
-import { VocabularyCreationDTO, VocabularyUpdateDTO } from "../global/types";
+import {
+  VocabularyCreationDTO,
+  VocabularyUpdateDTO,
+  WordCreateDTO,
+} from "../global/types";
 
 const BASE_URI = "v1/vocabularies";
+const WORD_URI = "v1/words";
 
 export function get(
   size: number,
@@ -35,4 +40,16 @@ export function create(target: VocabularyCreationDTO): AxiosPromise {
 
 export function update(target: VocabularyUpdateDTO): AxiosPromise {
   return server.put(`/${BASE_URI}/${target.id}`, target);
+}
+
+export function getWordsByVocabularyId(id: string): AxiosPromise {
+  return server.get(`/${BASE_URI}/${id}/words`);
+}
+
+export function createWord(target: WordCreateDTO): AxiosPromise {
+  return server.post(`/${WORD_URI}`, target);
+}
+
+export function deleteWordById(id: number): AxiosPromise {
+  return server.delete(`/${WORD_URI}/${id}`);
 }

@@ -423,5 +423,21 @@
     "time-label": "本地时间",
     "timestamp-input-helper": "请输入时间戳",
     "time-input-helper": "请输入时间"
+  },
+  "word-dialog": {
+    "add": "新增",
+    "title": "编辑单词",
+    "fields": {
+      "word": "文本",
+      "partOfSpeech": "词性",
+      "meaningInChinese": "中文含义",
+      "meaningInEnglish": "英文含义"
+    },
+    "save": "保存",
+    "back": "返回",
+    "msg": {
+      "error": "操作失败",
+      "success": "操作成功"
+    }
   }
 }

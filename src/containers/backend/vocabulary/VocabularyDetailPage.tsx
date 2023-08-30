@@ -3,12 +3,15 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import { Page, MultipleTagSelecter, EditIconButton } from "../../../components";
-import { Box, Paper, TextField, Grid } from "@mui/material";
+import { WordCreateDialog } from "./WordCreateDialog";
+import { WordListPanel } from "./WordListPanel";
+import { Box, Button, Paper, TextField, Grid } from "@mui/material";
 import { VocabularyService } from "../../../services";
 import {
   VocabularyDetailDTO,
   TagOption,
   VocabularyUpdateDTO,
+  WordGeneralDTO,
 } from "../../../global/types";
 
 export default function VocabularyDetailPage() {
@@ -16,6 +19,7 @@ export default function VocabularyDetailPage() {
   const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [editable, setEditable] = useState<boolean>(false);
   const [vocabulary, setVocabulary] = useState<VocabularyDetailDTO | null>(
     null
@@ -23,7 +27,22 @@ export default function VocabularyDetailPage() {
   const [description, setDescription] = useState<string | null>(null);
   const [language, setLanguage] = useState<string | null>(null);
   const [tagValue, setTagValue] = useState<TagOption[]>([]);
+  const [words, setWords] = useState<WordGeneralDTO[]>([]);
   useEffect(() => loadData(id || ""), []);
+
+  function loadWordsData(vocabularyId: string) {
+    setOpenLoading(true);
+    VocabularyService.getWordsByVocabularyId(vocabularyId)
+      .then((response) => {
+        setWords(response.data);
+      })
+      .catch(() => {
+        enqueueSnackbar(t("word-dialog.msg.error"), {
+          variant: "error",
+        });
+      })
+      .finally(() => setOpenLoading(false));
+  }
 
   function loadData(vocabularyId: string): void {
     setOpenLoading(true);
@@ -33,6 +52,7 @@ export default function VocabularyDetailPage() {
         setDescription(response.data.description);
         setLanguage(response.data.language);
         setTagValue(response.data.tags);
+        loadWordsData(response.data.id);
       })
       .catch(() => {
         enqueueSnackbar(t("vocabulary-detail-page.msg.error"), {
@@ -40,6 +60,21 @@ export default function VocabularyDetailPage() {
         });
       })
       .finally(() => setOpenLoading(false));
+  }
+
+  function handleDeleteWord(wordId: number) {
+    VocabularyService.deleteWordById(wordId)
+      .then(() => {
+        enqueueSnackbar(t("word-dialog.msg.success"), {
+          variant: "success",
+        });
+        loadWordsData(id || "");
+      })
+      .catch(() => {
+        enqueueSnackbar(t("word-dialog.msg.error"), {
+          variant: "error",
+        });
+      });
   }
 
   const handleEditableChange = () => {
@@ -79,9 +114,22 @@ export default function VocabularyDetailPage() {
       {vocabulary && (
         <Grid
           container
-          sx={{ m: 0, p: { xs: 0.5, md: 1 } }}
+          sx={{ my: 0, pr: { xs: 0.5, md: 1 }, py: { xs: 0.5, md: 1 } }}
           alignItems="center"
         >
+          <Button
+            onClick={() => setOpen(true)}
+            variant="contained"
+            size="small"
+          >
+            {t("word-dialog.add")}
+          </Button>
+          <WordCreateDialog
+            open={open}
+            setOpen={setOpen}
+            vocabularyId={vocabulary.id}
+            loadData={loadData}
+          />
           <Grid item flexGrow={1}></Grid>
           <Grid item flexGrow={0}>
             <EditIconButton
@@ -116,9 +164,6 @@ export default function VocabularyDetailPage() {
                   fullWidth
                   autoComplete="description"
                   variant="standard"
-                  multiline
-                  maxRows={2}
-                  minRows={2}
                   disabled={!editable}
                   value={description}
                   onChange={(event) => setDescription(event.target.value)}
@@ -135,6 +180,7 @@ export default function VocabularyDetailPage() {
           )}
         </Box>
       </Paper>
+      {id && <WordListPanel words={words} handleDelete={handleDeleteWord} />}
     </Page>
   );
 }

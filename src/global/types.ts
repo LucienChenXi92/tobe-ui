@@ -243,3 +243,22 @@ export interface BreadcrumbsNode {
   label: string;
   href: string;
 }
+
+export interface WordGeneralDTO {
+  id: number;
+  vocabularyId: string;
+  word: string;
+  partOfSpeech: string;
+  meaningInChinese: string;
+  meaningInEnglish: string;
+}
+
+export interface WordCreateDTO {
+  vocabularyId: string;
+  word: string;
+  partOfSpeech: string;
+  meaningInChinese: string;
+  meaningInEnglish: string;
+}
+
+export interface WordUpdateDTO extends WordGeneralDTO {}
