@@ -3,8 +3,6 @@ import { red } from "@mui/material/colors";
 
 /**
  * Create system theme via material-ui
- *
- * 通过material-ui的createTheme方法构建定制化主题
  */
 const theme = createTheme({
   palette: {
@@ -26,16 +24,16 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          textTransform: "none"
-        }
-      }
+          textTransform: "none",
+        },
+      },
     },
     MuiTab: {
       styleOverrides: {
         root: {
-          textTransform: "none"
-        }
-      }
+          textTransform: "none",
+        },
+      },
     },
     MuiInputLabel: {
       styleOverrides: {

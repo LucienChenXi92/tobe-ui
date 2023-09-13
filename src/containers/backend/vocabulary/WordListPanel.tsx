@@ -1,10 +1,14 @@
+import { useState } from "react";
 import { Chip, Box, Paper, Grid } from "@mui/material";
 import { WordGeneralDTO } from "../../../global/types";
+import { WordDisplayDialog } from "./WordDisplayDialog";
 
 export function WordListPanel(props: {
   words: WordGeneralDTO[];
   handleDelete: Function;
 }) {
+  const [openedWord, setOpenedWord] = useState<WordGeneralDTO | null>(null);
+
   function render(words: WordGeneralDTO[]) {
     return words
       .sort((w1, w2) => {
@@ -17,11 +21,11 @@ export function WordListPanel(props: {
         }
       })
       .map((w) => (
-        <Grid item sx={{ m: 0.5 }}>
+        <Grid item sx={{ m: 0.5 }} key={w.id}>
           <Chip
             label={w.word}
             variant="outlined"
-            onClick={() => alert("display")}
+            onClick={() => setOpenedWord(w)}
             onDelete={() => props.handleDelete(w.id)}
             size="medium"
           />
@@ -31,6 +35,7 @@ export function WordListPanel(props: {
 
   return (
     <Paper variant="outlined" sx={{ my: 1, p: { xs: 2, md: 3 } }}>
+      <WordDisplayDialog word={openedWord} setWord={setOpenedWord} />
       <Box justifyContent="center">
         <Grid container>
           <Grid item container direction="row" sx={{ minHeight: "30vh" }}>
