@@ -435,6 +435,7 @@
     },
     "save": "保存",
     "back": "返回",
+    "delete": "删除",
     "msg": {
       "error": "操作失败",
       "success": "操作成功"

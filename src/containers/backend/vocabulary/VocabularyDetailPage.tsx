@@ -7,6 +7,7 @@ import { WordCreateDialog } from "./WordCreateDialog";
 import { WordListPanel } from "./WordListPanel";
 import { Box, Button, Paper, TextField, Grid } from "@mui/material";
 import { VocabularyService } from "../../../services";
+import { WordDisplayDialog } from "./WordDisplayDialog";
 import {
   VocabularyDetailDTO,
   TagOption,
@@ -28,6 +29,7 @@ export default function VocabularyDetailPage() {
   const [language, setLanguage] = useState<string | null>(null);
   const [tagValue, setTagValue] = useState<TagOption[]>([]);
   const [words, setWords] = useState<WordGeneralDTO[]>([]);
+  const [openedWord, setOpenedWord] = useState<WordGeneralDTO | null>(null);
   useEffect(() => loadData(id || ""), []);
 
   function loadWordsData(vocabularyId: string) {
@@ -69,6 +71,7 @@ export default function VocabularyDetailPage() {
           variant: "success",
         });
         loadWordsData(id || "");
+        setOpenedWord(null);
       })
       .catch(() => {
         enqueueSnackbar(t("word-dialog.msg.error"), {
@@ -180,7 +183,13 @@ export default function VocabularyDetailPage() {
           )}
         </Box>
       </Paper>
-      {id && <WordListPanel words={words} handleDelete={handleDeleteWord} />}
+      {id && <WordListPanel words={words} setOpenedWord={setOpenedWord} />}
+      <WordDisplayDialog
+        word={openedWord}
+        setWord={setOpenedWord}
+        handleDeleteWord={handleDeleteWord}
+        editable={true}
+      />
     </Page>
   );
 }

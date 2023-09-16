@@ -440,6 +440,7 @@
     },
     "save": "Save",
     "back": "Back",
+    "delete": "Delete",
     "msg": {
       "error": "Operation failed",
       "success": "Operation success"
