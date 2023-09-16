@@ -32,16 +32,7 @@ export function WordListPanel(props: {
       const wordEles: JSX.Element[] = [];
       groupedWords.forEach((w) => {
         wordEles.push(
-          <Grid
-            item
-            sx={{ m: 0.5 }}
-            key={w.id}
-            xs={6}
-            sm={2}
-            md={1}
-            lg={1}
-            xl={1}
-          >
+          <Grid item sx={{ m: 0.5 }} key={w.id}>
             <Chip
               label={w.word}
               variant="outlined"
