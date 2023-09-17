@@ -10,13 +10,13 @@ import {
 import { useTranslation } from "react-i18next";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
-import { WordGeneralDTO } from "../../../global/types";
+import { WordGeneralDTO } from "../../global/types";
 import Speech from "react-text-to-speech";
 
 export function WordDisplayDialog(props: {
   word: WordGeneralDTO | null;
   setWord: (word: WordGeneralDTO | null) => void;
-  handleDeleteWord: Function;
+  handleDeleteWord: Function | null;
   editable: Boolean;
 }) {
   const { t } = useTranslation();
@@ -83,7 +83,11 @@ export function WordDisplayDialog(props: {
         </DialogContent>
         {props.editable && (
           <DialogActions>
-            <Button onClick={() => props.handleDeleteWord(props.word?.id)}>
+            <Button
+              onClick={() =>
+                props.handleDeleteWord && props.handleDeleteWord(props.word?.id)
+              }
+            >
               {t("word-dialog.delete")}
             </Button>
           </DialogActions>

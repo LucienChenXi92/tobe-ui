@@ -17,7 +17,7 @@ export function getNewsByTags(
   tags: string[]
 ): AxiosPromise {
   return server.get(
-    `/${API_DATA_URI}/${domain.toLowerCase()}s?size=${size}&current=${current}&tags=${tags}`,
+    `/${API_DATA_URI}/news?size=${size}&current=${current}&tags=${tags}&domain=${domain}`,
     options
   );
 }
@@ -40,8 +40,16 @@ export function getProjectById(id: string | number): AxiosPromise {
   return server.get(`/${API_DATA_URI}/projects/${id}`);
 }
 
+export function getVocabularyById(id: string | number): AxiosPromise {
+  return server.get(`/${API_DATA_URI}/vocabularies/${id}`);
+}
+
 export function getProgressesByProjectId(projectId: string): AxiosPromise {
   return server.get(`/${API_DATA_URI}/projects/${projectId}/progresses`);
+}
+
+export function getWordsByVocabularyId(id: string): AxiosPromise {
+  return server.get(`/${API_DATA_URI}/vocabularies/${id}/words`);
 }
 
 export function getBriefProfileByUserId(userId: string | number): AxiosPromise {

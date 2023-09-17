@@ -1,5 +1,5 @@
 import { Chip, Box, Paper, Grid, Divider, Typography } from "@mui/material";
-import { WordGeneralDTO } from "../../../global/types";
+import { WordGeneralDTO } from "../../global/types";
 
 export function WordListPanel(props: {
   words: WordGeneralDTO[];

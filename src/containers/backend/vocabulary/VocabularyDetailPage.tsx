@@ -2,12 +2,16 @@ import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import { Page, MultipleTagSelecter, EditIconButton } from "../../../components";
+import {
+  Page,
+  MultipleTagSelecter,
+  EditIconButton,
+  WordListPanel,
+  WordDisplayDialog,
+} from "../../../components";
 import { WordCreateDialog } from "./WordCreateDialog";
-import { WordListPanel } from "./WordListPanel";
 import { Box, Button, Paper, TextField, Grid } from "@mui/material";
 import { VocabularyService } from "../../../services";
-import { WordDisplayDialog } from "./WordDisplayDialog";
 import {
   VocabularyDetailDTO,
   TagOption,

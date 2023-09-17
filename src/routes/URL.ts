@@ -7,6 +7,7 @@ export const URL = {
   ABOUT: "/about",
   NEWS_PROJECT_DETAIL: "/news/projects/:id",
   NEWS_ARTICLE_DETAIL: "/news/articles/:id",
+  NEWS_VOCABULARY_DETAIL: "/news/vocabularies/:id",
 
   SUBJECTS_PAGE: "/subjects",
   SUBJECT_READING_PAGE: "/subjects/:id",

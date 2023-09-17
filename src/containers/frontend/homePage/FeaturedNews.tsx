@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
 import { NewsListItem } from "../../../components";
 import { PublicDataService } from "../../../services";
+import { ca } from "date-fns/locale";
 
 enum LoadType {
   Append,
@@ -46,6 +47,15 @@ export default function FeaturedArticles(props: {
     []
   );
 
+  function getURIbyDomain(domain: Domain | string): string {
+    switch (domain) {
+      case Domain.Vocabulary:
+        return "vocabularies";
+      default:
+        return domain.toLowerCase() + "s";
+    }
+  }
+
   // based on current filters and load more data
   const handleLoadMoreArticles = (): void => {
     loadNews(props.domain, LoadType.Append, current + 1, props.tags, newsData);
@@ -86,6 +96,7 @@ export default function FeaturedArticles(props: {
         indicatorColor="secondary"
       >
         <Tab value={Domain.Article} label={t("home-page.articles")} />
+        <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />
         <Tab value={Domain.Project} label={t("home-page.projects")} />
       </Tabs>
       {newsData.length > 0 ? (
@@ -100,7 +111,7 @@ export default function FeaturedArticles(props: {
               viewCount={n.viewCount}
               tags={n.tags}
               onClick={() =>
-                navigate(`/news/${n.domain?.toLowerCase()}s/${n.id}`)
+                navigate(`/news/${getURIbyDomain(n.domain)}/${n.id}`)
               }
             />
           ))}

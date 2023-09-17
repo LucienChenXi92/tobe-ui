@@ -47,6 +47,9 @@ const ProjectDetailPage = React.lazy(
 const ProjectReadingPage = React.lazy(
   () => import("../containers/frontend/project/ProjectReadingPage")
 );
+const VocabularyReadingPage = React.lazy(
+  () => import("../containers/frontend/vocabulary/VocabularyReadingPage")
+);
 const ArticlesPage = React.lazy(
   () => import("../containers/backend/article/ArticlesPage")
 );
@@ -140,6 +143,10 @@ function MainRouter() {
             <Route
               path={URL.NEWS_ARTICLE_DETAIL}
               element={<ArticleReadingPage />}
+            />
+            <Route
+              path={URL.NEWS_VOCABULARY_DETAIL}
+              element={<VocabularyReadingPage />}
             />
             <Route path={URL.SUBJECTS_PAGE} element={<SubjectListPage />} />
             <Route

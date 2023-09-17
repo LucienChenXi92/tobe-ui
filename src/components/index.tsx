@@ -28,6 +28,8 @@ import TreePanel from "./common/TreePanel";
 import GeneralCardView from "./common/GeneralCardView";
 import GeneralTableView from "./common/GeneralTableView";
 import GeneralListPageFunctionBar from "./common/GeneralListPageFunctionBar";
+import { WordListPanel } from "./common/WordListPanel";
+import { WordDisplayDialog } from "./common/WordDisplayDialog";
 
 export {
   NewsListItem,
@@ -60,4 +62,6 @@ export {
   GeneralCardView,
   GeneralTableView,
   GeneralListPageFunctionBar,
+  WordListPanel,
+  WordDisplayDialog,
 };
