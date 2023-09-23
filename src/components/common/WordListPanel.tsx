@@ -1,4 +1,4 @@
-import { Chip, Box, Paper, Grid, Divider, Typography } from "@mui/material";
+import { Box, Paper, Grid, Divider, Typography, Button } from "@mui/material";
 import { WordGeneralDTO } from "../../global/types";
 
 export function WordListPanel(props: {
@@ -32,13 +32,14 @@ export function WordListPanel(props: {
       const wordEles: JSX.Element[] = [];
       groupedWords.forEach((w) => {
         wordEles.push(
-          <Grid item sx={{ m: 0.5 }} key={w.id}>
-            <Chip
-              label={w.word}
-              variant="outlined"
+          <Grid item key={w.id} xs={4} sm={3} md={2} lg={2} xl={2}>
+            <Button
+              variant="text"
               onClick={() => props.setOpenedWord(w)}
-              size="medium"
-            />
+              size="large"
+            >
+              {w.word}
+            </Button>
           </Grid>
         );
       });
