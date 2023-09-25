@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Divider, Grid, Paper, Link, Typography } from "@mui/material";
-import { useAuthState } from "../../../contexts";
+import { Divider, Grid, Paper, Typography } from "@mui/material";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -10,9 +9,9 @@ import {
   RichReader,
   TagDisplayBar,
   Page,
+  ContentMetaBar,
 } from "../../../components";
 import { ArticleDetailDTO, BreadcrumbsNode } from "../../../global/types";
-import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
 import RelevantArticlePanel from "./RelevantArticlePanel";
 import { URL } from "../../../routes";
@@ -36,7 +35,6 @@ export default function ArticleReadingPage() {
       ),
     });
   }
-  const authState = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 
@@ -65,28 +63,13 @@ export default function ArticleReadingPage() {
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
               {article && (
-                <Grid item container xs={12} sx={{ my: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ flexGrow: 1 }}
-                  >
-                    {article.authorName} ·{" "}
-                    {TimeFormat.dateAndTimeFormat(article.publishTime)} ·{" "}
-                    {t("article-reading-page.view")} {article.viewCount}
-                  </Typography>
-                  {authState?.user.id === article.authorId && (
-                    <Link href={`/my/articles/${id}`} sx={{ flexGrow: 0 }}>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ flexGrow: 1 }}
-                      >
-                        {t("article-reading-page.edit-btn")}
-                      </Typography>
-                    </Link>
-                  )}
-                </Grid>
+                <ContentMetaBar
+                  authorId={article.authorId}
+                  authorName={article.authorName}
+                  publishTime={article.publishTime}
+                  viewCount={article.viewCount}
+                  editLinkUrl={`/my/articles/${article.id}`}
+                />
               )}
 
               {article?.subTitle && (

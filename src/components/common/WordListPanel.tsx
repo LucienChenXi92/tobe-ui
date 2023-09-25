@@ -32,7 +32,7 @@ export function WordListPanel(props: {
       const wordEles: JSX.Element[] = [];
       groupedWords.forEach((w) => {
         wordEles.push(
-          <Grid item key={w.id} xs={4} sm={3} md={2} lg={2} xl={2}>
+          <Grid item key={w.id} xs={6} sm={4} md={3} lg={2} xl={2}>
             <Button
               variant="text"
               onClick={() => props.setOpenedWord(w)}

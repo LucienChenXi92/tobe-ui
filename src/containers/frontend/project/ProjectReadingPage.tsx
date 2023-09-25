@@ -8,6 +8,7 @@ import {
   TobeBreadcrumbs,
   Page,
   TagDisplayBar,
+  ContentMetaBar,
 } from "../../../components";
 import { ProjectInfo } from "../../../global/types";
 import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
@@ -45,15 +46,17 @@ export default function ProjectReadingPage() {
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
             {project && (
+              <ContentMetaBar
+                authorId={project.ownerId}
+                authorName={project.ownerName}
+                publishTime={project.publishTime}
+                viewCount={project.viewCount}
+                editLinkUrl={`/my/projects/${project.id}`}
+              />
+            )}
+            {project && (
               <Grid container spacing={3}>
                 <Grid item xs={12}>
-                  <Typography
-                    color="text.secondary"
-                    variant="body2"
-                    sx={{ flexFlow: 1 }}
-                  >
-                    {t("project-detail-page.fields.description")}
-                  </Typography>
                   <Typography color="text.secondary" variant="body1">
                     {project.description}
                   </Typography>

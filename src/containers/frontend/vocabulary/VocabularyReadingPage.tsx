@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Grid, Paper, Link, Typography } from "@mui/material";
-import { useAuthState } from "../../../contexts";
+import { Grid, Paper } from "@mui/material";
 import { useParams, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -11,13 +10,13 @@ import {
   Page,
   WordListPanel,
   WordDisplayDialog,
+  ContentMetaBar,
 } from "../../../components";
 import {
   BreadcrumbsNode,
   VocabularyDetailDTO,
   WordGeneralDTO,
 } from "../../../global/types";
-import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
 import { URL } from "../../../routes";
 
@@ -41,7 +40,6 @@ export default function VocabularyReadingPage() {
       ),
     });
   }
-  const authState = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [vocabualry, setVocabulary] = useState<VocabularyDetailDTO | null>(
     null
@@ -78,28 +76,13 @@ export default function VocabularyReadingPage() {
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
               {vocabualry && (
-                <Grid item container xs={12} sx={{ my: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ flexGrow: 1 }}
-                  >
-                    {vocabualry.authorName} ·{" "}
-                    {TimeFormat.dateAndTimeFormat(vocabualry.publishTime)} ·{" "}
-                    {t("article-reading-page.view")} {vocabualry.viewCount}
-                  </Typography>
-                  {authState?.user.id === vocabualry.authorId && (
-                    <Link href={`/my/vocabularies/${id}`} sx={{ flexGrow: 0 }}>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ flexGrow: 1 }}
-                      >
-                        {t("article-reading-page.edit-btn")}
-                      </Typography>
-                    </Link>
-                  )}
-                </Grid>
+                <ContentMetaBar
+                  authorId={vocabualry.authorId}
+                  authorName={vocabualry.authorName}
+                  publishTime={vocabualry.publishTime}
+                  viewCount={vocabualry.viewCount}
+                  editLinkUrl={`/my/vocabularies/${vocabualry.id}`}
+                />
               )}
 
               {vocabualry?.tags && (

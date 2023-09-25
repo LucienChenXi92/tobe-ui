@@ -26,14 +26,16 @@ export interface ProjectInfo {
   name: string;
   description: string;
   statusValue: number;
-  owner: string;
+  ownerName: string;
   ownerId: string;
   publicToAll: string;
+  publishTime: string;
   actualStartTime: string;
   targetStartTime: string;
   actualEndTime: string;
   targetEndTime: string;
   tags: TagOption[];
+  viewCount: number;
 }
 
 export interface PageItem {
@@ -209,6 +211,7 @@ export interface TagRelationshipGeneralDTO {
   subjectId: string;
   relatedArticles: NewsDTO[];
   relatedProjects: NewsDTO[];
+  relatedVocabularies: NewsDTO[];
   children: TagRelationshipGeneralDTO[];
 }
 

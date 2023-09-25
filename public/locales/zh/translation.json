@@ -32,6 +32,10 @@
       "recent-only": "最新内容",
       "card-view-btn": "精简模式",
       "search-box-placeholder": "搜索..."
+    },
+    "meta-bar": {
+      "view": "阅读量",
+      "edit-btn": "编辑"
     }
   },
   "home-page": {
@@ -313,11 +317,7 @@
     "page-main-title": "编辑笔记"
   },
   "article-reading-page": {
-    "post-by": "作者 ",
-    "post-at": " 发表于 ",
-    "view": "阅读量",
     "back-btn": "返回",
-    "edit-btn": "编辑",
     "relevant-articles": "相关内容",
     "msg": {
       "error": "加载数据失败"

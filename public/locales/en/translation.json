@@ -32,6 +32,10 @@
       "recent-only": "Recent only",
       "card-view-btn": "Simple View",
       "search-box-placeholder": "Search..."
+    },
+    "meta-bar": {
+      "view": "View",
+      "edit-btn": "Edit"
     }
   },
   "home-page": {
@@ -316,11 +320,7 @@
     "page-main-title": "Edit article"
   },
   "article-reading-page": {
-    "post-by": "Post by ",
-    "post-at": " at ",
-    "view": "View",
     "back-btn": "Back",
-    "edit-btn": "Edit",
     "relevant-articles": "Relevant articles",
     "msg": {
       "error": "Failed to fetch data"
