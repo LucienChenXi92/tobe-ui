@@ -15,8 +15,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import FlagIcon from "@mui/icons-material/Flag";
 import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
-import PlaylistAddIcon from "@mui/icons-material/PlaylistAdd";
-import AccountTreeIcon from "@mui/icons-material/AccountTree";
+import Abc from "@mui/icons-material/Abc";
+import FolderIcon from "@mui/icons-material/Folder";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
 import { useTranslation } from "react-i18next";
@@ -62,13 +62,13 @@ const basicPageItems: PageItem[] = [
   },
   {
     label: "dashboard-nav.pages.vocabularies",
-    icon: <PlaylistAddIcon />,
+    icon: <Abc />,
     url: URL.VOCABULARIES,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
     label: "dashboard-nav.pages.subjects",
-    icon: <AccountTreeIcon />,
+    icon: <FolderIcon />,
     url: URL.SUBJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },

@@ -4,6 +4,7 @@ import {
   VocabularyCreationDTO,
   VocabularyUpdateDTO,
   WordCreateDTO,
+  WordGeneralDTO,
 } from "../global/types";
 
 const BASE_URI = "v1/vocabularies";
@@ -48,6 +49,10 @@ export function getWordsByVocabularyId(id: string): AxiosPromise {
 
 export function createWord(target: WordCreateDTO): AxiosPromise {
   return server.post(`/${WORD_URI}`, target);
+}
+
+export function updateWord(target: WordGeneralDTO): AxiosPromise {
+  return server.put(`/${WORD_URI}/${target.id}`, target);
 }
 
 export function deleteWordById(id: number): AxiosPromise {

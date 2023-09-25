@@ -28,7 +28,6 @@ export function WordListPanel(props: {
           <Divider />
         </Grid>
       );
-
       const wordEles: JSX.Element[] = [];
       groupedWords.forEach((w) => {
         wordEles.push(
@@ -44,7 +43,7 @@ export function WordListPanel(props: {
         );
       });
       elements.push(
-        <Grid item container sx={{ m: 0.5 }}>
+        <Grid key={"sec-" + elements.length} item container sx={{ m: 0.5 }}>
           {wordEles}
         </Grid>
       );

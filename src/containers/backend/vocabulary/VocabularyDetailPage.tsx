@@ -7,7 +7,6 @@ import {
   MultipleTagSelecter,
   EditIconButton,
   WordListPanel,
-  WordDisplayDialog,
 } from "../../../components";
 import { WordCreateDialog } from "./WordCreateDialog";
 import { Box, Button, Paper, TextField, Grid } from "@mui/material";
@@ -18,6 +17,7 @@ import {
   VocabularyUpdateDTO,
   WordGeneralDTO,
 } from "../../../global/types";
+import { WordDetailDialog } from "./WordDetailDialog";
 
 export default function VocabularyDetailPage() {
   const { t } = useTranslation();
@@ -195,11 +195,11 @@ export default function VocabularyDetailPage() {
         </Box>
       </Paper>
       {id && <WordListPanel words={words} setOpenedWord={setOpenedWord} />}
-      <WordDisplayDialog
+      <WordDetailDialog
         word={openedWord}
         setWord={setOpenedWord}
+        loadData={loadData}
         handleDeleteWord={handleDeleteWord}
-        editable={true}
       />
     </Page>
   );
