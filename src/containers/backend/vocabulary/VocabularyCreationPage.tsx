@@ -91,15 +91,18 @@ export default function VocabularyCreationPage() {
             <Grid item xs={12}>
               <MultipleTagSelecter value={tagValue} setValue={setTagValue} />
             </Grid>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() => window.history.back()}
+                sx={{ mt: 3, ml: 1 }}
+              >
+                {t("vocabulary-creation-page.back-btn")}
+              </Button>
+              <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
+                {t("vocabulary-creation-page.submit-btn")}
+              </Button>
+            </Box>
           </Grid>
-          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={() => window.history.back()} sx={{ mt: 3, ml: 1 }}>
-              {t("vocabulary-creation-page.back-btn")}
-            </Button>
-            <Button variant="contained" type="submit" sx={{ mt: 3, ml: 1 }}>
-              {t("vocabulary-creation-page.submit-btn")}
-            </Button>
-          </Box>
         </Box>
       </Paper>
     </Page>

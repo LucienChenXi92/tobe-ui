@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
@@ -34,39 +34,46 @@ export default function VocabularyDetailPage() {
   const [tagValue, setTagValue] = useState<TagOption[]>([]);
   const [words, setWords] = useState<WordGeneralDTO[]>([]);
   const [openedWord, setOpenedWord] = useState<WordGeneralDTO | null>(null);
-  useEffect(() => loadData(id || ""), []);
 
-  function loadWordsData(vocabularyId: string) {
-    setOpenLoading(true);
-    VocabularyService.getWordsByVocabularyId(vocabularyId)
-      .then((response) => {
-        setWords(response.data);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("word-dialog.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
+  const loadWordsData = useCallback(
+    (vocabularyId: string): void => {
+      setOpenLoading(true);
+      VocabularyService.getWordsByVocabularyId(vocabularyId)
+        .then((response) => {
+          setWords(response.data);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("word-dialog.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [enqueueSnackbar, t]
+  );
 
-  function loadData(vocabularyId: string): void {
-    setOpenLoading(true);
-    VocabularyService.getById(vocabularyId)
-      .then((response) => {
-        setVocabulary(response.data);
-        setDescription(response.data.description);
-        setLanguage(response.data.language);
-        setTagValue(response.data.tags);
-        loadWordsData(response.data.id);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("vocabulary-detail-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
+  const loadData = useCallback(
+    (vocabularyId: string): void => {
+      setOpenLoading(true);
+      VocabularyService.getById(vocabularyId)
+        .then((response) => {
+          setVocabulary(response.data);
+          setDescription(response.data.description);
+          setLanguage(response.data.language);
+          setTagValue(response.data.tags);
+          loadWordsData(response.data.id);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("vocabulary-detail-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [enqueueSnackbar, t, loadWordsData]
+  );
+
+  useEffect(() => loadData(id || ""), [id, loadData]);
 
   function handleDeleteWord(wordId: number) {
     VocabularyService.deleteWordById(wordId)

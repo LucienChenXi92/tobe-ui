@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { SidePanel } from "../../../components";
 import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
@@ -13,19 +13,21 @@ export default function RelevantArticlePanel(props: {
   const { t } = useTranslation();
   const [article, setArticle] = useState<NewsDTO[]>([]);
 
-  useEffect(() => loadNews(), []);
-
-  function loadNews(): void {
-    PublicDataService.getNewsByTags(Domain.Article, 100, 1, props.tages)
+  const loadData = useCallback((id: string, tags: string[]): void => {
+    PublicDataService.getNewsByTags(Domain.Article, 100, 1, tags)
       .then((response) => {
-        setArticle(
-          response.data.records.filter((n: NewsDTO) => n.id !== props.articleId)
-        );
+        setArticle(response.data.records.filter((n: NewsDTO) => n.id !== id));
       })
       .catch((err) => {
         console.error("Error happens when fetch relevant articles", err);
       });
-  }
+  }, []);
+
+  useEffect(
+    () => loadData(props.articleId, props.tages),
+    [loadData, props.articleId, props.tages]
+  );
+
   return article.length > 0 ? (
     <SidePanel title={t("article-reading-page.relevant-articles")}>
       {article.map((item) => (

@@ -21,17 +21,15 @@ export default function SubjectsPage() {
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [subjects, setSubjects] = useState<SubjectInfo[]>([]);
-  const [current, setCurrent] = useState<number>(0);
-  const [size, setSize] = useState<number>(1000);
-  const [totalCount, setTotalCount] = useState<number>(0);
+  const [current] = useState<number>(0);
+  const [size] = useState<number>(1000);
   const navigate = useNavigate();
 
-  const loadSubjects = useCallback((): void => {
+  const loadData = useCallback((): void => {
     setOpenLoading(true);
     SubjectService.get(size, current)
       .then((response) => {
         setSubjects(response.data.records || []);
-        setTotalCount(response.data.total);
       })
       .catch(() => {
         enqueueSnackbar(t("articles-page.msg.error"), {
@@ -42,14 +40,14 @@ export default function SubjectsPage() {
   }, [current, enqueueSnackbar, size, t]);
 
   useEffect(() => {
-    loadSubjects();
-  }, [loadSubjects]);
+    loadData();
+  }, [loadData]);
 
   function releaseById(id: number | string) {
     setOpenLoading(true);
     SubjectService.releaseById(id)
       .then(() => {
-        loadSubjects();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {
@@ -61,7 +59,7 @@ export default function SubjectsPage() {
     setOpenLoading(true);
     SubjectService.deleteById(id)
       .then(() => {
-        loadSubjects();
+        loadData();
       })
       .catch((error) => console.error(error))
       .finally(() => {

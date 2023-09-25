@@ -5,8 +5,6 @@ import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
 import { NewsListItem } from "../../../components";
 import { PublicDataService } from "../../../services";
-import { ca } from "date-fns/locale";
-
 enum LoadType {
   Append,
   Replace,

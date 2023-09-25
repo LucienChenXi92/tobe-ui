@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { Box, Grid, Paper, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -26,7 +26,28 @@ export default function ProjectDetailPage() {
   const [toTime, setToTime] = useState<Date | null>(null);
   const [description, setDescription] = useState<string | null>(null);
 
-  useEffect(() => loadProject(id || ""), []);
+  const loadData = useCallback(
+    (id: string): void => {
+      setOpenLoading(true);
+      ProjectService.getById(id)
+        .then((response) => {
+          setProject(response.data);
+          setFromTime(new Date(response.data.targetStartTime));
+          setToTime(new Date(response.data.targetEndTime));
+          setDescription(response.data.description);
+          setTagValue(response.data.tags);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("project-detail-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [enqueueSnackbar, t]
+  );
+
+  useEffect(() => loadData(id || ""), [loadData, id]);
 
   function handleProjectUpdate(updatedProject: ProjectUpdateDTO): void {
     setOpenLoading(true);
@@ -35,24 +56,6 @@ export default function ProjectDetailPage() {
         enqueueSnackbar(t("project-detail-page.msg.success"), {
           variant: "success",
         });
-      })
-      .catch(() => {
-        enqueueSnackbar(t("project-detail-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
-
-  function loadProject(projectId: string): void {
-    setOpenLoading(true);
-    ProjectService.getById(projectId)
-      .then((response) => {
-        setProject(response.data);
-        setFromTime(new Date(response.data.targetStartTime));
-        setToTime(new Date(response.data.targetEndTime));
-        setDescription(response.data.description);
-        setTagValue(response.data.tags);
       })
       .catch(() => {
         enqueueSnackbar(t("project-detail-page.msg.error"), {

@@ -45,7 +45,7 @@ export default function ProjectsPage() {
       .finally(() => {
         setOpenLoading(false);
       });
-  }, [current, size, t, keyword, recentOnly]);
+  }, [current, size, keyword, recentOnly]);
 
   useEffect(() => loadData(), [loadData]);
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
@@ -28,7 +28,6 @@ export default function SubjectDetailPage() {
   const [subject, setSubject] = useState<SubjectInfoGeneralDTO | null>(null);
   const [description, setDescription] = useState<string | null>(null);
   const [coverImgUrl, setCoverImgUrl] = useState<string | null>(null);
-  useEffect(() => loadSubject(id || ""), []);
   const [treeData, setTreeData] = useState<RenderTree>({
     id: ROOT,
     name: "ROOT",
@@ -37,18 +36,41 @@ export default function SubjectDetailPage() {
   const [currentNodeId, setCurrentNodeId] = useState<string>(ROOT);
   const [targetTag, setTargetTag] = useState<TagOption | null>(null);
 
-  const convert = (tagRelationships: TagRelationship[]): RenderTree[] => {
-    if (!Array.isArray(tagRelationships) || tagRelationships.length === 0) {
-      return [];
-    }
-    return tagRelationships.map((t) => {
-      return {
-        id: t.id + "",
-        name: t.label,
-        children: convert(t.children),
-      };
-    });
-  };
+  const loadData = useCallback(
+    (id: string): void => {
+      function convert(tagRelationships: TagRelationship[]): RenderTree[] {
+        if (!Array.isArray(tagRelationships) || tagRelationships.length === 0) {
+          return [];
+        }
+        return tagRelationships.map((t) => {
+          return {
+            id: t.id + "",
+            name: t.label,
+            children: convert(t.children),
+          };
+        });
+      }
+
+      setOpenLoading(true);
+      SubjectService.getById(id)
+        .then((response) => {
+          setSubject(response.data);
+          setDescription(response.data.description);
+          setCoverImgUrl(response.data.coverImgUrl);
+          treeData.children = convert(response.data.tagTree);
+          setTreeData(treeData);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("subject-detail-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [treeData, t, enqueueSnackbar]
+  );
+
+  useEffect(() => loadData(id || ""), [loadData, id]);
 
   const handleEditableChange = () => {
     if (!subject) {
@@ -81,24 +103,6 @@ export default function SubjectDetailPage() {
       .finally(() => setOpenLoading(false));
   }
 
-  function loadSubject(subjectId: string): void {
-    setOpenLoading(true);
-    SubjectService.getById(subjectId)
-      .then((response) => {
-        setSubject(response.data);
-        setDescription(response.data.description);
-        setCoverImgUrl(response.data.coverImgUrl);
-        treeData.children = convert(response.data.tagTree);
-        setTreeData(treeData);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("subject-detail-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }
-
   function handleCreateNewRelationship() {
     setOpenLoading(true);
     const parentId =
@@ -112,7 +116,7 @@ export default function SubjectDetailPage() {
       tagId,
       subjectId: id,
     }).then((response) => {
-      loadSubject(id);
+      loadData(id);
       setTargetTag(null);
     });
   }
@@ -125,7 +129,7 @@ export default function SubjectDetailPage() {
       return;
     }
     SubjectService.deleteRelationship(targetId).then((response) => {
-      loadSubject(id);
+      loadData(id);
       setTargetTag(null);
     });
   }

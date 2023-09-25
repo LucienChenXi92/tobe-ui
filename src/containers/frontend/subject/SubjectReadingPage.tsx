@@ -160,7 +160,7 @@ export default function SubjectReadingPage() {
         .finally(() => setOpenLoading(false));
     }
     load();
-  }, [t, enqueueSnackbar]);
+  }, [t, enqueueSnackbar, id]);
 
   return (
     <Page openLoading={openLoading} pageTitle={subject?.name}>
