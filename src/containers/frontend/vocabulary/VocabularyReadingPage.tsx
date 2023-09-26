@@ -1,45 +1,24 @@
 import { useEffect, useState } from "react";
 import { Grid, Paper } from "@mui/material";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   AuthorDisplayPanel,
-  TobeBreadcrumbs,
   TagDisplayBar,
   Page,
   WordListPanel,
   WordDisplayDialog,
-  ContentMetaBar,
+  ContentPageMetaBar,
+  ContentPageBreadcrumbsBar,
 } from "../../../components";
-import {
-  BreadcrumbsNode,
-  VocabularyDetailDTO,
-  WordGeneralDTO,
-} from "../../../global/types";
+import { VocabularyDetailDTO, WordGeneralDTO } from "../../../global/types";
 import { PublicDataService } from "../../../services";
-import { URL } from "../../../routes";
 
 export default function VocabularyReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
-  let [searchParams] = useSearchParams();
-
-  const breadcrumbs: BreadcrumbsNode[] = [];
-  if (searchParams.has("subjectId") && searchParams.has("subjectName")) {
-    breadcrumbs.push({
-      label: t("breadcrumbs.subjects"),
-      href: URL.SUBJECTS_PAGE,
-    });
-    breadcrumbs.push({
-      label: searchParams.get("subjectName") || "",
-      href: URL.SUBJECT_READING_PAGE.replace(
-        ":id",
-        searchParams.get("subjectId") || ""
-      ),
-    });
-  }
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [vocabualry, setVocabulary] = useState<VocabularyDetailDTO | null>(
     null
@@ -70,13 +49,13 @@ export default function VocabularyReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={vocabualry?.title}>
-      <TobeBreadcrumbs nodes={breadcrumbs} />
+      <ContentPageBreadcrumbsBar />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
               {vocabualry && (
-                <ContentMetaBar
+                <ContentPageMetaBar
                   authorId={vocabualry.authorId}
                   authorName={vocabualry.authorName}
                   publishTime={vocabualry.publishTime}

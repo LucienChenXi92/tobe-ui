@@ -1,40 +1,24 @@
 import { useEffect, useState } from "react";
 import { Divider, Grid, Paper, Typography } from "@mui/material";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   AuthorDisplayPanel,
-  TobeBreadcrumbs,
   RichReader,
   TagDisplayBar,
   Page,
-  ContentMetaBar,
+  ContentPageMetaBar,
+  ContentPageBreadcrumbsBar,
 } from "../../../components";
-import { ArticleDetailDTO, BreadcrumbsNode } from "../../../global/types";
+import { ArticleDetailDTO } from "../../../global/types";
 import { PublicDataService } from "../../../services";
 import RelevantArticlePanel from "./RelevantArticlePanel";
-import { URL } from "../../../routes";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
-  let [searchParams] = useSearchParams();
-  const breadcrumbs: BreadcrumbsNode[] = [];
-  if (searchParams.has("subjectId") && searchParams.has("subjectName")) {
-    breadcrumbs.push({
-      label: t("breadcrumbs.subjects"),
-      href: URL.SUBJECTS_PAGE,
-    });
-    breadcrumbs.push({
-      label: searchParams.get("subjectName") || "",
-      href: URL.SUBJECT_READING_PAGE.replace(
-        ":id",
-        searchParams.get("subjectId") || ""
-      ),
-    });
-  }
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 
@@ -57,13 +41,13 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <TobeBreadcrumbs nodes={breadcrumbs} />
+      <ContentPageBreadcrumbsBar />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
               {article && (
-                <ContentMetaBar
+                <ContentPageMetaBar
                   authorId={article.authorId}
                   authorName={article.authorName}
                   publishTime={article.publishTime}

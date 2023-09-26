@@ -8,7 +8,7 @@ import {
   TobeBreadcrumbs,
   Page,
   TagDisplayBar,
-  ContentMetaBar,
+  ContentPageMetaBar,
 } from "../../../components";
 import { ProjectInfo } from "../../../global/types";
 import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
@@ -44,9 +44,9 @@ export default function ProjectReadingPage() {
       <TobeBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
-          <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
+          <Paper variant="outlined" sx={{ my: 0, p: 2 }}>
             {project && (
-              <ContentMetaBar
+              <ContentPageMetaBar
                 authorId={project.ownerId}
                 authorName={project.ownerName}
                 publishTime={project.publishTime}
@@ -55,7 +55,7 @@ export default function ProjectReadingPage() {
               />
             )}
             {project && (
-              <Grid container spacing={3}>
+              <Grid container spacing={3} sx={{ mt: 1 }}>
                 <Grid item xs={12}>
                   <Typography color="text.secondary" variant="body1">
                     {project.description}
@@ -67,7 +67,7 @@ export default function ProjectReadingPage() {
               </Grid>
             )}
           </Paper>
-          <Paper variant="outlined" sx={{ my: 1, p: { xs: 2, md: 3 } }}>
+          <Paper variant="outlined" sx={{ my: 1, p: 2 }}>
             {project && (
               <Grid container spacing={1}>
                 <TimeField

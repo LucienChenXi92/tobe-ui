@@ -30,7 +30,8 @@ import GeneralTableView from "./common/GeneralTableView";
 import GeneralListPageFunctionBar from "./common/GeneralListPageFunctionBar";
 import { WordListPanel } from "./common/WordListPanel";
 import { WordDisplayDialog } from "./common/WordDisplayDialog";
-import ContentMetaBar from "./common/ContentMetaBar";
+import ContentPageMetaBar from "./common/ContentPageMetaBar";
+import ContentPageBreadcrumbsBar from "./common/ContentPageBreadcrumbsBar";
 
 export {
   NewsListItem,
@@ -65,5 +66,6 @@ export {
   GeneralListPageFunctionBar,
   WordListPanel,
   WordDisplayDialog,
-  ContentMetaBar,
+  ContentPageMetaBar,
+  ContentPageBreadcrumbsBar,
 };

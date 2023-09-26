@@ -1,5 +1,6 @@
 import { Box, Paper, Grid, Divider, Typography, Button } from "@mui/material";
 import { WordGeneralDTO } from "../../global/types";
+import theme from "../../theme";
 
 export function WordListPanel(props: {
   words: WordGeneralDTO[];
@@ -36,6 +37,7 @@ export function WordListPanel(props: {
               variant="text"
               onClick={() => props.setOpenedWord(w)}
               size="large"
+              sx={{ color: theme.palette.text.secondary }}
             >
               {w.word}
             </Button>

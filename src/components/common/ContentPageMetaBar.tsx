@@ -3,7 +3,7 @@ import { useAuthState } from "../../contexts";
 import { useTranslation } from "react-i18next";
 import { TimeFormat } from "../../commons";
 
-export default function ContentMetaBar(props: {
+export default function ContentPageMetaBar(props: {
   authorName: string;
   authorId: number | string;
   publishTime: string;

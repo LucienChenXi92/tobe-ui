@@ -13,7 +13,7 @@ import {
   AuthorDisplayPanel,
   TobeBreadcrumbs,
   Page,
-  ContentMetaBar,
+  ContentPageMetaBar,
 } from "../../../components";
 import { URL } from "../../../routes";
 import AbcIcon from "@mui/icons-material/Abc";
@@ -206,7 +206,7 @@ export default function SubjectReadingPage() {
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             {subject && (
               <Grid container>
-                <ContentMetaBar
+                <ContentPageMetaBar
                   authorId={subject.ownerId}
                   authorName={subject.ownerName}
                   publishTime={subject.publishTime}
