@@ -91,7 +91,13 @@ export default function VocabularyCreationPage() {
             <Grid item xs={12}>
               <MultipleTagSelecter value={tagValue} setValue={setTagValue} />
             </Grid>
-            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "flex-end",
+                width: "100%",
+              }}
+            >
               <Button
                 onClick={() => window.history.back()}
                 sx={{ mt: 3, ml: 1 }}

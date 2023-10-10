@@ -24,7 +24,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
   useEffect(() => loadProfile(), [loadProfile]);
 
   return (
-    <Paper sx={{ p: 0, mb: 2 }} variant="outlined">
+    <Paper sx={{ p: 0, mb: 1 }} variant="outlined">
       <Grid container>
         <Grid
           item

@@ -32,6 +32,7 @@ import { WordListPanel } from "./common/WordListPanel";
 import { WordDisplayDialog } from "./common/WordDisplayDialog";
 import ContentPageMetaBar from "./common/ContentPageMetaBar";
 import ContentPageBreadcrumbsBar from "./common/ContentPageBreadcrumbsBar";
+import RelevantContentPanel from "./common/RelevantContentPanel";
 
 export {
   NewsListItem,
@@ -68,4 +69,5 @@ export {
   WordDisplayDialog,
   ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
+  RelevantContentPanel,
 };

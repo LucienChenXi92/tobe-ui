@@ -11,9 +11,15 @@ import {
   WordDisplayDialog,
   ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
+  RelevantContentPanel,
 } from "../../../components";
-import { VocabularyDetailDTO, WordGeneralDTO } from "../../../global/types";
+import {
+  Domain,
+  VocabularyDetailDTO,
+  WordGeneralDTO,
+} from "../../../global/types";
 import { PublicDataService } from "../../../services";
+import { URL } from "../../../routes";
 
 export default function VocabularyReadingPage() {
   const { t } = useTranslation();
@@ -93,6 +99,14 @@ export default function VocabularyReadingPage() {
         <Grid item sm={12} md={3}>
           {vocabualry?.authorId && (
             <AuthorDisplayPanel userId={vocabualry?.authorId} />
+          )}
+          {vocabualry?.tags && (
+            <RelevantContentPanel
+              id={vocabualry.id}
+              tages={vocabualry?.tags.map((i) => i.value)}
+              domain={Domain.Vocabulary}
+              linkUrl={URL.VOCABULARY_DETAIL}
+            />
           )}
         </Grid>
       </Grid>

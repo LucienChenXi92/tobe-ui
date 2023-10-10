@@ -10,10 +10,11 @@ import {
   Page,
   ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
+  RelevantContentPanel,
 } from "../../../components";
-import { ArticleDetailDTO } from "../../../global/types";
+import { ArticleDetailDTO, Domain } from "../../../global/types";
 import { PublicDataService } from "../../../services";
-import RelevantArticlePanel from "./RelevantArticlePanel";
+import { URL } from "../../../routes";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
@@ -92,9 +93,11 @@ export default function ArticleReadingPage() {
             <AuthorDisplayPanel userId={article?.authorId} />
           )}
           {article?.tags && (
-            <RelevantArticlePanel
-              articleId={article.id}
+            <RelevantContentPanel
+              id={article.id}
               tages={article?.tags.map((i) => i.value)}
+              domain={Domain.Article}
+              linkUrl={URL.ARTICLE_DETAIL}
             />
           )}
         </Grid>

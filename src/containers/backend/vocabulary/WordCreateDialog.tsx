@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   Button,
+  Box,
   TextField,
   Grid,
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
 } from "@mui/material";
 import { VocabularyService } from "../../../services";
 
@@ -110,13 +110,13 @@ export function WordCreateDialog(props: {
               />
             </Grid>
           </Grid>
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={handleClose}>{t("word-dialog.back")}</Button>
+            <Button onClick={handleSave} variant="contained">
+              {t("word-dialog.save")}
+            </Button>
+          </Box>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>{t("word-dialog.back")}</Button>
-          <Button onClick={handleSave} variant="contained">
-            {t("word-dialog.save")}
-          </Button>
-        </DialogActions>
       </Dialog>
     </Grid>
   );
