@@ -105,7 +105,7 @@ export default function VocabularyReadingPage() {
               id={vocabualry.id}
               tages={vocabualry?.tags.map((i) => i.value)}
               domain={Domain.Vocabulary}
-              linkUrl={URL.VOCABULARY_DETAIL}
+              linkUrl={URL.NEWS_VOCABULARY_DETAIL}
             />
           )}
         </Grid>
