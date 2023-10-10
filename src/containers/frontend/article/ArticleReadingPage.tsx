@@ -97,7 +97,7 @@ export default function ArticleReadingPage() {
               id={article.id}
               tages={article?.tags.map((i) => i.value)}
               domain={Domain.Article}
-              linkUrl={URL.ARTICLE_DETAIL}
+              linkUrl={URL.NEWS_ARTICLE_DETAIL}
             />
           )}
         </Grid>
