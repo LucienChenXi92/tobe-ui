@@ -59,7 +59,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
                   color="text.secondary"
                   sx={{ textAlign: "center" }}
                 >
-                  {profile.publicCreationCount}
+                  {profile.publicCreationCount || 0}
                 </Typography>
               </Grid>
             </Tooltip>
@@ -70,7 +70,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
                   color="text.secondary"
                   sx={{ textAlign: "center" }}
                 >
-                  {profile.viewCount}
+                  {profile.viewCount || 0}
                 </Typography>
               </Grid>
             </Tooltip>
