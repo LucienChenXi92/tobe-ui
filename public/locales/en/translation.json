@@ -36,6 +36,10 @@
     "meta-bar": {
       "view": "View",
       "edit-btn": "Edit"
+    },
+    "author-panel": {
+      "public-creation-count": "Published content count",
+      "view-count": "Total view count"
     }
   },
   "home-page": {

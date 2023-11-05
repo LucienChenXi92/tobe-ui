@@ -36,6 +36,10 @@
     "meta-bar": {
       "view": "阅读量",
       "edit-btn": "编辑"
+    },
+    "author-panel": {
+      "public-creation-count": "公开内容数",
+      "view-count": "累积浏览量"
     }
   },
   "home-page": {

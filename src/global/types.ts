@@ -80,6 +80,8 @@ export interface UserBriefProfileDTO {
   avatarUrl: string;
   blog: string;
   introduction: string;
+  publicCreationCount: number;
+  viewCount: number;
 }
 
 export interface TagOption {
