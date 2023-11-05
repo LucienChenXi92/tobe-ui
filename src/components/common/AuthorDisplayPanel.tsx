@@ -77,24 +77,28 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
           </Grid>
         </Grid>
 
-        <Grid item xs={12} sx={{ px: 2, py: 1 }}>
-          <Typography variant="subtitle2" color="text.secondary">
-            Blog:{" "}
-            <Link href={profile?.blog} target="_blank" color="text.secondary">
-              {profile.blog}
-            </Link>
-          </Typography>
-        </Grid>
+        {profile.blog && (
+          <Grid item xs={12} sx={{ px: 2, py: 1 }}>
+            <Typography variant="subtitle2" color="text.secondary">
+              Blog:{" "}
+              <Link href={profile.blog} target="_blank" color="text.secondary">
+                {profile.blog}
+              </Link>
+            </Typography>
+          </Grid>
+        )}
 
-        <Grid item xs={12} sx={{ px: 2, py: 1 }}>
-          <Typography
-            variant="subtitle2"
-            color="text.secondary"
-            sx={{ whiteSpace: "pre-wrap" }}
-          >
-            {profile.introduction}
-          </Typography>
-        </Grid>
+        {profile.introduction && (
+          <Grid item xs={12} sx={{ px: 2, py: 1 }}>
+            <Typography
+              variant="subtitle2"
+              color="text.secondary"
+              sx={{ whiteSpace: "pre-wrap" }}
+            >
+              {profile.introduction}
+            </Typography>
+          </Grid>
+        )}
       </Grid>
     </Paper>
   ) : (
