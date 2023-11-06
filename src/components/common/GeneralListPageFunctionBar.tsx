@@ -41,20 +41,7 @@ export default function GeneralListPageFunctionBar(props: {
 
   return (
     <Grid container sx={{ py: 1 }} alignItems="center">
-      <Grid item flex={0}>
-        <CreateButton handleOnClick={props.createNewAction} />
-      </Grid>
-      <Grid
-        item
-        flex={1}
-        sx={{
-          display: {
-            xs: "none",
-            sm: "flex",
-          },
-        }}
-      />
-      <Grid item container sx={{ maxWidth: 320 }}>
+      <Grid item container sx={{ maxWidth: 320 }} flexGrow={0}>
         <Grid item sx={{ mr: 1 }}>
           <FormGroup>
             <FormControlLabel
@@ -84,6 +71,7 @@ export default function GeneralListPageFunctionBar(props: {
           </FormGroup>
         </Grid>
       </Grid>
+      <Grid item flexGrow={1}></Grid>
       <Grid
         item
         sx={{

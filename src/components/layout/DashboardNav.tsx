@@ -10,6 +10,8 @@ import {
   Divider,
   useMediaQuery,
 } from "@mui/material";
+import { useState } from "react";
+import Add from "@mui/icons-material/Add";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -52,24 +54,28 @@ const basicPageItems: PageItem[] = [
     label: "dashboard-nav.pages.projects",
     icon: <FlagIcon />,
     url: URL.PROJECTS,
+    secondaryUrl: URL.CREATE_PROJECT,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
     label: "dashboard-nav.pages.articles",
     icon: <ArticleIcon />,
     url: URL.ARTICLES,
+    secondaryUrl: URL.CREATE_ARTICLE,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
     label: "dashboard-nav.pages.vocabularies",
     icon: <Abc />,
     url: URL.VOCABULARIES,
+    secondaryUrl: URL.CREATE_VOCABULARY,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {
     label: "dashboard-nav.pages.subjects",
     icon: <FolderIcon />,
     url: URL.SUBJECTS,
+    secondaryUrl: URL.CREATE_SUBJECT,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
 ];
@@ -86,6 +92,7 @@ const adminPageItems: PageItem[] = [
 const NavItem = styled(ListItem)(({ theme }) => ({
   "& .MuiListItemButton-root.Mui-selected": {
     borderRight: "5px solid",
+    paddingRight: "5px",
     borderColor: theme.palette.secondary.main,
     color: theme.palette.secondary.main + " !important",
     "& .MuiListItemIcon-root": {
@@ -98,6 +105,7 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
   let location = useLocation();
   const navigate = useNavigate();
   const { t } = useTranslation();
+  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
   const authedPages = props.pageItems.filter((pageItem) =>
     authed(pageItem.requiredRoles)
   );
@@ -105,7 +113,29 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
     <>
       <List>
         {authedPages.map((pageItem) => (
-          <NavItem key={pageItem.label} disablePadding>
+          <NavItem
+            key={pageItem.label}
+            disablePadding
+            onMouseOver={() => setHoveredItem(pageItem.label)}
+            onMouseOut={() => setHoveredItem(null)}
+            secondaryAction={
+              pageItem.secondaryUrl &&
+              pageItem.label === hoveredItem && (
+                <IconButton
+                  edge="end"
+                  aria-label="Add"
+                  sx={{
+                    borderRadius: 0,
+                    mr: "2px",
+                    color: "rgba(0,0,0,0.4)",
+                  }}
+                  onClick={() => navigate(pageItem.secondaryUrl || "/")}
+                >
+                  <Add />
+                </IconButton>
+              )
+            }
+          >
             <ListItemButton
               onClick={() => navigate(pageItem.url)}
               selected={pageItem.url === location.pathname}

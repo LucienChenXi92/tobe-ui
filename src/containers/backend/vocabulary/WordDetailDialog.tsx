@@ -1,13 +1,13 @@
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
+  Box,
   Button,
   TextField,
   Grid,
   Dialog,
   DialogTitle,
   DialogContent,
-  DialogActions,
 } from "@mui/material";
 import { VocabularyService } from "../../../services";
 import { WordGeneralDTO } from "../../../global/types";
@@ -120,19 +120,20 @@ export function WordDetailDialog(props: {
                 />
               </Grid>
             </Grid>
+            <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+              <Button
+                onClick={() =>
+                  props.handleDeleteWord &&
+                  props.handleDeleteWord(props.word?.id)
+                }
+              >
+                {t("word-dialog.delete")}
+              </Button>
+              <Button onClick={handleSave} variant="contained">
+                {t("word-dialog.save")}
+              </Button>
+            </Box>
           </DialogContent>
-          <DialogActions>
-            <Button
-              onClick={() =>
-                props.handleDeleteWord && props.handleDeleteWord(props.word?.id)
-              }
-            >
-              {t("word-dialog.delete")}
-            </Button>
-            <Button onClick={handleSave} variant="contained">
-              {t("word-dialog.save")}
-            </Button>
-          </DialogActions>
         </Dialog>
       </Grid>
     )

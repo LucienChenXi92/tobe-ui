@@ -94,11 +94,7 @@ export default function SubjectsPage() {
         sx={{ py: 1, minHeight: "54px" }}
         justifyContent="space-between"
         alignItems="center"
-      >
-        <Grid item>
-          <CreateButton handleOnClick={() => navigate(URL.CREATE_SUBJECT)} />
-        </Grid>
-      </Grid>
+      ></Grid>
 
       <Grid container spacing={1}>
         {subjects.map((subject: SubjectInfo) => (

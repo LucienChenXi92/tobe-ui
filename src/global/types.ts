@@ -42,6 +42,7 @@ export interface PageItem {
   label: string;
   icon: JSX.Element;
   url: string;
+  secondaryUrl?: string;
   requiredRoles: string[];
 }
 

@@ -107,7 +107,7 @@
     "settings": {
       "btn-tooltip": "Open settings",
       "profile": "User Profile",
-      "my-zone": "User Central",
+      "my-zone": "Statistics",
       "projects": "Projects",
       "articles": "Articles",
       "vocabularies": "Vocabularies",
@@ -231,7 +231,7 @@
   },
   "dashboard-nav": {
     "pages": {
-      "dashboard": "Dashboard",
+      "dashboard": "Statistics",
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
@@ -240,7 +240,7 @@
     }
   },
   "dashboard-page": {
-    "page-main-title": "Overview",
+    "page-main-title": "Statistics",
     "project": {
       "title": "Project Data",
       "ongoing": "Ongoing project",
@@ -251,6 +251,12 @@
     "article": {
       "title": "Article Data",
       "public": "Public article",
+      "all": "All article",
+      "view-count": "View count(In thousands)"
+    },
+    "vocabulary": {
+      "title": "Vocabulary Data",
+      "public": "Public vocabulary",
       "all": "All article",
       "view-count": "View count(In thousands)"
     },

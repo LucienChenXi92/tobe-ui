@@ -23,8 +23,6 @@ interface ProjectInfoOverview extends BaseInfoOverview {
   finishedNum: number;
 }
 
-interface ArticleInfoOverview extends BaseInfoOverview {}
-
 export default function DashboardPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
@@ -35,7 +33,13 @@ export default function DashboardPage() {
     ongoingNum: 0,
     finishedNum: 0,
   });
-  const [articleData, setArticleData] = useState<ArticleInfoOverview>({
+  const [articleData, setArticleData] = useState<BaseInfoOverview>({
+    totalNum: 0,
+    publicNum: 0,
+    totalViewCount: 0,
+  });
+
+  const [vocabularyData, setVocabularyData] = useState<BaseInfoOverview>({
     totalNum: 0,
     publicNum: 0,
     totalViewCount: 0,
@@ -57,6 +61,7 @@ export default function DashboardPage() {
   const loadData = useCallback((): void => {
     loadOverview(Domain.Project, setProjectData);
     loadOverview(Domain.Article, setArticleData);
+    loadOverview(Domain.Vocabulary, setVocabularyData);
   }, [loadOverview]);
 
   useEffect(() => loadData(), [loadData]);
@@ -72,25 +77,25 @@ export default function DashboardPage() {
           value={projectData.ongoingNum}
           label={t("dashboard-page.project.ongoing")}
           link={URL.PROJECTS}
-          icon={<TimelapseIcon color="warning" sx={{ fontSize: 50 }} />}
+          icon={<TimelapseIcon color="warning" sx={{ fontSize: 40 }} />}
         />
         <StandardSmallWidget
           value={projectData.publicNum}
           label={t("dashboard-page.project.public")}
           link={URL.PROJECTS}
-          icon={<VerifiedIcon color="info" sx={{ fontSize: 50 }} />}
+          icon={<VerifiedIcon color="info" sx={{ fontSize: 40 }} />}
         />
         <StandardSmallWidget
           value={(projectData.totalViewCount / 1000).toFixed(1)}
           label={t("dashboard-page.project.view-count")}
           link={URL.PROJECTS}
-          icon={<VisibilityIcon color="success" sx={{ fontSize: 50 }} />}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 40 }} />}
         />
         <StandardSmallWidget
           value={projectData.totalNum}
           label={t("dashboard-page.project.all")}
           link={URL.PROJECTS}
-          icon={<StorageIcon color="disabled" sx={{ fontSize: 50 }} />}
+          icon={<StorageIcon color="disabled" sx={{ fontSize: 40 }} />}
         />
       </Grid>
       <SectionTitle
@@ -102,19 +107,43 @@ export default function DashboardPage() {
           value={articleData.publicNum}
           label={t("dashboard-page.article.public")}
           link={URL.ARTICLES}
-          icon={<VerifiedIcon color="info" sx={{ fontSize: 50 }} />}
+          icon={<VerifiedIcon color="info" sx={{ fontSize: 40 }} />}
         />
         <StandardSmallWidget
           value={(articleData.totalViewCount / 1000).toFixed(1)}
           label={t("dashboard-page.article.view-count")}
           link={URL.PROJECTS}
-          icon={<VisibilityIcon color="success" sx={{ fontSize: 50 }} />}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 40 }} />}
         />
         <StandardSmallWidget
           value={articleData.totalNum}
           label={t("dashboard-page.article.all")}
           link={URL.ARTICLES}
-          icon={<StorageIcon color="disabled" sx={{ fontSize: 50 }} />}
+          icon={<StorageIcon color="disabled" sx={{ fontSize: 40 }} />}
+        />
+      </Grid>
+      <SectionTitle
+        value={t("dashboard-page.vocabulary.title")}
+        link={URL.ARTICLES}
+      />
+      <Grid container spacing={2} sx={{ py: 2 }}>
+        <StandardSmallWidget
+          value={vocabularyData.publicNum}
+          label={t("dashboard-page.vocabulary.public")}
+          link={URL.ARTICLES}
+          icon={<VerifiedIcon color="info" sx={{ fontSize: 40 }} />}
+        />
+        <StandardSmallWidget
+          value={(vocabularyData.totalViewCount / 1000).toFixed(1)}
+          label={t("dashboard-page.vocabulary.view-count")}
+          link={URL.PROJECTS}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 40 }} />}
+        />
+        <StandardSmallWidget
+          value={vocabularyData.totalNum}
+          label={t("dashboard-page.vocabulary.all")}
+          link={URL.ARTICLES}
+          icon={<StorageIcon color="disabled" sx={{ fontSize: 40 }} />}
         />
       </Grid>
     </Page>

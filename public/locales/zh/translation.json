@@ -253,7 +253,13 @@
     "article": {
       "title": "笔记总览",
       "public": "公开的笔记",
-      "all": "所有的笔记",
+      "all": "笔记总计",
+      "view-count": "浏览量(以千计)"
+    },
+    "vocabulary": {
+      "title": "单词集总览",
+      "public": "公开的单词集",
+      "all": "单词集总计",
       "view-count": "浏览量(以千计)"
     }
   },
