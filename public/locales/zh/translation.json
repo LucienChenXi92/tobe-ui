@@ -45,7 +45,7 @@
   "home-page": {
     "projects": "计划",
     "articles": "笔记",
-    "vocabularies": "单词",
+    "vocabularies": "单词本",
     "workout": "锻炼",
     "activities": "活动",
     "view-count": "浏览",
@@ -100,7 +100,7 @@
       "news": "近期动态",
       "about": "关于",
       "article": "文章",
-      "vocabulary": "单词",
+      "vocabulary": "单词本",
       "subject": "专题",
       "tool": "工具"
     },
@@ -110,7 +110,7 @@
       "my-zone": "统计",
       "projects": "计划",
       "articles": "笔记",
-      "vocabularies": "单词",
+      "vocabularies": "单词本",
       "subjects": "专题",
       "sign-out": "登出系统"
     }
@@ -234,7 +234,7 @@
       "users": "用户",
       "projects": "计划",
       "articles": "笔记",
-      "vocabularies": "单词",
+      "vocabularies": "单词本",
       "subjects": "专题"
     },
     "msg": {
@@ -257,9 +257,9 @@
       "view-count": "浏览量(以千计)"
     },
     "vocabulary": {
-      "title": "单词集总览",
-      "public": "公开的单词集",
-      "all": "单词集总计",
+      "title": "单词本总览",
+      "public": "公开的单词本",
+      "all": "单词本总计",
       "view-count": "浏览量(以千计)"
     }
   },
@@ -378,7 +378,7 @@
     }
   },
   "vocabulary-creation-page": {
-    "page-main-title": "创建一个单词集",
+    "page-main-title": "创建一个单词本",
     "fields": {
       "title": "标题",
       "description": "描述",
@@ -393,7 +393,7 @@
     "back-btn": "返回"
   },
   "vocabularies-page": {
-    "page-main-title": "单词",
+    "page-main-title": "单词本",
     "vocabulary-table": {
       "label": {
         "title": "标题",
@@ -437,7 +437,7 @@
   },
   "word-dialog": {
     "add": "新增",
-    "title": "编辑单词",
+    "title": "编辑单词本",
     "fields": {
       "word": "文本",
       "partOfSpeech": "词性",
