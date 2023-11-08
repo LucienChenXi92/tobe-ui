@@ -45,7 +45,9 @@ export function getVocabularyById(id: string | number): AxiosPromise {
 }
 
 export function getProgressesByProjectId(projectId: string): AxiosPromise {
-  return server.get(`/${API_DATA_URI}/projects/${projectId}/progresses`);
+  return server.get(
+    `/${API_DATA_URI}/projects/${projectId}/progresses?size=1000&current=1`
+  );
 }
 
 export function getWordsByVocabularyId(id: string): AxiosPromise {
