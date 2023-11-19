@@ -40,6 +40,12 @@
     "author-panel": {
       "public-creation-count": "公开内容数",
       "view-count": "累积浏览量"
+    },
+    "general-card-view": {
+      "title": {
+        "open": "所有人可见",
+        "private": "仅自己可见"
+      }
     }
   },
   "home-page": {

@@ -1,13 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Grid } from "@mui/material";
 import {
   Page,
   GeneralTableView,
+  GeneralCardView,
   GeneralListPageFunctionBar,
 } from "../../../components";
-import ProjectCard from "./component/ProjectCard";
-import { Column, Operation, ProjectInfo } from "../../../global/types";
+import { Column, Operation, ProjectInfo, GeneralCardData } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../routes";
 import { PROJECT_STATUS } from "./consts";
@@ -41,13 +40,17 @@ export default function ProjectsPage() {
         setRows(response.data.records || []);
         setTotalCount(response.data.total);
       })
-      .catch((error) => {})
+      .catch((error) => { })
       .finally(() => {
         setOpenLoading(false);
       });
   }, [current, size, keyword, recentOnly]);
 
   useEffect(() => loadData(), [loadData]);
+
+  function convertToGeneralCardData(data: ProjectInfo[]): GeneralCardData[] {
+    return data.map(d => { return { id: d.id, title: d.name, description: d.description, publicToAll: d.publicToAll, tags: d.tags, createTime: d.createTime } });
+  }
 
   const columns: readonly Column[] = [
     { id: "name", label: t("project-table.label.name"), align: "center" },
@@ -132,11 +135,6 @@ export default function ProjectsPage() {
 
   const operations: Operation[] = [
     {
-      name: "detail",
-      onClick: (id: number | string) =>
-        navigate(URL.PROJECT_DETAIL.replace(":id", id.toString())),
-    },
-    {
       name: "active",
       onClick: (id: number | string) => activeProjectById(id),
       hide: (data: any) =>
@@ -174,11 +172,10 @@ export default function ProjectsPage() {
         setKeyword={setKeyword}
       />
       {cardView ? (
-        <Grid container spacing={1}>
-          {rows.map((item: any) => (
-            <ProjectCard operations={operations} project={item} key={item.id} />
-          ))}
-        </Grid>
+        <GeneralCardView data={convertToGeneralCardData(rows)}
+          operations={operations}
+          onClick={(id: number | string) =>
+            navigate(URL.PROJECT_DETAIL.replace(":id", id.toString()))} />
       ) : (
         <GeneralTableView
           data={rows}

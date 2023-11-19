@@ -97,11 +97,6 @@ export default function VocabulariesPage() {
 
   const operations: Operation[] = [
     {
-      name: "detail",
-      onClick: (id: number | string) =>
-        navigate(URL.VOCABULARY_DETAIL.replace(":id", id.toString())),
-    },
-    {
       name: "release",
       onClick: (id: number | string) => releaseById(id),
       hide: (data: any) => data.publicToAll,
@@ -128,7 +123,8 @@ export default function VocabulariesPage() {
         setKeyword={setKeyword}
       />
       {cardView ? (
-        <GeneralCardView data={vocabularies} operations={operations} />
+        <GeneralCardView data={vocabularies} operations={operations} onClick={(id: number | string) =>
+          navigate(URL.VOCABULARY_DETAIL.replace(":id", id.toString()))} />
       ) : (
         <GeneralTableView
           data={vocabularies}

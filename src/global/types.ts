@@ -28,7 +28,7 @@ export interface ProjectInfo {
   statusValue: number;
   ownerName: string;
   ownerId: string;
-  publicToAll: string;
+  publicToAll: boolean;
   publishTime: string;
   actualStartTime: string;
   targetStartTime: string;
@@ -36,6 +36,7 @@ export interface ProjectInfo {
   targetEndTime: string;
   tags: TagOption[];
   viewCount: number;
+  createTime: string;
 }
 
 export interface PageItem {
@@ -132,7 +133,6 @@ export interface ArticleDetailDTO extends GeneralCardData {
   authorId: string;
   likeCount: number;
   viewCount: number;
-  publicToAll: boolean;
   publishTime: string;
   subTitle: string;
   avatarUrl: string;
@@ -150,7 +150,6 @@ export interface VocabularyDetailDTO extends GeneralCardData {
   authorId: string;
   likeCount: number;
   viewCount: number;
-  publicToAll: boolean;
   publishTime: string;
   language: string;
   avatarUrl: string;
@@ -160,7 +159,9 @@ export interface GeneralCardData {
   id: string;
   title: string;
   description: string;
+  publicToAll: boolean;
   tags: TagOption[];
+  createTime?: string;
 }
 
 export interface VocabularyUpdateDTO extends VocabularyCreationDTO {
@@ -267,4 +268,4 @@ export interface WordCreateDTO {
   meaningInEnglish: string;
 }
 
-export interface WordUpdateDTO extends WordGeneralDTO {}
+export interface WordUpdateDTO extends WordGeneralDTO { }

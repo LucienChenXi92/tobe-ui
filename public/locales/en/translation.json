@@ -40,6 +40,12 @@
     "author-panel": {
       "public-creation-count": "Published content count",
       "view-count": "Total view count"
+    },
+    "general-card-view": {
+      "title": {
+        "open": "Visible to everyone",
+        "private": "Only visible to yourself"
+      }
     }
   },
   "home-page": {

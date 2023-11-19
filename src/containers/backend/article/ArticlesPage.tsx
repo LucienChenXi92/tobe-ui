@@ -97,11 +97,6 @@ export default function ArticlesPage() {
 
   const operations: Operation[] = [
     {
-      name: "detail",
-      onClick: (id: number | string) =>
-        navigate(URL.ARTICLE_DETAIL.replace(":id", id.toString())),
-    },
-    {
       name: "release",
       onClick: (id: number | string) => releaseArticleById(id),
       hide: (data: any) => data.publicToAll,
@@ -128,7 +123,12 @@ export default function ArticlesPage() {
         setKeyword={setKeyword}
       />
       {cardView ? (
-        <GeneralCardView data={articles} operations={operations} />
+        <GeneralCardView
+          data={articles}
+          operations={operations}
+          onClick={(id: number | string) =>
+            navigate(URL.ARTICLE_DETAIL.replace(":id", id.toString()))}
+        />
       ) : (
         <GeneralTableView
           data={articles}
