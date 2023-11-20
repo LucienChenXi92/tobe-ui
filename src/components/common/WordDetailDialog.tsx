@@ -9,8 +9,8 @@ import {
   DialogTitle,
   DialogContent,
 } from "@mui/material";
-import { VocabularyService } from "../../../services";
-import { WordGeneralDTO } from "../../../global/types";
+import { VocabularyService } from "../../services";
+import { WordGeneralDTO } from "../../global/types";
 
 export function WordDetailDialog(props: {
   word: WordGeneralDTO | null;

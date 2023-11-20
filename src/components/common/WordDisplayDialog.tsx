@@ -3,11 +3,8 @@ import {
   Dialog,
   DialogContent,
   Typography,
-  Button,
   IconButton,
-  DialogActions,
 } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
 import { WordGeneralDTO } from "../../global/types";
@@ -16,10 +13,7 @@ import Speech from "react-text-to-speech";
 export function WordDisplayDialog(props: {
   word: WordGeneralDTO | null;
   setWord: (word: WordGeneralDTO | null) => void;
-  handleDeleteWord: Function | null;
-  editable: Boolean;
 }) {
-  const { t } = useTranslation();
   return (
     <Grid item sx={{ mb: 1 }}>
       <Dialog
@@ -81,17 +75,6 @@ export function WordDisplayDialog(props: {
             )}
           </Grid>
         </DialogContent>
-        {props.editable && (
-          <DialogActions>
-            <Button
-              onClick={() =>
-                props.handleDeleteWord && props.handleDeleteWord(props.word?.id)
-              }
-            >
-              {t("word-dialog.delete")}
-            </Button>
-          </DialogActions>
-        )}
       </Dialog>
     </Grid>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Grid, Paper } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
@@ -8,16 +8,11 @@ import {
   TagDisplayBar,
   Page,
   WordListPanel,
-  WordDisplayDialog,
   ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
   RelevantContentPanel,
 } from "../../../components";
-import {
-  Domain,
-  VocabularyDetailDTO,
-  WordGeneralDTO,
-} from "../../../global/types";
+import { Domain, VocabularyDetailDTO } from "../../../global/types";
 import { PublicDataService } from "../../../services";
 import { URL } from "../../../routes";
 
@@ -29,28 +24,27 @@ export default function VocabularyReadingPage() {
   const [vocabualry, setVocabulary] = useState<VocabularyDetailDTO | null>(
     null
   );
-  const [words, setWords] = useState<WordGeneralDTO[]>([]);
-  const [openedWord, setOpenedWord] = useState<WordGeneralDTO | null>(null);
 
-  useEffect(() => {
-    function loadData(): void {
+  const loadData = useCallback(
+    (vocabularyId: string): void => {
       setOpenLoading(true);
       PublicDataService.getVocabularyById(id || "")
         .then((response) => {
           setVocabulary(response.data);
         })
         .then(() => PublicDataService.getWordsByVocabularyId(id || ""))
-        .then((response) => {
-          setWords(response.data);
-        })
         .catch(() => {
           enqueueSnackbar(t("article-reading-page.msg.error"), {
             variant: "error",
           });
         })
         .finally(() => setOpenLoading(false));
-    }
-    loadData();
+    },
+    [enqueueSnackbar, t]
+  );
+
+  useEffect(() => {
+    loadData(id || "");
   }, [t, id, enqueueSnackbar]);
 
   return (
@@ -78,18 +72,7 @@ export default function VocabularyReadingPage() {
 
               {vocabualry && (
                 <Grid item xs={12} sx={{ my: 1 }}>
-                  {id && (
-                    <WordListPanel
-                      words={words}
-                      setOpenedWord={setOpenedWord}
-                    />
-                  )}
-                  <WordDisplayDialog
-                    word={openedWord}
-                    setWord={setOpenedWord}
-                    editable={false}
-                    handleDeleteWord={null}
-                  />
+                  {id && <WordListPanel editable={false} vocabularyId={id} />}
                 </Grid>
               )}
             </Grid>

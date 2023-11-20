@@ -10,7 +10,7 @@ import {
   DialogTitle,
   DialogContent,
 } from "@mui/material";
-import { VocabularyService } from "../../../services";
+import { VocabularyService } from "../../services";
 
 export function WordCreateDialog(props: {
   vocabularyId: string;
