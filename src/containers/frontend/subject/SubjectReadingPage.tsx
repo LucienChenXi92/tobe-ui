@@ -201,10 +201,10 @@ export default function SubjectReadingPage() {
       <TobeBreadcrumbs
         nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={9}>
-          <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-            {subject && (
+      {subject && (
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={9}>
+            <Paper sx={{ py: 2, px: 2 }} variant="outlined">
               <Grid container>
                 <ContentPageMetaBar
                   authorId={subject.ownerId}
@@ -215,14 +215,14 @@ export default function SubjectReadingPage() {
                 />
                 {printSubjectTree(subject)}
               </Grid>
-            )}
-          </Paper>
-        </Grid>
+            </Paper>
+          </Grid>
 
-        <Grid item sm={12} md={3}>
-          {subject?.ownerId && <AuthorDisplayPanel userId={subject?.ownerId} />}
+          <Grid item sm={12} md={3}>
+            <AuthorDisplayPanel userId={subject.ownerId} />
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Page>
   );
 }
