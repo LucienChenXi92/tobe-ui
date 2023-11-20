@@ -5,7 +5,6 @@ import {
   FormControlLabel,
   Switch,
 } from "@mui/material";
-import { CreateButton } from "./buttons/TobeButton";
 import { useTranslation } from "react-i18next";
 import theme from "../../theme";
 
