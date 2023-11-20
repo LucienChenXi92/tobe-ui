@@ -25,27 +25,24 @@ export default function VocabularyReadingPage() {
     null
   );
 
-  const loadData = useCallback(
-    (vocabularyId: string): void => {
-      setOpenLoading(true);
-      PublicDataService.getVocabularyById(id || "")
-        .then((response) => {
-          setVocabulary(response.data);
-        })
-        .then(() => PublicDataService.getWordsByVocabularyId(id || ""))
-        .catch(() => {
-          enqueueSnackbar(t("article-reading-page.msg.error"), {
-            variant: "error",
-          });
-        })
-        .finally(() => setOpenLoading(false));
-    },
-    [enqueueSnackbar, t]
-  );
+  const loadData = useCallback((): void => {
+    setOpenLoading(true);
+    PublicDataService.getVocabularyById(id || "")
+      .then((response) => {
+        setVocabulary(response.data);
+      })
+      .then(() => PublicDataService.getWordsByVocabularyId(id || ""))
+      .catch(() => {
+        enqueueSnackbar(t("article-reading-page.msg.error"), {
+          variant: "error",
+        });
+      })
+      .finally(() => setOpenLoading(false));
+  }, [enqueueSnackbar, t, id]);
 
   useEffect(() => {
-    loadData(id || "");
-  }, [t, id, enqueueSnackbar]);
+    loadData();
+  }, [loadData]);
 
   return (
     <Page openLoading={openLoading} pageTitle={vocabualry?.title}>
