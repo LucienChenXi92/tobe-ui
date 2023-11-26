@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   AuthorDisplayPanel,
-  RichReader,
+  RichContentReader,
   TagDisplayBar,
   Page,
   ContentPageMetaBar,
@@ -81,7 +81,7 @@ export default function ArticleReadingPage() {
 
               {article?.content && (
                 <Grid item xs={12} sx={{ my: 1 }}>
-                  <RichReader htmlValue={article.content} />
+                  <RichContentReader htmlValue={article.content} />
                 </Grid>
               )}
             </Grid>

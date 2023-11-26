@@ -45,9 +45,9 @@ const DrawerHeader = styled("div")(({ theme }) => ({
 
 const basicPageItems: PageItem[] = [
   {
-    label: "dashboard-nav.pages.dashboard",
+    label: "dashboard-nav.pages.statistics",
     icon: <DashboardIcon />,
-    url: URL.DASHBOARD,
+    url: URL.STATISTICS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
   },
   {

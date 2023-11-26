@@ -5,18 +5,17 @@ import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { useTranslation } from "react-i18next";
 
-interface RichEditorProps {
+interface RichContentEditorProps {
   htmlValue: string;
   textValue: string;
   setHtmlValue: (value: string) => void;
   setTextValue: (value: string) => void;
 }
 
-function RichEditor(props: RichEditorProps) {
+function RichContentEditor(props: RichContentEditorProps) {
   const { t } = useTranslation();
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
-  // 工具栏配置
   const toolbarConfig: Partial<IToolbarConfig> = {
     excludeKeys: [
       "bgColor",
@@ -30,7 +29,6 @@ function RichEditor(props: RichEditorProps) {
     ],
   };
 
-  // 编辑器配置
   const editorConfig: Partial<IEditorConfig> = {
     placeholder: t("components.rich-editor.placeholder"),
   };
@@ -77,4 +75,4 @@ function RichEditor(props: RichEditorProps) {
   );
 }
 
-export default RichEditor;
+export default RichContentEditor;

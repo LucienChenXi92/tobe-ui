@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button, Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import {
-  RichEditor,
+  RichContentEditor,
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,
@@ -100,7 +100,7 @@ export default function ArticleEditMainSection(
         </TobeAccordion>
       </Grid>
       <Grid item xs={12} sx={{ my: 1 }}>
-        <RichEditor
+        <RichContentEditor
           htmlValue={props.htmlValue}
           textValue={props.textValue}
           setHtmlValue={props.setHtmlValue}

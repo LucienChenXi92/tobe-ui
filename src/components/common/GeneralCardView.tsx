@@ -8,7 +8,7 @@ import {
   Divider,
 } from "@mui/material";
 import LockIcon from "@mui/icons-material/Lock";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import VerifiedIcon from "@mui/icons-material/Verified";
 import { Operation, GeneralCardData } from "../../global/types";
 import { dateAndTimeFormat } from "../../commons/TimeFormat";
 import { useTranslation } from "react-i18next";
@@ -27,7 +27,7 @@ export default function GeneralCardView(props: {
         {" "}
         {record.publicToAll ? (
           <Tooltip title={t("components.general-card-view.title.open")}>
-            <CheckCircleOutlineIcon sx={{ color: "green" }} />
+            <VerifiedIcon color="info" />
           </Tooltip>
         ) : (
           <Tooltip title={t("components.general-card-view.title.private")}>

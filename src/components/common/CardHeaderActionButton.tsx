@@ -28,10 +28,6 @@ export default function CardHeaderActionButton(props: {
   };
   function getMenuItem(operationName: string) {
     switch (operationName) {
-      case "close":
-        return t("components.standard-button.close");
-      case "active":
-        return t("components.standard-button.active");
       case "release":
         return t("components.standard-button.release");
       case "delete":
@@ -70,7 +66,7 @@ export default function CardHeaderActionButton(props: {
           horizontal: "right",
         }}
       >
-        {props.operations.map(
+        {props.operations?.map(
           (operation, index) =>
             !operation?.hide?.call(null, props.data) && (
               <MenuItem

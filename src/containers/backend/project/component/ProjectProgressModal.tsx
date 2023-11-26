@@ -25,12 +25,10 @@ import ProjectProgressItem from "./ProjectProgressItem";
 import { TimeFormat } from "../../../../commons";
 import { ProjectService, PublicDataService } from "../../../../services";
 
-interface ProjectProgressModalProps {
-  projectId: string;
-  viewOnly: boolean;
-}
-
-export default function ProjectProgressModal(props: ProjectProgressModalProps) {
+export default function ProjectProgressModal(props: {
+  projectId: string,
+  viewOnly: boolean
+}) {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
@@ -93,7 +91,7 @@ export default function ProjectProgressModal(props: ProjectProgressModalProps) {
         <Skeleton width="100%" height="30vh" />
       ) : (
         <>
-          <Divider>
+          <Divider sx={{ mt: 2 }}>
             <Typography variant="subtitle1" color="text.secondary">
               {t("project-progress.title")}
             </Typography>

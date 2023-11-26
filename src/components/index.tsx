@@ -1,14 +1,5 @@
 import { BasicLayout, DashboardLayout, Page, SidePanel } from "./layout";
-import { RichEditor, RichReader } from "./common/editor";
-import {
-  ActiveButton,
-  CreateButton,
-  CloseButton,
-  DetailButton,
-  ReleaseButton,
-  DeleteButton,
-} from "./common/buttons/TobeButton";
-import ActionButtonBar from "./common/ActionButtonBar";
+import { RichContentEditor, RichContentReader } from "./common/editor";
 import { TobeImageButton } from "./common/buttons/TobeImageButton";
 import EditIconButton from "./common/buttons/EditIconButton";
 import {
@@ -43,16 +34,9 @@ export {
   Page,
   PagedTable,
   EditIconButton,
-  RichEditor,
-  RichReader,
+  RichContentEditor,
+  RichContentReader,
   TobeImageButton,
-  ActiveButton,
-  CreateButton,
-  CloseButton,
-  DetailButton,
-  ReleaseButton,
-  DeleteButton,
-  ActionButtonBar,
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,

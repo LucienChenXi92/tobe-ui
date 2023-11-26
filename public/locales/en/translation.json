@@ -11,8 +11,6 @@
     },
     "standard-button": {
       "detail": "Detail",
-      "active": "Active",
-      "close": "Close",
       "delete": "Delete",
       "create": "Create",
       "release": "Release"
@@ -177,11 +175,8 @@
       "name": "Name",
       "target-start-date": "Target start date",
       "target-end-date": "Target end date",
-      "actual-start-date": "Actual start date",
-      "actual-end-date": "Actual end date",
       "operation": "Operation"
     },
-    "card-view-btn": "Simple View",
     "card": {
       "tooltip": {
         "public-to-all": "Visiable to everyone",
@@ -216,9 +211,7 @@
       "name": "Project Name",
       "description": "Description",
       "target-start-time": "Target start time",
-      "target-end-time": "Target end time",
-      "actual-start-time": "Actual start time",
-      "actual-end-time": "Actual end time"
+      "target-end-time": "Target end time"
     },
     "msg": {
       "error": "Operation failed",
@@ -237,7 +230,7 @@
   },
   "dashboard-nav": {
     "pages": {
-      "dashboard": "Statistics",
+      "statistics": "Statistics",
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
@@ -245,26 +238,17 @@
       "subjects": "Subjects"
     }
   },
-  "dashboard-page": {
+  "statistics-page": {
     "page-main-title": "Statistics",
-    "project": {
-      "title": "Project Data",
-      "ongoing": "Ongoing project",
-      "public": "Public project",
-      "all": "All project",
-      "view-count": "View count(In thousands)"
-    },
-    "article": {
-      "title": "Article Data",
-      "public": "Public article",
-      "all": "All article",
-      "view-count": "View count(In thousands)"
-    },
-    "vocabulary": {
-      "title": "Vocabulary Data",
-      "public": "Public vocabulary",
-      "all": "All article",
-      "view-count": "View count(In thousands)"
+    "domain": {
+      "title": {
+        "project": "Project Data",
+        "article": "Article Data",
+        "vocabulary": "Vocabulary Data"
+      },
+      "public": "Public count",
+      "all": "Total count",
+      "view-count": "View count(k)"
     },
     "msg": {
       "error": "Failed to fetch data"
@@ -282,17 +266,9 @@
   "about-page": {
     "page-main-title": "About",
     "about-tobe": {
-      "title": "About TOBE",
-      "p1": "TOBE is a website that focuses on personal accumulation and growth. We are committed to providing users with a comprehensive personal growth platform to help users improve their abilities in self-awareness, professional skills and interpersonal communication, so as to maximize their self-worth.",
-      "p2": "TOBE's philosophy is \"Let everyone become better\". We believe that everyone has unlimited potential, it just takes finding the right methods and tools to tap it. Therefore, we provide a variety of learning resources and tools, including study plans, notes, community and career development guides, etc., to help users achieve self-improvement and growth.",
-      "p3": "Our vision is to open up an oasis on the complicated Internet, so that young people can achieve self-development and improvement, and create a better life."
-    },
-    "about-me": {
-      "title": "About Lucien Chen",
-      "p1": "Hello everyone, I'm Lucien Chen (陈熹), a full-stack developer and the founder of TOBE. I'm very interested in technology, especially in how to use technology to help people optimize their lives and achieve self-growth and progress.",
-      "p2": "When I was working on a project in college, I came into contact with a computer simulation of material process technology and used Python scripts to find the best process parameters. Since then, I opened a new world of computer programming. After graduation, I have been engaged in IT-related work and accumulated rich development experience and skills. I can skillfully use a variety of programming languages and development tools for project development and management.",
-      "p3": "Since the end of 2019, I started to share my experience accumulation and study notes on the internet by a static blog framework, but due to various limitations of the framework, the creative experience is greatly affected. In addition, static blogs can only be used for personal creation, and cannot allow more people to participate. Therefore, I decided to create a TOBE website to provide more users with a comprehensive personal growth platform for sharing and exchanging experiences.",
-      "p4": "I hope that through TOBE, I can share my experience and knowledge with more like-minded people, and provide them with the best learning resources and tools to help them become a better version of themselves."
+      "title": "Hi traveler!",
+      "p1": "TOBE is a small website focused on personal growth, accumulation, and experience sharing. Leave some space in this chaotic world to calm down and settle yourself. If you happen to find this place and find something that interests you or is helpful, it means you have a wonderful connection with this place.",
+      "p2": "Of course, you are more than welcome to become a sharer. You can contact me on WeChat to register an account for login this website or get the source code to build your own TOBE."
     },
     "contact": {
       "title": "Contact",

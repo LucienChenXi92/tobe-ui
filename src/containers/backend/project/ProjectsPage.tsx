@@ -9,7 +9,6 @@ import {
 import { Column, Operation, ProjectInfo, GeneralCardData } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../routes";
-import { PROJECT_STATUS } from "./consts";
 import { ProjectService } from "../../../services";
 import { TimeFormat } from "../../../commons";
 import moment from "moment";
@@ -97,18 +96,6 @@ export default function ProjectsPage() {
       });
   }
 
-  function activeProjectById(id: number | string) {
-    setOpenLoading(true);
-    ProjectService.activeById(id)
-      .then(() => {
-        loadData();
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setOpenLoading(false);
-      });
-  }
-
   function releaseProjectById(id: number | string) {
     setOpenLoading(true);
     ProjectService.releaseById(id)
@@ -121,33 +108,7 @@ export default function ProjectsPage() {
       });
   }
 
-  function closeProjectById(id: number | string) {
-    setOpenLoading(true);
-    ProjectService.closeById(id)
-      .then(() => {
-        loadData();
-      })
-      .catch((error) => console.error(error))
-      .finally(() => {
-        setOpenLoading(false);
-      });
-  }
-
   const operations: Operation[] = [
-    {
-      name: "active",
-      onClick: (id: number | string) => activeProjectById(id),
-      hide: (data: any) =>
-        ![PROJECT_STATUS.READY, PROJECT_STATUS.ON_HOLD].includes(
-          data.statusValue
-        ),
-    },
-    {
-      name: "close",
-      onClick: (id: number | string) => closeProjectById(id),
-      hide: (data: any) =>
-        ![PROJECT_STATUS.IN_PROCESS].includes(data.statusValue),
-    },
     {
       name: "release",
       onClick: (id: number | string) => releaseProjectById(id),

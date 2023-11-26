@@ -121,6 +121,30 @@ export default function ProjectDetailPage() {
                   onChange={(event) => setDescription(event.target.value)}
                 />
               </Grid>
+              <Grid container item xs={12} spacing={3}>
+                <Grid item xs={6}>
+                  <DatePicker
+                    label={t("project-detail-page.fields.target-start-time")}
+                    value={fromTime}
+                    onChange={(newValue) => setFromTime(newValue)}
+                    renderInput={(params) => (
+                      <TextField {...params} variant="standard" fullWidth />
+                    )}
+                    disabled={!editable}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <DatePicker
+                    label={t("project-detail-page.fields.target-end-time")}
+                    value={toTime}
+                    onChange={(newValue) => setToTime(newValue)}
+                    renderInput={(params) => (
+                      <TextField {...params} variant="standard" fullWidth />
+                    )}
+                    disabled={!editable}
+                  />
+                </Grid>
+              </Grid>
               <Grid item xs={12}>
                 <MultipleTagSelecter
                   value={tagValue}
@@ -128,66 +152,6 @@ export default function ProjectDetailPage() {
                   disabled={!editable}
                 />
               </Grid>
-            </Grid>
-          )}
-        </Box>
-      </Paper>
-      <Paper
-        variant="outlined"
-        sx={{ my: { xs: 2, md: 3 }, p: { xs: 2, md: 3 } }}
-      >
-        <Box component="form" noValidate>
-          {project && (
-            <Grid container spacing={3}>
-              <Grid item xs={6}>
-                <DatePicker
-                  label={t("project-detail-page.fields.target-start-time")}
-                  value={fromTime}
-                  onChange={(newValue) => setFromTime(newValue)}
-                  renderInput={(params) => (
-                    <TextField {...params} variant="standard" fullWidth />
-                  )}
-                  disabled={!editable}
-                />
-              </Grid>
-              <Grid item xs={6}>
-                <DatePicker
-                  label={t("project-detail-page.fields.target-end-time")}
-                  value={toTime}
-                  onChange={(newValue) => setToTime(newValue)}
-                  renderInput={(params) => (
-                    <TextField {...params} variant="standard" fullWidth />
-                  )}
-                  disabled={!editable}
-                />
-              </Grid>
-
-              {project.actualStartTime && (
-                <Grid item xs={6}>
-                  <DatePicker
-                    label={t("project-detail-page.fields.actual-start-time")}
-                    value={project.actualStartTime}
-                    onChange={() => {}}
-                    renderInput={(params) => (
-                      <TextField {...params} variant="standard" fullWidth />
-                    )}
-                    disabled={true}
-                  />
-                </Grid>
-              )}
-              {project.actualEndTime && (
-                <Grid item xs={6}>
-                  <DatePicker
-                    label={t("project-detail-page.fields.actual-end-time")}
-                    value={project.actualEndTime}
-                    onChange={() => {}}
-                    renderInput={(params) => (
-                      <TextField {...params} variant="standard" fullWidth />
-                    )}
-                    disabled={true}
-                  />
-                </Grid>
-              )}
             </Grid>
           )}
         </Box>

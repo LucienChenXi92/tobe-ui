@@ -61,31 +61,19 @@ export default function ProjectReadingPage() {
                     {project.description}
                   </Typography>
                 </Grid>
+                <Grid item container spacing={1}>
+                  <TimeField
+                    time={project.targetStartTime}
+                    label={t("project-detail-page.fields.target-start-time")}
+                  />
+                  <TimeField
+                    time={project.targetEndTime}
+                    label={t("project-detail-page.fields.target-end-time")}
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <TagDisplayBar tags={project.tags} />
                 </Grid>
-              </Grid>
-            )}
-          </Paper>
-          <Paper variant="outlined" sx={{ my: 1, p: 2 }}>
-            {project && (
-              <Grid container spacing={1}>
-                <TimeField
-                  time={project.targetStartTime}
-                  label={t("project-detail-page.fields.target-start-time")}
-                />
-                <TimeField
-                  time={project.targetEndTime}
-                  label={t("project-detail-page.fields.target-end-time")}
-                />
-                <TimeField
-                  time={project.actualStartTime}
-                  label={t("project-detail-page.fields.actual-start-time")}
-                />
-                <TimeField
-                  time={project.actualEndTime}
-                  label={t("project-detail-page.fields.actual-end-time")}
-                />
               </Grid>
             )}
           </Paper>

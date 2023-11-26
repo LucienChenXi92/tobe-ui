@@ -29,8 +29,8 @@ const ProfileSettingPage = React.lazy(
   () => import("../containers/backend/profileSettingPage/ProfileSettingPage")
 );
 const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
-const DashboardPage = React.lazy(
-  () => import("../containers/backend/dashboard/DashboardPage")
+const StatisticsPage = React.lazy(
+  () => import("../containers/backend/statistics/StatisticsPage")
 );
 const UsersPage = React.lazy(
   () => import("../containers/backend/user/UsersPage")
@@ -101,7 +101,7 @@ function MainRouter() {
           <Route path={URL.HOME} element={<HomePage />} />
           <Route element={<ProtectedRoutes />}>
             <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-            <Route path={URL.DASHBOARD} element={<DashboardPage />} />
+            <Route path={URL.STATISTICS} element={<StatisticsPage />} />
             <Route path={URL.USERS} element={<UsersPage />} />
             <Route path={URL.PROJECTS} element={<ProjectsPage />} />
             <Route

@@ -30,9 +30,7 @@ export interface ProjectInfo {
   ownerId: string;
   publicToAll: boolean;
   publishTime: string;
-  actualStartTime: string;
   targetStartTime: string;
-  actualEndTime: string;
   targetEndTime: string;
   tags: TagOption[];
   viewCount: number;
@@ -172,6 +170,13 @@ export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",
   Vocabulary = "VOCABULARY",
+}
+
+
+export interface BaseInfoOverview {
+  totalNum: number;
+  publicNum: number;
+  totalViewCount: number;
 }
 
 export interface SubjectInfoCreationDTO {

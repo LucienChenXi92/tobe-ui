@@ -17,7 +17,7 @@ export const URL = {
   TOOL_TIME_CONVERTER: "/tools/time-coverter",
 
   MY_ZONE: "/my/statistics",
-  DASHBOARD: "/my/statistics",
+  STATISTICS: "/my/statistics",
   PROFILE: "/my/profile",
   USERS: "/my/users",
   PROJECTS: "/my/projects",

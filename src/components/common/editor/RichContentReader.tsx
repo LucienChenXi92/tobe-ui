@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import { Editor } from "@wangeditor/editor-for-react";
 import { IDomEditor, IEditorConfig } from "@wangeditor/editor";
 
-interface RichEditorReaderProps {
+interface RichContentEditorReaderProps {
   htmlValue: string;
 }
 
-function RichReader(props: RichEditorReaderProps) {
+function RichContentReader(props: RichContentEditorReaderProps) {
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
   const editorConfig: Partial<IEditorConfig> = {
@@ -38,4 +38,4 @@ function RichReader(props: RichEditorReaderProps) {
   );
 }
 
-export default RichReader;
+export default RichContentReader;
