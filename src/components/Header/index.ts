@@ -1,4 +1,4 @@
-import DashboardHeader from "./DashboardHeader";
-import GlobalHeader from "./GlobalHeader";
+import BackendHeader from "./BackendHeader";
+import FrontendHeader from "./FrontendHeader";
 
-export { DashboardHeader, GlobalHeader };
+export { BackendHeader, FrontendHeader };

@@ -1,4 +1,4 @@
-import { BasicLayout, DashboardLayout, Page, SidePanel } from "./layout";
+import { FrontendLayout, BackendLayout, Page, SidePanel } from "./layout";
 import { RichContentEditor, RichContentReader } from "./common/editor";
 import { TobeImageButton } from "./common/buttons/TobeImageButton";
 import EditIconButton from "./common/buttons/EditIconButton";
@@ -28,8 +28,8 @@ import SubjectCardView from "./common/SubjectCardView";
 
 export {
   NewsListItem,
-  BasicLayout,
-  DashboardLayout,
+  BackendLayout,
+  FrontendLayout,
   Loading,
   Page,
   PagedTable,

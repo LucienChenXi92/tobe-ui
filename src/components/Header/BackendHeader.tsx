@@ -5,7 +5,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import HeaderUserMenu from "./HeaderUserMenu";
 import theme from "../../theme";
 
-interface DashboardHeaderProps {
+interface BackendHeaderProps {
   setOpenDrawer: (newValue: boolean) => void;
   openDrawer: boolean;
   drawerWidth: number;
@@ -15,7 +15,7 @@ interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
 
-const DashboardHeader = (props: DashboardHeaderProps) => {
+const BackendHeader = (props: BackendHeaderProps) => {
   const AppBar = styled(MuiAppBar, {
     shouldForwardProp: (prop) => prop !== "open",
   })<AppBarProps>(({ theme, open }) => ({
@@ -69,4 +69,4 @@ const DashboardHeader = (props: DashboardHeaderProps) => {
   );
 };
 
-export default DashboardHeader;
+export default BackendHeader;

@@ -1,6 +1,6 @@
-import BasicLayout from "./BasicLayout";
-import DashboardLayout from "./DashboardLayout";
+import FrontendLayout from "./FrontendLayout";
+import BackendLayout from "./BackendLayout";
 import Page from "./Page";
 import SidePanel from "./SidePanel";
 
-export { BasicLayout, DashboardLayout, Page, SidePanel };
+export { FrontendLayout, BackendLayout, Page, SidePanel };

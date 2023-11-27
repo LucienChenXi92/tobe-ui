@@ -19,7 +19,7 @@ import { pages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
 import project from "../../../package.json";
 
-const GlobalHeader = () => {
+const FrontendHeader = () => {
   const [yIndex, setYIndex] = useState<number>(0);
   const [showFixedHeader, setShowFixedHeader] = useState<boolean>(false);
   const [shouldShowHeader, setShouldShowHeader] = useState<boolean>(false);
@@ -162,12 +162,14 @@ const HeaderContent = () => {
             </Menu>
           }
         </Box>
-        <Box sx={{
-          mr: 2,
-          ml: "30px",
-          display: { xs: "flex", md: "none" },
-          flexGrow: 1,
-        }}>
+        <Box
+          sx={{
+            mr: 2,
+            ml: "30px",
+            display: { xs: "flex", md: "none" },
+            flexGrow: 1,
+          }}
+        >
           <Typography
             variant="h5"
             noWrap
@@ -216,4 +218,4 @@ const HeaderContent = () => {
   );
 };
 
-export default GlobalHeader;
+export default FrontendHeader;

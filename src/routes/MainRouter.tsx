@@ -2,7 +2,7 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
-import { BasicLayout, Loading } from "../components";
+import { FrontendLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
 import HomePage from "../containers/frontend/homePage/HomePage";
 import SignInPage from "../containers/frontend/signIn/SignInPage";
@@ -177,9 +177,9 @@ function SignOutRoute() {
 
 function NonProtectedBasicLayoutRoute() {
   return (
-    <BasicLayout>
+    <FrontendLayout>
       <Outlet />
-    </BasicLayout>
+    </FrontendLayout>
   );
 }
 

@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import DashboardNav from "./navigation/DashboardNav";
-import { DashboardHeader } from "../header";
+import { SideNav } from "../navigator";
+import { BackendHeader } from "../header";
 import { AppFooter } from "../footer";
 
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
@@ -28,11 +28,11 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })<{
 const drawerWidth = 240;
 
 /**
- * Dashboard layout, a flex container with the basic header, footer and side navigator
+ * a flex container with the basic header, footer and side navigator
  *
- * 看板布局， 一个带有网站页头和页脚的流式布局容器
+ * 一个带有网站页头和页脚的流式布局容器
  */
-export default function DashboardLayout({ children }: { children: any }) {
+export default function BackendLayout({ children }: { children: any }) {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
@@ -47,7 +47,7 @@ export default function DashboardLayout({ children }: { children: any }) {
         backgroundPosition: "center",
       }}
     >
-      <DashboardHeader
+      <BackendHeader
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
         drawerWidth={drawerWidth}
@@ -69,7 +69,7 @@ export default function DashboardLayout({ children }: { children: any }) {
         </Stack>
         <AppFooter />
       </Main>
-      <DashboardNav
+      <SideNav
         openDrawer={openDrawer}
         setOpenDrawer={setOpenDrawer}
         drawerWidth={drawerWidth}

@@ -1,9 +1,7 @@
-import {
-  Drawer,
-  Typography,
-  IconButton,
-  useMediaQuery,
-} from "@mui/material";
+import { Drawer, Typography, IconButton, useMediaQuery } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+import { styled } from "@mui/material/styles";
+import { NavItems } from "./NavItems";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -11,29 +9,11 @@ import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
 import Abc from "@mui/icons-material/Abc";
 import FolderIcon from "@mui/icons-material/Folder";
-import { useNavigate } from "react-router-dom";
-import { styled } from "@mui/material/styles";
-import { URL } from "../../../routes";
-import { AUTHORITY } from "../../../commons";
-import theme from "../../../theme";
-import { PageItem } from "../../../global/types";
-import project from "../../../../package.json";
-import { NavItems } from "./NavItems";
-
-interface DashboardNavProps {
-  setOpenDrawer: (newValue: boolean) => void;
-  openDrawer: boolean;
-  drawerWidth: number;
-}
-
-const DrawerHeader = styled("div")(({ theme }) => ({
-  display: "flex",
-  alignItems: "center",
-  padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
-  ...theme.mixins.toolbar,
-  justifyContent: "flex-start",
-}));
+import { URL } from "../../routes";
+import { AUTHORITY } from "../../commons";
+import { PageItem } from "../../global/types";
+import theme from "../../theme";
+import project from "../../../package.json";
 
 const basicPageItems: PageItem[] = [
   {
@@ -81,7 +61,22 @@ const adminPageItems: PageItem[] = [
   },
 ];
 
-export default function DashboardNav(props: DashboardNavProps) {
+interface SideNavProps {
+  setOpenDrawer: (newValue: boolean) => void;
+  openDrawer: boolean;
+  drawerWidth: number;
+}
+
+const DrawerHeader = styled("div")(({ theme }) => ({
+  display: "flex",
+  alignItems: "center",
+  padding: theme.spacing(0, 1),
+  // necessary for content to be below app bar
+  ...theme.mixins.toolbar,
+  justifyContent: "flex-start",
+}));
+
+export default function SideNav(props: SideNavProps) {
   const navigate = useNavigate();
   const underSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 

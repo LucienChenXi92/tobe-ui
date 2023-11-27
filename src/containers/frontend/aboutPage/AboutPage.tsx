@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Grid, Hidden, Typography, Link } from "@mui/material";
+import { Grid, Typography, Link } from "@mui/material";
 import { Page } from "../../../components";
 
 export default function AboutPage() {
