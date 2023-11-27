@@ -2,16 +2,8 @@ import {
   Drawer,
   Typography,
   IconButton,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon,
-  Divider,
   useMediaQuery,
 } from "@mui/material";
-import { useState } from "react";
-import Add from "@mui/icons-material/Add";
 import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import FlagIcon from "@mui/icons-material/Flag";
@@ -19,14 +11,14 @@ import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
 import Abc from "@mui/icons-material/Abc";
 import FolderIcon from "@mui/icons-material/Folder";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { useTranslation } from "react-i18next";
-import { URL } from "../../routes";
-import { authed, AUTHORITY } from "../../commons";
-import theme from "../../theme";
-import { PageItem } from "../../global/types";
-import project from "../../../package.json";
+import { URL } from "../../../routes";
+import { AUTHORITY } from "../../../commons";
+import theme from "../../../theme";
+import { PageItem } from "../../../global/types";
+import project from "../../../../package.json";
+import { NavItems } from "./NavItems";
 
 interface DashboardNavProps {
   setOpenDrawer: (newValue: boolean) => void;
@@ -88,68 +80,6 @@ const adminPageItems: PageItem[] = [
     requiredRoles: [AUTHORITY.ROLE_ADMIN],
   },
 ];
-
-const NavItem = styled(ListItem)(({ theme }) => ({
-  "& .MuiListItemButton-root.Mui-selected": {
-    borderRight: "5px solid",
-    paddingRight: "5px",
-    borderColor: theme.palette.secondary.main,
-    color: theme.palette.secondary.main + " !important",
-    "& .MuiListItemIcon-root": {
-      color: theme.palette.secondary.main + " !important",
-    },
-  },
-}));
-
-const NavItems = (props: { pageItems: PageItem[] }) => {
-  let location = useLocation();
-  const navigate = useNavigate();
-  const { t } = useTranslation();
-  const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const authedPages = props.pageItems.filter((pageItem) =>
-    authed(pageItem.requiredRoles)
-  );
-  return (
-    <>
-      <List>
-        {authedPages.map((pageItem) => (
-          <NavItem
-            key={pageItem.label}
-            disablePadding
-            onMouseOver={() => setHoveredItem(pageItem.label)}
-            onMouseOut={() => setHoveredItem(null)}
-            secondaryAction={
-              pageItem.secondaryUrl &&
-              pageItem.label === hoveredItem && (
-                <IconButton
-                  edge="end"
-                  aria-label="Add"
-                  sx={{
-                    borderRadius: 0,
-                    mr: "2px",
-                    color: "rgba(0,0,0,0.4)",
-                  }}
-                  onClick={() => navigate(pageItem.secondaryUrl || "/")}
-                >
-                  <Add />
-                </IconButton>
-              )
-            }
-          >
-            <ListItemButton
-              onClick={() => navigate(pageItem.url)}
-              selected={pageItem.url === location.pathname}
-            >
-              <ListItemIcon>{pageItem.icon}</ListItemIcon>
-              <ListItemText primary={t(pageItem.label)} />
-            </ListItemButton>
-          </NavItem>
-        ))}
-      </List>
-      {authedPages.length > 0 && <Divider />}
-    </>
-  );
-};
 
 export default function DashboardNav(props: DashboardNavProps) {
   const navigate = useNavigate();

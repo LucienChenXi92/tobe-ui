@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import DashboardNav from "./DashboardNav";
+import DashboardNav from "./navigation/DashboardNav";
 import { DashboardHeader } from "../header";
 import { AppFooter } from "../footer";
 
