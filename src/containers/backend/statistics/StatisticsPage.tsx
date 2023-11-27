@@ -69,7 +69,7 @@ const StandardSmallWidget = (props: {
   icon: any
 }) => {
   return (
-    <Grid item container xs={4} sx={{ p: 1 }}>
+    <Grid item container xs={4} sx={{ px: 3, py: 2 }}>
       <Grid item flexGrow={0} sx={{ mr: 1 }}>
         <Typography variant="subtitle2" flexGrow={1} color="text.secondary">
           {props.icon}

@@ -8,9 +8,9 @@ declare module "react-meta-tags" {
 
   export class MetaTagsContext extends React.Component<{
     extract: ExtractFunctionType;
-  }> {}
-  export class MetaTags extends React.Component {}
-  export class ReactTitle extends React.Component<{ title: string }> {}
+  }> { }
+  export class MetaTags extends React.Component { }
+  export class ReactTitle extends React.Component<{ title: string }> { }
 
   export default MetaTags;
 }

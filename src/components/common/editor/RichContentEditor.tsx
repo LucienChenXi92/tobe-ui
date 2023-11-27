@@ -4,6 +4,14 @@ import { useState, useEffect } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { useTranslation } from "react-i18next";
+import { SlateElement } from '@wangeditor/editor'
+
+type ImageElement = SlateElement & {
+  src: string
+  alt: string
+  url: string
+  href: string
+}
 
 interface RichContentEditorProps {
   htmlValue: string;
@@ -16,21 +24,43 @@ function RichContentEditor(props: RichContentEditorProps) {
   const { t } = useTranslation();
   const [editor, setEditor] = useState<IDomEditor | null>(null);
 
+  const editorConfig: Partial<IEditorConfig> = {
+    MENU_CONF: {
+      'insertImage': {
+        onInsertedImage(imageNode: ImageElement | null) {
+          if (imageNode == null) return
+          const { src, alt, url, href } = imageNode
+          console.log('inserted image', src, alt, url, href)
+        }
+      },
+      'editImage': {
+        onUpdatedImage(imageNode: ImageElement | null) {
+          if (imageNode == null) return
+          const { src, alt, url } = imageNode
+          console.log('updated image', src, alt, url)
+        }
+      },
+      'uploadImage': {
+        // server: '/api/upload',
+        base64LimitSize: 20 * 1024, // 20kb,
+        fieldName: 'your-custom-name',
+        maxFileSize: 10 * 1024 * 1024, // 10M
+        maxNumberOfFiles: 10,
+        allowedFileTypes: ['image/*'],
+      }
+    },
+    placeholder: t("components.rich-editor.placeholder"),
+  };
+
   const toolbarConfig: Partial<IToolbarConfig> = {
     excludeKeys: [
       "bgColor",
       "fontSize",
       "fontFamily",
       "lineHeight",
-      "uploadImage",
       "uploadVideo",
       "fullScreen",
-      "emotion",
     ],
-  };
-
-  const editorConfig: Partial<IEditorConfig> = {
-    placeholder: t("components.rich-editor.placeholder"),
   };
 
   useEffect(() => {

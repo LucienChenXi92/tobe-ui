@@ -153,7 +153,7 @@ const NavItems = (props: { pageItems: PageItem[] }) => {
 
 export default function DashboardNav(props: DashboardNavProps) {
   const navigate = useNavigate();
-  const underSmScreen = useMediaQuery(theme.breakpoints.down("sm"));
+  const underSmScreen = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
     <Drawer
