@@ -4,8 +4,14 @@ import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
 import { FrontendLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
-import HomePage from "../containers/frontend/homePage/HomePage";
-import SignInPage from "../containers/frontend/signIn/SignInPage";
+
+const SignInPage = React.lazy(
+  () => import("../containers/frontend/signIn/SignInPage")
+);
+
+const HomePage = React.lazy(
+  () => import("../containers/frontend/homePage/HomePage")
+);
 
 const ToolsPage = React.lazy(
   () => import("../containers/frontend/tool/ToolsPage")
