@@ -158,7 +158,7 @@
     }
   },
   "user-table": {
-    "title": "User Management",
+    "title": "Users",
     "label": {
       "id": "ID",
       "email": "Email",
@@ -170,7 +170,7 @@
     }
   },
   "project-table": {
-    "title": "Project Management",
+    "title": "Projects",
     "label": {
       "name": "Name",
       "target-start-date": "Target start date",
@@ -234,7 +234,7 @@
       "users": "Users",
       "projects": "Projects",
       "articles": "Articles",
-      "vocabularies": "Vocabulary",
+      "vocabularies": "Vocabularies",
       "subjects": "Subjects"
     }
   },
@@ -378,7 +378,7 @@
     "back-btn": "Back"
   },
   "vocabularies-page": {
-    "page-main-title": "Vocabulary",
+    "page-main-title": "Vocabularies",
     "vocabulary-table": {
       "label": {
         "title": "Title",
