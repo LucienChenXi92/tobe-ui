@@ -14,18 +14,21 @@ export default function RelevantContentPanel(props: {
   const { t } = useTranslation();
   const [data, setData] = useState<NewsDTO[]>([]);
 
-  const loadData = useCallback((id: string, tags: string[]): void => {
-    if (tags.length === 0) {
-      return;
-    }
-    PublicDataService.getNewsByTags(props.domain, 100, 1, tags)
-      .then((response) => {
-        setData(response.data.records.filter((n: NewsDTO) => n.id !== id));
-      })
-      .catch((err) => {
-        console.error("Error happens when fetch relevant contents", err);
-      });
-  }, []);
+  const loadData = useCallback(
+    (id: string, tags: string[]): void => {
+      if (tags.length === 0) {
+        return;
+      }
+      PublicDataService.getNewsByTags(props.domain, 100, 1, tags, "")
+        .then((response) => {
+          setData(response.data.records.filter((n: NewsDTO) => n.id !== id));
+        })
+        .catch((err) => {
+          console.error("Error happens when fetch relevant contents", err);
+        });
+    },
+    [props.domain]
+  );
 
   useEffect(
     () => loadData(props.id, props.tages),

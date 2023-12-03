@@ -12,6 +12,7 @@ enum LoadType {
 
 export default function FeaturedArticles(props: {
   tags: string[];
+  ownerId: string;
   domain: Domain;
   handleDomainChange: (newValue: Domain) => void;
 }) {
@@ -28,9 +29,16 @@ export default function FeaturedArticles(props: {
       _loadType: LoadType,
       _currentPage: number,
       _tags: string[],
-      _newsData: NewsDTO[]
+      _newsData: NewsDTO[],
+      _ownerId: string
     ): void => {
-      PublicDataService.getNewsByTags(_domain, 10, _currentPage, _tags)
+      PublicDataService.getNewsByTags(
+        _domain,
+        10,
+        _currentPage,
+        _tags,
+        _ownerId
+      )
         .then((response) => {
           if (_loadType === LoadType.Append) {
             setNewsData(_newsData.concat(response.data.records));
@@ -56,13 +64,27 @@ export default function FeaturedArticles(props: {
 
   // based on current filters and load more data
   const handleLoadMoreArticles = (): void => {
-    loadNews(props.domain, LoadType.Append, current + 1, props.tags, newsData);
+    loadNews(
+      props.domain,
+      LoadType.Append,
+      current + 1,
+      props.tags,
+      newsData,
+      props.ownerId
+    );
   };
 
   useEffect(() => {
     // reset filter and load the first page data
     const handleTagFilterChange = (): void => {
-      loadNews(props.domain, LoadType.Replace, 1, props.tags, newsData);
+      loadNews(
+        props.domain,
+        LoadType.Replace,
+        1,
+        props.tags,
+        newsData,
+        props.ownerId
+      );
     };
     handleTagFilterChange();
   }, [props.domain, props.tags, loadNews]); // eslint-disable-line

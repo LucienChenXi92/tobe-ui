@@ -64,20 +64,19 @@ const FrontendHeader = () => {
       >
         <HeaderContent />
       </AppBar>
-      {showFixedHeader && (
-        <AppBar
-          sx={{
-            boxShadow: "none",
-            color: theme.palette.secondary.main,
-            backgroundColor: theme.palette.background.paper,
-            borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
-            opacity: 0.85,
-            position: "fixed",
-          }}
-        >
-          <HeaderContent />
-        </AppBar>
-      )}
+      <AppBar
+        sx={{
+          boxShadow: "none",
+          color: theme.palette.secondary.main,
+          backgroundColor: theme.palette.background.paper,
+          borderBottom: "1px solid rgba(0, 0, 0, 0.12)",
+          opacity: 0.85,
+          position: "fixed",
+          display: showFixedHeader ? "block" : "none",
+        }}
+      >
+        <HeaderContent />
+      </AppBar>
     </>
   );
 };

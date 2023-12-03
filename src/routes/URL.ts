@@ -1,5 +1,6 @@
 export const URL = {
   HOME: "/",
+  PERSONAL_PORTAL: "/personal-portal/:id",
   SIGN_IN: "/sign-in",
   SIGN_OUT: "/sign-out",
   SIGN_UP: "/sign-up",

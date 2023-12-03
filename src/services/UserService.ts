@@ -35,6 +35,9 @@ export function updateUser(data: {
   avatarUrl: string | undefined;
   introduction: string | undefined;
   blog: string | undefined;
+  position: string | undefined;
+  backgroundImg: string | undefined;
+  photoImg: string | undefined;
 }): AxiosPromise {
   return server.put(`/${USER_URI}/${data.id}`, data, {
     headers: {

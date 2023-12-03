@@ -14,10 +14,11 @@ export function getNewsByTags(
   domain: Domain,
   size: number,
   current: number,
-  tags: string[]
+  tags: string[],
+  ownerId: string
 ): AxiosPromise {
   return server.get(
-    `/${API_DATA_URI}/news?size=${size}&current=${current}&tags=${tags}&domain=${domain}`,
+    `/${API_DATA_URI}/news?size=${size}&current=${current}&tags=${tags}&domain=${domain}&ownerId=${ownerId}`,
     options
   );
 }
@@ -58,8 +59,14 @@ export function getBriefProfileByUserId(userId: string | number): AxiosPromise {
   return server.get(`/${API_DATA_URI}/brief-profile/${userId}`);
 }
 
-export function getTagStatistics(domain: Domain) {
-  return server.get(`/${API_DATA_URI}/tag-statistics?domain=${domain}`);
+export function getFullProfileByUserId(userId: string | number): AxiosPromise {
+  return server.get(`/${API_DATA_URI}/detail-profile/${userId}`);
+}
+
+export function getTagStatistics(domain: Domain, ownerId: string) {
+  return server.get(
+    `/${API_DATA_URI}/tag-statistics?domain=${domain}&ownerId=${ownerId}`
+  );
 }
 
 export function getTop5ActiveUsers() {

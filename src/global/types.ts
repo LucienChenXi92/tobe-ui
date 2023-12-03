@@ -84,6 +84,13 @@ export interface UserBriefProfileDTO {
   viewCount: number;
 }
 
+export interface UserFullProfileDTO extends UserBriefProfileDTO {
+  address: string;
+  position: string;
+  backgroundImg: string;
+  photoImg: string;
+}
+
 export interface TagOption {
   readonly value: string;
   readonly label: string;
@@ -171,7 +178,6 @@ export enum Domain {
   Project = "PROJECT",
   Vocabulary = "VOCABULARY",
 }
-
 
 export interface BaseInfoOverview {
   totalNum: number;
@@ -273,4 +279,4 @@ export interface WordCreateDTO {
   meaningInEnglish: string;
 }
 
-export interface WordUpdateDTO extends WordGeneralDTO { }
+export interface WordUpdateDTO extends WordGeneralDTO {}

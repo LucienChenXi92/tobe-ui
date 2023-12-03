@@ -13,6 +13,10 @@ const HomePage = React.lazy(
   () => import("../containers/frontend/homePage/HomePage")
 );
 
+const PersonalPortalPage = React.lazy(
+  () => import("../containers/frontend/personalPortal/PersonalPortalPage")
+);
+
 const ToolsPage = React.lazy(
   () => import("../containers/frontend/tool/ToolsPage")
 );
@@ -105,6 +109,7 @@ function MainRouter() {
       <BrowserRouter>
         <Routes>
           <Route path={URL.HOME} element={<HomePage />} />
+          <Route path={URL.PERSONAL_PORTAL} element={<PersonalPortalPage />} />
           <Route element={<ProtectedRoutes />}>
             <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
             <Route path={URL.STATISTICS} element={<StatisticsPage />} />

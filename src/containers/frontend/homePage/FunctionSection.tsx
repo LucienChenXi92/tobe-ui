@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { ReactElement, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import { Domain } from "../../../global/types";
 import FeaturedNews from "./FeaturedNews";
-import Top5ActiveUsersPanel from "./Top5ActiveUsersPanel";
 import TagStatisticsFilterPanel from "./TagStatisticsFilterPanel";
 
-export default function FunctionSection() {
+export default function FunctionSection(props: {
+  extraPanels: ReactElement[];
+  ownerId: string;
+}) {
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
   const [domain, setDomain] = useState<Domain>(Domain.Article);
 
@@ -19,6 +21,7 @@ export default function FunctionSection() {
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <FeaturedNews
+            ownerId={props.ownerId}
             tags={checkedTags}
             domain={domain}
             handleDomainChange={handleDomainChange}
@@ -30,11 +33,14 @@ export default function FunctionSection() {
               domain={domain}
               checked={checkedTags}
               setChecked={setCheckedTags}
+              ownerId={props.ownerId}
             />
           </Grid>
-          <Grid item>
-            <Top5ActiveUsersPanel />
-          </Grid>
+          {props.extraPanels.map((c, i) => (
+            <Grid item key={`side-panel-${i}`}>
+              {c}
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Container>

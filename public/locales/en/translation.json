@@ -36,8 +36,8 @@
       "edit-btn": "Edit"
     },
     "author-panel": {
-      "public-creation-count": "Published content count",
-      "view-count": "Total view count"
+      "public-creation-count": "Published content",
+      "view-count": "Total view"
     },
     "general-card-view": {
       "title": {
@@ -142,9 +142,13 @@
       "address": "Address",
       "blog": "Blog home",
       "introduction": "Introduction",
-      "introduction-placeholder": "Let others know more about you..."
+      "introduction-placeholder": "Let others know more about you...",
+      "position": "Position",
+      "background-img": "Portal background image",
+      "photo-img": "Personal photo image"
     },
     "back-btn": "Back",
+    "preview-btn": "Preview",
     "submit-btn": "Submit",
     "msg": {
       "success": "Updated",
