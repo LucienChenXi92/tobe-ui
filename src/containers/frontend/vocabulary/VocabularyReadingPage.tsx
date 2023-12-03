@@ -31,7 +31,6 @@ export default function VocabularyReadingPage() {
       .then((response) => {
         setVocabulary(response.data);
       })
-      .then(() => PublicDataService.getWordsByVocabularyId(id || ""))
       .catch(() => {
         enqueueSnackbar(t("article-reading-page.msg.error"), {
           variant: "error",

@@ -8,7 +8,7 @@ import { WordGeneralDTO } from "../../global/types";
 import { WordCreateDialog } from "./WordCreateDialog";
 import { WordDetailDialog } from "./WordDetailDialog";
 import { WordDisplayDialog } from "./WordDisplayDialog";
-import { VocabularyService } from "../../services";
+import { PublicDataService, VocabularyService } from "../../services";
 
 export function WordListPanel(props: {
   editable: boolean;
@@ -22,7 +22,7 @@ export function WordListPanel(props: {
 
   const loadWordsData = useCallback(
     (vocabularyId: string): void => {
-      VocabularyService.getWordsByVocabularyId(vocabularyId)
+      PublicDataService.getWordsByVocabularyId(vocabularyId)
         .then((response) => {
           setWords(response.data);
         })

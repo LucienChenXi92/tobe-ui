@@ -4,10 +4,13 @@ import { useTranslation } from "react-i18next";
 import { Avatar, Tooltip, Grid, Link, Paper, Typography } from "@mui/material";
 import { UserBriefProfileDTO } from "../../global/types";
 import { PublicDataService } from "../../services";
+import { useNavigate } from "react-router-dom";
+import { URL } from "../../routes";
 
 export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
   const [profile, setProfile] = useState<UserBriefProfileDTO | null>(null);
   const loadProfile = useCallback((): void => {
     PublicDataService.getBriefProfileByUserId(props.userId)
@@ -32,12 +35,26 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
             justifyContent="center"
             alignContent="center"
             direction="column"
-            sx={{ borderBottom: "1px solid rgba(0,0,0,0.12)" }}
+            sx={{
+              borderBottom: "1px solid rgba(0,0,0,0.12)",
+            }}
+            onClick={() =>
+              navigate(URL.PERSONAL_PORTAL.replace(":id", profile.id))
+            }
           >
             <Avatar
               alt={profile.firstName || ""}
               src={profile.avatarUrl || ""}
-              sx={{ width: 60, height: 60, m: "0 auto", my: 2 }}
+              sx={{
+                width: 60,
+                height: 60,
+                m: "0 auto",
+                my: 2,
+                cursor: "pointer",
+                "&:hover": {
+                  backgroundColor: "rgba(0, 0, 0, 0.04)",
+                },
+              }}
             ></Avatar>
             <Typography variant="h6" color="text.secondary">
               {profile.firstName + " " + profile.lastName}

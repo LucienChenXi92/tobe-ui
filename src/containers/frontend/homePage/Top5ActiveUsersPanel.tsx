@@ -45,8 +45,8 @@ export default function Top5ActiveUsersPanel() {
               src={n.avatarUrl}
               sx={{
                 flexGrow: 0,
-                mb: 1,
                 mr: 4,
+                my: 0.5,
               }}
             />
             <Typography

@@ -111,6 +111,7 @@ function MainRouter() {
           <Route path={URL.HOME} element={<HomePage />} />
           <Route path={URL.PERSONAL_PORTAL} element={<PersonalPortalPage />} />
           <Route element={<ProtectedRoutes />}>
+            <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
             <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
             <Route path={URL.STATISTICS} element={<StatisticsPage />} />
             <Route path={URL.USERS} element={<UsersPage />} />
@@ -142,11 +143,10 @@ function MainRouter() {
               element={<VocabularyDetailPage />}
             />
           </Route>
-
           <Route element={<NonProtectedBasicLayoutRoute />}>
             <Route path={URL.SIGN_IN} element={<SignInPage />} />
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
-            <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
+
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
               element={<ProjectReadingPage />}

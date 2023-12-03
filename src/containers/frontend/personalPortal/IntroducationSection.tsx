@@ -20,8 +20,8 @@ export default function IntroducationSection(props: {
           container
           justifyContent="flex-end"
           sx={{
-            height: { xs: "10vh", sm: "12vh", md: "20vh", lg: "30" },
-            mb: { xs: -8, lg: -10 },
+            height: { xs: "18vh", sm: "18vh", md: "24vh", lg: "26h" },
+            mb: { xs: -12, lg: -10 },
             backgroundSize: "cover",
             backgroundPosition: "center 40%",
             backgroundImage: `url(${
@@ -75,7 +75,7 @@ export default function IntroducationSection(props: {
               <Grid item>
                 <Typography
                   variant="subtitle2"
-                  sx={{ mt: 1 }}
+                  sx={{ mt: 1, whiteSpace: "pre-wrap" }}
                   color="textSecondary"
                 >
                   {props.profile.introduction}
@@ -94,7 +94,7 @@ export default function IntroducationSection(props: {
             lg={4}
             xl={4}
           >
-            <Grid item container sx={{ mt: { sm: 2, xs: 2 } }}>
+            <Grid item container sx={{ my: { sm: 2, xs: 2 } }}>
               <Grid item xs={6}>
                 <Typography
                   variant="subtitle2"

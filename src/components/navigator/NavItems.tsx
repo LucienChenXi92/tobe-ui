@@ -38,7 +38,7 @@ export const NavItems = (props: { pageItems: PageItem[] }) => {
   return (
     <>
       <List>
-        {authedPages.map((pageItem) => (
+        {authedPages?.map((pageItem) => (
           <NavItem
             key={pageItem.label}
             disablePadding

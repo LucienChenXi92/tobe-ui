@@ -43,10 +43,6 @@ export function update(target: VocabularyUpdateDTO): AxiosPromise {
   return server.put(`/${BASE_URI}/${target.id}`, target);
 }
 
-export function getWordsByVocabularyId(id: string): AxiosPromise {
-  return server.get(`/${BASE_URI}/${id}/words`);
-}
-
 export function createWord(target: WordCreateDTO): AxiosPromise {
   return server.post(`/${WORD_URI}`, target);
 }
