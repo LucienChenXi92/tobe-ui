@@ -23,9 +23,6 @@ export default function NewsListItem(props: {
       xs={12}
       sx={{
         borderBottom: "1px solid rgba(0,0,0,0.12)",
-        maxHeight: "80px",
-        overflow: "hidden",
-        textOverflow: "ellipsis",
         p: 2,
       }}
     >
@@ -50,6 +47,9 @@ export default function NewsListItem(props: {
         xs={12}
         sx={{
           my: 1,
+          maxHeight: "80px",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
           color: theme.palette.text.secondary,
           cursor: "pointer",
           "&:hover": {
