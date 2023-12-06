@@ -26,8 +26,8 @@ export default function ArticleCreationPage() {
       subTitle: subTitle,
       content: htmlValue,
       description:
-        textValue.trim().length >= 100
-          ? textValue.trim().substring(0, 97) + "..."
+        textValue.trim().length >= 1000
+          ? textValue.trim().substring(0, 997) + "..."
           : textValue.trim(),
       tags: tagValues,
     })
