@@ -50,7 +50,7 @@ export default function GeneralDomainListPage(props: {
                 });
             })
             .finally(() => setOpenLoading(false));
-    }, [enqueueSnackbar, t]);
+    }, [enqueueSnackbar, t, props.domainService,]);
 
     useEffect(() => {
         loadData(data, 12, 0, "");
