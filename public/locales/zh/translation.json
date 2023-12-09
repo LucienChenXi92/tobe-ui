@@ -173,21 +173,14 @@
       "operation": "操作"
     }
   },
-  "project-table": {
-    "title": "计划",
-    "label": {
-      "name": "名称",
-      "target-start-date": "计划开始日期",
-      "target-end-date": "计划结束日期",
-      "operation": "操作"
-    },
-    "card": {
-      "tooltip": {
-        "public-to-all": "对所有人可见",
-        "in-process": "进行中",
-        "closed": "已结束"
-      }
+  "domain-page": {
+    "load-more": "加载更多",
+    "msg": {
+      "error": "操作失败"
     }
+  },
+  "projects-page": {
+    "page-main-title": "计划"
   },
   "project-creation-page": {
     "form-title": "创建新的项目",
@@ -223,7 +216,7 @@
     }
   },
   "project-progress": {
-    "title": "项目进展",
+    "title": "进展",
     "add-new-tip": "有任何进展可以分享么？",
     "send-btn": "发布",
     "msg": {
@@ -285,17 +278,7 @@
     }
   },
   "articles-page": {
-    "page-main-title": "笔记",
-    "article-table": {
-      "label": {
-        "title": "标题",
-        "subTitle": "副标题",
-        "description": "简述",
-        "createTime": "创建时间",
-        "updateTime": "更新时间",
-        "operation": "操作"
-      }
-    }
+    "page-main-title": "笔记"
   },
   "article-creation-page": {
     "page-main-title": "创建新的笔记",

@@ -17,21 +17,6 @@ interface TobeButtonProps {
   variant?: "text" | "outlined" | "contained" | undefined;
 }
 
-export function getButtonByOperationName(
-  name: string,
-  handleOnClick: () => void,
-  key?: string | number | undefined
-): ReactNode {
-  switch (name) {
-    case "detail":
-      return <DetailButton handleOnClick={handleOnClick} key={key} />;
-    case "delete":
-      return <DeleteButton handleOnClick={handleOnClick} key={key} />;
-    case "release":
-      return <ReleaseButton handleOnClick={handleOnClick} key={key} />;
-  }
-}
-
 export const DetailButton = (props: TobeButtonProps) => {
   const { t } = useTranslation();
   return (
@@ -41,20 +26,6 @@ export const DetailButton = (props: TobeButtonProps) => {
       variant={props?.variant || "text"}
     >
       {props?.label || t("components.standard-button.detail")}
-    </Button>
-  );
-};
-
-export const CreateButton = (props: TobeButtonProps) => {
-  const { t } = useTranslation();
-  return (
-    <Button
-      size="small"
-      color={props?.color || "primary"}
-      onClick={props?.handleOnClick}
-      variant={props?.variant || "contained"}
-    >
-      {props?.label || t("components.standard-button.create")}
     </Button>
   );
 };

@@ -46,13 +46,13 @@ const UsersPage = React.lazy(
   () => import("../containers/backend/user/UsersPage")
 );
 const ProjectsPage = React.lazy(
-  () => import("../containers/backend/project/ProjectsPage")
+  () => import("../containers/backend/domain/project/ProjectsPage")
 );
 const ProjectCreationPage = React.lazy(
-  () => import("../containers/backend/project/ProjectCreationPage")
+  () => import("../containers/backend/domain/project/ProjectCreationPage")
 );
 const ProjectDetailPage = React.lazy(
-  () => import("../containers/backend/project/ProjectDetailPage")
+  () => import("../containers/backend/domain/project/ProjectDetailPage")
 );
 const ProjectReadingPage = React.lazy(
   () => import("../containers/frontend/project/ProjectReadingPage")
@@ -61,13 +61,13 @@ const VocabularyReadingPage = React.lazy(
   () => import("../containers/frontend/vocabulary/VocabularyReadingPage")
 );
 const ArticlesPage = React.lazy(
-  () => import("../containers/backend/article/ArticlesPage")
+  () => import("../containers/backend/domain/article/ArticlesPage")
 );
 const ArticleCreationPage = React.lazy(
-  () => import("../containers/backend/article/ArticleCreationPage")
+  () => import("../containers/backend/domain/article/ArticleCreationPage")
 );
 const ArticleDetailPage = React.lazy(
-  () => import("../containers/backend/article/ArticleDetailPage")
+  () => import("../containers/backend/domain/article/ArticleDetailPage")
 );
 const ArticleReadingPage = React.lazy(
   () => import("../containers/frontend/article/ArticleReadingPage")
@@ -92,15 +92,15 @@ const SubjectReadingPage = React.lazy(
 );
 
 const VocabulariesPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabulariesPage")
+  () => import("../containers/backend/domain/vocabulary/VocabulariesPage")
 );
 
 const VocabularyCreationPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabularyCreationPage")
+  () => import("../containers/backend/domain/vocabulary/VocabularyCreationPage")
 );
 
 const VocabularyDetailPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabularyDetailPage")
+  () => import("../containers/backend/domain/vocabulary/VocabularyDetailPage")
 );
 
 function MainRouter() {

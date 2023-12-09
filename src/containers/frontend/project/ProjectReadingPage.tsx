@@ -11,7 +11,7 @@ import {
   ContentPageMetaBar,
 } from "../../../components";
 import { ProjectInfo } from "../../../global/types";
-import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
+import ProjectProgressModal from "../../backend/domain/project/component/ProjectProgressModal";
 import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
 

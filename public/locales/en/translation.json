@@ -55,7 +55,7 @@
     "subjects": "Subjects",
     "tools": "Tools",
     "view-count": "View",
-    "end-line": "Here is the end line",
+    "end-line": "No more content",
     "load-more": "Load more",
     "no-content": "No available content",
     "top5-active-users": "Top 5 active users",
@@ -173,21 +173,14 @@
       "operation": "Operation"
     }
   },
-  "project-table": {
-    "title": "Projects",
-    "label": {
-      "name": "Name",
-      "target-start-date": "Target start date",
-      "target-end-date": "Target end date",
-      "operation": "Operation"
-    },
-    "card": {
-      "tooltip": {
-        "public-to-all": "Visiable to everyone",
-        "in-process": "In process",
-        "closed": "Closed"
-      }
+  "domain-page": {
+    "load-more": "Load more",
+    "msg": {
+      "error": "Operation failed"
     }
+  },
+  "projects-page": {
+    "page-main-title": "Projects"
   },
   "project-creation-page": {
     "form-title": "Create a new project",
@@ -212,7 +205,7 @@
   },
   "project-detail-page": {
     "fields": {
-      "name": "Project Name",
+      "name": "Project name",
       "description": "Description",
       "target-start-time": "Target start time",
       "target-end-time": "Target end time"
@@ -282,19 +275,7 @@
     }
   },
   "articles-page": {
-    "page-main-title": "Articles",
-    "article-table": {
-      "label": {
-        "title": "Title",
-        "subTitle": "Subtitle",
-        "description": "Description",
-        "createTime": "Create time",
-        "updateTime": "Update time",
-        "operation": "Operation"
-      }
-    },
-    "recent-only": "Recent only",
-    "search-box-placeholder": "Search..."
+    "page-main-title": "Articles"
   },
   "article-creation-page": {
     "page-main-title": "Create a new article",

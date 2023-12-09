@@ -3,7 +3,6 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
 import {
-  SingleTagSelecter,
   Page,
   EditIconButton,
   TreePanel,
@@ -16,6 +15,7 @@ import {
   SubjectInfoUpdateDTO,
   TagOption,
 } from "../../../global/types";
+import SingleTagSelecter from "./SingleTagSelecter";
 import { SubjectService } from "../../../services";
 
 export default function SubjectDetailPage() {
