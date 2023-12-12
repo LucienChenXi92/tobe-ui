@@ -49,7 +49,7 @@ export default function FeaturedArticles(props: {
           setCurrent(response.data.current);
           setTotalPage(response.data.pages);
         })
-        .catch(() => { });
+        .catch(() => {});
     },
     []
   );
@@ -116,9 +116,15 @@ export default function FeaturedArticles(props: {
         textColor="secondary"
         indicatorColor="secondary"
       >
-        {props.availableDomains.includes(Domain.Article) && <Tab value={Domain.Article} label={t("home-page.articles")} />}
-        {props.availableDomains.includes(Domain.Project) && <Tab value={Domain.Project} label={t("home-page.projects")} />}
-        {props.availableDomains.includes(Domain.Vocabulary) && <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />}
+        {props.availableDomains.includes(Domain.Article) && (
+          <Tab value={Domain.Article} label={t("home-page.articles")} />
+        )}
+        {props.availableDomains.includes(Domain.Project) && (
+          <Tab value={Domain.Project} label={t("home-page.projects")} />
+        )}
+        {props.availableDomains.includes(Domain.Vocabulary) && (
+          <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />
+        )}
       </Tabs>
       {newsData.length > 0 ? (
         <>

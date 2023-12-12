@@ -34,7 +34,9 @@ export default function PersonalPortalPage() {
     const availableDomains: Domain[] = [];
     profile?.features.articleModule && availableDomains.push(Domain.Article);
     profile?.features.projectModule && availableDomains.push(Domain.Project);
-    profile?.features.vocabularyModule && availableDomains.push(Domain.Vocabulary);
+    profile?.features.vocabularyModule &&
+      availableDomains.push(Domain.Vocabulary);
+    return availableDomains;
   }
   return (
     <FrontendLayout>
@@ -42,7 +44,11 @@ export default function PersonalPortalPage() {
       {profile ? (
         <>
           <IntroducationSection profile={profile} />
-          <FunctionSection extraPanels={[]} ownerId={profile.id} availableDomains={getAvailableDomains(profile)} />
+          <FunctionSection
+            extraPanels={[]}
+            ownerId={profile.id}
+            availableDomains={getAvailableDomains(profile)}
+          />
         </>
       ) : (
         <Grid
