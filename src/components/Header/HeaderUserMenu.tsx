@@ -13,7 +13,8 @@ import { URL, validateUrl } from "../../routes";
 import { useAuthState } from "../../contexts";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { settings } from "./configs";
+import { pages } from "./configs";
+import { authed, enabled } from "../../commons";
 
 export default function HeaderUserMenu() {
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
@@ -38,6 +39,12 @@ export default function HeaderUserMenu() {
   const authContext = useAuthState();
   const navigate = useNavigate();
   const { t } = useTranslation();
+
+  const authedPages = pages.filter(
+    (pageItem) =>
+      authed(pageItem.requiredRoles) && enabled(pageItem.requiredFeature)
+  );
+
   return (
     <>
       {authContext.user ? (
@@ -85,12 +92,12 @@ export default function HeaderUserMenu() {
         open={Boolean(anchorElUser)}
         onClose={handleCloseUserMenu}
       >
-        {settings.map((setting) => (
+        {authedPages.map((page) => (
           <MenuItem
-            key={setting.label}
-            onClick={(e) => handleCloseUserMenu(e, setting.url)}
+            key={page.label}
+            onClick={(e) => handleCloseUserMenu(e, page.url)}
           >
-            <Typography textAlign="center">{t(setting.label)}</Typography>
+            <Typography textAlign="center">{t(page.label)}</Typography>
           </MenuItem>
         ))}
       </Menu>

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import Add from "@mui/icons-material/Add";
 import { useNavigate, useLocation } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import { authed } from "../../commons";
+import { authed, enabled } from "../../commons";
 import { PageItem } from "../../global/types";
 
 const NavItem = styled(ListItem)(({ theme }) => ({
@@ -32,8 +32,9 @@ export const NavItems = (props: { pageItems: PageItem[] }) => {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
-  const authedPages = props.pageItems.filter((pageItem) =>
-    authed(pageItem.requiredRoles)
+  const authedPages = props.pageItems.filter(
+    (pageItem) =>
+      authed(pageItem.requiredRoles) && enabled(pageItem.requiredFeature)
   );
   return (
     <>
