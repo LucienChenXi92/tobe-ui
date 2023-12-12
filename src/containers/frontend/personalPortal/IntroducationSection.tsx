@@ -24,10 +24,9 @@ export default function IntroducationSection(props: {
             mb: { xs: -12, lg: -10 },
             backgroundSize: "cover",
             backgroundPosition: "center 40%",
-            backgroundImage: `url(${
-              props.profile?.backgroundImg ||
+            backgroundImage: `url(${props.profile?.backgroundImg ||
               "https://images.pexels.com/photos/3560168/pexels-photo-3560168.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            })`,
+              })`,
           }}
         />
         <Grid container>
@@ -40,7 +39,7 @@ export default function IntroducationSection(props: {
             lg={8}
             xl={8}
             direction="column"
-            sx={{ px: 2, pt: 2, minHeight: "30vh" }}
+            sx={{ px: 2, py: 2, minHeight: "30vh" }}
           >
             <Grid
               item
@@ -51,9 +50,8 @@ export default function IntroducationSection(props: {
                 width: "140px",
                 height: "140px",
                 border: "5px solid white",
-                backgroundImage: `url(${
-                  props.profile?.photoImg || props.profile?.avatarUrl
-                })`,
+                backgroundImage: `url(${props.profile?.photoImg || props.profile?.avatarUrl
+                  })`,
                 backgroundRepeat: "round",
               }}
             />

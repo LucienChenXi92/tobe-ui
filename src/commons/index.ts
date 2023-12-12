@@ -43,10 +43,10 @@ export function enabled(requiredFeature?: string): boolean {
     localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER) || "{}"
   );
   // if no feature code required, then return true directly
-  if (requiredFeature) {
-    return userProfile.features[requiredFeature] === true;
+  if (!requiredFeature) {
+    return true;
   }
-  return true;
+  return userProfile?.features?.[requiredFeature] === true;
 }
 
 export function formatDate(time: string) {

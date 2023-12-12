@@ -14,6 +14,7 @@ export default function FeaturedArticles(props: {
   tags: string[];
   ownerId: string;
   domain: Domain;
+  availableDomains: Domain[];
   handleDomainChange: (newValue: Domain) => void;
 }) {
   const { t } = useTranslation();
@@ -48,7 +49,7 @@ export default function FeaturedArticles(props: {
           setCurrent(response.data.current);
           setTotalPage(response.data.pages);
         })
-        .catch(() => {});
+        .catch(() => { });
     },
     []
   );
@@ -63,7 +64,7 @@ export default function FeaturedArticles(props: {
   }
 
   // based on current filters and load more data
-  const handleLoadMoreArticles = (): void => {
+  const handleLoadMoreRecords = (): void => {
     loadNews(
       props.domain,
       LoadType.Append,
@@ -115,9 +116,9 @@ export default function FeaturedArticles(props: {
         textColor="secondary"
         indicatorColor="secondary"
       >
-        <Tab value={Domain.Article} label={t("home-page.articles")} />
-        <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />
-        <Tab value={Domain.Project} label={t("home-page.projects")} />
+        {props.availableDomains.includes(Domain.Article) && <Tab value={Domain.Article} label={t("home-page.articles")} />}
+        {props.availableDomains.includes(Domain.Project) && <Tab value={Domain.Project} label={t("home-page.projects")} />}
+        {props.availableDomains.includes(Domain.Vocabulary) && <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />}
       </Tabs>
       {newsData.length > 0 ? (
         <>
@@ -143,7 +144,7 @@ export default function FeaturedArticles(props: {
             </Grid>
           ) : (
             <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
-              <Button variant="text" onClick={handleLoadMoreArticles}>
+              <Button variant="text" onClick={handleLoadMoreRecords}>
                 {t("home-page.load-more")}
               </Button>
             </Grid>

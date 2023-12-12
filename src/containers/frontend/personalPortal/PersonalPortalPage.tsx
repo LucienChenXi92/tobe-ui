@@ -3,7 +3,7 @@ import { Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { PublicDataService } from "../../../services";
 import { enqueueSnackbar } from "notistack";
-import { UserFullProfileDTO } from "../../../global/types";
+import { Domain, UserFullProfileDTO } from "../../../global/types";
 import { useTranslation } from "react-i18next";
 import { FrontendLayout, Loading } from "../../../components";
 import FunctionSection from "../homePage/FunctionSection";
@@ -27,14 +27,22 @@ export default function PersonalPortalPage() {
       })
       .finally(() => setLoading(false));
   }, [t, id]);
+
   useEffect(() => loadProfile(), [loadProfile]);
+
+  function getAvailableDomains(profile: UserFullProfileDTO) {
+    const availableDomains: Domain[] = [];
+    profile?.features.articleModule && availableDomains.push(Domain.Article);
+    profile?.features.projectModule && availableDomains.push(Domain.Project);
+    profile?.features.vocabularyModule && availableDomains.push(Domain.Vocabulary);
+  }
   return (
     <FrontendLayout>
       <Loading open={loading} />
       {profile ? (
         <>
           <IntroducationSection profile={profile} />
-          <FunctionSection extraPanels={[]} ownerId={profile.id} />
+          <FunctionSection extraPanels={[]} ownerId={profile.id} availableDomains={getAvailableDomains(profile)} />
         </>
       ) : (
         <Grid

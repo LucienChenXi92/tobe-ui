@@ -5,6 +5,7 @@ import FeaturedNews from "./FeaturedNews";
 import TagStatisticsFilterPanel from "./TagStatisticsFilterPanel";
 
 export default function FunctionSection(props: {
+  availableDomains: Domain[];
   extraPanels: ReactElement[];
   ownerId: string;
 }) {
@@ -24,6 +25,7 @@ export default function FunctionSection(props: {
             ownerId={props.ownerId}
             tags={checkedTags}
             domain={domain}
+            availableDomains={[Domain.Article, Domain.Project, Domain.Vocabulary]}
             handleDomainChange={handleDomainChange}
           />
         </Grid>

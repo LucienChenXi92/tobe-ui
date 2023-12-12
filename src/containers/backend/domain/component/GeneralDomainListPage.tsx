@@ -23,7 +23,7 @@ export default function GeneralDomainListPage(props: {
     const [openLoading, setOpenLoading] = useState<boolean>(false);
     const [data, setData] = useState<GeneralCardData[]>([]);
     const [current, setCurrent] = useState<number>(0);
-    const [size, setSize] = useState<number>(12);
+    const [size] = useState<number>(16);
     const [keyword, setKeyword] = useState<string>("");
     const [totalPage, setTotalPage] = useState<number>(1);
     const navigate = useNavigate();
@@ -50,7 +50,7 @@ export default function GeneralDomainListPage(props: {
                 });
             })
             .finally(() => setOpenLoading(false));
-    }, [enqueueSnackbar, t, props.domainService,]);
+    }, [enqueueSnackbar, t, props.domainService]);
 
     useEffect(() => {
         loadData(data, 12, 0, "");

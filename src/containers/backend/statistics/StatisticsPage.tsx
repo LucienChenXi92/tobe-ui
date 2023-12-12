@@ -10,6 +10,7 @@ import StorageIcon from "@mui/icons-material/Storage";
 import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import { Domain, BaseInfoOverview } from "../../../global/types";
+import { FEATURE_CODE, enabled } from "../../../commons";
 
 export default function StatisticsPage() {
   const { t } = useTranslation();
@@ -24,7 +25,6 @@ export default function StatisticsPage() {
     publicNum: 0,
     totalViewCount: 0,
   });
-
   const [vocabularyData, setVocabularyData] = useState<BaseInfoOverview>({
     totalNum: 0,
     publicNum: 0,
@@ -55,9 +55,9 @@ export default function StatisticsPage() {
   return (
     <Page openLoading={false} pageTitle={t("statistics-page.page-main-title")}>
       <Grid container spacing={1}>
-        <StatisticsDomainPanel domain={Domain.Project} data={projectData} link={URL.PROJECTS} />
-        <StatisticsDomainPanel domain={Domain.Article} data={articleData} link={URL.ARTICLES} />
-        <StatisticsDomainPanel domain={Domain.Vocabulary} data={vocabularyData} link={URL.VOCABULARIES} />
+        {enabled(FEATURE_CODE.PROJECT_MODULE) && <StatisticsDomainPanel domain={Domain.Project} data={projectData} link={URL.PROJECTS} />}
+        {enabled(FEATURE_CODE.ARTICLE_MODULE) && <StatisticsDomainPanel domain={Domain.Article} data={articleData} link={URL.ARTICLES} />}
+        {enabled(FEATURE_CODE.VOCABULARY_MODULE) && <StatisticsDomainPanel domain={Domain.Vocabulary} data={vocabularyData} link={URL.VOCABULARIES} />}
       </Grid>
     </Page>
   );

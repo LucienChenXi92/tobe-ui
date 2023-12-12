@@ -90,6 +90,13 @@ export interface UserFullProfileDTO extends UserBriefProfileDTO {
   position: string;
   backgroundImg: string;
   photoImg: string;
+  features: UserFeatureDTO;
+}
+
+export interface UserFeatureDTO {
+  articleModule: boolean;
+  projectModule: boolean;
+  vocabularyModule: boolean;
 }
 
 export interface TagOption {
@@ -280,4 +287,4 @@ export interface WordCreateDTO {
   meaningInEnglish: string;
 }
 
-export interface WordUpdateDTO extends WordGeneralDTO {}
+export interface WordUpdateDTO extends WordGeneralDTO { }
