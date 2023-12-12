@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { validateUrl } from "../../routes";
 import { useTranslation } from "react-i18next";
 import theme from "../../theme";
-import { pages } from "./configs";
+import { publicPages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
 import project from "../../../package.json";
 
@@ -150,7 +150,7 @@ const HeaderContent = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
+              {publicPages.map((page) => (
                 <MenuItem
                   key={page.label}
                   onClick={(event) => handleCloseNavMenu(event, page.url)}
@@ -187,7 +187,7 @@ const HeaderContent = () => {
         </Box>
 
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-          {pages.map((page) => (
+          {publicPages.map((page) => (
             <Button
               key={page.label}
               size="large"

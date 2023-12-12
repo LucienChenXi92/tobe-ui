@@ -43,6 +43,7 @@ export interface PageItem {
   url: string;
   secondaryUrl?: string;
   requiredRoles: string[];
+  requiredFeature?: string;
 }
 
 export interface ProjectCardProps {
