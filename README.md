@@ -1,46 +1,29 @@
-# Getting Started with Create React App
+## TOBE UI
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Live Demo: https://lucienchen.xyz
 
-## Available Scripts
+TOBE is an open-source blog system which contains frontend visualization and backend content management two parts, it supports online creation, edition, and release content. The UI of TOBE is implemented with React and Material-UI framework.
 
-In the project directory, you can run:
+### Screenshots
 
-### `npm start`
+#### Frontend
+![image](https://user-images.githubusercontent.com/76718533/231990968-879ef602-90b1-42a7-95e2-6ba52fa3e559.png)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Backend
+![image](https://user-images.githubusercontent.com/76718533/231991184-ad5bb317-6422-4526-aee4-56427c9656db.png)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `npm test`
+### How to start the project
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+You need to download this project to your local and prepare following baisc environment:
 
-### `npm run build`
+Nodejs: v14.18.3 or above
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Once your environment is ready, you can run `npm install` to install necessary packages, and then run `npm start` to boot the project, you can access the page via `localhost:3000`.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Contact
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+If you are interested in this project and wanna know more about this project, you can find me by:
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Wechat: LucienChen_ChenXi  
+Email: 474504303@qq.com  
