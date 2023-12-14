@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Box, Paper, Grid, Divider, Typography, Button } from "@mui/material";
+import { Box, Grid, Divider, Typography, Button } from "@mui/material";
 import Add from "@mui/icons-material/Add";
 import theme from "../../../theme";
 import { WordGeneralDTO } from "../../../global/types";
@@ -129,28 +129,26 @@ export function WordListPanel(props: {
   }
 
   return (
-    <Paper variant="outlined" sx={{ my: 1, p: { xs: 2, md: 3 } }}>
-      <Box justifyContent="center">
-        <Grid container direction="column" sx={{ minHeight: "30vh" }}>
-          {render(words)}
-        </Grid>
-        <WordCreateDialog
-          open={open}
-          setOpen={setOpen}
-          vocabularyId={props.vocabularyId}
+    <Box justifyContent="center">
+      <Grid container direction="column" sx={{ minHeight: "30vh" }}>
+        {render(words)}
+      </Grid>
+      <WordCreateDialog
+        open={open}
+        setOpen={setOpen}
+        vocabularyId={props.vocabularyId}
+        loadData={loadWordsData}
+      />
+      {props.editable ? (
+        <WordDetailDialog
+          word={openedWord}
+          setWord={setOpenedWord}
           loadData={loadWordsData}
+          handleDeleteWord={handleDeleteWord}
         />
-        {props.editable ? (
-          <WordDetailDialog
-            word={openedWord}
-            setWord={setOpenedWord}
-            loadData={loadWordsData}
-            handleDeleteWord={handleDeleteWord}
-          />
-        ) : (
-          <WordDisplayDialog word={openedWord} setWord={setOpenedWord} />
-        )}
-      </Box>
-    </Paper>
+      ) : (
+        <WordDisplayDialog word={openedWord} setWord={setOpenedWord} />
+      )}
+    </Box>
   );
 }

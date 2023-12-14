@@ -132,6 +132,7 @@ export default function FeaturedArticles(props: {
             <NewsListItem
               key={n.id}
               owner={n.ownerName}
+              ownerId={n.ownerId}
               title={n.title}
               description={n.description}
               publishTime={n.publishTime}

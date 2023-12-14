@@ -37,7 +37,7 @@
     },
     "author-panel": {
       "public-creation-count": "公开内容数",
-      "view-count": "累积浏览量"
+      "view-count": "累积阅读量"
     },
     "general-card-view": {
       "title": {
@@ -52,7 +52,7 @@
     "vocabularies": "单词本",
     "workout": "锻炼",
     "activities": "活动",
-    "view-count": "浏览",
+    "view-count": "阅读量",
     "subjects": "专题",
     "tools": "工具",
     "end-line": "实在是没有了。。。",
@@ -248,7 +248,7 @@
       },
       "public": "公开总计",
       "all": "内容总计",
-      "view-count": "浏览总计(千)"
+      "view-count": "阅读总计(千)"
     },
     "msg": {
       "error": "获取数据失败"

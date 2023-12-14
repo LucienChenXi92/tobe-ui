@@ -2,6 +2,7 @@ import { Grid, Link, Typography } from "@mui/material";
 import { useAuthState } from "../../contexts";
 import { useTranslation } from "react-i18next";
 import { TimeFormat } from "../../commons";
+import { URL } from "../../routes";
 
 export default function ContentPageMetaBar(props: {
   authorName: string;
@@ -15,7 +16,15 @@ export default function ContentPageMetaBar(props: {
   return (
     <Grid item container xs={12} sx={{ my: 1 }}>
       <Typography variant="body2" color="text.secondary" sx={{ flexGrow: 1 }}>
-        {props.authorName} · {TimeFormat.dateAndTimeFormat(props.publishTime)} ·{" "}
+        <Link
+          href={URL.PERSONAL_PORTAL.replace(":id", props.authorId.toString())}
+          underline="none"
+          target="blank"
+          color="text.secondary"
+        >
+          {props.authorName}
+        </Link>{" "}
+        · {TimeFormat.dateAndTimeFormat(props.publishTime)} ·{" "}
         {t("components.meta-bar.view")} {props.viewCount}
       </Typography>
       {authState?.user.id ===

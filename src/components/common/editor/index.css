@@ -18,3 +18,7 @@
   --w-e-modal-button-bg-color: #fafafa;
   --w-e-modal-button-border-color: #d9d9d9;
 }
+
+.w-e-text-container [data-slate-editor] {
+  padding: 0px !important;
+}

@@ -66,6 +66,7 @@ export interface NewsDTO {
   domain: string;
   description: string;
   ownerName: string;
+  ownerId: string;
   avatarUrl: string;
   createTime: string;
   updateTime: string | null;
@@ -287,4 +288,4 @@ export interface WordCreateDTO {
   meaningInEnglish: string;
 }
 
-export interface WordUpdateDTO extends WordGeneralDTO { }
+export interface WordUpdateDTO extends WordGeneralDTO {}

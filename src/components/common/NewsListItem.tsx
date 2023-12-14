@@ -1,12 +1,14 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid, Link, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { TagOption } from "../../global/types";
 import { TagDisplayBar } from "..";
 import theme from "../../theme";
 import { TimeFormat } from "../../commons";
+import { URL } from "../../routes";
 
 export default function NewsListItem(props: {
   owner: string;
+  ownerId: string;
   title: string;
   description: string;
   publishTime: string | null;
@@ -61,8 +63,16 @@ export default function NewsListItem(props: {
       </Grid>
       <Grid container item xs={12}>
         <Typography variant="body2" color="text.secondary">
-          {props.owner} | {TimeFormat.briefDateFormat(props.publishTime)} |{" "}
-          {t("home-page.view-count")}: {props.viewCount}
+          <Link
+            href={URL.PERSONAL_PORTAL.replace(":id", props.ownerId)}
+            underline="none"
+            target="blank"
+            color="text.secondary"
+          >
+            {props.owner}
+          </Link>{" "}
+          · {TimeFormat.briefDateFormat(props.publishTime)} ·{" "}
+          {t("home-page.view-count")} {props.viewCount}
         </Typography>
       </Grid>
       <Grid container item xs={12}>

@@ -141,7 +141,11 @@ export default function VocabularyDetailPage() {
           )}
         </Box>
       </Paper>
-      {id && <WordListPanel editable={true} vocabularyId={id} />}
+      {id && (
+        <Paper variant="outlined" sx={{ my: 1, p: { xs: 2, md: 3 } }}>
+          <WordListPanel editable={true} vocabularyId={id} />
+        </Paper>
+      )}
     </Page>
   );
 }
