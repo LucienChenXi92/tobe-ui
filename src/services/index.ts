@@ -1,13 +1,16 @@
 import server from "./server";
 import * as AuthService from "./AuthService";
 import * as UserService from "./UserService";
-import * as ArticleService from "./ArticleService";
-import * as ProjectService from "./ProjectService";
+import { ArticleService } from "./ArticleService";
+import { ProjectService } from "./ProjectService";
+import { VocabularyService } from "./VocabularyService";
+import * as ProjectProgressService from "./ProjectProgressService";
+import * as WordService from "./WordService";
 import * as PublicDataService from "./PublicDataService";
 import * as OverviewService from "./OverviewService";
 import * as TagService from "./TagService";
 import * as SubjectService from "./SubjectService";
-import * as VocabularyService from "./VocabularyService";
+
 
 export {
   server,
@@ -15,6 +18,8 @@ export {
   UserService,
   ArticleService,
   ProjectService,
+  ProjectProgressService,
+  WordService,
   PublicDataService,
   OverviewService,
   TagService,

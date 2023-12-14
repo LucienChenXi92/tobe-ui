@@ -9,9 +9,14 @@ import {
 } from "../../../global/types";
 import { useParams } from "react-router-dom";
 import { Paper, Typography, Grid, Link, SxProps } from "@mui/material";
-import { AuthorDisplayPanel, TobeBreadcrumbs, Page } from "../../../components";
-import { TimeFormat } from "../../../commons";
+import {
+  AuthorDisplayPanel,
+  TobeBreadcrumbs,
+  Page,
+  ContentPageMetaBar,
+} from "../../../components";
 import { URL } from "../../../routes";
+import AbcIcon from "@mui/icons-material/Abc";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
 
 export default function SubjectReadingPage() {
@@ -37,6 +42,16 @@ export default function SubjectReadingPage() {
         <Link href={props.href} underline="hover" color={"info.main"}>
           <ArticleOutlinedIcon sx={{ width: "1rem", height: "1rem" }} />{" "}
           {props.text}
+        </Link>
+      </Grid>
+    );
+  };
+
+  const VocabularyLink = (props: { text: string; href: string }) => {
+    return (
+      <Grid item xs={12} sx={{ mt: 1 }}>
+        <Link href={props.href} underline="hover" color={"info.main"}>
+          <AbcIcon sx={{ width: "1rem", height: "1rem" }} /> {props.text}
         </Link>
       </Grid>
     );
@@ -71,7 +86,7 @@ export default function SubjectReadingPage() {
       subject.name
     );
     return (
-      <Grid container flexDirection="row">
+      <Grid container flexDirection="row" sx={{ px: "10px" }}>
         {result}
       </Grid>
     );
@@ -92,9 +107,9 @@ export default function SubjectReadingPage() {
         elements.push(
           <Section text={n.label} variant={sectionVariants[depth]} key={n.id} />
         );
-        let articles: JSX.Element[] = [];
+        let eles: JSX.Element[] = [];
         n.relatedArticles.forEach((a: NewsDTO) => {
-          articles.push(
+          eles.push(
             <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
               <ArticleLink
                 key={a.id}
@@ -107,15 +122,34 @@ export default function SubjectReadingPage() {
             </Grid>
           );
         });
-        if (articles && articles.length > 0) {
+        n.relatedVocabularies.forEach((a: NewsDTO) => {
+          eles.push(
+            <Grid item xs={12} sm={12} md={12} lg={6} xl={6}>
+              <VocabularyLink
+                key={a.id}
+                text={a.title}
+                href={
+                  URL.NEWS_VOCABULARY_DETAIL.replace(":id", a.id) +
+                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                }
+              />
+            </Grid>
+          );
+        });
+        if (eles && eles.length > 0) {
           elements.push(
             <Grid container flexDirection="row">
-              {articles}
+              {eles}
             </Grid>
           );
         }
 
-        if (n.children.length === 0 && n.relatedArticles.length === 0) {
+        if (
+          n.children.length === 0 &&
+          n.relatedArticles.length === 0 &&
+          n.relatedVocabularies.length === 0 &&
+          n.relatedProjects.length === 0
+        ) {
           elements.push(<ToBeContinuedTip />);
         }
         convertTreeToList(
@@ -160,39 +194,35 @@ export default function SubjectReadingPage() {
         .finally(() => setOpenLoading(false));
     }
     load();
-  }, [t, enqueueSnackbar]);
+  }, [t, enqueueSnackbar, id]);
 
   return (
     <Page openLoading={openLoading} pageTitle={subject?.name}>
       <TobeBreadcrumbs
         nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={9}>
-          <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-            {subject && (
+      {subject && (
+        <Grid container spacing={1}>
+          <Grid item xs={12} sm={12} md={9}>
+            <Paper sx={{ py: 2, px: 2 }} variant="outlined">
               <Grid container>
-                <Grid item container xs={12} sx={{ my: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ flexGrow: 1 }}
-                  >
-                    {subject.ownerName} ·{" "}
-                    {TimeFormat.dateAndTimeFormat(subject.publishTime)} ·{" "}
-                    {t("article-reading-page.view")} {subject.viewCount}
-                  </Typography>
-                </Grid>
+                <ContentPageMetaBar
+                  authorId={subject.ownerId}
+                  authorName={subject.ownerName}
+                  publishTime={subject.publishTime}
+                  viewCount={subject.viewCount}
+                  editLinkUrl={`/my/subjects/${subject.id}`}
+                />
                 {printSubjectTree(subject)}
               </Grid>
-            )}
-          </Paper>
-        </Grid>
+            </Paper>
+          </Grid>
 
-        <Grid item sm={12} md={3}>
-          {subject?.ownerId && <AuthorDisplayPanel userId={subject?.ownerId} />}
+          <Grid item sm={12} md={3}>
+            <AuthorDisplayPanel userId={subject.ownerId} />
+          </Grid>
         </Grid>
-      </Grid>
+      )}
     </Page>
   );
 }

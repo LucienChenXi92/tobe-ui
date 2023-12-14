@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import { Grid, Hidden, Typography, Link } from "@mui/material";
+import { Grid, Typography, Link } from "@mui/material";
 import { Page } from "../../../components";
 
 export default function AboutPage() {
@@ -24,10 +24,6 @@ export default function AboutPage() {
           <Typography color="textSecondary">
             {t("about-page.about-tobe.p2")}
           </Typography>
-          <br />
-          <Typography color="textSecondary">
-            {t("about-page.about-tobe.p3")}
-          </Typography>
         </Grid>
         <Grid item xs={12} sm={4} sx={{ px: 4, pt: { xs: 8, sm: 8 } }}>
           <img
@@ -39,54 +35,6 @@ export default function AboutPage() {
             }
           />
         </Grid>
-      </Grid>
-
-      <Grid container sx={{ py: 4 }}>
-        <Hidden mdDown>
-          <Grid item xs={12} sm={4} sx={{ px: 2, pt: 8 }}>
-            <img
-              alt="lucien-avatar"
-              width={"100%"}
-              height={"240px"}
-              src={"/images/lucien.JPG"}
-            />
-          </Grid>
-        </Hidden>
-        <Grid item xs={12} sm={12} md={8}>
-          <Typography
-            color={"textSecondary"}
-            variant="h6"
-            sx={{ mt: 2, mb: 1 }}
-          >
-            {t("about-page.about-me.title")}
-          </Typography>
-          <Typography color="textSecondary">
-            {t("about-page.about-me.p1")}
-          </Typography>
-          <br />
-          <Typography color="textSecondary">
-            {t("about-page.about-me.p2")}
-          </Typography>
-          <br />
-          <Typography color="textSecondary">
-            {t("about-page.about-me.p3")}
-          </Typography>
-          <br />
-          <Typography color="textSecondary">
-            {t("about-page.about-me.p4")}
-          </Typography>
-        </Grid>
-
-        <Hidden mdUp>
-          <Grid item xs={12} sx={{ p: 4 }}>
-            <img
-              alt="lucien-avatar"
-              width={"100%"}
-              height={"240px"}
-              src={"/images/lucien.JPG"}
-            />
-          </Grid>
-        </Hidden>
       </Grid>
 
       <Grid container sx={{ py: 4 }}>

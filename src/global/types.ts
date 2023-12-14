@@ -26,21 +26,24 @@ export interface ProjectInfo {
   name: string;
   description: string;
   statusValue: number;
-  owner: string;
+  ownerName: string;
   ownerId: string;
-  publicToAll: string;
-  actualStartTime: string;
+  publicToAll: boolean;
+  publishTime: string;
   targetStartTime: string;
-  actualEndTime: string;
   targetEndTime: string;
   tags: TagOption[];
+  viewCount: number;
+  createTime: string;
 }
 
 export interface PageItem {
   label: string;
   icon: JSX.Element;
   url: string;
+  secondaryUrl?: string;
   requiredRoles: string[];
+  requiredFeature?: string;
 }
 
 export interface ProjectCardProps {
@@ -78,6 +81,22 @@ export interface UserBriefProfileDTO {
   avatarUrl: string;
   blog: string;
   introduction: string;
+  publicCreationCount: number;
+  viewCount: number;
+}
+
+export interface UserFullProfileDTO extends UserBriefProfileDTO {
+  address: string;
+  position: string;
+  backgroundImg: string;
+  photoImg: string;
+  features: UserFeatureDTO;
+}
+
+export interface UserFeatureDTO {
+  articleModule: boolean;
+  projectModule: boolean;
+  vocabularyModule: boolean;
 }
 
 export interface TagOption {
@@ -127,7 +146,6 @@ export interface ArticleDetailDTO extends GeneralCardData {
   authorId: string;
   likeCount: number;
   viewCount: number;
-  publicToAll: boolean;
   publishTime: string;
   subTitle: string;
   avatarUrl: string;
@@ -145,7 +163,6 @@ export interface VocabularyDetailDTO extends GeneralCardData {
   authorId: string;
   likeCount: number;
   viewCount: number;
-  publicToAll: boolean;
   publishTime: string;
   language: string;
   avatarUrl: string;
@@ -155,7 +172,9 @@ export interface GeneralCardData {
   id: string;
   title: string;
   description: string;
+  publicToAll: boolean;
   tags: TagOption[];
+  createTime?: string;
 }
 
 export interface VocabularyUpdateDTO extends VocabularyCreationDTO {
@@ -166,6 +185,12 @@ export enum Domain {
   Article = "ARTICLE",
   Project = "PROJECT",
   Vocabulary = "VOCABULARY",
+}
+
+export interface BaseInfoOverview {
+  totalNum: number;
+  publicNum: number;
+  totalViewCount: number;
 }
 
 export interface SubjectInfoCreationDTO {
@@ -209,6 +234,7 @@ export interface TagRelationshipGeneralDTO {
   subjectId: string;
   relatedArticles: NewsDTO[];
   relatedProjects: NewsDTO[];
+  relatedVocabularies: NewsDTO[];
   children: TagRelationshipGeneralDTO[];
 }
 
@@ -243,3 +269,22 @@ export interface BreadcrumbsNode {
   label: string;
   href: string;
 }
+
+export interface WordGeneralDTO {
+  id: number;
+  vocabularyId: string;
+  word: string;
+  partOfSpeech: string;
+  meaningInChinese: string;
+  meaningInEnglish: string;
+}
+
+export interface WordCreateDTO {
+  vocabularyId: string;
+  word: string;
+  partOfSpeech: string;
+  meaningInChinese: string;
+  meaningInEnglish: string;
+}
+
+export interface WordUpdateDTO extends WordGeneralDTO { }

@@ -5,7 +5,6 @@ import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
 import { NewsListItem } from "../../../components";
 import { PublicDataService } from "../../../services";
-
 enum LoadType {
   Append,
   Replace,
@@ -13,7 +12,9 @@ enum LoadType {
 
 export default function FeaturedArticles(props: {
   tags: string[];
+  ownerId: string;
   domain: Domain;
+  availableDomains: Domain[];
   handleDomainChange: (newValue: Domain) => void;
 }) {
   const { t } = useTranslation();
@@ -29,9 +30,16 @@ export default function FeaturedArticles(props: {
       _loadType: LoadType,
       _currentPage: number,
       _tags: string[],
-      _newsData: NewsDTO[]
+      _newsData: NewsDTO[],
+      _ownerId: string
     ): void => {
-      PublicDataService.getNewsByTags(_domain, 10, _currentPage, _tags)
+      PublicDataService.getNewsByTags(
+        _domain,
+        10,
+        _currentPage,
+        _tags,
+        _ownerId
+      )
         .then((response) => {
           if (_loadType === LoadType.Append) {
             setNewsData(_newsData.concat(response.data.records));
@@ -46,15 +54,38 @@ export default function FeaturedArticles(props: {
     []
   );
 
+  function getURIbyDomain(domain: Domain | string): string {
+    switch (domain) {
+      case Domain.Vocabulary:
+        return "vocabularies";
+      default:
+        return domain.toLowerCase() + "s";
+    }
+  }
+
   // based on current filters and load more data
-  const handleLoadMoreArticles = (): void => {
-    loadNews(props.domain, LoadType.Append, current + 1, props.tags, newsData);
+  const handleLoadMoreRecords = (): void => {
+    loadNews(
+      props.domain,
+      LoadType.Append,
+      current + 1,
+      props.tags,
+      newsData,
+      props.ownerId
+    );
   };
 
   useEffect(() => {
     // reset filter and load the first page data
     const handleTagFilterChange = (): void => {
-      loadNews(props.domain, LoadType.Replace, 1, props.tags, newsData);
+      loadNews(
+        props.domain,
+        LoadType.Replace,
+        1,
+        props.tags,
+        newsData,
+        props.ownerId
+      );
     };
     handleTagFilterChange();
   }, [props.domain, props.tags, loadNews]); // eslint-disable-line
@@ -85,8 +116,15 @@ export default function FeaturedArticles(props: {
         textColor="secondary"
         indicatorColor="secondary"
       >
-        <Tab value={Domain.Article} label={t("home-page.articles")} />
-        <Tab value={Domain.Project} label={t("home-page.projects")} />
+        {props.availableDomains.includes(Domain.Article) && (
+          <Tab value={Domain.Article} label={t("home-page.articles")} />
+        )}
+        {props.availableDomains.includes(Domain.Project) && (
+          <Tab value={Domain.Project} label={t("home-page.projects")} />
+        )}
+        {props.availableDomains.includes(Domain.Vocabulary) && (
+          <Tab value={Domain.Vocabulary} label={t("home-page.vocabularies")} />
+        )}
       </Tabs>
       {newsData.length > 0 ? (
         <>
@@ -100,7 +138,7 @@ export default function FeaturedArticles(props: {
               viewCount={n.viewCount}
               tags={n.tags}
               onClick={() =>
-                navigate(`/news/${n.domain?.toLowerCase()}s/${n.id}`)
+                navigate(`/news/${getURIbyDomain(n.domain)}/${n.id}`)
               }
             />
           ))}
@@ -112,7 +150,7 @@ export default function FeaturedArticles(props: {
             </Grid>
           ) : (
             <Grid container item xs={12} justifyContent="center" sx={{ my: 1 }}>
-              <Button variant="text" onClick={handleLoadMoreArticles}>
+              <Button variant="text" onClick={handleLoadMoreRecords}>
                 {t("home-page.load-more")}
               </Button>
             </Grid>

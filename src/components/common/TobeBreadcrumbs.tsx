@@ -5,7 +5,7 @@ import { BreadcrumbsNode } from "../../global/types";
 export default function TobeBreadcrumbs(props: { nodes?: BreadcrumbsNode[] }) {
   const { t } = useTranslation();
   return (
-    <Breadcrumbs aria-label="breadcrumb" sx={{ m: 1, flexGrow: 1 }}>
+    <Breadcrumbs aria-label="breadcrumb" sx={{ m: 1, ml: 0, flexGrow: 1 }}>
       <Link underline="hover" color="inherit" href="/">
         {t("breadcrumbs.home")}
       </Link>

@@ -47,6 +47,9 @@ export default function NewsListItem(props: {
         xs={12}
         sx={{
           my: 1,
+          maxHeight: "80px",
+          overflow: "hidden",
+          textOverflow: "ellipsis",
           color: theme.palette.text.secondary,
           cursor: "pointer",
           "&:hover": {

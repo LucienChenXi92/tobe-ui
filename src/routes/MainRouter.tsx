@@ -2,10 +2,20 @@ import React, { Suspense } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
-import { BasicLayout, Loading } from "../components";
+import { FrontendLayout, Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
-import HomePage from "../containers/frontend/homePage/HomePage";
-import SignInPage from "../containers/frontend/signIn/SignInPage";
+
+const SignInPage = React.lazy(
+  () => import("../containers/frontend/signIn/SignInPage")
+);
+
+const HomePage = React.lazy(
+  () => import("../containers/frontend/homePage/HomePage")
+);
+
+const PersonalPortalPage = React.lazy(
+  () => import("../containers/frontend/personalPortal/PersonalPortalPage")
+);
 
 const ToolsPage = React.lazy(
   () => import("../containers/frontend/tool/ToolsPage")
@@ -29,32 +39,35 @@ const ProfileSettingPage = React.lazy(
   () => import("../containers/backend/profileSettingPage/ProfileSettingPage")
 );
 const ProtectedRoutes = React.lazy(() => import("./ProtectedRoutes"));
-const DashboardPage = React.lazy(
-  () => import("../containers/backend/dashboard/DashboardPage")
+const StatisticsPage = React.lazy(
+  () => import("../containers/backend/statistics/StatisticsPage")
 );
 const UsersPage = React.lazy(
   () => import("../containers/backend/user/UsersPage")
 );
 const ProjectsPage = React.lazy(
-  () => import("../containers/backend/project/ProjectsPage")
+  () => import("../containers/backend/domain/project/ProjectsPage")
 );
 const ProjectCreationPage = React.lazy(
-  () => import("../containers/backend/project/ProjectCreationPage")
+  () => import("../containers/backend/domain/project/ProjectCreationPage")
 );
 const ProjectDetailPage = React.lazy(
-  () => import("../containers/backend/project/ProjectDetailPage")
+  () => import("../containers/backend/domain/project/ProjectDetailPage")
 );
 const ProjectReadingPage = React.lazy(
   () => import("../containers/frontend/project/ProjectReadingPage")
 );
+const VocabularyReadingPage = React.lazy(
+  () => import("../containers/frontend/vocabulary/VocabularyReadingPage")
+);
 const ArticlesPage = React.lazy(
-  () => import("../containers/backend/article/ArticlesPage")
+  () => import("../containers/backend/domain/article/ArticlesPage")
 );
 const ArticleCreationPage = React.lazy(
-  () => import("../containers/backend/article/ArticleCreationPage")
+  () => import("../containers/backend/domain/article/ArticleCreationPage")
 );
 const ArticleDetailPage = React.lazy(
-  () => import("../containers/backend/article/ArticleDetailPage")
+  () => import("../containers/backend/domain/article/ArticleDetailPage")
 );
 const ArticleReadingPage = React.lazy(
   () => import("../containers/frontend/article/ArticleReadingPage")
@@ -79,15 +92,15 @@ const SubjectReadingPage = React.lazy(
 );
 
 const VocabulariesPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabulariesPage")
+  () => import("../containers/backend/domain/vocabulary/VocabulariesPage")
 );
 
 const VocabularyCreationPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabularyCreationPage")
+  () => import("../containers/backend/domain/vocabulary/VocabularyCreationPage")
 );
 
 const VocabularyDetailPage = React.lazy(
-  () => import("../containers/backend/vocabulary/VocabularyDetailPage")
+  () => import("../containers/backend/domain/vocabulary/VocabularyDetailPage")
 );
 
 function MainRouter() {
@@ -96,9 +109,11 @@ function MainRouter() {
       <BrowserRouter>
         <Routes>
           <Route path={URL.HOME} element={<HomePage />} />
+          <Route path={URL.PERSONAL_PORTAL} element={<PersonalPortalPage />} />
           <Route element={<ProtectedRoutes />}>
+            <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
             <Route path={URL.PROFILE} element={<ProfileSettingPage />} />
-            <Route path={URL.DASHBOARD} element={<DashboardPage />} />
+            <Route path={URL.STATISTICS} element={<StatisticsPage />} />
             <Route path={URL.USERS} element={<UsersPage />} />
             <Route path={URL.PROJECTS} element={<ProjectsPage />} />
             <Route
@@ -128,11 +143,10 @@ function MainRouter() {
               element={<VocabularyDetailPage />}
             />
           </Route>
-
           <Route element={<NonProtectedBasicLayoutRoute />}>
             <Route path={URL.SIGN_IN} element={<SignInPage />} />
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
-            <Route path={URL.SIGN_OUT} element={<SignOutRoute />} />
+
             <Route
               path={URL.NEWS_PROJECT_DETAIL}
               element={<ProjectReadingPage />}
@@ -140,6 +154,10 @@ function MainRouter() {
             <Route
               path={URL.NEWS_ARTICLE_DETAIL}
               element={<ArticleReadingPage />}
+            />
+            <Route
+              path={URL.NEWS_VOCABULARY_DETAIL}
+              element={<VocabularyReadingPage />}
             />
             <Route path={URL.SUBJECTS_PAGE} element={<SubjectListPage />} />
             <Route
@@ -170,9 +188,9 @@ function SignOutRoute() {
 
 function NonProtectedBasicLayoutRoute() {
   return (
-    <BasicLayout>
+    <FrontendLayout>
       <Outlet />
-    </BasicLayout>
+    </FrontendLayout>
   );
 }
 

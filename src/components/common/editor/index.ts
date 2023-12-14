@@ -1,4 +1,4 @@
-import RichEditor from "./RichEditor";
-import RichReader from "./RichReader";
+import RichContentEditor from "./RichContentEditor";
+import RichContentReader from "./RichContentReader";
 
-export { RichEditor, RichReader };
+export { RichContentEditor, RichContentReader };

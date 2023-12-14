@@ -1,42 +1,25 @@
 import { useEffect, useState } from "react";
-import { Divider, Grid, Paper, Link, Typography } from "@mui/material";
-import { useAuthState } from "../../../contexts";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   AuthorDisplayPanel,
-  TobeBreadcrumbs,
-  RichReader,
+  RichContentReader,
   TagDisplayBar,
   Page,
+  ContentPageMetaBar,
+  ContentPageBreadcrumbsBar,
+  RelevantContentPanel,
 } from "../../../components";
-import { ArticleDetailDTO, BreadcrumbsNode } from "../../../global/types";
-import { TimeFormat } from "../../../commons";
+import { ArticleDetailDTO, Domain } from "../../../global/types";
 import { PublicDataService } from "../../../services";
-import RelevantArticlePanel from "./RelevantArticlePanel";
 import { URL } from "../../../routes";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const { id } = useParams();
-  let [searchParams] = useSearchParams();
-  const breadcrumbs: BreadcrumbsNode[] = [];
-  if (searchParams.has("subjectId") && searchParams.has("subjectName")) {
-    breadcrumbs.push({
-      label: t("breadcrumbs.subjects"),
-      href: URL.SUBJECTS_PAGE,
-    });
-    breadcrumbs.push({
-      label: searchParams.get("subjectName") || "",
-      href: URL.SUBJECT_READING_PAGE.replace(
-        ":id",
-        searchParams.get("subjectId") || ""
-      ),
-    });
-  }
-  const authState = useAuthState();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
 
@@ -59,34 +42,19 @@ export default function ArticleReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={article?.title}>
-      <TobeBreadcrumbs nodes={breadcrumbs} />
+      <ContentPageBreadcrumbsBar />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
           <Paper sx={{ py: 2, px: 2 }} variant="outlined">
             <Grid container>
               {article && (
-                <Grid item container xs={12} sx={{ my: 1 }}>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ flexGrow: 1 }}
-                  >
-                    {article.authorName} ·{" "}
-                    {TimeFormat.dateAndTimeFormat(article.publishTime)} ·{" "}
-                    {t("article-reading-page.view")} {article.viewCount}
-                  </Typography>
-                  {authState?.user.id === article.authorId && (
-                    <Link href={`/my/articles/${id}`} sx={{ flexGrow: 0 }}>
-                      <Typography
-                        variant="body2"
-                        color="text.secondary"
-                        sx={{ flexGrow: 1 }}
-                      >
-                        {t("article-reading-page.edit-btn")}
-                      </Typography>
-                    </Link>
-                  )}
-                </Grid>
+                <ContentPageMetaBar
+                  authorId={article.authorId}
+                  authorName={article.authorName}
+                  publishTime={article.publishTime}
+                  viewCount={article.viewCount}
+                  editLinkUrl={`/my/articles/${article.id}`}
+                />
               )}
 
               {article?.subTitle && (
@@ -113,7 +81,7 @@ export default function ArticleReadingPage() {
 
               {article?.content && (
                 <Grid item xs={12} sx={{ my: 1 }}>
-                  <RichReader htmlValue={article.content} />
+                  <RichContentReader htmlValue={article.content} />
                 </Grid>
               )}
             </Grid>
@@ -125,9 +93,11 @@ export default function ArticleReadingPage() {
             <AuthorDisplayPanel userId={article?.authorId} />
           )}
           {article?.tags && (
-            <RelevantArticlePanel
-              articleId={article.id}
+            <RelevantContentPanel
+              id={article.id}
               tages={article?.tags.map((i) => i.value)}
+              domain={Domain.Article}
+              linkUrl={URL.NEWS_ARTICLE_DETAIL}
             />
           )}
         </Grid>

@@ -1,5 +1,6 @@
 export const URL = {
   HOME: "/",
+  PERSONAL_PORTAL: "/personal-portal/:id",
   SIGN_IN: "/sign-in",
   SIGN_OUT: "/sign-out",
   SIGN_UP: "/sign-up",
@@ -7,6 +8,7 @@ export const URL = {
   ABOUT: "/about",
   NEWS_PROJECT_DETAIL: "/news/projects/:id",
   NEWS_ARTICLE_DETAIL: "/news/articles/:id",
+  NEWS_VOCABULARY_DETAIL: "/news/vocabularies/:id",
 
   SUBJECTS_PAGE: "/subjects",
   SUBJECT_READING_PAGE: "/subjects/:id",
@@ -15,8 +17,8 @@ export const URL = {
   TOOL_POMODORO: "/tools/pomodoro",
   TOOL_TIME_CONVERTER: "/tools/time-coverter",
 
-  MY_ZONE: "/my/dashboard",
-  DASHBOARD: "/my/dashboard",
+  MY_ZONE: "/my/statistics",
+  STATISTICS: "/my/statistics",
   PROFILE: "/my/profile",
   USERS: "/my/users",
   PROJECTS: "/my/projects",

@@ -11,12 +11,10 @@ export default function SubjectListPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const navigate = useNavigate();
-  const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [subjects, setSubjects] = useState<SubjectInfo[]>([]);
 
   useEffect(() => {
     function load(): void {
-      setOpenLoading(true);
       PublicDataService.getSubjects(1000, 0)
         .then((response) => {
           setSubjects(response.data.records || []);
@@ -25,15 +23,14 @@ export default function SubjectListPage() {
           enqueueSnackbar(t("subjects-list-page.msg.error"), {
             variant: "error",
           });
-        })
-        .finally(() => setOpenLoading(false));
+        });
     }
     load();
   }, [t, enqueueSnackbar]);
 
   return (
     <Page
-      openLoading={openLoading}
+      openLoading={false}
       pageTitle={t("subjects-list-page.page-main-title")}
     >
       <Grid

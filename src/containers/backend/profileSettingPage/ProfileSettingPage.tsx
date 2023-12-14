@@ -16,6 +16,7 @@ import { Page } from "../../../components";
 import { useAuthState, useAuthDispatch } from "../../../contexts";
 import { LOCAL_STORAGE_KEYS } from "../../../commons";
 import { UserService } from "../../../services";
+import { URL } from "../../../routes";
 
 export default function ProfileSettingPage() {
   const { t } = useTranslation();
@@ -43,6 +44,9 @@ export default function ProfileSettingPage() {
       avatarUrl: avatarUrl,
       introduction: data.get("introduction")?.toString(),
       blog: data.get("blog")?.toString(),
+      position: data.get("position")?.toString(),
+      backgroundImg: data.get("backgroundImg")?.toString(),
+      photoImg: data.get("photoImg")?.toString(),
     })
       .then((response) => {
         dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
@@ -223,7 +227,7 @@ export default function ProfileSettingPage() {
         </Paper>
         <Divider />
         <Paper
-          sx={{ mt: { xs: 2 }, mb: 1, p: { xs: 2, md: 3 } }}
+          sx={{ mt: { xs: 2 }, mb: 2, p: { xs: 2, md: 3 } }}
           variant="outlined"
         >
           <Grid container spacing={3}>
@@ -258,9 +262,57 @@ export default function ProfileSettingPage() {
             </Grid>
           </Grid>
         </Paper>
+        <Divider />
+        <Paper
+          sx={{ mt: { xs: 2 }, mb: 1, p: { xs: 2, md: 3 } }}
+          variant="outlined"
+        >
+          <Grid container spacing={3}>
+            <Grid item xs={6}>
+              <TextField
+                id="position"
+                name="position"
+                label={t("profile-setting.fields.position")}
+                fullWidth
+                autoComplete="position"
+                variant="standard"
+                defaultValue={user.position || ""}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                id="backgroundImg"
+                name="backgroundImg"
+                label={t("profile-setting.fields.background-img")}
+                fullWidth
+                autoComplete="backgroundImg"
+                variant="standard"
+                defaultValue={user.backgroundImg || ""}
+              />
+            </Grid>
+            <Grid item xs={6}>
+              <TextField
+                id="photoImg"
+                name="photoImg"
+                label={t("profile-setting.fields.photo-img")}
+                fullWidth
+                autoComplete="photoImg"
+                variant="standard"
+                defaultValue={user.photoImg || ""}
+              />
+            </Grid>
+          </Grid>
+        </Paper>
         <Box sx={{ display: "flex", my: 2, justifyContent: "flex-end" }}>
           <Button onClick={() => window.history.back()}>
             {t("profile-setting.back-btn")}
+          </Button>
+          <Button
+            onClick={() =>
+              window.open(URL.PERSONAL_PORTAL.replace(":id", user.id))
+            }
+          >
+            {t("profile-setting.preview-btn")}
           </Button>
           <Button variant="contained" type="submit">
             {t("profile-setting.submit-btn")}

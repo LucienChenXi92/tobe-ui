@@ -14,6 +14,7 @@ import { PublicDataService } from "../../../services";
 
 export default function TagStatisticsFilterPanel(props: {
   domain: Domain;
+  ownerId: string;
   checked: string[];
   setChecked: (newValue: string[]) => void;
 }) {
@@ -34,14 +35,14 @@ export default function TagStatisticsFilterPanel(props: {
 
   useEffect(() => {
     function loadData(): void {
-      PublicDataService.getTagStatistics(props.domain)
+      PublicDataService.getTagStatistics(props.domain, props.ownerId)
         .then((response) => {
           setTagStatistics(response.data);
         })
         .catch(() => {});
     }
     loadData();
-  }, [props.domain]);
+  }, [props.domain, props.ownerId]);
 
   return tagStatistics.length > 0 ? (
     <SidePanel title={t("home-page.tag-statistics")}>

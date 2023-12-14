@@ -8,9 +8,10 @@ import {
   TobeBreadcrumbs,
   Page,
   TagDisplayBar,
+  ContentPageMetaBar,
 } from "../../../components";
 import { ProjectInfo } from "../../../global/types";
-import ProjectProgressModal from "../../backend/project/component/ProjectProgressModal";
+import ProjectProgressModal from "../../backend/domain/project/component/ProjectProgressModal";
 import { TimeFormat } from "../../../commons";
 import { PublicDataService } from "../../../services";
 
@@ -43,46 +44,36 @@ export default function ProjectReadingPage() {
       <TobeBreadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
-          <Paper variant="outlined" sx={{ my: 0, p: { xs: 2, md: 3 } }}>
+          <Paper variant="outlined" sx={{ my: 0, p: 2 }}>
             {project && (
-              <Grid container spacing={3}>
+              <ContentPageMetaBar
+                authorId={project.ownerId}
+                authorName={project.ownerName}
+                publishTime={project.publishTime}
+                viewCount={project.viewCount}
+                editLinkUrl={`/my/projects/${project.id}`}
+              />
+            )}
+            {project && (
+              <Grid container spacing={3} sx={{ mt: 1 }}>
                 <Grid item xs={12}>
-                  <Typography
-                    color="text.secondary"
-                    variant="body2"
-                    sx={{ flexFlow: 1 }}
-                  >
-                    {t("project-detail-page.fields.description")}
-                  </Typography>
                   <Typography color="text.secondary" variant="body1">
                     {project.description}
                   </Typography>
                 </Grid>
+                <Grid item container spacing={1}>
+                  <TimeField
+                    time={project.targetStartTime}
+                    label={t("project-detail-page.fields.target-start-time")}
+                  />
+                  <TimeField
+                    time={project.targetEndTime}
+                    label={t("project-detail-page.fields.target-end-time")}
+                  />
+                </Grid>
                 <Grid item xs={12}>
                   <TagDisplayBar tags={project.tags} />
                 </Grid>
-              </Grid>
-            )}
-          </Paper>
-          <Paper variant="outlined" sx={{ my: 1, p: { xs: 2, md: 3 } }}>
-            {project && (
-              <Grid container spacing={1}>
-                <TimeField
-                  time={project.targetStartTime}
-                  label={t("project-detail-page.fields.target-start-time")}
-                />
-                <TimeField
-                  time={project.targetEndTime}
-                  label={t("project-detail-page.fields.target-end-time")}
-                />
-                <TimeField
-                  time={project.actualStartTime}
-                  label={t("project-detail-page.fields.actual-start-time")}
-                />
-                <TimeField
-                  time={project.actualEndTime}
-                  label={t("project-detail-page.fields.actual-end-time")}
-                />
               </Grid>
             )}
           </Paper>
