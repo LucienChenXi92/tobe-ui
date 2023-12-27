@@ -27,7 +27,7 @@ export default function ContentPageMetaBar(props: {
         · {TimeFormat.dateAndTimeFormat(props.publishTime)} ·{" "}
         {t("components.meta-bar.view")} {props.viewCount}
       </Typography>
-      {authState?.user.id ===
+      {authState?.user?.id ===
         (typeof props.authorId === "string"
           ? Number.parseInt(props.authorId)
           : props.authorId) && (

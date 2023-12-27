@@ -4,14 +4,14 @@ import { useState, useEffect } from "react";
 import { Editor, Toolbar } from "@wangeditor/editor-for-react";
 import { IDomEditor, IEditorConfig, IToolbarConfig } from "@wangeditor/editor";
 import { useTranslation } from "react-i18next";
-import { SlateElement } from '@wangeditor/editor'
+import { SlateElement } from "@wangeditor/editor";
 
 type ImageElement = SlateElement & {
-  src: string
-  alt: string
-  url: string
-  href: string
-}
+  src: string;
+  alt: string;
+  url: string;
+  href: string;
+};
 
 interface RichContentEditorProps {
   htmlValue: string;
@@ -26,28 +26,28 @@ function RichContentEditor(props: RichContentEditorProps) {
 
   const editorConfig: Partial<IEditorConfig> = {
     MENU_CONF: {
-      'insertImage': {
+      insertImage: {
         onInsertedImage(imageNode: ImageElement | null) {
-          if (imageNode == null) return
-          const { src, alt, url, href } = imageNode
-          console.log('inserted image', src, alt, url, href)
-        }
+          if (imageNode == null) return;
+          const { src, alt, url, href } = imageNode;
+          console.log("inserted image", src, alt, url, href);
+        },
       },
-      'editImage': {
+      editImage: {
         onUpdatedImage(imageNode: ImageElement | null) {
-          if (imageNode == null) return
-          const { src, alt, url } = imageNode
-          console.log('updated image', src, alt, url)
-        }
+          if (imageNode == null) return;
+          const { src, alt, url } = imageNode;
+          console.log("updated image", src, alt, url);
+        },
       },
-      'uploadImage': {
+      uploadImage: {
         // server: '/api/upload',
         base64LimitSize: 20 * 1024, // 20kb,
-        fieldName: 'your-custom-name',
+        fieldName: "your-custom-name",
         maxFileSize: 10 * 1024 * 1024, // 10M
         maxNumberOfFiles: 10,
-        allowedFileTypes: ['image/*'],
-      }
+        allowedFileTypes: ["image/*"],
+      },
     },
     placeholder: t("components.rich-editor.placeholder"),
   };
@@ -74,7 +74,6 @@ function RichContentEditor(props: RichContentEditorProps) {
   return (
     <div
       style={{
-        border: "1px solid rgba(0,0,0,0.12)",
         borderRadius: "4px",
         zIndex: 100,
         margin: 0,
@@ -86,8 +85,6 @@ function RichContentEditor(props: RichContentEditorProps) {
         defaultConfig={toolbarConfig}
         style={{
           borderBottom: "1px solid rgba(0,0,0,0.12)",
-          width: "100%",
-          borderRadius: "4px",
         }}
       />
       <Editor

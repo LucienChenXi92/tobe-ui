@@ -1,11 +1,11 @@
-import { AUTHORITY, FEATURE_CODE } from "../../commons";
+import { AUTHORITY, Authority, FEATURE_CODE, FeatureCode } from "../../commons";
 import { URL } from "../../routes";
 
 export const pages: Array<{
   label: string;
   url: string;
-  requiredRoles?: string[];
-  requiredFeature?: string;
+  requiredRoles?: Authority[];
+  requiredFeature?: FeatureCode;
 }> = [
   {
     label: "app-header.settings.profile",
@@ -21,19 +21,19 @@ export const pages: Array<{
     label: "app-header.settings.projects",
     url: URL.PROJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.PROJECT_MODULE,
+    requiredFeature: FEATURE_CODE.projectModule,
   },
   {
     label: "app-header.settings.articles",
     url: URL.ARTICLES,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.ARTICLE_MODULE,
+    requiredFeature: FEATURE_CODE.articleModule,
   },
   {
     label: "app-header.settings.vocabularies",
     url: URL.VOCABULARIES,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.VOCABULARY_MODULE,
+    requiredFeature: FEATURE_CODE.vocabularyModule,
   },
   {
     label: "app-header.settings.subjects",

@@ -28,7 +28,7 @@ const basicPageItems: PageItem[] = [
     url: URL.PROJECTS,
     secondaryUrl: URL.CREATE_PROJECT,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.PROJECT_MODULE,
+    requiredFeature: FEATURE_CODE.projectModule,
   },
   {
     label: "dashboard-nav.pages.articles",
@@ -36,7 +36,7 @@ const basicPageItems: PageItem[] = [
     url: URL.ARTICLES,
     secondaryUrl: URL.CREATE_ARTICLE,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.ARTICLE_MODULE,
+    requiredFeature: FEATURE_CODE.articleModule,
   },
   {
     label: "dashboard-nav.pages.vocabularies",
@@ -44,7 +44,7 @@ const basicPageItems: PageItem[] = [
     url: URL.VOCABULARIES,
     secondaryUrl: URL.CREATE_VOCABULARY,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.VOCABULARY_MODULE,
+    requiredFeature: FEATURE_CODE.vocabularyModule,
   },
   {
     label: "dashboard-nav.pages.subjects",

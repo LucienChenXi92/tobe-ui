@@ -100,12 +100,14 @@ export default function ArticleEditMainSection(
         </TobeAccordion>
       </Grid>
       <Grid item xs={12} sx={{ my: 1 }}>
-        <RichContentEditor
-          htmlValue={props.htmlValue}
-          textValue={props.textValue}
-          setHtmlValue={props.setHtmlValue}
-          setTextValue={props.setTextValue}
-        />
+        <Grid container sx={{ p: 2 }} component={Paper} variant="outlined">
+          <RichContentEditor
+            htmlValue={props.htmlValue}
+            textValue={props.textValue}
+            setHtmlValue={props.setHtmlValue}
+            setTextValue={props.setTextValue}
+          />
+        </Grid>
       </Grid>
       <Grid container item xs={12} sx={{ my: 1, justifyContent: "flex-end" }}>
         <Button onClick={() => window.history.back()}>

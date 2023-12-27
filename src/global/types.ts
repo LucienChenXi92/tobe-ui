@@ -1,3 +1,5 @@
+import { Authority, FeatureCode } from "../commons";
+
 export interface Column {
   id: string;
   label: string;
@@ -42,8 +44,8 @@ export interface PageItem {
   icon: JSX.Element;
   url: string;
   secondaryUrl?: string;
-  requiredRoles: string[];
-  requiredFeature?: string;
+  requiredRoles: Authority[];
+  requiredFeature?: FeatureCode;
 }
 
 export interface ProjectCardProps {

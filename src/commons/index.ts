@@ -7,17 +7,20 @@ export const LOCAL_STORAGE_KEYS = {
   AUTHORITIES: "authorities",
 };
 
-export const AUTHORITY = {
-  ROLE_BASIC: "ROLE_BASIC",
-  ROLE_ADMIN: "ROLE_ADMIN",
-  ROLE_GUEST: "ROLE_GUEST",
-};
+export enum AUTHORITY {
+  ROLE_BASIC = "ROLE_BASIC",
+  ROLE_ADMIN = "ROLE_ADMIN",
+  ROLE_GUEST = "ROLE_GUEST",
+}
 
-export const FEATURE_CODE = {
-  ARTICLE_MODULE: "articleModule",
-  PROJECT_MODULE: "projectModule",
-  VOCABULARY_MODULE: "vocabularyModule",
-};
+export enum FEATURE_CODE {
+  articleModule = "articleModule",
+  projectModule = "projectModule",
+  vocabularyModule = "vocabularyModule",
+}
+
+export type FeatureCode = keyof typeof FEATURE_CODE;
+export type Authority = keyof typeof AUTHORITY;
 
 export function authed(requiredRole?: string[]): boolean {
   const userAuthorities = JSON.parse(
@@ -38,7 +41,7 @@ export function authed(requiredRole?: string[]): boolean {
   return true;
 }
 
-export function enabled(requiredFeature?: string): boolean {
+export function enabled(requiredFeature?: FeatureCode): boolean {
   const userProfile = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER) || "{}"
   );
