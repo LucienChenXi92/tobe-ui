@@ -37,6 +37,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
             direction="column"
             sx={{
               borderBottom: "1px solid rgba(0,0,0,0.12)",
+              pb: 1,
             }}
             onClick={() =>
               navigate(URL.PERSONAL_PORTAL.replace(":id", profile.id))
@@ -56,7 +57,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
                 },
               }}
             ></Avatar>
-            <Typography variant="h6" color="text.secondary">
+            <Typography variant="subtitle2" color="text.secondary">
               {profile.firstName + " " + profile.lastName}
             </Typography>
           </Grid>
@@ -72,7 +73,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
                 sx={{ borderRight: "1px solid rgba(0,0,0,0.12)" }}
               >
                 <Typography
-                  variant="h6"
+                  variant="subtitle1"
                   color="text.secondary"
                   sx={{ textAlign: "center" }}
                 >
@@ -83,7 +84,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
             <Tooltip title={t("components.author-panel.view-count")}>
               <Grid item xs={6}>
                 <Typography
-                  variant="h6"
+                  variant="subtitle1"
                   color="text.secondary"
                   sx={{ textAlign: "center" }}
                 >
@@ -96,7 +97,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
 
         {profile.blog && (
           <Grid item xs={12} sx={{ px: 2, py: 1 }}>
-            <Typography variant="subtitle2" color="text.secondary">
+            <Typography variant="body2" color="text.secondary">
               Blog:{" "}
               <Link href={profile.blog} target="_blank" color="text.secondary">
                 {profile.blog}
@@ -108,7 +109,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
         {profile.introduction && (
           <Grid item xs={12} sx={{ px: 2, py: 1 }}>
             <Typography
-              variant="subtitle2"
+              variant="body2"
               color="text.secondary"
               sx={{ whiteSpace: "pre-wrap" }}
             >

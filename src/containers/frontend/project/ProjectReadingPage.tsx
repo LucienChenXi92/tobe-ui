@@ -57,7 +57,7 @@ export default function ProjectReadingPage() {
             {project && (
               <Grid container spacing={3} sx={{ mt: 1 }}>
                 <Grid item xs={12}>
-                  <Typography color="text.secondary" variant="body1">
+                  <Typography color="text.secondary" variant="body2">
                     {project.description}
                   </Typography>
                 </Grid>
@@ -102,7 +102,7 @@ const TimeField = (props: { time: string; label: string }) =>
       <Typography color="text.secondary" variant="body2">
         {props.label}
       </Typography>
-      <Typography color="text.secondary" variant="body1">
+      <Typography color="text.secondary" variant="body2">
         {TimeFormat.dateFormat(props.time)}
       </Typography>
     </Grid>

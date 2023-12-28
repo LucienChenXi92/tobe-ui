@@ -21,4 +21,9 @@
 
 .w-e-text-container [data-slate-editor] {
   padding: 0px !important;
+  letter-spacing: 1px;
+}
+
+.w-e-text-container [data-slate-string="true"] {
+  line-height: 2;
 }

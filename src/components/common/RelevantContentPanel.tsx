@@ -39,7 +39,7 @@ export default function RelevantContentPanel(props: {
     <SidePanel title={t("article-reading-page.relevant-articles")}>
       {data.map((item) => (
         <Grid item xs={12} sx={{ px: 2, py: 1 }} key={item.id}>
-          <Typography variant="subtitle2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary">
             <Link
               href={props.linkUrl.replace(":id", item.id)}
               target="_blank"
