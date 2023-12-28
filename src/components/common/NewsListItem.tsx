@@ -1,10 +1,10 @@
 import { Grid, Link, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { TagOption } from "../../global/types";
-import { TagDisplayBar } from "..";
 import theme from "../../theme";
 import { TimeFormat } from "../../commons";
 import { URL } from "../../routes";
+import TagDisplayBar from "./TagDisplayBar";
 
 export default function NewsListItem(props: {
   owner: string;

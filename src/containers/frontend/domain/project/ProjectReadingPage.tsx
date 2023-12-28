@@ -3,17 +3,17 @@ import { Grid, Paper, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
+import { Page } from "../../../../components";
+import { ProjectInfo } from "../../../../global/types";
+import ProjectProgressModal from "../../../backend/domain/project/component/ProjectProgressModal";
+import { TimeFormat } from "../../../../commons";
+import { PublicDataService } from "../../../../services";
 import {
   AuthorDisplayPanel,
-  TobeBreadcrumbs,
-  Page,
-  TagDisplayBar,
+  Breadcrumbs,
   ContentPageMetaBar,
-} from "../../../components";
-import { ProjectInfo } from "../../../global/types";
-import ProjectProgressModal from "../../backend/domain/project/component/ProjectProgressModal";
-import { TimeFormat } from "../../../commons";
-import { PublicDataService } from "../../../services";
+  TagDisplayBar,
+} from "../../common";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();
@@ -41,7 +41,7 @@ export default function ProjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>
-      <TobeBreadcrumbs />
+      <Breadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
           <Paper variant="outlined" sx={{ my: 0, p: 2 }}>

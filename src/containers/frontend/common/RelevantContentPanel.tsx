@@ -1,9 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
-import { SidePanel } from "..";
-import { useTranslation } from "react-i18next";
-import { NewsDTO, Domain } from "../../global/types";
-import { PublicDataService } from "../../services";
 import { Grid, Typography, Link } from "@mui/material";
+import { SidePanel } from "../../../components";
+import { useTranslation } from "react-i18next";
+import { NewsDTO, Domain } from "../../../global/types";
+import { PublicDataService } from "../../../services";
 
 export default function RelevantContentPanel(props: {
   id: string;

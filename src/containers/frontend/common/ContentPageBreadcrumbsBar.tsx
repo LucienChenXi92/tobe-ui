@@ -1,8 +1,8 @@
-import { TobeBreadcrumbs } from "..";
 import { useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { BreadcrumbsNode } from "../../global/types";
-import { URL } from "../../routes";
+import { BreadcrumbsNode } from "../../../global/types";
+import { URL } from "../../../routes";
+import Breadcrumbs from "./Breadcrumbs";
 
 export default function ContentPageBreadcrumbsBar() {
   const { t } = useTranslation();
@@ -21,5 +21,5 @@ export default function ContentPageBreadcrumbsBar() {
       ),
     });
   }
-  return <TobeBreadcrumbs nodes={breadcrumbs} />;
+  return <Breadcrumbs nodes={breadcrumbs} />;
 }

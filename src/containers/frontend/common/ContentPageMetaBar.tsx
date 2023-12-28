@@ -1,8 +1,8 @@
 import { Grid, Link, Typography } from "@mui/material";
-import { useAuthState } from "../../contexts";
+import { useAuthState } from "../../../contexts";
 import { useTranslation } from "react-i18next";
-import { TimeFormat } from "../../commons";
-import { URL } from "../../routes";
+import { TimeFormat } from "../../../commons";
+import { URL } from "../../../routes";
 
 export default function ContentPageMetaBar(props: {
   authorName: string;

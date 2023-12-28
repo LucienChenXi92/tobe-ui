@@ -3,18 +3,17 @@ import { Grid, Paper } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import { Page, WordListPanel } from "../../../../components";
+import { Domain, VocabularyDetailDTO } from "../../../../global/types";
+import { PublicDataService } from "../../../../services";
+import { URL } from "../../../../routes";
 import {
   AuthorDisplayPanel,
-  TagDisplayBar,
-  Page,
-  WordListPanel,
-  ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
+  ContentPageMetaBar,
   RelevantContentPanel,
-} from "../../../components";
-import { Domain, VocabularyDetailDTO } from "../../../global/types";
-import { PublicDataService } from "../../../services";
-import { URL } from "../../../routes";
+  TagDisplayBar,
+} from "../../common";
 
 export default function VocabularyReadingPage() {
   const { t } = useTranslation();

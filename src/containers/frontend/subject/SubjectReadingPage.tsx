@@ -9,15 +9,11 @@ import {
 } from "../../../global/types";
 import { useParams } from "react-router-dom";
 import { Paper, Typography, Grid, Link, SxProps } from "@mui/material";
-import {
-  AuthorDisplayPanel,
-  TobeBreadcrumbs,
-  Page,
-  ContentPageMetaBar,
-} from "../../../components";
+import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import AbcIcon from "@mui/icons-material/Abc";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import { AuthorDisplayPanel, Breadcrumbs, ContentPageMetaBar } from "../common";
 
 export default function SubjectReadingPage() {
   const { t } = useTranslation();
@@ -198,7 +194,7 @@ export default function SubjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={subject?.name}>
-      <TobeBreadcrumbs
+      <Breadcrumbs
         nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
       {subject && (

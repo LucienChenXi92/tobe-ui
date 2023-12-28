@@ -4,12 +4,13 @@ import { Button, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
-import { Page, SubjectCardView } from "../../../components";
+import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import { Operation, SubjectInfo } from "../../../global/types";
 import { SubjectService } from "../../../services";
 import { Add } from "@mui/icons-material";
 import theme from "../../../theme";
+import SubjectCardView from "./SubjectCardView";
 
 export default function SubjectsPage() {
   const navigate = useNavigate();

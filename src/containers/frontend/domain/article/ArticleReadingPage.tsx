@@ -3,18 +3,17 @@ import { Divider, Grid, Paper, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
+import { RichContentReader, Page } from "../../../../components";
+import { ArticleDetailDTO, Domain } from "../../../../global/types";
+import { PublicDataService } from "../../../../services";
+import { URL } from "../../../../routes";
 import {
   AuthorDisplayPanel,
-  RichContentReader,
-  TagDisplayBar,
-  Page,
-  ContentPageMetaBar,
   ContentPageBreadcrumbsBar,
+  ContentPageMetaBar,
   RelevantContentPanel,
-} from "../../../components";
-import { ArticleDetailDTO, Domain } from "../../../global/types";
-import { PublicDataService } from "../../../services";
-import { URL } from "../../../routes";
+  TagDisplayBar,
+} from "../../common";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();

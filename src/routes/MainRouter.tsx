@@ -55,10 +55,10 @@ const ProjectDetailPage = React.lazy(
   () => import("../containers/backend/domain/project/ProjectDetailPage")
 );
 const ProjectReadingPage = React.lazy(
-  () => import("../containers/frontend/project/ProjectReadingPage")
+  () => import("../containers/frontend/domain/project/ProjectReadingPage")
 );
 const VocabularyReadingPage = React.lazy(
-  () => import("../containers/frontend/vocabulary/VocabularyReadingPage")
+  () => import("../containers/frontend/domain/vocabulary/VocabularyReadingPage")
 );
 const ArticlesPage = React.lazy(
   () => import("../containers/backend/domain/article/ArticlesPage")
@@ -70,7 +70,7 @@ const ArticleDetailPage = React.lazy(
   () => import("../containers/backend/domain/article/ArticleDetailPage")
 );
 const ArticleReadingPage = React.lazy(
-  () => import("../containers/frontend/article/ArticleReadingPage")
+  () => import("../containers/frontend/domain/article/ArticleReadingPage")
 );
 
 const SubjectCreationPage = React.lazy(

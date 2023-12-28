@@ -2,10 +2,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useSnackbar } from "notistack";
 import { useTranslation } from "react-i18next";
 import { Avatar, Tooltip, Grid, Link, Paper, Typography } from "@mui/material";
-import { UserBriefProfileDTO } from "../../global/types";
-import { PublicDataService } from "../../services";
+import { UserBriefProfileDTO } from "../../../global/types";
+import { PublicDataService } from "../../../services";
 import { useNavigate } from "react-router-dom";
-import { URL } from "../../routes";
+import { URL } from "../../../routes";
 
 export default function AuthorDisplayPanel(props: { userId: string }) {
   const { t } = useTranslation();
