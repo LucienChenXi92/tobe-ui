@@ -1,4 +1,4 @@
-import { Authority, FeatureCode } from "../commons";
+import { AuthorityKey, FeatureCodeKey } from "../commons";
 
 export interface Column {
   id: string;
@@ -44,8 +44,8 @@ export interface PageItem {
   icon: JSX.Element;
   url: string;
   secondaryUrl?: string;
-  requiredRoles: Authority[];
-  requiredFeature?: FeatureCode;
+  requiredRoles: AuthorityKey[];
+  requiredFeature?: FeatureCodeKey;
 }
 
 export interface ProjectCardProps {

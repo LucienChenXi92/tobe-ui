@@ -19,10 +19,10 @@ export enum FEATURE_CODE {
   vocabularyModule = "vocabularyModule",
 }
 
-export type FeatureCode = keyof typeof FEATURE_CODE;
-export type Authority = keyof typeof AUTHORITY;
+export type FeatureCodeKey = keyof typeof FEATURE_CODE;
+export type AuthorityKey = keyof typeof AUTHORITY;
 
-export function authed(requiredRole?: string[]): boolean {
+export function authed(requiredRole?: AuthorityKey[]): boolean {
   const userAuthorities = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_KEYS.AUTHORITIES) || "[]"
   );
@@ -30,7 +30,7 @@ export function authed(requiredRole?: string[]): boolean {
   if (requiredRole) {
     let isValid: boolean = false;
     // iteritor all user's authority to see if any could match
-    userAuthorities?.forEach((a: { authority: string }) => {
+    userAuthorities?.forEach((a: { authority: AuthorityKey }) => {
       if (requiredRole.indexOf(a.authority) > -1) {
         isValid = true;
         return;
@@ -41,7 +41,7 @@ export function authed(requiredRole?: string[]): boolean {
   return true;
 }
 
-export function enabled(requiredFeature?: FeatureCode): boolean {
+export function enabled(requiredFeature?: FeatureCodeKey): boolean {
   const userProfile = JSON.parse(
     localStorage.getItem(LOCAL_STORAGE_KEYS.CURRENT_USER) || "{}"
   );

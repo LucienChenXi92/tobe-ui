@@ -1,11 +1,16 @@
-import { AUTHORITY, Authority, FEATURE_CODE, FeatureCode } from "../../commons";
+import {
+  AUTHORITY,
+  AuthorityKey,
+  FEATURE_CODE,
+  FeatureCodeKey,
+} from "../../commons";
 import { URL } from "../../routes";
 
 export const pages: Array<{
   label: string;
   url: string;
-  requiredRoles?: Authority[];
-  requiredFeature?: FeatureCode;
+  requiredRoles?: AuthorityKey[];
+  requiredFeature?: FeatureCodeKey;
 }> = [
   {
     label: "app-header.settings.profile",

@@ -5,7 +5,10 @@ import { BreadcrumbsNode } from "../../../global/types";
 export default function Breadcrumbs(props: { nodes?: BreadcrumbsNode[] }) {
   const { t } = useTranslation();
   return (
-    <MBreadcrumbs aria-label="breadcrumb" sx={{ m: 1, ml: 0, flexGrow: 1 }}>
+    <MBreadcrumbs
+      aria-label="breadcrumb"
+      sx={{ m: 1, ml: 0, flexGrow: 1, fontSize: "0.875rem" }}
+    >
       <Link underline="hover" color="inherit" href="/">
         {t("breadcrumbs.home")}
       </Link>
@@ -16,7 +19,9 @@ export default function Breadcrumbs(props: { nodes?: BreadcrumbsNode[] }) {
           </Link>
         );
       })}
-      <Typography color="text.primary">{t("breadcrumbs.content")}</Typography>
+      <Typography color="text.primary" sx={{ fontSize: "inherit" }}>
+        {t("breadcrumbs.content")}
+      </Typography>
     </MBreadcrumbs>
   );
 }
