@@ -100,7 +100,12 @@ export default function ArticleEditMainSection(
         </TobeAccordion>
       </Grid>
       <Grid item xs={12} sx={{ my: 1 }}>
-        <Grid container sx={{ p: 2 }} component={Paper} variant="outlined">
+        <Grid
+          container
+          sx={{ px: 2, py: 1 }}
+          component={Paper}
+          variant="outlined"
+        >
           <RichContentEditor
             htmlValue={props.htmlValue}
             textValue={props.textValue}

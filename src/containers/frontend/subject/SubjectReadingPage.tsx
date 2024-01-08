@@ -82,7 +82,7 @@ export default function SubjectReadingPage() {
       subject.name
     );
     return (
-      <Grid container flexDirection="row" sx={{ px: "10px" }}>
+      <Grid container flexDirection="row">
         {result}
       </Grid>
     );

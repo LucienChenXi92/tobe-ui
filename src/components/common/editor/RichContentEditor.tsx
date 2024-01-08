@@ -75,7 +75,6 @@ function RichContentEditor(props: RichContentEditorProps) {
     <div
       style={{
         borderRadius: "4px",
-        zIndex: 100,
         margin: 0,
         width: "100%",
       }}

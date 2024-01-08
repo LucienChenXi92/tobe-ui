@@ -57,7 +57,7 @@ export default function AuthorDisplayPanel(props: { userId: string }) {
                 },
               }}
             ></Avatar>
-            <Typography variant="subtitle1" color="text.secondary">
+            <Typography variant="h6" color="text.secondary">
               {profile.firstName + " " + profile.lastName}
             </Typography>
           </Grid>

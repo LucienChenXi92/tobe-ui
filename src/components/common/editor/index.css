@@ -22,7 +22,6 @@
 .w-e-text-container [data-slate-editor] {
   padding: 0px !important;
   letter-spacing: 1px;
-  font-size: 1rem;
 }
 
 .w-e-text-container [data-slate-string="true"] {
