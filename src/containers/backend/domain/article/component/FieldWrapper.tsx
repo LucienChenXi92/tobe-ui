@@ -4,7 +4,7 @@ export const FieldWrapper = (props: {
   children: any;
   labelPosition: "left" | "right";
 }) => {
-  return props.labelPosition == "left" ? (
+  return props.labelPosition === "left" ? (
     <Grid container item xs={12} mt={1}>
       <Grid
         item
