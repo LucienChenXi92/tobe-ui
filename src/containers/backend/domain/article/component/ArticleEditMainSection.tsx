@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Button, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Checkbox,
+  Grid,
+  Paper,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useTranslation } from "react-i18next";
 import {
   RichContentEditor,
@@ -16,6 +23,8 @@ export interface ArticleEditMainSectionProps {
   setTitle: (value: string) => void;
   subTitle: string;
   setSubTitle: (value: string) => void;
+  contentProtected: boolean;
+  setContentProtected: (value: boolean) => void;
   tagValues: TagOption[];
   setTagValues: (value: TagOption[]) => void;
   htmlValue: string;
@@ -42,9 +51,16 @@ export default function ArticleEditMainSection(
         <Grid container item xs={12}>
           <FieldWrapper
             label={t("article-creation-page.fields.title")}
-            value={props.title}
-            setValue={props.setTitle}
-            maxLength={128}
+            labelPosition="left"
+            children={
+              <TextField
+                fullWidth
+                variant="standard"
+                value={props.title}
+                onChange={(v) => props.setTitle(v.target.value)}
+                error={props.title.length >= 128}
+              />
+            }
           />
         </Grid>
       </Grid>
@@ -64,37 +80,43 @@ export default function ArticleEditMainSection(
             </Typography>
           </TobeAccordionSummary>
           <TobeAccordionDetails>
-            <Grid container>
+            <Grid container sx={{ py: 0 }}>
               <FieldWrapper
                 label={t("article-creation-page.fields.sub-title")}
-                value={props.subTitle}
-                setValue={props.setSubTitle}
-                maxLength={100}
+                labelPosition="left"
+                children={
+                  <TextField
+                    fullWidth
+                    variant="standard"
+                    value={props.subTitle}
+                    onChange={(v) => props.setSubTitle(v.target.value)}
+                    error={props.subTitle.length >= 1000}
+                  />
+                }
               />
-              <Grid container item xs={12} sx={{ mt: 1 }}>
-                <Grid
-                  item
-                  sx={{
-                    flexGrow: 0,
-                    alignSelf: "end",
-                    textAlign: "end",
-                    pr: 1,
-                  }}
-                  xs={3}
-                  sm={2}
-                  md={1}
-                >
-                  <Typography variant="subtitle1" color="text.secondary">
-                    {t("article-creation-page.fields.tag")}
-                  </Typography>
-                </Grid>
-                <Grid item sx={{ flexGrow: 1 }}>
+              <FieldWrapper
+                label={t("article-creation-page.fields.tag")}
+                labelPosition="left"
+                children={
                   <MultipleTagSelecter
                     value={props.tagValues}
                     setValue={props.setTagValues}
                   />
-                </Grid>
-              </Grid>
+                }
+              />
+              <FieldWrapper
+                label={t("article-creation-page.fields.content-protected")}
+                labelPosition="right"
+                children={
+                  <Checkbox
+                    size="small"
+                    checked={props.contentProtected}
+                    onChange={(e) =>
+                      props.setContentProtected(e.target.checked)
+                    }
+                  />
+                }
+              />
             </Grid>
           </TobeAccordionDetails>
         </TobeAccordion>

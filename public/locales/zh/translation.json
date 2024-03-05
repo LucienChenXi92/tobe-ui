@@ -287,7 +287,8 @@
       "title": "标题",
       "sub-title": "副标题",
       "description": "简述",
-      "tag": "标签"
+      "tag": "标签",
+      "content-protected": "该篇文章只有登录用户才能看到完整内容"
     },
     "submit-btn": "保存",
     "back-btn": "返回",
@@ -302,6 +303,7 @@
   "article-reading-page": {
     "back-btn": "返回",
     "relevant-articles": "相关内容",
+    "content-protected": "请登录以阅读此文",
     "msg": {
       "error": "加载数据失败"
     }

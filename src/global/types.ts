@@ -152,6 +152,7 @@ export interface ArticleDetailDTO extends GeneralCardData {
   publishTime: string;
   subTitle: string;
   avatarUrl: string;
+  contentProtected: boolean;
 }
 
 export interface VocabularyCreationDTO {

@@ -161,31 +161,6 @@ const HeaderContent = () => {
             </Menu>
           }
         </Box>
-        <Box
-          sx={{
-            mr: 2,
-            ml: "30px",
-            display: { xs: "flex", md: "none" },
-            flexGrow: 1,
-          }}
-        >
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            onClick={() => navigate("/")}
-            sx={{
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: theme.palette.secondary.main,
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            {project.name.toUpperCase()}
-          </Typography>
-        </Box>
-
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {publicPages.map((page) => (
             <Button

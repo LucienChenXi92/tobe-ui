@@ -18,6 +18,7 @@ export default function ArticleCreationPage() {
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
+  const [contentProtected, setContentProtected] = useState<boolean>(false);
 
   function saveArticle(): void {
     setOpenLoading(true);
@@ -26,10 +27,11 @@ export default function ArticleCreationPage() {
       subTitle: subTitle,
       content: htmlValue,
       description:
-        textValue.trim().length >= 1000
-          ? textValue.trim().substring(0, 997) + "..."
+        textValue.trim().length >= 500
+          ? textValue.trim().substring(0, 497) + "..."
           : textValue.trim(),
       tags: tagValues,
+      contentProtected: contentProtected,
     })
       .then((response) => {
         enqueueSnackbar(t("article-creation-page.msg.success"), {
@@ -57,6 +59,8 @@ export default function ArticleCreationPage() {
         setSubTitle={setSubTitle}
         tagValues={tagValues}
         setTagValues={setTagValues}
+        contentProtected={contentProtected}
+        setContentProtected={setContentProtected}
         htmlValue={htmlValue}
         setHtmlValue={setHtmlValue}
         textValue={textValue}

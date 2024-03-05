@@ -1,12 +1,11 @@
-import { TextField, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 export const FieldWrapper = (props: {
   label: string;
-  value: any;
-  setValue: (v: any) => void;
-  maxLength: number;
+  children: any;
+  labelPosition: "left" | "right";
 }) => {
-  return (
-    <Grid container item xs={12}>
+  return props.labelPosition == "left" ? (
+    <Grid container item xs={12} mt={1}>
       <Grid
         item
         sx={{
@@ -24,13 +23,29 @@ export const FieldWrapper = (props: {
         </Typography>
       </Grid>
       <Grid item sx={{ flexGrow: 1 }}>
-        <TextField
-          fullWidth
-          variant="standard"
-          value={props.value}
-          onChange={(v) => props.setValue(v.target.value)}
-          error={props.value.length >= props.maxLength}
-        />
+        {props.children}
+      </Grid>
+    </Grid>
+  ) : (
+    <Grid container item xs={12} mt={1} alignItems="center">
+      <Grid
+        item
+        sx={{
+          flexGrow: 0,
+          alignSelf: "end",
+          textAlign: "end",
+          pr: 1,
+        }}
+        xs={3}
+        sm={2}
+        md={1}
+      >
+        {props.children}
+      </Grid>
+      <Grid item sx={{ flexGrow: 1 }}>
+        <Typography variant="body2" color="text.secondary">
+          {props.label}
+        </Typography>
       </Grid>
     </Grid>
   );

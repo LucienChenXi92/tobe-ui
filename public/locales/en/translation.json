@@ -284,7 +284,8 @@
       "title": "Title",
       "sub-title": "Subtitle",
       "description": "Description",
-      "tag": "Tag"
+      "tag": "Tag",
+      "content-protected": "Only logged in users can read the full content"
     },
     "submit-btn": "Save",
     "back-btn": "Back",
@@ -299,6 +300,7 @@
   "article-reading-page": {
     "back-btn": "Back",
     "relevant-articles": "Relevant articles",
+    "content-protected": "Please log in to read the full content",
     "msg": {
       "error": "Failed to fetch data"
     }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { Divider, Grid, Paper, Typography } from "@mui/material";
+import { Divider, Grid, Link, Paper, Typography } from "@mui/material";
+import { useAuthState } from "../../../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -18,6 +19,7 @@ import {
 export default function ArticleReadingPage() {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
+  const authState = useAuthState();
   const { id } = useParams();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [article, setArticle] = useState<ArticleDetailDTO | null>(null);
@@ -79,8 +81,50 @@ export default function ArticleReadingPage() {
               )}
 
               {article?.content && (
-                <Grid item xs={12} sx={{ my: 1 }}>
-                  <RichContentReader htmlValue={article.content} />
+                <Grid item>
+                  {article?.contentProtected && !authState?.user?.id ? (
+                    <Grid>
+                      <Grid container justifyContent="center">
+                        <Typography color="textSecondary" variant="body2">
+                          {article.description}
+                        </Typography>
+                        <Link href={URL.SIGN_IN}>
+                          <Typography
+                            color="textSecondary"
+                            variant="h5"
+                            sx={{ mt: 2 }}
+                          >
+                            {t("article-reading-page.content-protected")}
+                          </Typography>
+                        </Link>
+                      </Grid>
+                      <Grid
+                        item
+                        xs={12}
+                        sx={{
+                          my: "2vh",
+                          px: 0,
+                          mx: 0,
+                          filter: "blur(3px)",
+                          userSelect: "none",
+                        }}
+                      >
+                        <RichContentReader htmlValue={article.content} />
+                      </Grid>
+                    </Grid>
+                  ) : (
+                    <Grid
+                      item
+                      xs={12}
+                      sx={{
+                        my: 1,
+                        px: 0,
+                        mx: 0,
+                      }}
+                    >
+                      <RichContentReader htmlValue={article.content} />
+                    </Grid>
+                  )}
                 </Grid>
               )}
             </Grid>
