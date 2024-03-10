@@ -27,3 +27,7 @@
 .w-e-text-container [data-slate-string="true"] {
   line-height: 2;
 }
+
+.w-e-scroll [data-slate-editor] {
+  overflow-y: hidden;
+}

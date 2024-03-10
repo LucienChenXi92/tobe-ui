@@ -34,7 +34,11 @@ export default function Page(props: PageProps) {
       <Loading open={props.openLoading} />
       {props.pageTitle && (
         <>
-          <Typography variant="h5">{props.pageTitle}</Typography>
+          <Typography
+            sx={{ fontSize: { xs: "1.2rem", sm: "1.3rem", md: "1.5rem" } }}
+          >
+            {props.pageTitle}
+          </Typography>
           <Divider />
         </>
       )}

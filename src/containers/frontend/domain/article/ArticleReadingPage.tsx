@@ -81,9 +81,9 @@ export default function ArticleReadingPage() {
               )}
 
               {article?.content && (
-                <Grid item>
+                <Grid item container>
                   {article?.contentProtected && !authState?.user?.id ? (
-                    <Grid>
+                    <Grid container>
                       <Grid container justifyContent="center">
                         <Typography color="textSecondary" variant="body2">
                           {article.description}
@@ -102,7 +102,7 @@ export default function ArticleReadingPage() {
                         item
                         xs={12}
                         sx={{
-                          my: "2vh",
+                          my: "1vh",
                           px: 0,
                           mx: 0,
                           filter: "blur(3px)",
@@ -115,6 +115,7 @@ export default function ArticleReadingPage() {
                   ) : (
                     <Grid
                       item
+                      container
                       xs={12}
                       sx={{
                         my: 1,
