@@ -17,14 +17,14 @@ const Title = (props: any) => {
     >
       <Typography
         variant="h1"
-        align="right"
+        align="center"
         sx={{
           fontWeight: 600,
           fontSize: {
-            xs: "2rem",
-            sm: "4rem",
-            md: "4rem",
-            lg: "4rem",
+            xs: "1.25rem",
+            sm: "1.5rem",
+            md: "2rem",
+            lg: "3rem",
           },
         }}
       >
@@ -32,12 +32,18 @@ const Title = (props: any) => {
       </Typography>
       <Typography
         variant="h3"
-        align="right"
+        align="center"
         sx={{
-          fontWeight: 600,
+          fontWeight: 500,
+          mt: {
+            xs: 1,
+            md: 2,
+            lg: 3
+          },
           fontSize: {
-            xs: "2rem",
-            md: "2rem",
+            xs: "1.25rem",
+            sm: "1.5rem",
+            md: "1.5rem",
             lg: "3rem",
           },
         }}
@@ -65,21 +71,16 @@ export default function GreatingSection() {
             color: theme.palette.background.paper,
           }}
         >
-          <div data-src="https://images.pexels.com/photos/3861972/pexels-photo-3861972.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+          <div data-src="https://images.pexels.com/photos/3355755/pexels-photo-3355755.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main="To be a better yourself!"
+              main="No gain is too slight to bother with"
+              secondary="不积跬步无以至千里"
               sx={{ color: theme.palette.background.paper }}
             />
           </div>
-          <div data-src="https://images.pexels.com/photos/2663851/pexels-photo-2663851.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
+          <div data-src="https://images.pexels.com/photos/7539496/pexels-photo-7539496.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
             <Title
-              main="Knowledge is like a sword"
-              sx={{ color: theme.palette.background.paper }}
-            />
-          </div>
-          <div data-src="https://images.pexels.com/photos/4498362/pexels-photo-4498362.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1">
-            <Title
-              main={"Health is like a shield"}
+              main="Either travelling or reading, body and soul, there must be one on the road"
               sx={{ color: theme.palette.background.paper }}
             />
           </div>

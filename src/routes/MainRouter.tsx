@@ -1,9 +1,10 @@
 import React, { Suspense } from "react";
-import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { URL } from "./URL";
 import { LOCAL_STORAGE_KEYS } from "../commons";
-import { FrontendLayout, Loading } from "../components";
+import { Loading } from "../components";
 import { useAuthDispatch } from "../contexts";
+import NonProtectetRoute from "./NonProtectedRoute";
 
 const SignInPage = React.lazy(
   () => import("../containers/frontend/signIn/SignInPage")
@@ -143,7 +144,7 @@ function MainRouter() {
               element={<VocabularyDetailPage />}
             />
           </Route>
-          <Route element={<NonProtectedBasicLayoutRoute />}>
+          <Route element={<NonProtectetRoute />}>
             <Route path={URL.SIGN_IN} element={<SignInPage />} />
             <Route path={URL.SIGN_UP} element={<SignUpPage />} />
 
@@ -184,14 +185,6 @@ function SignOutRoute() {
   const dispatch = useAuthDispatch();
   dispatch({ type: "LOGOUT", payload: null });
   return <SignInPage />;
-}
-
-function NonProtectedBasicLayoutRoute() {
-  return (
-    <FrontendLayout>
-      <Outlet />
-    </FrontendLayout>
-  );
 }
 
 export default MainRouter;
