@@ -121,7 +121,7 @@ export default function GeneralDomainListPage(props: {
         }
       />
       <Grid sx={{ mt: 1 }} container justifyContent="center">
-        {current + 1 === totalPage && (
+        {current + 1 >= totalPage && (
           <Typography variant="body2" color="textSecondary">
             {t("domain-page.msg.info-no-more")}
           </Typography>
