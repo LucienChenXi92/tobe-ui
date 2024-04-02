@@ -4,7 +4,6 @@ import Add from "@mui/icons-material/Add";
 
 export default function GeneralDomainListPageFunctionBar(props: {
   createNewAction: () => void;
-  setKeyword: Function;
 }) {
   return (
     <Grid

@@ -18,47 +18,45 @@ export default function GeneralDomainListPage(props: {
 }) {
   const DEFAULT_PAGE_SIZE: number = 16;
   let GLOBAL_DATA: GeneralCardData[] = [];
-  let current: number = 0;
-  let totalPage: number = 1;
+  let CURRENT: number = 0;
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [data, setData] = useState<GeneralCardData[]>(GLOBAL_DATA);
-  const [keyword, setKeyword] = useState<string>("");
+  const [current, setCurrent] = useState<number>(CURRENT);
+  const [totalPage, setTotalPage] = useState<number>(1);
 
   const handleScroll = () => {
     if (
       document.documentElement.scrollHeight <=
       document.documentElement.clientHeight + document.documentElement.scrollTop
     ) {
-      loadData(current, keyword);
+      loadData();
     }
   };
 
-  const loadData = useCallback(
-    (_current: number, _keyword: string): void => {
-      setOpenLoading(true);
-      props.domainService
-        .get(DEFAULT_PAGE_SIZE, _current, _keyword)
-        .then((response) => {
-          GLOBAL_DATA = GLOBAL_DATA.concat(response.data.records);
-          current = response.data.current;
-          totalPage = response.data.pages;
-          setData(GLOBAL_DATA);
-        })
-        .catch(() => {
-          enqueueSnackbar(t("domain-page.msg.error"), {
-            variant: "error",
-          });
-        })
-        .finally(() => setOpenLoading(false));
-    },
-    [enqueueSnackbar, t, props.domainService]
-  );
+  const loadData = useCallback((): void => {
+    setOpenLoading(true);
+    props.domainService
+      .get(DEFAULT_PAGE_SIZE, CURRENT, "")
+      .then((response) => {
+        GLOBAL_DATA = GLOBAL_DATA.concat(response.data.records);
+        CURRENT = response.data.current;
+        setData(GLOBAL_DATA);
+        setCurrent(CURRENT);
+        setTotalPage(response.data.pages);
+      })
+      .catch(() => {
+        enqueueSnackbar(t("domain-page.msg.error"), {
+          variant: "error",
+        });
+      })
+      .finally(() => setOpenLoading(false));
+  }, [enqueueSnackbar, t, props.domainService]);
 
   useEffect(() => {
-    loadData(0, "");
+    loadData();
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -114,7 +112,6 @@ export default function GeneralDomainListPage(props: {
     <Page openLoading={openLoading} pageTitle={props.pageTitle}>
       <GeneralDomainListPageFunctionBar
         createNewAction={() => navigate(props.createPageURL)}
-        setKeyword={setKeyword}
       />
       <GeneralCardView
         data={props.dataConverter ? props.dataConverter.call(null, data) : data}
