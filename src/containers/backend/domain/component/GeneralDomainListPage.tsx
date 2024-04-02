@@ -32,32 +32,35 @@ export default function GeneralDomainListPage(props: {
       document.documentElement.scrollHeight <=
       document.documentElement.clientHeight + document.documentElement.scrollTop
     ) {
-      loadData();
+      loadData(GLOBAL_DATA, CURRENT);
     }
   };
 
-  const loadData = useCallback((): void => {
-    setOpenLoading(true);
-    props.domainService
-      .get(DEFAULT_PAGE_SIZE, CURRENT, "")
-      .then((response) => {
-        GLOBAL_DATA = GLOBAL_DATA.concat(response.data.records);
-        CURRENT = response.data.current;
-        setData(GLOBAL_DATA);
-        setCurrent(CURRENT);
-        setTotalPage(response.data.pages);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("domain-page.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => setOpenLoading(false));
-  }, [enqueueSnackbar, t, props.domainService]);
+  const loadData = useCallback(
+    (_data: GeneralCardData[], _current: number): void => {
+      setOpenLoading(true);
+      props.domainService
+        .get(DEFAULT_PAGE_SIZE, CURRENT, "")
+        .then((response) => {
+          GLOBAL_DATA = _data.concat(response.data.records);
+          CURRENT = response.data.current;
+          setData(GLOBAL_DATA);
+          setCurrent(CURRENT);
+          setTotalPage(response.data.pages);
+        })
+        .catch(() => {
+          enqueueSnackbar(t("domain-page.msg.error"), {
+            variant: "error",
+          });
+        })
+        .finally(() => setOpenLoading(false));
+    },
+    [enqueueSnackbar, t, props.domainService]
+  );
 
   useEffect(() => {
-    loadData();
     window.addEventListener("scroll", handleScroll);
+    loadData(data, current);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
