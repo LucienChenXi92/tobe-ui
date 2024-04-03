@@ -32,11 +32,12 @@ export default function GeneralDomainListPage(props: {
   const [current, setCurrent] = useState<number>(CURRENT);
   const [totalPage, setTotalPage] = useState<number>(1);
 
-  const handleScroll = () => {
+  const onscrollend = () => {
     if (
       document.documentElement.scrollHeight <=
       document.documentElement.clientHeight + document.documentElement.scrollTop
     ) {
+      debugger;
       loadData(GLOBAL_DATA, CURRENT);
     }
   };
@@ -68,10 +69,10 @@ export default function GeneralDomainListPage(props: {
   );
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scrollend", onscrollend);
     loadData(data, current);
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scrollend", onscrollend);
     };
   }, [loadData]);
 
