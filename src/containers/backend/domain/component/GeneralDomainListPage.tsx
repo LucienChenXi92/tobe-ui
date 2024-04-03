@@ -17,6 +17,11 @@ export default function GeneralDomainListPage(props: {
   dataConverter?: (d: any[]) => GeneralCardData[];
 }) {
   const DEFAULT_PAGE_SIZE: number = 16;
+  /**
+   * the purpose of keeping GLOBAL_DATA and CURRENT variables
+   * is to let the handleScroll method can read the values of them,
+   * otherwise the values will not reflect up to date because of React setValue mechanism
+   */
   let GLOBAL_DATA: GeneralCardData[] = [];
   let CURRENT: number = 0;
   const { t } = useTranslation();
@@ -36,6 +41,10 @@ export default function GeneralDomainListPage(props: {
     }
   };
 
+  /**
+   * Declair the params _data and _current to make sure the values won't be impacted
+   * by duplicate invokes of loadData method
+   */
   const loadData = useCallback(
     (_data: GeneralCardData[], _current: number): void => {
       setOpenLoading(true);
