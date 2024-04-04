@@ -5,6 +5,7 @@
     "subjects": "Subject"
   },
   "components": {
+    "upload-pics": "Upload Pictures",
     "edit-icon-button": {
       "save": "Save",
       "edit": "Edit"

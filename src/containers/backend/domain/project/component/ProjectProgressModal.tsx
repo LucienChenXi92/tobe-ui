@@ -22,16 +22,29 @@ import {
 import { ProjectProgress } from "../../../../../global/types";
 import ProjectProgressItem from "./ProjectProgressItem";
 import { TimeFormat } from "../../../../../commons";
-import { ProjectProgressService, PublicDataService } from "../../../../../services";
+import {
+  ProjectProgressService,
+  PublicDataService,
+  FileService,
+} from "../../../../../services";
+import { InputFileUpload } from "../../../../../components";
+import { ImagesPanel } from "./ImagesPanel";
 
 export default function ProjectProgressModal(props: {
-  projectId: string,
-  viewOnly: boolean
+  projectId: string;
+  viewOnly: boolean;
 }) {
   const { t } = useTranslation();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
+  const [images, setImages] = useState<any>([]);
+  const [imageURLs, setImageURLs] = useState<string[]>([]);
+
+  function onImageChange(e: any) {
+    setImages([...e.target.files]);
+  }
+
   const { enqueueSnackbar } = useSnackbar();
 
   const loadProgressses = useCallback(
@@ -51,10 +64,15 @@ export default function ProjectProgressModal(props: {
     [enqueueSnackbar, t]
   );
 
-  useEffect(
-    () => loadProgressses(props.projectId),
-    [loadProgressses, props.projectId]
-  );
+  useEffect(() => {
+    loadProgressses(props.projectId);
+    if (images.length < 1) return;
+    const newImageUrls: any = [];
+    images.forEach((image: any) =>
+      newImageUrls.push(URL.createObjectURL(image))
+    );
+    setImageURLs(newImageUrls);
+  }, [images, loadProgressses, props.projectId]);
 
   function handleProgressCreation(): void {
     if (!newProgress.trim()) {
@@ -70,7 +88,18 @@ export default function ProjectProgressModal(props: {
       description: newProgress,
     })
       .then((response) => {
+        if (images.length > 0) {
+          return FileService.batchUpload(
+            response.data.id,
+            "PROJECT_PIC",
+            images
+          );
+        }
+      })
+      .then((response) => {
         setNewProgress("");
+        setImages([]);
+        setImageURLs([]);
         enqueueSnackbar(t("project-progress.msg.success"), {
           variant: "success",
         });
@@ -124,22 +153,22 @@ export default function ProjectProgressModal(props: {
                     {Number(newProgress?.length)} / 1000
                   </Typography>
                 </Grid>
-                <Grid
-                  item
-                  container
-                  xs={12}
-                  justifyContent="flex-end"
-                  sx={{ mt: 1 }}
-                >
+                <Grid item container xs={12} sx={{ mt: 1 }}>
+                  <Grid flexGrow={0}>
+                    <InputFileUpload onImageChange={onImageChange} />
+                  </Grid>
+                  <Grid flexGrow={1} />
                   <Button
                     variant="contained"
                     size="small"
                     onClick={handleProgressCreation}
+                    sx={{ ml: 1 }}
                   >
                     {t("project-progress.send-btn")}
                   </Button>
                 </Grid>
               </Grid>
+              <ImagesPanel imageURLs={imageURLs} />
             </Paper>
           )}
           <Timeline
@@ -159,8 +188,8 @@ export default function ProjectProgressModal(props: {
                 </TimelineSeparator>
                 <TimelineContent sx={{ pl: 1, pr: 0 }}>
                   <Typography color="text.secondary" variant="body2">
-                    {TimeFormat.dateFormat(progress.createTime)}{" "}{TimeFormat.timeFormat(progress.createTime)}
-
+                    {TimeFormat.dateFormat(progress.createTime)}{" "}
+                    {TimeFormat.timeFormat(progress.createTime)}
                   </Typography>
                   <ProjectProgressItem
                     progress={progress}

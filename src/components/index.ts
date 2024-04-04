@@ -16,7 +16,7 @@ import TreePanel from "./common/TreePanel";
 import { WordListPanel } from "./common/words/WordListPanel";
 import { WordDisplayDialog } from "./common/words/WordDisplayDialog";
 import CardHeaderActionButton from "./common/CardHeaderActionButton";
-import { getButtonByOperationName } from "./common/buttons/TobeButton";
+import InputFileUpload from "./common/InputFileUpload";
 
 export {
   NewsListItem,
@@ -39,5 +39,5 @@ export {
   WordListPanel,
   WordDisplayDialog,
   CardHeaderActionButton,
-  getButtonByOperationName,
+  InputFileUpload,
 };

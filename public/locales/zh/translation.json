@@ -5,6 +5,7 @@
     "subjects": "专题"
   },
   "components": {
+    "upload-pics": "上传图片",
     "edit-icon-button": {
       "save": "保存",
       "edit": "修改"
