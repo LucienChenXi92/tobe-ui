@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 import { useEffect, useState, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
@@ -23,22 +25,24 @@ export default function GeneralDomainListPage(props: {
    * otherwise the values will not reflect up to date because of React setValue mechanism
    */
   let GLOBAL_DATA: GeneralCardData[] = [];
-  let CURRENT: number = 0;
+  let GLOBAL_CURRENT: number = 0;
+  let FINISH_FLAG: boolean = true;
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [data, setData] = useState<GeneralCardData[]>(GLOBAL_DATA);
-  const [current, setCurrent] = useState<number>(CURRENT);
+  const [current, setCurrent] = useState<number>(GLOBAL_CURRENT);
   const [totalPage, setTotalPage] = useState<number>(1);
 
-  const onscrollend = () => {
+  const handleScroll = () => {
     if (
+      FINISH_FLAG &&
       document.documentElement.scrollHeight <=
-      document.documentElement.clientHeight + document.documentElement.scrollTop
+        document.documentElement.clientHeight +
+          document.documentElement.scrollTop
     ) {
-      debugger;
-      loadData(GLOBAL_DATA, CURRENT);
+      loadData(GLOBAL_DATA, GLOBAL_CURRENT);
     }
   };
 
@@ -48,14 +52,15 @@ export default function GeneralDomainListPage(props: {
    */
   const loadData = useCallback(
     (_data: GeneralCardData[], _current: number): void => {
+      FINISH_FLAG = false;
       setOpenLoading(true);
       props.domainService
-        .get(DEFAULT_PAGE_SIZE, CURRENT, "")
+        .get(DEFAULT_PAGE_SIZE, GLOBAL_CURRENT, "")
         .then((response) => {
           GLOBAL_DATA = _data.concat(response.data.records);
-          CURRENT = response.data.current;
+          GLOBAL_CURRENT = response.data.current;
           setData(GLOBAL_DATA);
-          setCurrent(CURRENT);
+          setCurrent(GLOBAL_CURRENT);
           setTotalPage(response.data.pages);
         })
         .catch(() => {
@@ -63,16 +68,19 @@ export default function GeneralDomainListPage(props: {
             variant: "error",
           });
         })
-        .finally(() => setOpenLoading(false));
+        .finally(() => {
+          FINISH_FLAG = true;
+          setOpenLoading(false);
+        });
     },
     [enqueueSnackbar, t, props.domainService]
   );
 
   useEffect(() => {
-    window.addEventListener("scrollend", onscrollend);
+    window.addEventListener("scroll", handleScroll);
     loadData(data, current);
     return () => {
-      window.removeEventListener("scrollend", onscrollend);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, [loadData]);
 
