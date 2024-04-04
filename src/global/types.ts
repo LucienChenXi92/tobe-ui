@@ -262,10 +262,11 @@ export interface SubjectInfo {
   description: string;
   coverImgUrl: string;
   ownerId: string;
+  ownerName: string;
   likeCount: number;
   viewCount: number;
   publicToAll: boolean;
-  publishTime: Date;
+  publishTime: string;
   tags: TagOption[];
 }
 

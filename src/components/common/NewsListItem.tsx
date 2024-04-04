@@ -68,6 +68,11 @@ export default function NewsListItem(props: {
             underline="none"
             target="blank"
             color="text.secondary"
+            sx={{
+              "&:hover": {
+                color: theme.palette.secondary.main,
+              },
+            }}
           >
             {props.owner}
           </Link>{" "}

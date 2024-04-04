@@ -10,9 +10,7 @@ import {
 } from "@mui/material";
 import Loading from "../Loading";
 import { Column, Operation } from "../../../global/types";
-import { ReactNode } from "react";
-import { DeleteButton, DetailButton, ReleaseButton } from "../buttons/TobeButton";
-
+import { getButtonByOperationName } from "../buttons/TobeButton";
 
 interface PagedTableProps {
   openLoading?: boolean;
@@ -25,21 +23,6 @@ interface PagedTableProps {
   handleChangeCurrent: (event: unknown, newPage: number) => void;
   handleChangeSize: (event: React.ChangeEvent<HTMLInputElement>) => void;
   sx?: any;
-}
-
-function getButtonByOperationName(
-  name: string,
-  handleOnClick: () => void,
-  key?: string | number | undefined
-): ReactNode {
-  switch (name) {
-    case "detail":
-      return <DetailButton handleOnClick={handleOnClick} key={key} />;
-    case "delete":
-      return <DeleteButton handleOnClick={handleOnClick} key={key} />;
-    case "release":
-      return <ReleaseButton handleOnClick={handleOnClick} key={key} />;
-  }
 }
 
 export default function PagedTable(props: PagedTableProps) {
