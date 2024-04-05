@@ -35,43 +35,75 @@ export default function ProjectProgressModal(props: {
   viewOnly: boolean;
 }) {
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
+  const DEFAULT_PAGE_SIZE: number = 6;
+  let GLOBAL_DATA: ProjectProgress[] = [];
+  let GLOBAL_CURRENT: number = 0;
+  let FINISH_FLAG: boolean = true;
   const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
   const [images, setImages] = useState<any>([]);
   const [imageURLs, setImageURLs] = useState<string[]>([]);
+  const [current, setCurrent] = useState<number>(GLOBAL_CURRENT);
+  const [totalPage, setTotalPage] = useState<number>(1);
 
   function onImageChange(e: any) {
     setImages([...e.target.files]);
   }
 
-  const { enqueueSnackbar } = useSnackbar();
+  const handleScroll = () => {
+    if (
+      FINISH_FLAG &&
+      document.documentElement.scrollHeight <=
+        document.documentElement.clientHeight +
+          document.documentElement.scrollTop
+    ) {
+      loadProgressses(props.projectId, GLOBAL_DATA, GLOBAL_CURRENT);
+    }
+  };
 
   const loadProgressses = useCallback(
-    (projectId: string): void => {
+    (projectId: string, _data: ProjectProgress[], _current: number): void => {
+      FINISH_FLAG = false;
       setOpenLoading(true);
-      PublicDataService.getProgressesByProjectId(projectId)
+      PublicDataService.getProgressesByProjectId(
+        projectId,
+        DEFAULT_PAGE_SIZE,
+        GLOBAL_CURRENT
+      )
         .then((response) => {
-          setProgresses(response.data.records);
+          GLOBAL_DATA = _data.concat(response.data.records);
+          GLOBAL_CURRENT = response.data.current;
+          setProgresses(GLOBAL_DATA);
+          setCurrent(GLOBAL_CURRENT);
+          setTotalPage(response.data.pages);
         })
         .catch(() => {
           enqueueSnackbar(t("project-progress.msg.error"), {
             variant: "error",
           });
         })
-        .finally(() => setOpenLoading(false));
+        .finally(() => {
+          FINISH_FLAG = true;
+          setOpenLoading(false);
+        });
     },
     [enqueueSnackbar, t]
   );
 
   useEffect(() => {
-    loadProgressses(props.projectId);
+    window.addEventListener("scroll", handleScroll);
+    loadProgressses(props.projectId, progresses, current);
     if (images.length < 1) return;
     const newImageUrls: any = [];
     images.forEach((image: any) =>
       newImageUrls.push(URL.createObjectURL(image))
     );
     setImageURLs(newImageUrls);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [images, loadProgressses, props.projectId]);
 
   function handleProgressCreation(): void {
@@ -103,7 +135,7 @@ export default function ProjectProgressModal(props: {
         enqueueSnackbar(t("project-progress.msg.success"), {
           variant: "success",
         });
-        loadProgressses(props.projectId);
+        loadProgressses(props.projectId, progresses, current);
       })
       .catch(() => {
         enqueueSnackbar(t("project-progress.msg.error"), {
@@ -115,93 +147,97 @@ export default function ProjectProgressModal(props: {
 
   return (
     <React.Fragment>
-      {openLoading ? (
+      {/* {openLoading ? (
         <Skeleton width="100%" height="30vh" />
       ) : (
-        <>
-          <Divider sx={{ mt: 2 }}>
-            <Typography variant="subtitle1" color="text.secondary">
-              {t("project-progress.title")}
-            </Typography>
-          </Divider>
+        <> */}
+      <Divider sx={{ mt: 2 }}>
+        <Typography variant="subtitle1" color="text.secondary">
+          {t("project-progress.title")}
+        </Typography>
+      </Divider>
 
-          {!props.viewOnly && (
-            <Paper
-              variant="outlined"
-              sx={{ mt: 2, mb: 2, p: { xs: 2, md: 3 } }}
-            >
-              <Grid container item xs={12}>
-                <Grid item xs={12}>
-                  <TextField
-                    id="add-progress-desc"
-                    label={t("project-progress.add-new-tip")}
-                    fullWidth
-                    variant="outlined"
-                    multiline
-                    minRows={3}
-                    maxRows={20}
-                    value={newProgress}
-                    onChange={(event) => {
-                      if (event.target.value.length <= 1000) {
-                        setNewProgress(event.target.value);
-                      }
-                    }}
-                  />
-                </Grid>
-                <Grid item container xs={12} justifyContent="flex-end">
-                  <Typography variant="body2" color="gray">
-                    {Number(newProgress?.length)} / 1000
-                  </Typography>
-                </Grid>
-                <Grid item container xs={12} sx={{ mt: 1 }}>
-                  <Grid flexGrow={0}>
-                    <InputFileUpload onImageChange={onImageChange} />
-                  </Grid>
-                  <Grid flexGrow={1} />
-                  <Button
-                    variant="contained"
-                    size="small"
-                    onClick={handleProgressCreation}
-                    sx={{ ml: 1 }}
-                  >
-                    {t("project-progress.send-btn")}
-                  </Button>
-                </Grid>
+      {!props.viewOnly && (
+        <Paper variant="outlined" sx={{ mt: 2, mb: 2, p: { xs: 2, md: 3 } }}>
+          <Grid container item xs={12}>
+            <Grid item xs={12}>
+              <TextField
+                id="add-progress-desc"
+                label={t("project-progress.add-new-tip")}
+                fullWidth
+                variant="outlined"
+                multiline
+                minRows={3}
+                maxRows={20}
+                value={newProgress}
+                onChange={(event) => {
+                  if (event.target.value.length <= 1000) {
+                    setNewProgress(event.target.value);
+                  }
+                }}
+              />
+            </Grid>
+            <Grid item container xs={12} justifyContent="flex-end">
+              <Typography variant="body2" color="gray">
+                {Number(newProgress?.length)} / 1000
+              </Typography>
+            </Grid>
+            <Grid item container xs={12} sx={{ mt: 1 }}>
+              <Grid flexGrow={0}>
+                <InputFileUpload onImageChange={onImageChange} />
               </Grid>
-              <ImagesPanel imageURLs={imageURLs} />
-            </Paper>
-          )}
-          <Timeline
-            sx={{
-              [`& .${timelineItemClasses.root}:before`]: {
-                flex: 0,
-                padding: 0,
-              },
-              px: 0,
-            }}
-          >
-            {progresses.map((progress: ProjectProgress) => (
-              <TimelineItem key={progress.id} position="right">
-                <TimelineSeparator>
-                  <TimelineDot color="secondary" />
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent sx={{ pl: 1, pr: 0 }}>
-                  <Typography color="text.secondary" variant="body2">
-                    {TimeFormat.dateFormat(progress.createTime)}{" "}
-                    {TimeFormat.timeFormat(progress.createTime)}
-                  </Typography>
-                  <ProjectProgressItem
-                    progress={progress}
-                    viewOnly={props.viewOnly}
-                    key={progress.id}
-                  />
-                </TimelineContent>
-              </TimelineItem>
-            ))}
-          </Timeline>
-        </>
+              <Grid flexGrow={1} />
+              <Button
+                variant="contained"
+                size="small"
+                onClick={handleProgressCreation}
+                sx={{ ml: 1 }}
+              >
+                {t("project-progress.send-btn")}
+              </Button>
+            </Grid>
+          </Grid>
+          <ImagesPanel imageURLs={imageURLs} />
+        </Paper>
       )}
+      <Timeline
+        sx={{
+          [`& .${timelineItemClasses.root}:before`]: {
+            flex: 0,
+            padding: 0,
+          },
+          px: 0,
+        }}
+      >
+        {progresses.map((progress: ProjectProgress) => (
+          <TimelineItem key={progress.id} position="right">
+            <TimelineSeparator>
+              <TimelineDot color="secondary" />
+              <TimelineConnector />
+            </TimelineSeparator>
+            <TimelineContent sx={{ pl: 1, pr: 0 }}>
+              <Typography color="text.secondary" variant="body2">
+                {TimeFormat.dateFormat(progress.createTime)}{" "}
+                {TimeFormat.timeFormat(progress.createTime)}
+              </Typography>
+              <ProjectProgressItem
+                progress={progress}
+                viewOnly={props.viewOnly}
+                key={progress.id}
+              />
+            </TimelineContent>
+          </TimelineItem>
+        ))}
+      </Timeline>
+      <Grid sx={{ mt: 1 }} container justifyContent="center">
+        {current + 1 >= totalPage && (
+          <Typography variant="body2" color="textSecondary">
+            {t("domain-page.msg.info-no-more")}
+          </Typography>
+        )}
+      </Grid>
+      {/* </> */}
+      {/* )} */}
     </React.Fragment>
   );
 }
