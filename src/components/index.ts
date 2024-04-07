@@ -16,7 +16,8 @@ import TreePanel from "./common/TreePanel";
 import { WordListPanel } from "./common/words/WordListPanel";
 import { WordDisplayDialog } from "./common/words/WordDisplayDialog";
 import CardHeaderActionButton from "./common/CardHeaderActionButton";
-import InputFileUpload from "./common/InputFileUpload";
+import InputFileUploadButton from "./common/InputFileUploadButton";
+import { InfiniteScrollList } from "./common/InfiniteScrollList";
 
 export {
   NewsListItem,
@@ -39,5 +40,6 @@ export {
   WordListPanel,
   WordDisplayDialog,
   CardHeaderActionButton,
-  InputFileUpload,
+  InputFileUploadButton,
+  InfiniteScrollList,
 };

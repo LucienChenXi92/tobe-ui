@@ -177,7 +177,6 @@
   "domain-page": {
     "load-more": "加载更多",
     "msg": {
-      "info-no-more": "没有其他内容了",
       "error": "操作失败"
     }
   },

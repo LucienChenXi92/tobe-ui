@@ -51,9 +51,7 @@ export function getProgressesByProjectId(
   current: number
 ): AxiosPromise {
   return server.get(
-    `/${API_DATA_URI}/projects/${projectId}/progresses?size=${size}&current=${
-      current + 1
-    }`
+    `/${API_DATA_URI}/projects/${projectId}/progresses?size=${size}&current=${current}`
   );
 }
 

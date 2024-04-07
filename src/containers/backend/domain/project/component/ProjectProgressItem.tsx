@@ -87,7 +87,7 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
           />
         </Grid>
         <Grid item xs={12}>
-          <ImagesPanel imageURLs={imageURLs} />
+          <ImagesPanel keyProfix={props.progress.id} imageURLs={imageURLs} />
         </Grid>
       </Grid>
     </Paper>

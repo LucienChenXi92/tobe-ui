@@ -1,11 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import {
   Button,
   Paper,
   Grid,
-  Skeleton,
   TextField,
   Typography,
   Divider,
@@ -27,7 +26,10 @@ import {
   PublicDataService,
   FileService,
 } from "../../../../../services";
-import { InputFileUpload } from "../../../../../components";
+import {
+  InfiniteScrollList,
+  InputFileUploadButton,
+} from "../../../../../components";
 import { ImagesPanel } from "./ImagesPanel";
 
 export default function ProjectProgressModal(props: {
@@ -37,74 +39,50 @@ export default function ProjectProgressModal(props: {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
   const DEFAULT_PAGE_SIZE: number = 6;
-  let GLOBAL_DATA: ProjectProgress[] = [];
-  let GLOBAL_CURRENT: number = 0;
-  let FINISH_FLAG: boolean = true;
-  const [openLoading, setOpenLoading] = useState<boolean>(false);
   const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
   const [images, setImages] = useState<any>([]);
   const [imageURLs, setImageURLs] = useState<string[]>([]);
-  const [current, setCurrent] = useState<number>(GLOBAL_CURRENT);
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const [current, setCurrent] = useState<number>(0);
   const [totalPage, setTotalPage] = useState<number>(1);
 
   function onImageChange(e: any) {
     setImages([...e.target.files]);
   }
 
-  const handleScroll = () => {
-    if (
-      FINISH_FLAG &&
-      document.documentElement.scrollHeight <=
-        document.documentElement.clientHeight +
-          document.documentElement.scrollTop
-    ) {
-      loadProgressses(props.projectId, GLOBAL_DATA, GLOBAL_CURRENT);
-    }
+  const loadProgressses = (): void => {
+    setLoading(true);
+    PublicDataService.getProgressesByProjectId(
+      props.projectId,
+      DEFAULT_PAGE_SIZE,
+      current + 1
+    )
+      .then((response) => {
+        setProgresses(progresses.concat(response.data.records));
+        setCurrent(response.data.current);
+        setTotalPage(response.data.pages);
+      })
+      .catch(() => {
+        enqueueSnackbar(t("project-progress.msg.error"), {
+          variant: "error",
+        });
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
-  const loadProgressses = useCallback(
-    (projectId: string, _data: ProjectProgress[], _current: number): void => {
-      FINISH_FLAG = false;
-      setOpenLoading(true);
-      PublicDataService.getProgressesByProjectId(
-        projectId,
-        DEFAULT_PAGE_SIZE,
-        GLOBAL_CURRENT
-      )
-        .then((response) => {
-          GLOBAL_DATA = _data.concat(response.data.records);
-          GLOBAL_CURRENT = response.data.current;
-          setProgresses(GLOBAL_DATA);
-          setCurrent(GLOBAL_CURRENT);
-          setTotalPage(response.data.pages);
-        })
-        .catch(() => {
-          enqueueSnackbar(t("project-progress.msg.error"), {
-            variant: "error",
-          });
-        })
-        .finally(() => {
-          FINISH_FLAG = true;
-          setOpenLoading(false);
-        });
-    },
-    [enqueueSnackbar, t]
-  );
-
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    loadProgressses(props.projectId, progresses, current);
+    loadProgressses();
     if (images.length < 1) return;
     const newImageUrls: any = [];
     images.forEach((image: any) =>
       newImageUrls.push(URL.createObjectURL(image))
     );
     setImageURLs(newImageUrls);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [images, loadProgressses, props.projectId]);
+  }, [props.projectId, images]);
 
   function handleProgressCreation(): void {
     if (!newProgress.trim()) {
@@ -113,8 +91,6 @@ export default function ProjectProgressModal(props: {
       });
       return;
     }
-
-    setOpenLoading(true);
     ProjectProgressService.createProgress({
       projectId: props.projectId,
       description: newProgress,
@@ -135,22 +111,16 @@ export default function ProjectProgressModal(props: {
         enqueueSnackbar(t("project-progress.msg.success"), {
           variant: "success",
         });
-        loadProgressses(props.projectId, progresses, current);
+        loadProgressses();
       })
       .catch(() => {
         enqueueSnackbar(t("project-progress.msg.error"), {
           variant: "error",
         });
-      })
-      .finally(() => setOpenLoading(false));
+      });
   }
-
   return (
     <React.Fragment>
-      {/* {openLoading ? (
-        <Skeleton width="100%" height="30vh" />
-      ) : (
-        <> */}
       <Divider sx={{ mt: 2 }}>
         <Typography variant="subtitle1" color="text.secondary">
           {t("project-progress.title")}
@@ -182,11 +152,14 @@ export default function ProjectProgressModal(props: {
                 {Number(newProgress?.length)} / 1000
               </Typography>
             </Grid>
-            <Grid item container xs={12} sx={{ mt: 1 }}>
-              <Grid flexGrow={0}>
-                <InputFileUpload onImageChange={onImageChange} />
-              </Grid>
-              <Grid flexGrow={1} />
+            <Grid
+              item
+              container
+              xs={12}
+              justifyContent="flex-end"
+              sx={{ mt: 1 }}
+            >
+              <InputFileUploadButton onImageChange={onImageChange} />
               <Button
                 variant="contained"
                 size="small"
@@ -197,9 +170,10 @@ export default function ProjectProgressModal(props: {
               </Button>
             </Grid>
           </Grid>
-          <ImagesPanel imageURLs={imageURLs} />
+          <ImagesPanel keyProfix={"new_progress"} imageURLs={imageURLs} />
         </Paper>
       )}
+
       <Timeline
         sx={{
           [`& .${timelineItemClasses.root}:before`]: {
@@ -209,35 +183,36 @@ export default function ProjectProgressModal(props: {
           px: 0,
         }}
       >
-        {progresses.map((progress: ProjectProgress) => (
-          <TimelineItem key={progress.id} position="right">
-            <TimelineSeparator>
-              <TimelineDot color="secondary" />
-              <TimelineConnector />
-            </TimelineSeparator>
-            <TimelineContent sx={{ pl: 1, pr: 0 }}>
-              <Typography color="text.secondary" variant="body2">
-                {TimeFormat.dateFormat(progress.createTime)}{" "}
-                {TimeFormat.timeFormat(progress.createTime)}
-              </Typography>
-              <ProjectProgressItem
-                progress={progress}
-                viewOnly={props.viewOnly}
-                key={progress.id}
-              />
-            </TimelineContent>
-          </TimelineItem>
-        ))}
+        <InfiniteScrollList
+          loading={loading}
+          dataSource={progresses}
+          renderItem={(progress: ProjectProgress) => (
+            <TimelineItem
+              key={progress.id}
+              position="right"
+              sx={{ width: "100%" }}
+            >
+              <TimelineSeparator>
+                <TimelineDot color="secondary" />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent sx={{ pl: 1, pr: 0 }}>
+                <Typography color="text.secondary" variant="body2">
+                  {TimeFormat.dateFormat(progress.createTime)}{" "}
+                  {TimeFormat.timeFormat(progress.createTime)}
+                </Typography>
+                <ProjectProgressItem
+                  progress={progress}
+                  viewOnly={props.viewOnly}
+                  key={progress.id}
+                />
+              </TimelineContent>
+            </TimelineItem>
+          )}
+          hasMore={current < totalPage}
+          loadMore={loadProgressses}
+        />
       </Timeline>
-      <Grid sx={{ mt: 1 }} container justifyContent="center">
-        {current + 1 >= totalPage && (
-          <Typography variant="body2" color="textSecondary">
-            {t("domain-page.msg.info-no-more")}
-          </Typography>
-        )}
-      </Grid>
-      {/* </> */}
-      {/* )} */}
     </React.Fragment>
   );
 }

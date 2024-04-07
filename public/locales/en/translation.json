@@ -177,7 +177,6 @@
   "domain-page": {
     "load-more": "Load more",
     "msg": {
-      "info-no-more": "No more content",
       "error": "Operation failed"
     }
   },
