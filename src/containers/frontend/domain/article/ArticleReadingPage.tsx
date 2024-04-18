@@ -4,7 +4,7 @@ import { useAuthState } from "../../../../contexts";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { RichContentReader, Page } from "../../../../components";
+import { RichContentReader, Page } from "../../components";
 import { ArticleDetailDTO, Domain } from "../../../../global/types";
 import { PublicDataService } from "../../../../services";
 import { URL } from "../../../../routes";
@@ -14,7 +14,7 @@ import {
   ContentPageMetaBar,
   RelevantContentPanel,
   TagDisplayBar,
-} from "../../common";
+} from "../../components";
 
 export default function ArticleReadingPage() {
   const { t } = useTranslation();

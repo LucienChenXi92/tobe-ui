@@ -2,12 +2,8 @@ import { useState, useEffect, useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import {
-  Page,
-  EditIconButton,
-  TreePanel,
-} from "../../../components";
 import { Button, Box, Paper, TextField, Grid } from "@mui/material";
+import { Page, EditIconButton, TreePanel } from "../components";
 import {
   TagRelationship,
   RenderTree,

@@ -7,7 +7,7 @@ import {
   MultipleTagSelecter,
   EditIconButton,
   WordListPanel,
-} from "../../../../components";
+} from "../../components";
 import { Box, Paper, TextField, Grid } from "@mui/material";
 import { VocabularyService } from "../../../../services";
 import {

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Paper, Grid, TextField } from "@mui/material";
 import { ProjectProgress } from "../../../../../global/types";
-import { EditIconButton } from "../../../../../components";
+import { EditIconButton } from "../../../components";
 import { FileService, ProjectProgressService } from "../../../../../services";
 import { ImagesPanel } from "./ImagesPanel";
 

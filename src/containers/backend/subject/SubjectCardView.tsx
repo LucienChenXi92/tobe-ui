@@ -8,7 +8,7 @@ import {
   CardHeader,
 } from "@mui/material";
 import { Operation, SubjectInfo } from "../../../global/types";
-import { CardHeaderActionButton } from "../../../components";
+import { CardHeaderActionButton } from "../components";
 
 export default function SubjectCardView(props: {
   data: SubjectInfo[];

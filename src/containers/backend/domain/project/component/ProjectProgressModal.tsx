@@ -10,7 +10,7 @@ import {
   Divider,
 } from "@mui/material";
 import { ProjectProgressService, FileService } from "../../../../../services";
-import { InputFileUploadButton } from "../../../../../components";
+import { InputFileUploadButton } from "../../../components";
 import { ImagesPanel } from "./ImagesPanel";
 import ProjectProgressItems from "./ProjectProgressItems";
 

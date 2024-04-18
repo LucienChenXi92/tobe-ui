@@ -13,7 +13,7 @@ import {
   Breadcrumbs,
   ContentPageMetaBar,
   TagDisplayBar,
-} from "../../common";
+} from "../../components";
 
 export default function ProjectReadingPage() {
   const { t } = useTranslation();

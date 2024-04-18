@@ -10,12 +10,9 @@ import {
 import { useTranslation } from "react-i18next";
 import LockIcon from "@mui/icons-material/Lock";
 import VerifiedIcon from "@mui/icons-material/Verified";
+import { InfiniteScrollList, CardHeaderActionButton } from "../../components";
 import { Operation, GeneralCardData } from "../../../../global/types";
 import { dateAndTimeFormat } from "../../../../commons/TimeFormat";
-import {
-  InfiniteScrollList,
-  CardHeaderActionButton,
-} from "../../../../components";
 import theme from "../../../../theme";
 
 export default function GeneralCardView(props: {

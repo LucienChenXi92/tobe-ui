@@ -9,11 +9,11 @@ import Groups from "@mui/icons-material/Groups";
 import ArticleIcon from "@mui/icons-material/Article";
 import Abc from "@mui/icons-material/Abc";
 import FolderIcon from "@mui/icons-material/Folder";
-import { URL } from "../../routes";
-import { AUTHORITY, FEATURE_CODE } from "../../commons";
-import { PageItem } from "../../global/types";
-import theme from "../../theme";
-import project from "../../../package.json";
+import { URL } from "../../../../routes";
+import { AUTHORITY, FEATURE_CODE } from "../../../../commons";
+import { PageItem } from "../../../../global/types";
+import theme from "../../../../theme";
+import project from "../../../../../package.json";
 
 const basicPageItems: PageItem[] = [
   {

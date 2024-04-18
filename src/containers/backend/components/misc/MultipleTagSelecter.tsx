@@ -2,9 +2,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { enqueueSnackbar } from "notistack";
 import CreatableSelect from "react-select/creatable";
-import { TagService } from "../../services";
 import { StylesConfig } from "react-select";
-import { TagOption } from "../../global/types";
+import { TagService } from "../../../../services";
+import { TagOption } from "../../../../global/types";
 
 const styles: StylesConfig<TagOption, true> = {};
 

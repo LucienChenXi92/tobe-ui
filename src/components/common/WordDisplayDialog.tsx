@@ -7,7 +7,7 @@ import {
 } from "@mui/material";
 import PlayCircleOutlineIcon from "@mui/icons-material/PlayCircleOutline";
 import PauseCircleOutlineIcon from "@mui/icons-material/PauseCircleOutline";
-import { WordGeneralDTO } from "../../../global/types";
+import { WordGeneralDTO } from "../../global/types";
 import Speech from "react-text-to-speech";
 
 export function WordDisplayDialog(props: {

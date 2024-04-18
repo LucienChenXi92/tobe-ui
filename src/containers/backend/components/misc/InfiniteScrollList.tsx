@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { ReactNode, useEffect } from "react";
 
-export function InfiniteScrollList<T>(props: {
+export default function InfiniteScrollList<T>(props: {
   loading: boolean;
   dataSource: Array<T>;
   renderItem: (data: T) => ReactNode;

@@ -13,7 +13,7 @@ import {
   ContentPageMetaBar,
   RelevantContentPanel,
   TagDisplayBar,
-} from "../../common";
+} from "../../components";
 
 export default function VocabularyReadingPage() {
   const { t } = useTranslation();

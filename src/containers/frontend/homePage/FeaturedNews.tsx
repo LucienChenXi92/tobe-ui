@@ -3,7 +3,7 @@ import { Tabs, Tab, Button, Grid, Typography, Paper } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
-import { NewsListItem } from "../../../components";
+import NewsListItem from "./NewsListItem";
 import { PublicDataService } from "../../../services";
 enum LoadType {
   Append,

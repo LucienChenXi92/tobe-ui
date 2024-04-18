@@ -3,7 +3,7 @@ import { Box, Grid, Paper, TextField } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
-import { Page, MultipleTagSelecter, EditIconButton } from "../../../../components";
+import { Page, MultipleTagSelecter, EditIconButton } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import {
   ProjectInfo,

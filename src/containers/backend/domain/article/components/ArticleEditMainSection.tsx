@@ -8,15 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { RichContentEditor, MultipleTagSelecter } from "../../../components";
+import { FieldWrapper } from "./FieldWrapper";
+import { TagOption } from "../../../../../global/types";
 import {
-  RichContentEditor,
   TobeAccordion,
   TobeAccordionDetails,
   TobeAccordionSummary,
-  MultipleTagSelecter,
-} from "../../../../../components";
-import { FieldWrapper } from "./FieldWrapper";
-import { TagOption } from "../../../../../global/types";
+} from "./TobeAccordion";
 
 export interface ArticleEditMainSectionProps {
   title: string;

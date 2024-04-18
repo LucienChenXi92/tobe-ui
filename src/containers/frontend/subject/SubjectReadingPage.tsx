@@ -13,7 +13,11 @@ import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import AbcIcon from "@mui/icons-material/Abc";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
-import { AuthorDisplayPanel, Breadcrumbs, ContentPageMetaBar } from "../common";
+import {
+  AuthorDisplayPanel,
+  Breadcrumbs,
+  ContentPageMetaBar,
+} from "../components";
 
 export default function SubjectReadingPage() {
   const { t } = useTranslation();

@@ -2,7 +2,7 @@ import { Button } from "@mui/material";
 import { ReactNode } from "react";
 import { useTranslation } from "react-i18next";
 
-interface TobeButtonProps {
+interface TableButtonProps {
   label?: string | undefined;
   handleOnClick?: () => void | undefined;
   color?:
@@ -32,7 +32,7 @@ export function getButtonByOperationName(
   }
 }
 
-export const DetailButton = (props: TobeButtonProps) => {
+export const DetailButton = (props: TableButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -45,7 +45,7 @@ export const DetailButton = (props: TobeButtonProps) => {
   );
 };
 
-export const ReleaseButton = (props: TobeButtonProps) => {
+export const ReleaseButton = (props: TableButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button
@@ -58,7 +58,7 @@ export const ReleaseButton = (props: TobeButtonProps) => {
   );
 };
 
-export const DeleteButton = (props: TobeButtonProps) => {
+export const DeleteButton = (props: TableButtonProps) => {
   const { t } = useTranslation();
   return (
     <Button

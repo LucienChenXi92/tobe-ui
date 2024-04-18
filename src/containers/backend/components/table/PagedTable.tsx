@@ -8,9 +8,9 @@ import {
   TablePagination,
   TableRow,
 } from "@mui/material";
-import Loading from "../Loading";
-import { Column, Operation } from "../../../global/types";
-import { getButtonByOperationName } from "../buttons/TobeButton";
+import Loading from "../../../../components/common/Loading";
+import { Column, Operation } from "../../../../global/types";
+import { getButtonByOperationName } from "./TobeButton";
 
 interface PagedTableProps {
   openLoading?: boolean;

@@ -1,8 +1,12 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 import { IconButton, Menu, MenuItem } from "@mui/material";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { GeneralCardData, Operation, SubjectInfo } from "../../global/types";
-import { useTranslation } from "react-i18next";
+import {
+  GeneralCardData,
+  Operation,
+  SubjectInfo,
+} from "../../../../global/types";
 
 export default function CardHeaderActionButton(props: {
   operations: Operation[];

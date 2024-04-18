@@ -3,12 +3,12 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { Box, Grid, Divider, Typography, Button } from "@mui/material";
 import Add from "@mui/icons-material/Add";
-import theme from "../../../theme";
-import { WordGeneralDTO } from "../../../global/types";
+import theme from "../../theme";
+import { WordGeneralDTO } from "../../global/types";
 import { WordCreateDialog } from "./WordCreateDialog";
 import { WordDetailDialog } from "./WordDetailDialog";
 import { WordDisplayDialog } from "./WordDisplayDialog";
-import { PublicDataService, WordService } from "../../../services";
+import { PublicDataService, WordService } from "../../services";
 
 export function WordListPanel(props: {
   editable: boolean;

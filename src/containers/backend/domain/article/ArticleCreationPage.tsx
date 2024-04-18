@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Page } from "../../../../components";
 import { URL } from "../../../../routes";
 import { TagOption } from "../../../../global/types";
-import ArticleEditMainSection from "./component/ArticleEditMainSection";
+import ArticleEditMainSection from "./components/ArticleEditMainSection";
 import { ArticleService } from "../../../../services";
 
 export default function ArticleCreationPage() {
