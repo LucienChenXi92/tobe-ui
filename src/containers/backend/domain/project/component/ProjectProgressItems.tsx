@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { PublicDataService } from "../../../../../services";
 import { ProjectProgress } from "../../../../../global/types";
 import ProjectProgressItem from "./ProjectProgressItem";
-import { TimeFormat } from "../../../../../commons";
 import { InfiniteScrollList } from "../../../components";
 
 export default function ProjectProgressItems(props: {
@@ -55,10 +54,6 @@ export default function ProjectProgressItems(props: {
       dataSource={progresses}
       renderItem={(progress: ProjectProgress) => (
         <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
-          <Typography color="text.secondary" variant="body2">
-            {TimeFormat.dateFormat(progress.createTime)}{" "}
-            {TimeFormat.timeFormat(progress.createTime)}
-          </Typography>
           <ProjectProgressItem
             progress={progress}
             viewOnly={props.viewOnly}

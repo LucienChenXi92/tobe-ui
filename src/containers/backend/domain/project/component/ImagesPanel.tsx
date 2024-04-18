@@ -4,7 +4,7 @@ export const ImagesPanel = (props: {
   keyProfix: string;
   imageURLs: string[];
 }) => (
-  <Grid item container sx={{ mt: 1 }}>
+  <Grid container sx={{ mt: 1 }}>
     {props.imageURLs.length > 0 && (
       <Grid container sx={{ width: "100%" }}>
         {props.imageURLs.map((imgURL: string, index: number) => (

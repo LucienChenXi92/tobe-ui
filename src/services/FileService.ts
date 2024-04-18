@@ -64,7 +64,6 @@ function compressImages(files: File[]): Promise<File[]> {
       });
       processedImages += 1;
     }
-    debugger;
     if (processedImages === numImagesToProcess) {
       resolve(files);
     }
