@@ -9,28 +9,10 @@ import {
   Typography,
   Divider,
 } from "@mui/material";
-import {
-  Timeline,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineConnector,
-  TimelineContent,
-  TimelineDot,
-  timelineItemClasses,
-} from "@mui/lab";
-import { ProjectProgress } from "../../../../../global/types";
-import ProjectProgressItem from "./ProjectProgressItem";
-import { TimeFormat } from "../../../../../commons";
-import {
-  ProjectProgressService,
-  PublicDataService,
-  FileService,
-} from "../../../../../services";
-import {
-  InfiniteScrollList,
-  InputFileUploadButton,
-} from "../../../../../components";
+import { ProjectProgressService, FileService } from "../../../../../services";
+import { InputFileUploadButton } from "../../../../../components";
 import { ImagesPanel } from "./ImagesPanel";
+import ProjectProgressItems from "./ProjectProgressItems";
 
 export default function ProjectProgressModal(props: {
   projectId: string;
@@ -38,44 +20,16 @@ export default function ProjectProgressModal(props: {
 }) {
   const { t } = useTranslation();
   const { enqueueSnackbar } = useSnackbar();
-  const DEFAULT_PAGE_SIZE: number = 6;
-  const [progresses, setProgresses] = useState<ProjectProgress[]>([]);
   const [newProgress, setNewProgress] = useState<string>("");
   const [images, setImages] = useState<any>([]);
   const [imageURLs, setImageURLs] = useState<string[]>([]);
-
-  const [loading, setLoading] = useState<boolean>(false);
-  const [current, setCurrent] = useState<number>(0);
-  const [totalPage, setTotalPage] = useState<number>(1);
+  const [refreshCode, setRefreshCode] = useState<number>(new Date().getTime());
 
   function onImageChange(e: any) {
     setImages([...e.target.files]);
   }
 
-  const loadProgressses = (): void => {
-    setLoading(true);
-    PublicDataService.getProgressesByProjectId(
-      props.projectId,
-      DEFAULT_PAGE_SIZE,
-      current + 1
-    )
-      .then((response) => {
-        setProgresses(progresses.concat(response.data.records));
-        setCurrent(response.data.current);
-        setTotalPage(response.data.pages);
-      })
-      .catch(() => {
-        enqueueSnackbar(t("project-progress.msg.error"), {
-          variant: "error",
-        });
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  };
-
   useEffect(() => {
-    loadProgressses();
     if (images.length < 1) return;
     const newImageUrls: any = [];
     images.forEach((image: any) =>
@@ -108,10 +62,10 @@ export default function ProjectProgressModal(props: {
         setNewProgress("");
         setImages([]);
         setImageURLs([]);
+        setRefreshCode(new Date().getTime());
         enqueueSnackbar(t("project-progress.msg.success"), {
           variant: "success",
         });
-        loadProgressses();
       })
       .catch(() => {
         enqueueSnackbar(t("project-progress.msg.error"), {
@@ -119,6 +73,7 @@ export default function ProjectProgressModal(props: {
         });
       });
   }
+
   return (
     <React.Fragment>
       <Divider sx={{ mt: 2 }}>
@@ -173,46 +128,11 @@ export default function ProjectProgressModal(props: {
           <ImagesPanel keyProfix={"new_progress"} imageURLs={imageURLs} />
         </Paper>
       )}
-
-      <Timeline
-        sx={{
-          [`& .${timelineItemClasses.root}:before`]: {
-            flex: 0,
-            padding: 0,
-          },
-          px: 0,
-        }}
-      >
-        <InfiniteScrollList
-          loading={loading}
-          dataSource={progresses}
-          renderItem={(progress: ProjectProgress) => (
-            <TimelineItem
-              key={progress.id}
-              position="right"
-              sx={{ width: "100%" }}
-            >
-              <TimelineSeparator>
-                <TimelineDot color="secondary" />
-                <TimelineConnector />
-              </TimelineSeparator>
-              <TimelineContent sx={{ pl: 1, pr: 0 }}>
-                <Typography color="text.secondary" variant="body2">
-                  {TimeFormat.dateFormat(progress.createTime)}{" "}
-                  {TimeFormat.timeFormat(progress.createTime)}
-                </Typography>
-                <ProjectProgressItem
-                  progress={progress}
-                  viewOnly={props.viewOnly}
-                  key={progress.id}
-                />
-              </TimelineContent>
-            </TimelineItem>
-          )}
-          hasMore={current < totalPage}
-          loadMore={loadProgressses}
-        />
-      </Timeline>
+      <ProjectProgressItems
+        projectId={props.projectId}
+        viewOnly={props.viewOnly}
+        refreshCode={refreshCode}
+      />
     </React.Fragment>
   );
 }
