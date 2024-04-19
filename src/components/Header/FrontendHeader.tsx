@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   AppBar,
-  Toolbar,
   Box,
-  Container,
   Button,
+  Container,
   IconButton,
+  Toolbar,
   Typography,
   Menu,
   MenuItem,
@@ -14,10 +14,10 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { validateUrl } from "../../routes";
 import { useTranslation } from "react-i18next";
-import theme from "../../theme";
 import { publicPages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
 import project from "../../../package.json";
+import theme from "../../theme";
 
 const FrontendHeader = () => {
   const [yIndex, setYIndex] = useState<number>(0);
@@ -122,7 +122,8 @@ const HeaderContent = () => {
 
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
-            size="large"
+            size="small"
+            sx={{ border: "1px solid rgba(0,0,0,0.12)", borderRadius: "4px" }}
             aria-label="account of current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"

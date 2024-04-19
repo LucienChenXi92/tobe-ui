@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Grid, Paper, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useParams } from "react-router-dom";
@@ -10,9 +10,10 @@ import { TimeFormat } from "../../../../commons";
 import { PublicDataService } from "../../../../services";
 import {
   AuthorDisplayPanel,
-  Breadcrumbs,
   ContentPageMetaBar,
+  ContentPageBreadcrumbsBar,
   TagDisplayBar,
+  ContentPageFrame,
 } from "../../components";
 
 export default function ProjectReadingPage() {
@@ -41,17 +42,10 @@ export default function ProjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={project?.name}>
-      <Breadcrumbs />
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={9} lg={9}>
-          <Paper
-            variant="outlined"
-            sx={{
-              my: 0,
-              p: { xs: 0, sm: 2 },
-              borderWidth: { xs: "0px", sm: "1px" },
-            }}
-          >
+      <ContentPageBreadcrumbsBar />
+      <ContentPageFrame
+        mainContent={
+          <Grid container>
             {project && (
               <ContentPageMetaBar
                 authorId={project.ownerId}
@@ -62,7 +56,7 @@ export default function ProjectReadingPage() {
               />
             )}
             {project && (
-              <Grid container spacing={3} sx={{ mt: 1 }}>
+              <Grid container spacing={1} sx={{ mt: 1 }}>
                 <Grid item xs={12}>
                   <Typography color="text.secondary" variant="body2">
                     {project.description}
@@ -83,21 +77,16 @@ export default function ProjectReadingPage() {
                 </Grid>
               </Grid>
             )}
-          </Paper>
-        </Grid>
-
-        {project?.ownerId && (
-          <Grid
-            item
-            md={3}
-            sx={{
-              display: { xs: "none", md: "block" },
-            }}
-          >
-            <AuthorDisplayPanel userId={project?.ownerId} />
           </Grid>
-        )}
-      </Grid>
+        }
+        sideContents={[
+          project?.ownerId && (
+            <Grid sx={{ display: { xs: "none", sm: "flex" } }}>
+              <AuthorDisplayPanel userId={project?.ownerId} />
+            </Grid>
+          ),
+        ]}
+      />
       {id && <ProjectProgressModal projectId={id} viewOnly={true} />}
     </Page>
   );

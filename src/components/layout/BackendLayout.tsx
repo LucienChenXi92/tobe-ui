@@ -42,7 +42,7 @@ export default function BackendLayout({ children }: { children: any }) {
         flexDirection: "column",
         justifyContent: "center",
         minHeight: "100vh",
-        backgroundColor: { xs: "#fff", sm: "#f3f2ef" },
+        backgroundColor: { xs: "rgba(255,255,255,1)", sm: "#f3f2ef" },
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

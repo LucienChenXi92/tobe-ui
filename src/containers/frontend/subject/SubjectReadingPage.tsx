@@ -17,6 +17,7 @@ import {
   AuthorDisplayPanel,
   Breadcrumbs,
   ContentPageMetaBar,
+  ContentPageFrame,
 } from "../components";
 
 export default function SubjectReadingPage() {
@@ -201,28 +202,25 @@ export default function SubjectReadingPage() {
       <Breadcrumbs
         nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
-      {subject && (
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={9}>
-            <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-              <Grid container>
-                <ContentPageMetaBar
-                  authorId={subject.ownerId}
-                  authorName={subject.ownerName}
-                  publishTime={subject.publishTime}
-                  viewCount={subject.viewCount}
-                  editLinkUrl={`/my/subjects/${subject.id}`}
-                />
-                {printSubjectTree(subject)}
-              </Grid>
-            </Paper>
-          </Grid>
-
-          <Grid item sm={12} md={3}>
-            <AuthorDisplayPanel userId={subject.ownerId} />
-          </Grid>
-        </Grid>
-      )}
+      <ContentPageFrame
+        mainContent={
+          subject && (
+            <Grid container>
+              <ContentPageMetaBar
+                authorId={subject.ownerId}
+                authorName={subject.ownerName}
+                publishTime={subject.publishTime}
+                viewCount={subject.viewCount}
+                editLinkUrl={`/my/subjects/${subject.id}`}
+              />
+              {printSubjectTree(subject)}
+            </Grid>
+          )
+        }
+        sideContents={[
+          subject && <AuthorDisplayPanel userId={subject.ownerId} />,
+        ]}
+      />
     </Page>
   );
 }

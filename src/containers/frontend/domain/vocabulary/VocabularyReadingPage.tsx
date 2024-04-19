@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import { Grid, Paper } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
@@ -11,6 +11,7 @@ import {
   AuthorDisplayPanel,
   ContentPageBreadcrumbsBar,
   ContentPageMetaBar,
+  ContentPageFrame,
   RelevantContentPanel,
   TagDisplayBar,
 } from "../../components";
@@ -45,56 +46,46 @@ export default function VocabularyReadingPage() {
   return (
     <Page openLoading={openLoading} pageTitle={vocabualry?.title}>
       <ContentPageBreadcrumbsBar />
-      <Grid container spacing={1}>
-        <Grid item xs={12} sm={12} md={9}>
-          <Paper
-            sx={{
-              py: 2,
-              px: { xs: 0, sm: 2 },
-              borderWidth: { xs: "0px", sm: "1px" },
-            }}
-            variant="outlined"
-          >
-            <Grid container>
-              {vocabualry && (
-                <ContentPageMetaBar
-                  authorId={vocabualry.authorId}
-                  authorName={vocabualry.authorName}
-                  publishTime={vocabualry.publishTime}
-                  viewCount={vocabualry.viewCount}
-                  editLinkUrl={`/my/vocabularies/${vocabualry.id}`}
-                />
-              )}
+      <ContentPageFrame
+        mainContent={
+          <Grid container>
+            {vocabualry && (
+              <ContentPageMetaBar
+                authorId={vocabualry.authorId}
+                authorName={vocabualry.authorName}
+                publishTime={vocabualry.publishTime}
+                viewCount={vocabualry.viewCount}
+                editLinkUrl={`/my/vocabularies/${vocabualry.id}`}
+              />
+            )}
 
-              {vocabualry?.tags && (
-                <Grid item xs={12} sx={{ mb: 1 }}>
-                  <TagDisplayBar tags={vocabualry?.tags} />
-                </Grid>
-              )}
+            {vocabualry?.tags && (
+              <Grid item xs={12} sx={{ mb: 1 }}>
+                <TagDisplayBar tags={vocabualry?.tags} />
+              </Grid>
+            )}
 
-              {vocabualry && (
-                <Grid item xs={12} sx={{ my: 1 }}>
-                  {id && <WordListPanel editable={false} vocabularyId={id} />}
-                </Grid>
-              )}
-            </Grid>
-          </Paper>
-        </Grid>
-
-        <Grid item sm={12} md={3}>
-          {vocabualry?.authorId && (
+            {vocabualry && (
+              <Grid item xs={12} sx={{ my: 1 }}>
+                {id && <WordListPanel editable={false} vocabularyId={id} />}
+              </Grid>
+            )}
+          </Grid>
+        }
+        sideContents={[
+          vocabualry?.authorId && (
             <AuthorDisplayPanel userId={vocabualry?.authorId} />
-          )}
-          {vocabualry?.tags && (
+          ),
+          vocabualry?.tags && (
             <RelevantContentPanel
               id={vocabualry.id}
               tages={vocabualry?.tags.map((i) => i.value)}
               domain={Domain.Vocabulary}
               linkUrl={URL.NEWS_VOCABULARY_DETAIL}
             />
-          )}
-        </Grid>
-      </Grid>
+          ),
+        ]}
+      />
     </Page>
   );
 }

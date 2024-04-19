@@ -14,10 +14,12 @@ import {
   WordListPanel,
 } from "../../../components";
 import RichContentReader from "./RichContentReader";
+import ContentPageFrame from "./ContentPageFrame";
 
 export {
   AuthorDisplayPanel,
   Breadcrumbs,
+  ContentPageFrame,
   ContentPageBreadcrumbsBar,
   ContentPageMetaBar,
   RelevantContentPanel,
