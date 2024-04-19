@@ -65,9 +65,12 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   }
 
   return (
-    <Paper variant="outlined" sx={{ p: 2 }}>
+    <Paper
+      variant="outlined"
+      sx={{ p: { sm: 2, xs: 0 }, borderWidth: { xs: "0px", sm: "1px" } }}
+    >
       <Grid container item xs={12}>
-        <Grid item xs={12} sx={{ px: 1 }}>
+        <Grid item xs={12}>
           <TextField
             fullWidth
             variant="standard"
@@ -84,7 +87,6 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
           container
           item
           xs={12}
-          sx={{ px: 1 }}
           justifyContent="space-between"
           alignItems="center"
         >

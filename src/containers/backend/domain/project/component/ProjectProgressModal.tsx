@@ -76,7 +76,7 @@ export default function ProjectProgressModal(props: {
 
   return (
     <React.Fragment>
-      <Divider sx={{ mt: 2 }}>
+      <Divider sx={{ my: 1 }}>
         <Typography variant="subtitle1" color="text.secondary">
           {t("project-progress.title")}
         </Typography>

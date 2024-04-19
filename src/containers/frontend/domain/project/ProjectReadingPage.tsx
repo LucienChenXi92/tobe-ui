@@ -44,7 +44,14 @@ export default function ProjectReadingPage() {
       <Breadcrumbs />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9} lg={9}>
-          <Paper variant="outlined" sx={{ my: 0, p: 2 }}>
+          <Paper
+            variant="outlined"
+            sx={{
+              my: 0,
+              p: { xs: 0, sm: 2 },
+              borderWidth: { xs: "0px", sm: "1px" },
+            }}
+          >
             {project && (
               <ContentPageMetaBar
                 authorId={project.ownerId}

@@ -46,7 +46,14 @@ export default function ArticleReadingPage() {
       <ContentPageBreadcrumbsBar />
       <Grid container spacing={1}>
         <Grid item xs={12} sm={12} md={9}>
-          <Paper sx={{ py: 2, px: 2 }} variant="outlined">
+          <Paper
+            sx={{
+              py: 2,
+              px: { xs: 0, sm: 2 },
+              borderWidth: { xs: "0px", sm: "1px" },
+            }}
+            variant="outlined"
+          >
             <Grid container>
               {article && (
                 <ContentPageMetaBar

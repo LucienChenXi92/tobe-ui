@@ -24,7 +24,7 @@ export default function FrontendLayout({ children }: { children: any }) {
           direction="column"
           sx={{
             minHeight: "100vh",
-            backgroundColor: "#f3f2ef",
+            backgroundColor: { xs: "#fff", sm: "#f3f2ef" },
             backgroundSize: "cover",
             backgroundPosition: "center",
             display: { md: "flex" },
