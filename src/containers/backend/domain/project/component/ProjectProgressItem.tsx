@@ -67,22 +67,14 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   return (
     <Paper
       variant="outlined"
-      sx={{ p: { sm: 2, xs: 0 }, borderWidth: { xs: "0px", sm: "1px" } }}
+      sx={{
+        py: 2,
+        px: { sm: 2, xs: 0 },
+        borderWidth: { xs: "0px", sm: "1px" },
+        borderBottomWidth: { xs: "1px" },
+      }}
     >
       <Grid container item xs={12}>
-        <Grid item xs={12}>
-          <TextField
-            fullWidth
-            variant="standard"
-            multiline
-            minRows={2}
-            maxRows={20}
-            disabled={!editable}
-            value={progressDesc}
-            onChange={(event) => setProgressDesc(event.target.value)}
-          />
-        </Grid>
-        <ImagesPanel keyProfix={props.progress.id} imageURLs={imageURLs} />
         <Grid
           container
           item
@@ -101,6 +93,25 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
             />
           )}
         </Grid>
+        <Grid item xs={12}>
+          {!props.viewOnly ? (
+            <TextField
+              fullWidth
+              variant="standard"
+              multiline
+              minRows={2}
+              maxRows={20}
+              disabled={!editable}
+              value={progressDesc}
+              onChange={(event) => setProgressDesc(event.target.value)}
+            />
+          ) : (
+            <Typography color="text.secondary" variant="body2">
+              {progressDesc}
+            </Typography>
+          )}
+        </Grid>
+        <ImagesPanel keyProfix={props.progress.id} imageURLs={imageURLs} />
       </Grid>
     </Paper>
   );
