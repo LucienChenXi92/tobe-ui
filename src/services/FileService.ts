@@ -69,7 +69,3 @@ function compressImages(files: File[]): Promise<File[]> {
     }
   });
 }
-
-export function getBySrcIdAndFileType(srcId: string, fileType: string) {
-  return server.get(`/${FILE_URI}?srcId=${srcId}&fileType=${fileType}`);
-}

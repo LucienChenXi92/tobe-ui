@@ -4,7 +4,10 @@ import { useSnackbar } from "notistack";
 import { Paper, Grid, TextField, Typography } from "@mui/material";
 import { ProjectProgress } from "../../../../../global/types";
 import { EditIconButton } from "../../../components";
-import { FileService, ProjectProgressService } from "../../../../../services";
+import {
+  PublicDataService,
+  ProjectProgressService,
+} from "../../../../../services";
 import { ImagesPanel } from "./ImagesPanel";
 import { TimeFormat } from "../../../../../commons";
 
@@ -31,6 +34,17 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
   };
 
   useEffect(() => {
+    function loadImages() {
+      PublicDataService.getBySrcIdAndFileType(
+        props.progress.id,
+        "PROJECT_PIC"
+      ).then((response) => {
+        let imageUrls = response.data.map(
+          (f: { downloadURL: string }) => f.downloadURL
+        );
+        setImageURLs(imageUrls);
+      });
+    }
     loadImages();
   }, [props.progress.id]);
 
@@ -51,17 +65,6 @@ export default function ProjectProgressItem(props: ProjectProgressItemProps) {
           variant: "error",
         });
       });
-  }
-
-  function loadImages() {
-    FileService.getBySrcIdAndFileType(props.progress.id, "PROJECT_PIC").then(
-      (response) => {
-        let imageUrls = response.data.map(
-          (f: { downloadURL: string }) => f.downloadURL
-        );
-        setImageURLs(imageUrls);
-      }
-    );
   }
 
   return (

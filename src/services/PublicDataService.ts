@@ -76,3 +76,9 @@ export function getTagStatistics(domain: Domain, ownerId: string) {
 export function getTop5ActiveUsers() {
   return server.get(`/${API_DATA_URI}/top5-active-users`);
 }
+
+export function getBySrcIdAndFileType(srcId: string, fileType: string) {
+  return server.get(
+    `/${API_DATA_URI}/files?srcId=${srcId}&fileType=${fileType}`
+  );
+}
