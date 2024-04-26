@@ -60,7 +60,7 @@ export default function HeaderUserMenu() {
         <Button
           key={URL.SIGN_IN}
           onClick={() => navigate(URL.SIGN_IN)}
-          size="large"
+          size="small"
           sx={{
             color: theme.palette.secondary.main,
             fontSize: 18,

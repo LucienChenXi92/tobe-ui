@@ -20,7 +20,6 @@ function Copyright(props: any) {
         <strong>{project.name.toUpperCase()}</strong>
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
     </Typography>
   );
 }

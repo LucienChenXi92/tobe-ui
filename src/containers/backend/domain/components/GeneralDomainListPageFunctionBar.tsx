@@ -17,7 +17,7 @@ export default function GeneralDomainListPageFunctionBar(props: {
           onClick={props.createNewAction}
           variant="outlined"
           sx={{
-            border: "1px solid rgba(0,0,0,0.23)",
+            border: "1px solid rgba(0,0,0,0.12)",
             color: "rgba(0,0,0,0.4)",
             backgroundColor: theme.palette.common.white,
           }}

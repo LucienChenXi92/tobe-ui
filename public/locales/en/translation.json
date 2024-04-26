@@ -99,7 +99,7 @@
     }
   },
   "app-header": {
-    "sign-in-btn": "Sign In",
+    "sign-in-btn": "Login",
     "pages": {
       "home": "Home",
       "news": "News",
@@ -118,20 +118,15 @@
       "vocabularies": "Vocabularies",
       "subjects": "Subjects",
       "sign-out": "Sign Out"
-    }
-  },
-  "app-footer": {
+    },
     "language": {
-      "btn-label": "Language",
+      "btn-label": "Lang",
       "btn-tooltip": "Switch language",
       "options": {
         "zh": "中文",
-        "en": "English"
+        "en": "EN"
       }
-    },
-    "linked-in": "Linkedin",
-    "github": "Github",
-    "blog": "Blog"
+    }
   },
   "profile-setting": {
     "form-title": "Your Profile",

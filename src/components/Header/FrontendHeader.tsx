@@ -18,6 +18,7 @@ import { publicPages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
 import project from "../../../package.json";
 import theme from "../../theme";
+import HeaderLanguageMenu from "./HeaderLanguageMenu";
 
 const FrontendHeader = () => {
   const [yIndex, setYIndex] = useState<number>(0);
@@ -166,7 +167,7 @@ const HeaderContent = () => {
           {publicPages.map((page) => (
             <Button
               key={page.label}
-              size="large"
+              size="small"
               onClick={(event) => handleCloseNavMenu(event, page.url)}
               sx={{
                 color: theme.palette.secondary.main,
@@ -183,6 +184,9 @@ const HeaderContent = () => {
               {t(page.label)}
             </Button>
           ))}
+        </Box>
+        <Box sx={{ flexGrow: 0 }}>
+          <HeaderLanguageMenu />
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>

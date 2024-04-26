@@ -118,20 +118,15 @@
       "vocabularies": "单词本",
       "subjects": "专题",
       "sign-out": "登出系统"
-    }
-  },
-  "app-footer": {
+    },
     "language": {
       "btn-label": "语言",
       "btn-tooltip": "切换语言",
       "options": {
         "zh": "中文",
-        "en": "English"
+        "en": "EN"
       }
-    },
-    "linked-in": "领英",
-    "github": "Github",
-    "blog": "博客"
+    }
   },
   "profile-setting": {
     "form-title": "编辑您的档案",
