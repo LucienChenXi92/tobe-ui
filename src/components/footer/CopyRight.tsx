@@ -20,6 +20,7 @@ function Copyright(props: any) {
         <strong>{project.name.toUpperCase()}</strong>
       </Link>{" "}
       {new Date().getFullYear()}
+      {" · 粤ICP备19161005号-1"}
     </Typography>
   );
 }

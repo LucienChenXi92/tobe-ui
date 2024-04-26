@@ -52,5 +52,5 @@ export const publicPages: Array<{ label: string; url: string }> = [
   { label: "app-header.pages.home", url: URL.HOME },
   { label: "app-header.pages.subject", url: URL.SUBJECTS_PAGE },
   { label: "app-header.pages.tool", url: URL.TOOLS_PAGE },
-  { label: "app-header.pages.about", url: URL.ABOUT },
+  // { label: "app-header.pages.about", url: URL.ABOUT },
 ];
