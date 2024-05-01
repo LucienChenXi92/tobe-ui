@@ -2,7 +2,7 @@
   "breadcrumbs": {
     "content": "正文",
     "home": "首页",
-    "subjects": "专题"
+    "subjects": "合集"
   },
   "components": {
     "upload-pics": "上传图片",
@@ -54,12 +54,13 @@
     "workout": "锻炼",
     "activities": "活动",
     "view-count": "阅读量",
-    "subjects": "专题",
+    "subjects": "合集",
     "tools": "工具",
     "end-line": "实在是没有了。。。",
     "load-more": "加载更多",
     "no-content": "找不到相关内容",
     "top5-active-users": "活跃排行榜",
+    "top5-popular-subjects": "合集排行榜",
     "tag-statistics": "标签筛选"
   },
   "sign-in": {
@@ -106,7 +107,7 @@
       "about": "关于",
       "article": "文章",
       "vocabulary": "单词本",
-      "subject": "专题",
+      "subject": "合集",
       "tool": "工具"
     },
     "settings": {
@@ -116,7 +117,7 @@
       "projects": "计划",
       "articles": "笔记",
       "vocabularies": "单词本",
-      "subjects": "专题",
+      "subjects": "合集",
       "sign-out": "登出系统"
     },
     "language": {
@@ -228,7 +229,7 @@
       "projects": "计划",
       "articles": "笔记",
       "vocabularies": "单词本",
-      "subjects": "专题"
+      "subjects": "合集"
     },
     "msg": {
       "error": "获取数据失败"
@@ -305,17 +306,17 @@
     }
   },
   "subject-creation-page": {
-    "page-main-title": "创建一个专题",
+    "page-main-title": "创建一个合集",
     "fields": {
-      "name": "专题名",
-      "description": "专题描述",
+      "name": "合集名",
+      "description": "合集描述",
       "cover-img-url": "封面链接"
     },
     "msg": {
       "success": "创建成功",
       "error": "创建失败",
       "warning": {
-        "name-empty": "专题名不能为空"
+        "name-empty": "合集名不能为空"
       }
     },
     "submit-btn": "保存",
@@ -332,10 +333,10 @@
     }
   },
   "subjects-page": {
-    "page-main-title": "专题"
+    "page-main-title": "合集"
   },
   "subjects-list-page": {
-    "page-main-title": "专题",
+    "page-main-title": "合集",
     "msg": {
       "error": "加载数据失败"
     }

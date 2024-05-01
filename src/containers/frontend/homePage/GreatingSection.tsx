@@ -38,7 +38,7 @@ const Title = (props: any) => {
           mt: {
             xs: 1,
             md: 2,
-            lg: 3
+            lg: 3,
           },
           fontSize: {
             xs: "1.25rem",

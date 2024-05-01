@@ -8,7 +8,7 @@ import {
   NewsDTO,
 } from "../../../global/types";
 import { useParams } from "react-router-dom";
-import { Paper, Typography, Grid, Link, SxProps } from "@mui/material";
+import { Typography, Grid, Link, SxProps } from "@mui/material";
 import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import AbcIcon from "@mui/icons-material/Abc";

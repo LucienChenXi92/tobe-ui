@@ -77,6 +77,10 @@ export function getTop5ActiveUsers() {
   return server.get(`/${API_DATA_URI}/top5-active-users`);
 }
 
+export function getTop5PopularSubjects() {
+  return server.get(`/${API_DATA_URI}/top5-popular-subjects`);
+}
+
 export function getBySrcIdAndFileType(srcId: string, fileType: string) {
   return server.get(
     `/${API_DATA_URI}/files?srcId=${srcId}&fileType=${fileType}`
