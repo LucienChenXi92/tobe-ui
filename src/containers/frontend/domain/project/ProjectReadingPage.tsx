@@ -81,7 +81,7 @@ export default function ProjectReadingPage() {
         }
         sideContents={[
           project?.ownerId && (
-            <Grid sx={{ display: { xs: "none", sm: "flex" } }}>
+            <Grid sx={{ display: { sm: "none", md: "flex" } }}>
               <AuthorDisplayPanel userId={project?.ownerId} />
             </Grid>
           ),

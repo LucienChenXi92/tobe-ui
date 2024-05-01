@@ -1,3 +1,4 @@
+import AddIconButton from "./misc/AddIconButton";
 import EditIconButton from "./misc/EditIconButton";
 import PagedTable from "./table/PagedTable";
 import MultipleTagSelecter from "./misc/MultipleTagSelecter";
@@ -18,6 +19,7 @@ import {
 } from "../../../components";
 
 export {
+  AddIconButton,
   CardHeaderActionButton,
   PagedTable,
   EditIconButton,

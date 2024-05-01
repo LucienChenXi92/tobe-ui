@@ -20,7 +20,7 @@ export default function ContentPageFrame(props: {
         </Paper>
       </Grid>
 
-      <Grid item sm={12} md={3}>
+      <Grid item xs={12} sm={12} md={3}>
         {props.sideContents}
       </Grid>
     </Grid>

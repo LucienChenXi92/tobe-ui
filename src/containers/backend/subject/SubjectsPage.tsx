@@ -1,16 +1,13 @@
 import { useEffect, useState, useCallback } from "react";
-import { Button, Grid } from "@mui/material";
-
+import { Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
-import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import { Operation, SubjectInfo } from "../../../global/types";
 import { SubjectService } from "../../../services";
-import { Add } from "@mui/icons-material";
-import theme from "../../../theme";
 import SubjectCardView from "./SubjectCardView";
+import { AddIconButton, Page } from "../components";
 
 export default function SubjectsPage() {
   const navigate = useNavigate();
@@ -86,17 +83,7 @@ export default function SubjectsPage() {
         alignItems="center"
       >
         <Grid item>
-          <Button
-            onClick={() => navigate(URL.CREATE_SUBJECT)}
-            variant="outlined"
-            sx={{
-              border: "1px solid rgba(0,0,0,0.23)",
-              color: "rgba(0,0,0,0.4)",
-              backgroundColor: theme.palette.common.white,
-            }}
-          >
-            <Add />
-          </Button>
+          <AddIconButton onClick={() => navigate(URL.CREATE_SUBJECT)} />
         </Grid>
       </Grid>
       <SubjectCardView
