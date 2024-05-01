@@ -133,7 +133,7 @@ export default function ArticleReadingPage() {
         }
         sideContents={[
           article && (
-            <Grid sx={{ display: { sm: "none", md: "flex" } }}>
+            <Grid sx={{ display: { xs: "none", sm: "contents" } }}>
               <AuthorDisplayPanel userId={article.authorId} />
             </Grid>
           ),
