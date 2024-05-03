@@ -2,7 +2,10 @@
   "breadcrumbs": {
     "content": "Content",
     "home": "Home",
-    "subjects": "Subject"
+    "subjects": "Subjects",
+    "articles": "Articles",
+    "projects": "Projects",
+    "vocabularies": "Vocabularies"
   },
   "components": {
     "upload-pics": "Upload Pictures",

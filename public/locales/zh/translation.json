@@ -2,7 +2,10 @@
   "breadcrumbs": {
     "content": "正文",
     "home": "首页",
-    "subjects": "合集"
+    "subjects": "合集",
+    "articles": "笔记",
+    "projects": "计划",
+    "vocabularies": "单词本"
   },
   "components": {
     "upload-pics": "上传图片",

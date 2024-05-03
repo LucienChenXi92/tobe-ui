@@ -117,7 +117,7 @@ export default function SubjectReadingPage() {
                 text={a.title}
                 href={
                   URL.NEWS_ARTICLE_DETAIL.replace(":id", a.id) +
-                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                  `?sid=${subjectId}&sn=${subjectName}`
                 }
               />
             </Grid>
@@ -131,7 +131,7 @@ export default function SubjectReadingPage() {
                 text={a.title}
                 href={
                   URL.NEWS_VOCABULARY_DETAIL.replace(":id", a.id) +
-                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                  `?sid=${subjectId}&sn=${subjectName}`
                 }
               />
             </Grid>

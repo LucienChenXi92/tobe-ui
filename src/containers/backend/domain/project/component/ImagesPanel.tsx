@@ -7,12 +7,16 @@ export const ImagesPanel = (props: {
   props.imageURLs.length > 0 ? (
     <Grid container sx={{ width: "calc(100% + 8px)", my: 1 }} spacing={1}>
       {props.imageURLs.map((imgURL: string, index: number) => (
-        <Grid item xl={3} lg={3} md={4} sm={6} xs={6}>
-          <Link
-            key={`${props.keyProfix}_img_${index}`}
-            target="_blank"
-            href={imgURL}
-          >
+        <Grid
+          item
+          xl={3}
+          lg={3}
+          md={4}
+          sm={6}
+          xs={6}
+          key={`${props.keyProfix}_img_${index}`}
+        >
+          <Link target="_blank" href={imgURL}>
             <Grid
               container
               sx={{

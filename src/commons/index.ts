@@ -1,3 +1,4 @@
+import { Domain } from "../global/types";
 import * as TimeFormat from "./TimeFormat";
 
 export const LOCAL_STORAGE_KEYS = {
@@ -54,6 +55,32 @@ export function enabled(requiredFeature?: FeatureCodeKey): boolean {
 
 export function formatDate(time: string) {
   return time.substring(0, time.indexOf("T"));
+}
+
+export function getDomainFromPath(path: string | undefined): Domain {
+  switch (path) {
+    case "articles":
+      return Domain.Article;
+    case "vocabularies":
+      return Domain.Vocabulary;
+    case "projects":
+      return Domain.Project;
+    default:
+      return Domain.Article;
+  }
+}
+
+export function getPathFromDomain(domain: Domain | string): string {
+  switch (domain) {
+    case Domain.Article:
+      return "articles";
+    case Domain.Project:
+      return "projects";
+    case Domain.Vocabulary:
+      return "vocabularies";
+    default:
+      return "articles";
+  }
 }
 
 export { TimeFormat };

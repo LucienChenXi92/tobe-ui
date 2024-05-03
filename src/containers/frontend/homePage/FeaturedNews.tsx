@@ -1,16 +1,18 @@
 import { useState, useEffect, useCallback } from "react";
 import { Tabs, Tab, Button, Grid, Typography, Paper } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { NewsDTO, Domain } from "../../../global/types";
 import NewsListItem from "./NewsListItem";
 import { PublicDataService } from "../../../services";
+import { getPathFromDomain } from "../../../commons";
+
 enum LoadType {
   Append,
   Replace,
 }
 
-export default function FeaturedArticles(props: {
+export default function FeaturedNews(props: {
   tags: string[];
   ownerId: string;
   domain: Domain;
@@ -19,10 +21,17 @@ export default function FeaturedArticles(props: {
 }) {
   const { t } = useTranslation();
   const navigate = useNavigate();
-
+  const location = useLocation();
   const [newsData, setNewsData] = useState<NewsDTO[]>([]);
   const [current, setCurrent] = useState<number>(1);
   const [totalPage, setTotalPage] = useState<number>(1);
+
+  function getLinkParam(ownerId: string | number) {
+    if (location.pathname.match("personal-portal")) {
+      return `?pid=${ownerId}`;
+    }
+    return "";
+  }
 
   const loadNews = useCallback(
     (
@@ -53,15 +62,6 @@ export default function FeaturedArticles(props: {
     },
     []
   );
-
-  function getURIbyDomain(domain: Domain | string): string {
-    switch (domain) {
-      case Domain.Vocabulary:
-        return "vocabularies";
-      default:
-        return domain.toLowerCase() + "s";
-    }
-  }
 
   // based on current filters and load more data
   const handleLoadMoreRecords = (): void => {
@@ -139,7 +139,10 @@ export default function FeaturedArticles(props: {
               viewCount={n.viewCount}
               tags={n.tags}
               onClick={() =>
-                navigate(`/news/${getURIbyDomain(n.domain)}/${n.id}`)
+                navigate(
+                  `/news/${getPathFromDomain(n.domain)}/${n.id}` +
+                    getLinkParam(n.ownerId)
+                )
               }
             />
           ))}

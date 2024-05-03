@@ -14,7 +14,7 @@ export default function Breadcrumbs(props: { nodes?: BreadcrumbsNode[] }) {
       </Link>
       {props.nodes?.map((n) => {
         return (
-          <Link underline="hover" color="inherit" href={n.href}>
+          <Link underline="hover" color="inherit" href={n.href} key={n.href}>
             {n.label}
           </Link>
         );

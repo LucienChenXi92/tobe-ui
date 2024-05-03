@@ -1,20 +1,28 @@
 import { ReactElement, useState } from "react";
 import { Container, Grid } from "@mui/material";
 import { Domain } from "../../../global/types";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import FeaturedNews from "./FeaturedNews";
 import TagStatisticsFilterPanel from "./TagStatisticsFilterPanel";
+import { getDomainFromPath, getPathFromDomain } from "../../../commons";
 
 export default function FunctionSection(props: {
   availableDomains: Domain[];
   extraPanels: ReactElement[];
   ownerId: string;
 }) {
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [checkedTags, setCheckedTags] = useState<string[]>([]);
-  const [domain, setDomain] = useState<Domain>(Domain.Article);
+  const domainPath = searchParams.get("d") || "";
+  const [currentDomain, setCurrentDomain] = useState<Domain>(
+    getDomainFromPath(domainPath)
+  );
 
   function handleDomainChange(newValue: Domain) {
     setCheckedTags([]);
-    setDomain(newValue);
+    setCurrentDomain(newValue);
+    navigate(`?d=${getPathFromDomain(newValue)}`, { replace: true });
   }
 
   return (
@@ -25,7 +33,7 @@ export default function FunctionSection(props: {
             <FeaturedNews
               ownerId={props.ownerId}
               tags={checkedTags}
-              domain={domain}
+              domain={currentDomain}
               availableDomains={props.availableDomains}
               handleDomainChange={handleDomainChange}
             />
@@ -33,7 +41,7 @@ export default function FunctionSection(props: {
           <Grid container item sm={false} md={3} spacing={1} direction="column">
             <Grid item>
               <TagStatisticsFilterPanel
-                domain={domain}
+                domain={currentDomain}
                 checked={checkedTags}
                 setChecked={setCheckedTags}
                 ownerId={props.ownerId}

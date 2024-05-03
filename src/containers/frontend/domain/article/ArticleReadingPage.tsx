@@ -133,12 +133,13 @@ export default function ArticleReadingPage() {
         }
         sideContents={[
           article && (
-            <Grid sx={{ display: { xs: "none", sm: "contents" } }}>
+            <Grid key="side-1" sx={{ display: { xs: "none", sm: "contents" } }}>
               <AuthorDisplayPanel userId={article.authorId} />
             </Grid>
           ),
           article && (
             <RelevantContentPanel
+              key="side-2"
               id={article.id}
               tages={article.tags.map((i) => i.value)}
               domain={Domain.Article}

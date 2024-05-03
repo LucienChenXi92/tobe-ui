@@ -53,7 +53,15 @@ export default function ProjectProgressItems(props: {
       loading={loading}
       dataSource={progresses}
       renderItem={(progress: ProjectProgress) => (
-        <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={12}
+          xl={12}
+          key={`infinite-scroll-item-${progress.id}`}
+        >
           <ProjectProgressItem
             progress={progress}
             viewOnly={props.viewOnly}

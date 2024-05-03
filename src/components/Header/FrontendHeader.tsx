@@ -186,7 +186,7 @@ const HeaderContent = () => {
           ))}
         </Box>
         <Box sx={{ flexGrow: 0 }}>
-          <HeaderLanguageMenu />
+          <HeaderLanguageMenu color={theme.palette.secondary.main} />
         </Box>
 
         {/* <Box sx={{ flexGrow: 0 }}>

@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { changeLanguage } from "i18next";
 import theme from "../../theme";
 
-export default function HeaderLanguageMenu() {
+export default function HeaderLanguageMenu(props: { color: string }) {
   const availableLangs: Array<{ label: string; value: string }> = [
     { label: "app-header.language.options.zh", value: LANGUAGE.ZH },
     { label: "app-header.language.options.en", value: LANGUAGE.EN },
@@ -46,14 +46,14 @@ export default function HeaderLanguageMenu() {
         aria-haspopup="true"
         onClick={handleOpenLangMenu}
         sx={{
-          color: theme.palette.secondary.main,
+          color: props.color,
           fontSize: 18,
           borderRadius: 0,
           borderBottom: "3px solid transparent",
           fontFamily: "PingFang SC,Roboto, Helvetica, Arial, sans-serif",
           fontWeight: 700,
           "&:hover": {
-            borderBottom: "3px solid " + theme.palette.secondary.main,
+            borderBottom: "3px solid " + props.color,
           },
         }}
       >
