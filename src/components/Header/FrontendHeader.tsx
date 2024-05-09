@@ -189,9 +189,9 @@ const HeaderContent = () => {
           <HeaderLanguageMenu color={theme.palette.secondary.main} />
         </Box>
 
-        {/* <Box sx={{ flexGrow: 0 }}>
+        <Box sx={{ flexGrow: 0 }}>
           <HeaderUserMenu />
-        </Box> */}
+        </Box>
       </Toolbar>
     </Container>
   );

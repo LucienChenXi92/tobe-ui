@@ -99,11 +99,11 @@ export default function SignInPage() {
                 {t("sign-in.forget-pw-btn")}
               </Link>
             </Grid>
-            {/* <Grid item>
+            <Grid item>
               <Link href={URL.SIGN_UP} variant="body2">
                 {t("sign-in.sign-up-btn")}
               </Link>
-            </Grid> */}
+            </Grid>
           </Grid>
         </Box>
       </Paper>

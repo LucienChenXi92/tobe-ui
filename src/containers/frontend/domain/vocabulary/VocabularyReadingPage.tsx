@@ -74,9 +74,7 @@ export default function VocabularyReadingPage() {
         }
         sideContents={[
           vocabualry?.authorId && (
-            <Grid key="side-1" sx={{ display: { xs: "none", sm: "contents" } }}>
-              <AuthorDisplayPanel userId={vocabualry?.authorId} />
-            </Grid>
+            <AuthorDisplayPanel key="side-1" userId={vocabualry?.authorId} />
           ),
           vocabualry?.tags && (
             <RelevantContentPanel
