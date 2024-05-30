@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Box, Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { SideNav } from "../navigator";
+import { SideNav } from "../../containers/backend/components/navigator";
 import { BackendHeader } from "../header";
 import { AppFooter } from "../footer";
 
@@ -42,7 +42,7 @@ export default function BackendLayout({ children }: { children: any }) {
         flexDirection: "column",
         justifyContent: "center",
         minHeight: "100vh",
-        backgroundColor: "#f3f2ef",
+        backgroundColor: { xs: "rgba(255,255,255,1)", sm: "#f3f2ef" },
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

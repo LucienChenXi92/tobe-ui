@@ -4,6 +4,7 @@ import { styled } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import HeaderUserMenu from "./HeaderUserMenu";
 import theme from "../../theme";
+import HeaderLanguageMenu from "./HeaderLanguageMenu";
 
 interface BackendHeaderProps {
   setOpenDrawer: (newValue: boolean) => void;
@@ -60,6 +61,9 @@ const BackendHeader = (props: BackendHeaderProps) => {
             />
           </IconButton>
           <Box sx={{ flexGrow: 1 }} />
+          <Box sx={{ flexGrow: 0 }}>
+            <HeaderLanguageMenu color="inherit" />
+          </Box>
           <Box sx={{ flexGrow: 0 }}>
             <HeaderUserMenu />
           </Box>

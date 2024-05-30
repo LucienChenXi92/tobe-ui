@@ -2,9 +2,13 @@
   "breadcrumbs": {
     "content": "Content",
     "home": "Home",
-    "subjects": "Subject"
+    "subjects": "Subjects",
+    "articles": "Articles",
+    "projects": "Projects",
+    "vocabularies": "Vocabularies"
   },
   "components": {
+    "upload-pics": "Upload Pictures",
     "edit-icon-button": {
       "save": "Save",
       "edit": "Edit"
@@ -59,6 +63,7 @@
     "load-more": "Load more",
     "no-content": "No available content",
     "top5-active-users": "Top 5 active users",
+    "top5-popular-subjects": "Top 5 popular subjects",
     "tag-statistics": "Featured tags"
   },
   "sign-in": {
@@ -98,7 +103,7 @@
     }
   },
   "app-header": {
-    "sign-in-btn": "Sign In",
+    "sign-in-btn": "Login",
     "pages": {
       "home": "Home",
       "news": "News",
@@ -117,20 +122,15 @@
       "vocabularies": "Vocabularies",
       "subjects": "Subjects",
       "sign-out": "Sign Out"
-    }
-  },
-  "app-footer": {
+    },
     "language": {
-      "btn-label": "Language",
+      "btn-label": "Lang",
       "btn-tooltip": "Switch language",
       "options": {
         "zh": "中文",
-        "en": "English"
+        "en": "EN"
       }
-    },
-    "linked-in": "Linkedin",
-    "github": "Github",
-    "blog": "Blog"
+    }
   },
   "profile-setting": {
     "form-title": "Your Profile",
@@ -284,7 +284,8 @@
       "title": "Title",
       "sub-title": "Subtitle",
       "description": "Description",
-      "tag": "Tag"
+      "tag": "Tag",
+      "content-protected": "Only logged in users can read the full content"
     },
     "submit-btn": "Save",
     "back-btn": "Back",
@@ -299,6 +300,7 @@
   "article-reading-page": {
     "back-btn": "Back",
     "relevant-articles": "Relevant articles",
+    "content-protected": "Please log in to read the full content",
     "msg": {
       "error": "Failed to fetch data"
     }

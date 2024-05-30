@@ -1,3 +1,5 @@
+import { AuthorityKey, FeatureCodeKey } from "../commons";
+
 export interface Column {
   id: string;
   label: string;
@@ -42,8 +44,8 @@ export interface PageItem {
   icon: JSX.Element;
   url: string;
   secondaryUrl?: string;
-  requiredRoles: string[];
-  requiredFeature?: string;
+  requiredRoles: AuthorityKey[];
+  requiredFeature?: FeatureCodeKey;
 }
 
 export interface ProjectCardProps {
@@ -66,6 +68,7 @@ export interface NewsDTO {
   domain: string;
   description: string;
   ownerName: string;
+  ownerId: string;
   avatarUrl: string;
   createTime: string;
   updateTime: string | null;
@@ -149,6 +152,7 @@ export interface ArticleDetailDTO extends GeneralCardData {
   publishTime: string;
   subTitle: string;
   avatarUrl: string;
+  contentProtected: boolean;
 }
 
 export interface VocabularyCreationDTO {
@@ -258,10 +262,11 @@ export interface SubjectInfo {
   description: string;
   coverImgUrl: string;
   ownerId: string;
+  ownerName: string;
   likeCount: number;
   viewCount: number;
   publicToAll: boolean;
-  publishTime: Date;
+  publishTime: string;
   tags: TagOption[];
 }
 
@@ -287,4 +292,4 @@ export interface WordCreateDTO {
   meaningInEnglish: string;
 }
 
-export interface WordUpdateDTO extends WordGeneralDTO { }
+export interface WordUpdateDTO extends WordGeneralDTO {}

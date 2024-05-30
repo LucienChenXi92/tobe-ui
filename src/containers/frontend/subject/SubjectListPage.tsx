@@ -5,7 +5,17 @@ import { Page } from "../../../components";
 import { PublicDataService } from "../../../services";
 import { SubjectInfo } from "../../../global/types";
 import { useNavigate } from "react-router-dom";
-import { Typography, Grid, Card, CardContent, CardMedia } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActionArea,
+  Link,
+} from "@mui/material";
+import { URL } from "../../../routes";
+import { TimeFormat } from "../../../commons";
 
 export default function SubjectListPage() {
   const { t } = useTranslation();
@@ -56,24 +66,73 @@ export default function SubjectListPage() {
               variant="outlined"
               onClick={() => navigate(`/subjects/${subject.id}`)}
             >
-              <CardMedia
-                sx={{ height: 140 }}
-                image={subject.coverImgUrl}
-                title={subject.name}
-              />
-              <CardContent sx={{ py: 1 }}>
-                <Typography
-                  gutterBottom
-                  variant="h6"
-                  color="text.secondary"
-                  component="div"
+              <CardActionArea>
+                <CardMedia
+                  sx={{
+                    height: 140,
+                    alignContent: "center",
+                  }}
+                  image={subject.coverImgUrl}
+                  title={subject.name}
                 >
-                  {subject.name}
-                </Typography>
-                <Typography gutterBottom variant="body2" color="text.secondary">
-                  {subject.description}
-                </Typography>
-              </CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h4"
+                    color={subject.coverImgUrl.length > 0 ? "white" : "primary"}
+                    sx={{
+                      width: "100%",
+                      display: "block",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      textAlign: "center",
+                    }}
+                  >
+                    {subject.name}
+                  </Typography>
+                </CardMedia>
+                <CardContent sx={{ py: 1 }}>
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      width: "100%",
+                      height: "20px",
+                      display: "block",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    {subject.description}
+                  </Typography>
+                  <Typography
+                    gutterBottom
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{
+                      width: "100%",
+                      height: "20px",
+                      display: "block",
+                      whiteSpace: "nowrap",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                    }}
+                  >
+                    <Link
+                      href={URL.PERSONAL_PORTAL.replace(":id", subject.ownerId)}
+                      underline="none"
+                      target="blank"
+                      color="text.secondary"
+                    >
+                      {subject.ownerName}
+                    </Link>{" "}
+                    · {TimeFormat.briefDateFormat(subject.publishTime)} ·{" "}
+                    {t("home-page.view-count")} {subject.viewCount}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
             </Card>
           </Grid>
         ))}

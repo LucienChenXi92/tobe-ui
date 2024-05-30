@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { Page, PagedTable } from "../../../components";
+import { PagedTable } from "../components";
+import { Page } from "../../../components";
 import { Column, UserData, Operation } from "../../../global/types";
 import { useTranslation } from "react-i18next";
 import { UserService } from "../../../services";

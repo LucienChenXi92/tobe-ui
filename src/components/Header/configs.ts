@@ -1,11 +1,16 @@
-import { AUTHORITY, FEATURE_CODE } from "../../commons";
+import {
+  AUTHORITY,
+  AuthorityKey,
+  FEATURE_CODE,
+  FeatureCodeKey,
+} from "../../commons";
 import { URL } from "../../routes";
 
 export const pages: Array<{
   label: string;
   url: string;
-  requiredRoles?: string[];
-  requiredFeature?: string;
+  requiredRoles?: AuthorityKey[];
+  requiredFeature?: FeatureCodeKey;
 }> = [
   {
     label: "app-header.settings.profile",
@@ -21,19 +26,19 @@ export const pages: Array<{
     label: "app-header.settings.projects",
     url: URL.PROJECTS,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.PROJECT_MODULE,
+    requiredFeature: FEATURE_CODE.projectModule,
   },
   {
     label: "app-header.settings.articles",
     url: URL.ARTICLES,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.ARTICLE_MODULE,
+    requiredFeature: FEATURE_CODE.articleModule,
   },
   {
     label: "app-header.settings.vocabularies",
     url: URL.VOCABULARIES,
     requiredRoles: [AUTHORITY.ROLE_BASIC, AUTHORITY.ROLE_ADMIN],
-    requiredFeature: FEATURE_CODE.VOCABULARY_MODULE,
+    requiredFeature: FEATURE_CODE.vocabularyModule,
   },
   {
     label: "app-header.settings.subjects",
@@ -47,5 +52,5 @@ export const publicPages: Array<{ label: string; url: string }> = [
   { label: "app-header.pages.home", url: URL.HOME },
   { label: "app-header.pages.subject", url: URL.SUBJECTS_PAGE },
   { label: "app-header.pages.tool", url: URL.TOOLS_PAGE },
-  { label: "app-header.pages.about", url: URL.ABOUT },
+  // { label: "app-header.pages.about", url: URL.ABOUT },
 ];

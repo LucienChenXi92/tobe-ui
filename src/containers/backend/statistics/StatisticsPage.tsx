@@ -55,18 +55,37 @@ export default function StatisticsPage() {
   return (
     <Page openLoading={false} pageTitle={t("statistics-page.page-main-title")}>
       <Grid container spacing={1}>
-        {enabled(FEATURE_CODE.PROJECT_MODULE) && <StatisticsDomainPanel domain={Domain.Project} data={projectData} link={URL.PROJECTS} />}
-        {enabled(FEATURE_CODE.ARTICLE_MODULE) && <StatisticsDomainPanel domain={Domain.Article} data={articleData} link={URL.ARTICLES} />}
-        {enabled(FEATURE_CODE.VOCABULARY_MODULE) && <StatisticsDomainPanel domain={Domain.Vocabulary} data={vocabularyData} link={URL.VOCABULARIES} />}
+        {enabled(FEATURE_CODE.projectModule) && (
+          <StatisticsDomainPanel
+            domain={Domain.Project}
+            data={projectData}
+            link={URL.PROJECTS}
+          />
+        )}
+        {enabled(FEATURE_CODE.articleModule) && (
+          <StatisticsDomainPanel
+            domain={Domain.Article}
+            data={articleData}
+            link={URL.ARTICLES}
+          />
+        )}
+        {enabled(FEATURE_CODE.vocabularyModule) && (
+          <StatisticsDomainPanel
+            domain={Domain.Vocabulary}
+            data={vocabularyData}
+            link={URL.VOCABULARIES}
+          />
+        )}
       </Grid>
     </Page>
   );
 }
 
 const StandardSmallWidget = (props: {
-  value: number | string, label: string,
-  link: string,
-  icon: any
+  value: number | string;
+  label: string;
+  link: string;
+  icon: any;
 }) => {
   return (
     <Grid item container xs={4} sx={{ px: 3, py: 2 }}>
@@ -75,7 +94,7 @@ const StandardSmallWidget = (props: {
           {props.icon}
         </Typography>
       </Grid>
-      <Grid item flexGrow={1} >
+      <Grid item flexGrow={1}>
         <Typography variant="subtitle2" flexGrow={1} color="text.secondary">
           {props.label}
         </Typography>
@@ -89,38 +108,54 @@ const StandardSmallWidget = (props: {
   );
 };
 
-const StatisticsDomainPanel = (props: { data: BaseInfoOverview, link: string, domain: Domain }) => {
+const StatisticsDomainPanel = (props: {
+  data: BaseInfoOverview;
+  link: string;
+  domain: Domain;
+}) => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  return (<Grid container item xs={12} md={6}>
-    <Grid item xs={12}>
-      <Typography
-        variant="h6"
-        sx={{ mt: 2, mb: 0, cursor: "pointer", ":hover": { fontWeight: 600 } }}
+  return (
+    <Grid container item xs={12} md={6}>
+      <Grid item xs={12}>
+        <Typography
+          variant="h6"
+          sx={{
+            mt: 2,
+            mb: 0,
+            cursor: "pointer",
+            ":hover": { fontWeight: 600 },
+          }}
+          onClick={() => navigate(props.link)}
+        >
+          {t("statistics-page.domain.title." + props.domain.toLowerCase())}
+        </Typography>
+      </Grid>
+      <Grid
+        container
+        component={Paper}
         onClick={() => navigate(props.link)}
+        variant="outlined"
       >
-        {t("statistics-page.domain.title." + props.domain.toLowerCase())}
-      </Typography>
+        <StandardSmallWidget
+          value={props.data.publicNum}
+          label={t("statistics-page.domain.public")}
+          link={props.link}
+          icon={<VerifiedIcon color="info" sx={{ fontSize: 20 }} />}
+        />
+        <StandardSmallWidget
+          value={props.data.totalNum}
+          label={t("statistics-page.domain.all")}
+          link={props.link}
+          icon={<StorageIcon color="disabled" sx={{ fontSize: 20 }} />}
+        />
+        <StandardSmallWidget
+          value={(props.data.totalViewCount / 1000).toFixed(1)}
+          label={t("statistics-page.domain.view-count")}
+          link={props.link}
+          icon={<VisibilityIcon color="success" sx={{ fontSize: 20 }} />}
+        />
+      </Grid>
     </Grid>
-    <Grid container component={Paper} onClick={() => navigate(props.link)} variant="outlined">
-      <StandardSmallWidget
-        value={props.data.publicNum}
-        label={t("statistics-page.domain.public")}
-        link={props.link}
-        icon={<VerifiedIcon color="info" sx={{ fontSize: 20 }} />}
-      />
-      <StandardSmallWidget
-        value={props.data.totalNum}
-        label={t("statistics-page.domain.all")}
-        link={props.link}
-        icon={<StorageIcon color="disabled" sx={{ fontSize: 20 }} />}
-      />
-      <StandardSmallWidget
-        value={(props.data.totalViewCount / 1000).toFixed(1)}
-        label={t("statistics-page.domain.view-count")}
-        link={props.link}
-        icon={<VisibilityIcon color="success" sx={{ fontSize: 20 }} />}
-      /></Grid>
-
-  </Grid >)
-}
+  );
+};

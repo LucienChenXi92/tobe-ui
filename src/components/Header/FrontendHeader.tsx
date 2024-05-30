@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import {
   AppBar,
-  Toolbar,
   Box,
-  Container,
   Button,
+  Container,
   IconButton,
+  Toolbar,
   Typography,
   Menu,
   MenuItem,
@@ -14,10 +14,11 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { useNavigate } from "react-router-dom";
 import { validateUrl } from "../../routes";
 import { useTranslation } from "react-i18next";
-import theme from "../../theme";
 import { publicPages } from "./configs";
 import HeaderUserMenu from "./HeaderUserMenu";
 import project from "../../../package.json";
+import theme from "../../theme";
+import HeaderLanguageMenu from "./HeaderLanguageMenu";
 
 const FrontendHeader = () => {
   const [yIndex, setYIndex] = useState<number>(0);
@@ -122,7 +123,8 @@ const HeaderContent = () => {
 
         <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
           <IconButton
-            size="large"
+            size="small"
+            sx={{ border: "1px solid rgba(0,0,0,0.12)", borderRadius: "4px" }}
             aria-label="account of current user"
             aria-controls="menu-appbar"
             aria-haspopup="true"
@@ -161,36 +163,11 @@ const HeaderContent = () => {
             </Menu>
           }
         </Box>
-        <Box
-          sx={{
-            mr: 2,
-            ml: "30px",
-            display: { xs: "flex", md: "none" },
-            flexGrow: 1,
-          }}
-        >
-          <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            onClick={() => navigate("/")}
-            sx={{
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: theme.palette.secondary.main,
-              textDecoration: "none",
-              cursor: "pointer",
-            }}
-          >
-            {project.name.toUpperCase()}
-          </Typography>
-        </Box>
-
         <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
           {publicPages.map((page) => (
             <Button
               key={page.label}
-              size="large"
+              size="small"
               onClick={(event) => handleCloseNavMenu(event, page.url)}
               sx={{
                 color: theme.palette.secondary.main,
@@ -207,6 +184,9 @@ const HeaderContent = () => {
               {t(page.label)}
             </Button>
           ))}
+        </Box>
+        <Box sx={{ flexGrow: 0 }}>
+          <HeaderLanguageMenu color={theme.palette.secondary.main} />
         </Box>
 
         <Box sx={{ flexGrow: 0 }}>

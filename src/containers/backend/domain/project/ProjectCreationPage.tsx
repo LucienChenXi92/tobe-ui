@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Box, Grid, TextField, Button, Paper } from "@mui/material";
 import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
-import { Page, MultipleTagSelecter } from "../../../../components";
+import { Page, MultipleTagSelecter } from "../../components";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../../routes";

@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { useSnackbar } from "notistack";
 import { useNavigate } from "react-router-dom";
 import { Box, Button, Grid, TextField, Paper } from "@mui/material";
-import { Page, MultipleTagSelecter } from "../../../../components";
+import { Page, MultipleTagSelecter } from "../../components";
 import { URL } from "../../../../routes";
 import { TagOption } from "../../../../global/types";
 import { VocabularyService } from "../../../../services";

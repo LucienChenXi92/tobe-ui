@@ -8,16 +8,17 @@ import {
   NewsDTO,
 } from "../../../global/types";
 import { useParams } from "react-router-dom";
-import { Paper, Typography, Grid, Link, SxProps } from "@mui/material";
-import {
-  AuthorDisplayPanel,
-  TobeBreadcrumbs,
-  Page,
-  ContentPageMetaBar,
-} from "../../../components";
+import { Typography, Grid, Link, SxProps } from "@mui/material";
+import { Page } from "../../../components";
 import { URL } from "../../../routes";
 import AbcIcon from "@mui/icons-material/Abc";
 import ArticleOutlinedIcon from "@mui/icons-material/ArticleOutlined";
+import {
+  AuthorDisplayPanel,
+  Breadcrumbs,
+  ContentPageMetaBar,
+  ContentPageFrame,
+} from "../components";
 
 export default function SubjectReadingPage() {
   const { t } = useTranslation();
@@ -86,7 +87,7 @@ export default function SubjectReadingPage() {
       subject.name
     );
     return (
-      <Grid container flexDirection="row" sx={{ px: "10px" }}>
+      <Grid container flexDirection="row">
         {result}
       </Grid>
     );
@@ -116,7 +117,7 @@ export default function SubjectReadingPage() {
                 text={a.title}
                 href={
                   URL.NEWS_ARTICLE_DETAIL.replace(":id", a.id) +
-                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                  `?sid=${subjectId}&sn=${subjectName}`
                 }
               />
             </Grid>
@@ -130,7 +131,7 @@ export default function SubjectReadingPage() {
                 text={a.title}
                 href={
                   URL.NEWS_VOCABULARY_DETAIL.replace(":id", a.id) +
-                  `?subjectId=${subjectId}&subjectName=${subjectName}`
+                  `?sid=${subjectId}&sn=${subjectName}`
                 }
               />
             </Grid>
@@ -198,31 +199,28 @@ export default function SubjectReadingPage() {
 
   return (
     <Page openLoading={openLoading} pageTitle={subject?.name}>
-      <TobeBreadcrumbs
+      <Breadcrumbs
         nodes={[{ label: t("breadcrumbs.subjects"), href: URL.SUBJECTS_PAGE }]}
       />
-      {subject && (
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={12} md={9}>
-            <Paper sx={{ py: 2, px: 2 }} variant="outlined">
-              <Grid container>
-                <ContentPageMetaBar
-                  authorId={subject.ownerId}
-                  authorName={subject.ownerName}
-                  publishTime={subject.publishTime}
-                  viewCount={subject.viewCount}
-                  editLinkUrl={`/my/subjects/${subject.id}`}
-                />
-                {printSubjectTree(subject)}
-              </Grid>
-            </Paper>
-          </Grid>
-
-          <Grid item sm={12} md={3}>
-            <AuthorDisplayPanel userId={subject.ownerId} />
-          </Grid>
-        </Grid>
-      )}
+      <ContentPageFrame
+        mainContent={
+          subject && (
+            <Grid container>
+              <ContentPageMetaBar
+                authorId={subject.ownerId}
+                authorName={subject.ownerName}
+                publishTime={subject.publishTime}
+                viewCount={subject.viewCount}
+                editLinkUrl={`/my/subjects/${subject.id}`}
+              />
+              {printSubjectTree(subject)}
+            </Grid>
+          )
+        }
+        sideContents={[
+          subject && <AuthorDisplayPanel userId={subject.ownerId} />,
+        ]}
+      />
     </Page>
   );
 }

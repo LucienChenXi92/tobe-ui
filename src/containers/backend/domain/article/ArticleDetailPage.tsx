@@ -5,7 +5,7 @@ import { useSnackbar } from "notistack";
 import { Page } from "../../../../components";
 import { URL } from "../../../../routes";
 import { TagOption } from "../../../../global/types";
-import ArticleEditMainSection from "./component/ArticleEditMainSection";
+import ArticleEditMainSection from "./components/ArticleEditMainSection";
 import { ArticleService } from "../../../../services";
 
 export default function ArticleDetailPage() {
@@ -19,6 +19,7 @@ export default function ArticleDetailPage() {
   const [title, setTitle] = useState<string>("");
   const [subTitle, setSubTitle] = useState<string>("");
   const [tagValues, setTagValues] = useState<TagOption[]>([]);
+  const [contentProtected, setContentProtected] = useState<boolean>(false);
   const loadData = useCallback((): void => {
     if (!id) {
       return window.history.back();
@@ -30,6 +31,7 @@ export default function ArticleDetailPage() {
         setTitle(response.data.title);
         setSubTitle(response.data.subTitle);
         setTagValues(response.data.tags);
+        setContentProtected(response.data.contentProtected);
       })
       .catch(() => {
         enqueueSnackbar(t("article-creation-page.msg.error"), {
@@ -53,10 +55,11 @@ export default function ArticleDetailPage() {
       subTitle,
       content: htmlValue,
       description:
-        textValue.trim().length >= 1000
-          ? textValue.trim().substring(0, 997) + "..."
+        textValue.trim().length >= 500
+          ? textValue.trim().substring(0, 497) + "..."
           : textValue.trim(),
       tags: tagValues,
+      contentProtected: contentProtected,
     })
       .then((response) => {
         enqueueSnackbar(t("article-creation-page.msg.success"), {
@@ -84,6 +87,8 @@ export default function ArticleDetailPage() {
         setSubTitle={setSubTitle}
         tagValues={tagValues}
         setTagValues={setTagValues}
+        contentProtected={contentProtected}
+        setContentProtected={setContentProtected}
         htmlValue={htmlValue}
         setHtmlValue={setHtmlValue}
         textValue={textValue}

@@ -1,8 +1,8 @@
 import { Container, Grid } from "@mui/material";
 import { useTranslation } from "react-i18next";
-import { TobeImageButton } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { URL } from "../../../routes";
+import { TobeImageButton } from "./TobeImageButton";
 
 export default function NavigationSection() {
   const { t } = useTranslation();

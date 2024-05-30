@@ -5,6 +5,15 @@ import { red } from "@mui/material/colors";
  * Create system theme via material-ui
  */
 const theme = createTheme({
+  typography: {
+    fontFamily: [
+      '"Noto Sans SC"',
+      "Roboto",
+      '"Helvetica Neue"',
+      "Arial",
+      "sans-serif",
+    ].join(","),
+  },
   palette: {
     primary: {
       light: "#484848",

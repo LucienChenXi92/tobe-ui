@@ -8,6 +8,7 @@ import project from "../../../package.json";
  * 著作权组件
  */
 function Copyright(props: any) {
+  const license = process.env.REACT_APP_WEB_REGISTER_LICENSE;
   return (
     <Typography
       variant="body2"
@@ -20,7 +21,14 @@ function Copyright(props: any) {
         <strong>{project.name.toUpperCase()}</strong>
       </Link>{" "}
       {new Date().getFullYear()}
-      {"."}
+      {license && (
+        <>
+          {" · "}
+          <Link color="inherit" href="https://beian.miit.gov.cn">
+            {license}
+          </Link>
+        </>
+      )}
     </Typography>
   );
 }
